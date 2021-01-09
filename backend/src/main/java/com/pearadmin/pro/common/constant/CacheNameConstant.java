@@ -1,0 +1,20 @@
+package com.pearadmin.pro.common.constant;
+
+/**
+ * Describe: Redis 缓存区分前缀
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
+public class CacheNameConstant {
+
+    /**
+     * Token 存储前缀
+     * */
+    public static final String TOKEN_NAME_PREFIX = "TOKEN-";
+
+    /**
+     * Captcha 存储前缀
+     * */
+    public static final String CAPTCHA_NAME_PREFIX = "CAPTCHA-";
+
+}
