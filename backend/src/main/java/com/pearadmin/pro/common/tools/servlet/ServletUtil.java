@@ -1,6 +1,7 @@
 package com.pearadmin.pro.common.tools.servlet;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.pearadmin.pro.common.constant.SystemConstant;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 /**
  * Describe: Servlet 工具类
@@ -49,10 +51,31 @@ public class ServletUtil {
     /**
      * Describe: 获取 Request 请求参数
      * Param paramName
-     * Return HttpServletSession
+     * Return String
      * */
     public static String getParameter(String paramName){
         return ServletUtil.getRequest().getParameter(paramName);
+    }
+
+    /**
+     * Describe: 获取 Request Body 请求参数
+     * Param: paramName
+     * Return: String
+     * */
+    public static JSONObject getBodyParameters(){
+        try {
+            InputStreamReader reader = new InputStreamReader(getRequest().getInputStream(), SystemConstant.UTF8);
+            char[] buff = new char[1024];
+            int length = 0;
+            String body = null;
+            while ((length = reader.read(buff)) != -1) {
+                body = new String(buff, 0, length);
+            }
+            return JSON.parseObject(body);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**

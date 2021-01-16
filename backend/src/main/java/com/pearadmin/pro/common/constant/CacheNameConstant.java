@@ -17,4 +17,11 @@ public class CacheNameConstant {
      * */
     public static final String CAPTCHA_NAME_PREFIX = "CAPTCHA-";
 
+    /**
+     * Remember 存储前缀
+     *
+     * TODO 待实现
+     * */
+    public static final String REMEMBER_NAME_PREFIX = "REMEMBER-";
+
 }

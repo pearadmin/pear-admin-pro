@@ -1,7 +1,5 @@
-import {getUserMenusArray, getUserMenusTree, login, logout} from "@/api/modules/user";
-import {
-  generatorUserMenuForList, generatorUserMenuForTree
-} from "@/router/permission";
+import {getUserMenusArray, getUserMenusTree, login, logout} from "@/api/modules/sys/user";
+import { generatorUserMenuForList, generatorUserMenuForTree} from "@/router/permission";
 
 const state = {
   token: '',
@@ -11,13 +9,8 @@ const state = {
 
 const mutations = {
   SET_USER_TOKEN(state, token) {
-    if (token) {
       state.token = token;
-      localStorage.setItem('pear_admin_ant_token', token);
-    } else {
-      state.token = '';
-      localStorage.removeItem('pear_admin_ant_token')
-    }
+      localStorage.setItem('PEAR_ADMIN_TOKEN', token);
   },
   SET_USER_INFO(state, userInfo) {
     state.userInfo = userInfo
@@ -50,24 +43,9 @@ const actions = {
     return Promise.resolve()
   },
   async login({commit}, data) {
-    const response = await login(data)
-    const {result: userInfo} = response
-    const {menuList, token} = userInfo
-    /**
-     * 若菜单不是单独的接口用以下注释的代码
-     const dynamicRoutes = generatorUserMenuForList(menuList)
-     // 末尾添加未知路由404
-     dynamicRoutes.push({
-         path: '/:pathMatch(.*)*',
-         hidden: true,
-         redirect: '/error/404'
-     })
-     commit('SET_USER_MENU', dynamicRoutes)
-     */
-    delete userInfo.menuList
-    delete userInfo.token
-    commit('SET_USER_TOKEN', token)
-    commit('SET_USER_INFO', userInfo)
+    const response = await login(data);
+    const {token} = response; 
+    commit('SET_USER_TOKEN', token);
     return Promise.resolve()
   },
   // addUserRouteForArray, addUserRouteForTree 跟据后端返回数据结构来决定走哪个方法。
@@ -77,8 +55,8 @@ const actions = {
     // addUserRoutes(routes)
     // return Promise.resolve()
     // 如果菜单是单独的接口
-    const { result: menuList } = await getUserMenusArray()
-    const dynamicRoutes = generatorUserMenuForList(menuList)
+    const { data } = await getUserMenusArray()
+    const dynamicRoutes = generatorUserMenuForList(data)
     commit('SET_USER_MENU', dynamicRoutes)
   },
   async addUserRouteForTree ({ state: { userRoutes }, commit }) {

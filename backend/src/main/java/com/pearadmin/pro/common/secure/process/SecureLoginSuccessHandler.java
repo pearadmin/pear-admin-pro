@@ -27,15 +27,9 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
-            // 获取 用 户
             SecureUser customUserDetails = (SecureUser) authentication.getPrincipal();
-            // 创建 Token
-            String token = customUserDetailsTokenService.createAndSaveToken(customUserDetails);
-            // 拼接 Token
-            String accessToken = TokenConstant.TOKEN_PREFIX + token;
-            // 封 装 数 据
+            String accessToken = TokenConstant.TOKEN_PREFIX + customUserDetailsTokenService.createAndSaveToken(customUserDetails);;
             Result result = Result.success(ResultCode.LOGIN_SUCCESS).setToken(accessToken);;
-            // 响 应 结 果
             ServletUtil.writeJson(result);
     }
 }

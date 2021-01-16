@@ -1,7 +1,6 @@
 // 可以根据路由模式的不同，后面俩可以只引用一个
 import {createRouter, createWebHashHistory} from 'vue-router'
 // 引入基础路由
-// import routes from './routes.js'
 import routes from './modules/basic-routes'
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";

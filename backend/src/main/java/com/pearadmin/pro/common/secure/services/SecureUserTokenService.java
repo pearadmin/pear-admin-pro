@@ -89,4 +89,22 @@ public class SecureUserTokenService {
         redisTemplate.delete(CacheNameConstant.TOKEN_NAME_PREFIX + token);
     }
 
+    /**
+     * 查询 过期 (秒)
+     * 如果该值有过期时间，就返回相应的过期时间;
+     * 如果该值没有设置过期时间，就返回-1;
+     * 如果没有该值，就返回-2;
+     * */
+    public long selectExpired(String key){
+        long expired = redisTemplate.opsForValue().getOperations().getExpire(key);
+        return expired;
+    }
+
+    /**
+     * 查询 Token
+     * */
+    public Set<String> selectToken(){
+        Set<String> tokenKeys= redisTemplate.keys(CacheNameConstant.TOKEN_NAME_PREFIX + "*");
+        return tokenKeys;
+    }
 }

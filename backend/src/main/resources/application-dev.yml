@@ -11,11 +11,10 @@ spring:
           url: jdbc:mysql://mysql.pearadmin.com/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
           username: root
           password: pear-mysql
-
   ## redis 配置
   redis:
     ## 默认数据库
-    database: 0
+    database: 2
     ## 链接信息
     host: 127.0.0.1
     port: 6379

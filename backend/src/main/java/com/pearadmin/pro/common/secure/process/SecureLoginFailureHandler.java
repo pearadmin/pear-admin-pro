@@ -5,6 +5,7 @@ import com.pearadmin.pro.common.web.domain.ResultCode;
 import com.pearadmin.pro.common.tools.servlet.ServletUtil;
 import org.springframework.security.authentication.AccountExpiredException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.authentication.LockedException;
@@ -25,10 +26,11 @@ public class SecureLoginFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
 
-        if(e instanceof UsernameNotFoundException) ServletUtil.writeJson(Result.failure(ResultCode.USER_USERNAME_NOT_FOUND));
-        if(e instanceof LockedException) ServletUtil.writeJson(Result.failure(ResultCode.USER_LOCKED));
-        if(e instanceof BadCredentialsException) ServletUtil.writeJson(Result.failure(ResultCode.USER_BAD_CREDENTIALS));
-        if(e instanceof AccountExpiredException) ServletUtil.writeJson(Result.failure(ResultCode.USER_EXPIRED));
+        if(e instanceof UsernameNotFoundException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_USERNAME_NOT_FOUND)); return;}
+        if(e instanceof LockedException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_LOCKED)); return;}
+        if(e instanceof BadCredentialsException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_BAD_CREDENTIALS)); return;}
+        if(e instanceof AccountExpiredException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_EXPIRED)); return;}
+        if(e instanceof DisabledException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_NOT_ENABLE)); return;}
 
         ServletUtil.writeJson(Result.failure(ResultCode.LOGIN_FAILURE));
     }

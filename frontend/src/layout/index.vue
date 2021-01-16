@@ -7,8 +7,7 @@
       :collapsed="collapsed"
       :trigger="null"
        collapsible
-      :class="fixedSide ? 'fixed-side' : ''"
-    >
+      :class="fixedSide ? 'fixed-side' : ''">
       <div class="pear-layout-left-sider">
         <!-- 顶部图标 -->
         <Logo v-if="logo"></Logo>

@@ -107,6 +107,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 取消跨站请求伪造防护
                 .csrf()
                 .disable();
+
         // 基于 Token 不需要 session
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
@@ -116,5 +117,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         // 禁用缓存
         http.headers().cacheControl();
+
+        // 开启 Security 跨域
+        http.cors();
     }
 }

@@ -1,11 +1,3 @@
-/**
- *
- * author: jiabinbin
- * Email: 425605679@qq.com
- * Desc:
- * version: 1.0.0
- */
-
 import permissionRoutes from './modules/permission-routes'
 import NProgress from "nprogress";
 import store from "@/store";
@@ -149,7 +141,7 @@ export const permissionController = async (to, from, next) => {
   await store.dispatch('app/execCancelToken')
   //这里也可以验证权限
   // 前往页面不是登陆，且没有登陆的情况，统一重定向到登陆
-  if (!to.fullPath.includes('login') && !localStorage.getItem('pear_admin_ant_token')) {
+  if (!to.fullPath.includes('login') && !localStorage.getItem('PEAR_ADMIN_TOKEN')) {
     next({path: '/login'})
   } else {
     // 如果基本路由中不包含页面前往的路径

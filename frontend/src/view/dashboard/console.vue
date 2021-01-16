@@ -1,6 +1,6 @@
 <template>
   <div id="home">
-    <page-layout>
+    <page-body>
       <a-row :gutter="[10, 10]">
         <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <a-card>
@@ -272,7 +272,7 @@
           </a-card>
         </a-col>
       </a-row>
-    </page-layout>
+    </page-body>
     <page-footer></page-footer>
   </div>
 </template>

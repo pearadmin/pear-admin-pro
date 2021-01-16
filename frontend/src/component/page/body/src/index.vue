@@ -1,15 +1,15 @@
 <template>
-  <div class="page-layout">
+  <div class="page-body">
       <slot></slot>
   </div>
 </template>
 <script>
 export default {
-  name:"page-layout"
+  name:"page-body"
 }
 </script>
 <style scoped>
-.page-layout {
+.page-body {
   margin: 10px;
 }
 </style>

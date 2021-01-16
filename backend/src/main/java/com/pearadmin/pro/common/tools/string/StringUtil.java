@@ -9,20 +9,32 @@ import com.pearadmin.pro.common.constant.SystemConstant;
  * */
 public class StringUtil {
 
+    /**
+     * 判断是否为空
+     * */
     public boolean isBlank(String text){
         if(text.equals(SystemConstant.EMPTY)){ return true; }
         return false;
     }
 
+    /**
+     * 判断是否为空
+     * */
     public boolean isEmpty(String text){
         if(text == null){ return true; }
         return false;
     }
 
+    /**
+     * 判断是否不为空
+     * */
     public boolean isNotBlank(String text){
         return !isBlank(text);
     }
 
+    /**
+     * 判断是否不为空
+     * */
     public boolean isNotEmpty(String text){
         return !isNotEmpty(text);
     }

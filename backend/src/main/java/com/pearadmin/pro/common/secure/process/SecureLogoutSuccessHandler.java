@@ -27,10 +27,8 @@ public class SecureLogoutSuccessHandler implements LogoutSuccessHandler {
 
     @Override
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
-        // 销毁 Token
         String token = httpServletRequest.getHeader(TokenConstant.TOKEN_HEADER).replaceFirst(TokenConstant.TOKEN_PREFIX, "");
         customUserDetailsTokenService.destroyToken(token);
-        // 响 应 结 果
         ServletUtil.writeJson(Result.success(ResultCode.LOGOUT_SUCCESS));
     }
 }

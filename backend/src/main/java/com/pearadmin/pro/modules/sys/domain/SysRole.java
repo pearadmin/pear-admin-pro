@@ -4,8 +4,8 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.BaseDomain;
-import lombok.Data;
 import org.apache.ibatis.type.Alias;
+import lombok.Data;
 
 /**
  * Describe: 角色领域模型

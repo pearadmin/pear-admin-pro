@@ -7,11 +7,7 @@ package com.pearadmin.pro.common.web.exception.base;
  * */
 public class BusinessException extends RuntimeException {
 
-    /**
-     * 业务异常
-     * */
     public BusinessException(String message){
         super(message);
     }
-
 }

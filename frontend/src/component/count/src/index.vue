@@ -94,6 +94,6 @@ export default{
 </script>
 <style>
 .p-count{
-  font-size: 23px;
+  font-size: 24px;
 }
 </style>

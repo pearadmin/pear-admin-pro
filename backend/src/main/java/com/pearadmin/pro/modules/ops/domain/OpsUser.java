@@ -1,5 +1,9 @@
 package com.pearadmin.pro.modules.ops.domain;
 
-public class OpsUser {
+import com.pearadmin.pro.common.secure.services.SecureUser;
+import lombok.Data;
+
+@Data
+public class OpsUser extends SecureUser {
 
 }

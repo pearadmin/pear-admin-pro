@@ -45,14 +45,12 @@ export default {
     const state = reactive({
       menu: computed(() => getters.menu)
     })
-    // store中不允许修改，这里转一次
+    
     const menu = ref(state.menu);
 
     const dynamicRoute = () => {
       let { matched } = route;
-      let needOpenKeys = matched
-        .slice(0, matched.length - 1)
-        .map((m) => m.path);
+      let needOpenKeys = matched.slice(0, matched.length - 1).map((m) => m.path);
       let openKeys = [...storeOpenKey.value];
       needOpenKeys.forEach((nk) => !openKeys.includes(nk) && openKeys.push(nk));
       changeLayout(layout.value);
@@ -66,11 +64,9 @@ export default {
     const changeLayout = (model) => {
       if (model === "layout-comp") {
         let topPath = route.matched[0].path;
-        // menu.value = routes.find((r) => r.path === topPath).children;
         menu.value = state.menu.find(r => r.path === topPath).children
         rootPath.value = topPath + "/";
       } else {
-        // menu.value = routes;
         menu.value = state.menu
         rootPath.value = "";
       }

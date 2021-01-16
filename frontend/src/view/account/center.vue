@@ -1,6 +1,6 @@
 <template>
   <div class="center">
-    <page-layout>
+    <page-body>
       <a-row :gutter="[15, 15]">
         <a-col :span="6">
           <a-card>
@@ -76,7 +76,7 @@
           </a-card>
         </a-col>
       </a-row>
-    </page-layout>
+    </page-body>
   </div>
 </template>
 <script>

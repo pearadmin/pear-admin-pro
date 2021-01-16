@@ -14,5 +14,9 @@ export default {
   'result-failure': () => import('@/view/result/failure.vue'),
   'error-403': () => import('@/view/error/403.vue'),
   'error-404': () => import('@/view/error/404.vue'),
-  'error-500': () => import('@/view/error/500.vue')
+  'error-500': () => import('@/view/error/500.vue'),
+  'user-list': () => import('@/view/sys/user/index.vue'),
+  'role-list': () => import('@/view/sys/role/index.vue'),
+  'power-list': () => import('@/view/sys/power/index.vue'),
+  'ops-user': () => import('@/view/ops/user/index.vue'),
 }

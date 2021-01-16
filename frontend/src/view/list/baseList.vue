@@ -1,36 +1,31 @@
 <template>
   <div>
-    <page-header
-      title="基础列表"
-      describe="标准的列表，包含增删改查等基础操作."
-    ></page-header>
-
-    <page-layout>
+    <page-header title="基础列表" describe="标准的列表，包含增删改查等基础操作."></page-header>
+    <page-body>
       <a-card style="text-align: center">
         <a-row>
           <a-col :span="8">
             <a-statistic
-              title="Feedback"
+              title="全部"
               :value="1128"
-              style="margin-right: 50px"
             >
             </a-statistic>
           </a-col>
           <a-col :span="8">
-            <a-statistic title="Unmerged" :value="93" class="demo-class">
-              <template #suffix>
-                <span> / 100</span>
-              </template>
+            <a-statistic
+              title="在线"
+              :value="1128"
+            >
             </a-statistic>
           </a-col>
           <a-col :span="8">
-            <a-statistic title="Teacher" :value="5433" class="demo-class">
+            <a-statistic title="离线" :value="5433">
             </a-statistic>
           </a-col>
         </a-row>
       </a-card>
-    </page-layout>
-    <page-layout>
+    </page-body>
+    <page-body>
       <a-card>
         <a-list :loading="loading" item-layout="horizontal" :data-source="data">
           <template v-slot:loadMore>
@@ -70,7 +65,7 @@
           </template>
         </a-list>
       </a-card>
-    </page-layout>
+    </page-body>
     <page-footer></page-footer>
   </div>
 </template>

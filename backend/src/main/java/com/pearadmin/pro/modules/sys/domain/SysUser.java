@@ -44,6 +44,6 @@ public class SysUser extends SecureUser {
      * 性别
      * */
     @TableField("gender")
-    private String gender;
+    private Integer gender;
 
 }

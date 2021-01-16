@@ -39,6 +39,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result handleException(Exception e)
     {
+        e.printStackTrace();
         return Result.failure("服务器错误，请联系管理员");
     }
 

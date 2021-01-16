@@ -1,13 +1,4 @@
-/**
- *
- * author: jiabinbin
- * Email: 425605679@qq.com
- * Desc:
- * version: 1.0.0
- */
 import axios from 'axios'
-import { useStore } from "vuex";
-import { notification } from 'ant-design-vue'
 import store from '../store'
 class Http {
   constructor(config) {
@@ -15,9 +6,6 @@ class Http {
       timeout: 6000,
       withCredentials: true,
       baseURL: process.env.VUE_APP_API_BASE_URL,
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      }
     }
   }
 
@@ -26,18 +14,10 @@ class Http {
      * 请求拦截器
      */
     instance.interceptors.request.use(config => {
-      const token = localStorage.getItem('pear_admin_ant_token')
-      /**
-       * 跟据实际情况处理token. eg:
-       * 假设api请求的url为 'api/login', 若当前的请求的url不为登陆的则都带上token
-       * if (!config.url.includes('login')) {
-       *   config.headers.Token = token
-       * }
-       */
+      const token = localStorage.getItem('PEAR_ADMIN_TOKEN')
       if (token) {
-        config.headers['Access-Token'] = token
+        config.headers['authorization'] = token
       }
-      // 请求时缓存该请求，路由跳转时取消, 如果timeout值过大，可能在上一个次请求还没完成时，切换了页面。
       config.cancelToken = new axios.CancelToken(async cancel => {
         await store.dispatch('app/execCancelToken', { cancelToken: cancel })
       })
@@ -45,27 +25,9 @@ class Http {
     }, error => {
       return Promise.reject(error)
     })
-
     instance.interceptors.response.use(response => {
       return response.data
     }, error => {
-      if (error.response) {
-        const data = error.response.data
-        if (error.response.status === 403) {
-          notification.error({
-            message: '无权限访问',
-            description: data.message
-          })
-        }
-        if (error.response.status === 401) {
-          const store = useStore()
-          store.dispatch('app/logout').then(() => {
-            setTimeout(() => {
-              window.location.reload()
-            }, 2000)
-          })
-        }
-      }
       return Promise.reject(error)
     })
   }
@@ -77,6 +39,10 @@ class Http {
     return instance(requestOptions)
   }
 }
+
+const resultEnum = [
+  {code: 400, msg: ''}
+]
 
 const http = new Http()
 export default http

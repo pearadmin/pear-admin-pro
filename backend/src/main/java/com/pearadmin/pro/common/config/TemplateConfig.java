@@ -16,6 +16,9 @@ import java.io.Serializable;
 @Configuration
 public class TemplateConfig {
 
+    /**
+     * Redis 操作工具
+     * */
     @Bean
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory){
         RedisTemplate<String,Serializable> redisTemplate = new RedisTemplate<>();
