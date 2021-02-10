@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.web.context;
+package com.pearadmin.pro.common.context;
 
 import com.pearadmin.pro.common.web.domain.ResultController;
 
@@ -10,10 +10,9 @@ import com.pearadmin.pro.common.web.domain.ResultController;
 public abstract class BaseContext extends ResultController {
 
     public static UserContext USER_CONTEXT;
-    public static AuthContext AUTH_CONTEXT;
 
     static{
+
         USER_CONTEXT = new UserContext();
-        AUTH_CONTEXT = new AuthContext();
     }
 }

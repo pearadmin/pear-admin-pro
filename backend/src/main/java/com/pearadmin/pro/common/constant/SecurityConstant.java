@@ -10,7 +10,7 @@ public class SecurityConstant {
     /**
      * 不需要认证的接口资源
      */
-    public static final String HTTP_ACT_MATCHERS="/index,/login,/api/captcha/**,/login/**,/api/captcha/createCaptcha";
+    public static final String HTTP_ACT_MATCHERS="/api/login,/api/captcha/createCaptcha,/swagger-ui.html";
 
     /**
      * 不需要认证的静态资源
@@ -20,7 +20,7 @@ public class SecurityConstant {
     /**
      * 默认的登录接口
      * */
-    public static final String LOGIN_URL = "/login";
+    public static final String LOGIN_URL = "/api/login";
 
     /**
      * 登录接口方式
@@ -30,7 +30,7 @@ public class SecurityConstant {
     /**
      * 默认的注销接口
      * */
-    public static final String LOGOUT_URL = "/logout";
+    public static final String LOGOUT_URL = "/api/logout";
 
     /**
      * 是否开启验证码

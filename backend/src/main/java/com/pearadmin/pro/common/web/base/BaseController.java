@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.web.base;
 
-import com.pearadmin.pro.common.web.context.BaseContext;
+import com.pearadmin.pro.common.context.BaseContext;
 
 /**
  * Describe: Base Controller

@@ -1,6 +1,8 @@
 package com.pearadmin.pro.common.secure.captcha;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * Describe: Captcha 验证码实体
@@ -8,6 +10,8 @@ import lombok.Data;
  * CreateTime: 2019/10/23
  * */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class SecureCaptcha {
 
     /**
@@ -25,12 +29,4 @@ public class SecureCaptcha {
      * */
     private String image;
 
-    /**
-     * 构造方法
-     * */
-    public SecureCaptcha(String key, String code, String image){
-        this.key = key;
-        this.code = code;
-        this.image = image;
-    }
 }
