@@ -3,11 +3,11 @@ package com.pearadmin.pro.common.secure.process;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
 import com.pearadmin.pro.common.constant.TokenConstant;
 import org.springframework.security.core.Authentication;
-import com.pearadmin.pro.common.tools.servlet.ServletUtil;
 import com.pearadmin.pro.common.secure.services.SecureUserTokenService;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.stereotype.Component;

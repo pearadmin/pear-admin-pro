@@ -3,12 +3,12 @@ package com.pearadmin.pro.modules.sys.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pearadmin.pro.common.constant.ControllerConstant;
-import com.pearadmin.pro.common.tools.security.SecurityUtil;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.controller.response.SysMenu;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
+import org.apache.catalina.security.SecurityUtil;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class SysUserController extends BaseController {
 
     @GetMapping("info")
     public Result info(){
-        return success(SecurityUtil.getPrincipal());
+        return success();
     }
 
     @GetMapping("info/{id}")

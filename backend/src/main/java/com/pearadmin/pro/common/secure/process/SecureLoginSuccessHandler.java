@@ -1,5 +1,6 @@
 package com.pearadmin.pro.common.secure.process;
 
+import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
 import com.pearadmin.pro.common.constant.TokenConstant;
@@ -7,7 +8,6 @@ import org.springframework.security.core.Authentication;
 import com.pearadmin.pro.common.secure.services.SecureUserTokenService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import com.pearadmin.pro.common.secure.services.SecureUser;
-import com.pearadmin.pro.common.tools.servlet.ServletUtil;
 import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;

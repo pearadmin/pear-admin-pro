@@ -1,6 +1,5 @@
 package com.pearadmin.pro;
 
-import com.pearadmin.pro.common.tools.console.ConsoleUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
@@ -15,6 +14,5 @@ public class EntranceApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EntranceApplication.class, args);
-        ConsoleUtil.banner();
     }
 }
