@@ -1,16 +1,23 @@
-import {getUserMenusArray, getUserMenusTree, login, logout} from "@/api/modules/sys/user";
-import { generatorUserMenuForList, generatorUserMenuForTree} from "@/router/permission";
+import {getUserMenusArray, getUserMenusTree, login, logout} from "@/api/modules/user";
+import {
+  generatorUserMenuForList, generatorUserMenuForTree
+} from "@/router/permission";
 
 const state = {
   token: '',
-  userInfo: null,
+  userInfo: localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')) : null,
   userRoutes: []
 }
 
 const mutations = {
   SET_USER_TOKEN(state, token) {
+    if (token) {
       state.token = token;
-      localStorage.setItem('PEAR_ADMIN_TOKEN', token);
+      localStorage.setItem('pear_admin_ant_token', token);
+    } else {
+      state.token = '';
+      localStorage.removeItem('pear_admin_ant_token')
+    }
   },
   SET_USER_INFO(state, userInfo) {
     state.userInfo = userInfo
@@ -43,34 +50,31 @@ const actions = {
     return Promise.resolve()
   },
   async login({commit}, data) {
-    const response = await login(data);
-    const {token} = response; 
-    commit('SET_USER_TOKEN', token);
-    return Promise.resolve()
+    try {
+      const result = await login(data)
+      const {code, msg, token} = result
+      if (code === 200) {
+        commit('SET_USER_TOKEN', token)
+        return Promise.resolve()
+      } else {
+        return Promise.reject(msg)
+      }
+    } catch (e) {
+      console.log(e)
+    }
   },
   // addUserRouteForArray, addUserRouteForTree 跟据后端返回数据结构来决定走哪个方法。
   async addUserRouteForArray ({ state: { userRoutes }, commit }) {
-    // 如果菜单不是单独的接口
-    // const routes = JSON.parse(JSON.stringify(userRoutes))
-    // addUserRoutes(routes)
-    // return Promise.resolve()
-    // 如果菜单是单独的接口
-    const { data } = await getUserMenusArray()
-    const dynamicRoutes = generatorUserMenuForList(data)
+    const { result: menuList } = await getUserMenusArray()
+    const dynamicRoutes = generatorUserMenuForList(menuList)
     commit('SET_USER_MENU', dynamicRoutes)
   },
   async addUserRouteForTree ({ state: { userRoutes }, commit }) {
-    // 如果菜单不是单独的接口
-    // const routes = JSON.parse(JSON.stringify(userRoutes))
-    // addUserRoutes(routes)
-    // return Promise.resolve()
-    // 如果菜单是单独的接口
     const { result: menuList } = await getUserMenusTree()
     const dynamicRoutes = generatorUserMenuForTree(menuList)
     commit('SET_USER_MENU', dynamicRoutes)
   }
 }
-
 export default {
   namespaced: true,
   state,

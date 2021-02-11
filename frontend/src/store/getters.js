@@ -1,8 +1,3 @@
-const getStorageObject = (key, storage, defaultValue) => {
-  const storageStr = storage.getItem(key)
-  if (!storageStr) return defaultValue
-  return JSON.parse(storageStr)
-}
 const getters = {
   layout: state => state.layout.layout,
   theme: state => state.layout.theme,
@@ -24,7 +19,9 @@ const getters = {
   colorList: state => state.layout.colorList,
   routerAnimate: state => state.layout.routerAnimate,
   language: state => state.layout.language,
+  isMobile: state => state.layout.isMobile,
   token: state => state.user.token ? state.user.token : localStorage.getItem('pear_admin_ant_token') ? localStorage.getItem('pear_admin_ant_token') : '',
-  menu: state => state.user.userRoutes.length !== 0 ? state.user.userRoutes : localStorage.getItem('user_routes') ? JSON.parse(localStorage.getItem('user_routes')) : ''
+  menu: state => state.user.userRoutes.length !== 0 ? state.user.userRoutes : localStorage.getItem('user_routes') ? JSON.parse(localStorage.getItem('user_routes')) : '',
+  // userInfo: state => state.user.userInfo ? state.user.userInfo : localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')) : ''
 };
 export default getters;

@@ -3,7 +3,7 @@
     <div class="login-form">
       <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
         <a-form-item>
-          <img class="logo" src="../../assets/image/logo.png" />
+          <img class="logo" src="@/assets/image/logo.png" />
           <div class="head">Pear Admin</div>
           <div class="desc">明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一</div>
         </a-form-item>
@@ -11,20 +11,23 @@
           <a-input placeholder="账 户 : admin" v-model:value="param.username" />
         </a-form-item>
         <a-form-item v-bind="validateInfos.password">
-          <a-input placeholder="密 码 : admin" v-model:value="param.password" />
-        </a-form-item>
-        <a-form-item v-bind="validateInfos.captchaCode">
           <a-input
-            placeholder="例如 : abcd"
-            v-model:value="param.captchaCode"
+            placeholder="密 码 : admin"
+            v-model:value="param.password"
+            type="password"
           />
-          <img :src="captchaImage" />
         </a-form-item>
         <a-form-item>
-          <a-input placeholder="例如 : abcd" v-model:value="param.captchaKey" />
+          <a-input v-model:value="param.captchaKey" />
         </a-form-item>
         <a-form-item>
-          <a-checkbox :checked="true"> 记住密码 </a-checkbox>
+          <a-input v-model:value="param.captchaCode" />
+        </a-form-item>
+        <a-form-item>
+          <img :src="param.captchaImage" />
+        </a-form-item>
+        <a-form-item>
+          <a-checkbox :checked="true"> 记住我 </a-checkbox>
           <a class="forgot" href=""> 忘记密码 </a>
         </a-form-item>
         <a-form-item :wrapper-col="{ span: 24 }">
@@ -37,75 +40,60 @@
   </div>
 </template>
 <script>
-import { message, notification } from "ant-design-vue";
-import { createCaptcha } from "@/api/modules/ops/captcha";
-import { login } from "@/api/modules/sys/user";
-import { onMounted, reactive, ref, toRaw } from "vue";
+import { reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
+import { message } from "ant-design-vue";
+import { create } from "@/api/modules/captcha";
 export default {
   setup() {
     const router = useRouter();
     const store = useStore();
     const load = ref(false);
-    const captchaImage = ref();
 
+    // 登录参数
     const param = reactive({
       username: "admin",
       password: "admin",
-      captchaKey: "",
-      captchaCode: "",
+      captchaKey: "key",
+      captchaCode: "code",
+      captchaImage: "image"
     });
 
-    const { resetFields, validate, validateInfos } = useForm(
+    // 参数验证
+    const { validate, validateInfos } = useForm(
       param,
       reactive({
         username: [{ required: true, message: "请输入账户" }],
         password: [{ required: true, message: "请输入密码" }],
+        captchaKey: [{ required: true, message: "验证码缺失" }],
         captchaCode: [{ required: true, message: "请输入验证码" }],
       })
     );
 
-    const onSubmit = async (e) => {
-      load.value = true;
+    // 验证码 初始化
+    const init = async function () {
+      const result = await create();
+      param.captchaKey = result.data.key;
+      param.captchaCode = result.data.code;
+      param.captchaImage = result.data.image;
+    };
+    init();
+
+    // 登录 验证
+    const onSubmit = async () => {
       try {
-        if (await validate()) {
-          const result = await login(param);
-          if (result.success) {
-            store.commit("user/SET_USER_TOKEN", result.token);
-            notification["success"]({
-              message: result.msg,
-              description: "欢迎你使用系统",
-              duration: 2,
-            });
-            router.push("/");
-          } else {
-            notification["error"]({
-              message: result.msg,
-              description: "请检查账户密码",
-              duration: 2,
-            });
-            initCaptcha();
-          }
+        const v = await validate();
+        if (v) {
+          load.value = true;
+          await store.dispatch("user/login", param);
+          await router.push("/");
         }
       } catch (e) {
-        console.log("error", e);
-      } finally {
-        load.value = false;
+        message.error(e);
       }
     };
-
-    onMounted(() => {
-      initCaptcha();
-    });
-
-    const initCaptcha = async function () {
-      const response = await createCaptcha();
-      param.captchaKey = response.data.key;
-      param.captchaCode = response.data.code;
-    };
-
     return {
       labelCol: { span: 6 },
       wrapperCol: { span: 24 },

@@ -1,11 +1,12 @@
-import PageHeader from "./page/header";
-import PageBody from "./page/body";
-import PageFooter from "./page/footer";
+import Header from "./header";
+import Layout from "./layout";
+import Footer from "./footer";
 import CardBase from "./cardBase";
 import Count from "./count";
-
+import Table from './table';
+import Search from './search';
 const components = [
-    PageFooter,PageHeader, PageBody, CardBase, Count
+    Footer,Header,Layout, CardBase, Count,Table, Search
 ];
 
 const install = function (Vue) {
@@ -15,5 +16,5 @@ const install = function (Vue) {
 
 export default {
     install,
-    PageFooter, PageHeader, PageBody, CardBase, Count
+    Footer,Header,Layout, CardBase, Count,Table, Search
 }

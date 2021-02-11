@@ -9,6 +9,7 @@
   </a-card>
 </template>
 <script>
+import "./index.less";
 import * as Icons from "@ant-design/icons-vue";
 export default {
   name: "card-base",
@@ -24,7 +25,7 @@ export default {
     color: {
       type: String,
       required: true,
-    },
+    }
   },
   setup(props) {
     const MenuIcon = Icons[props.icon] || {};
@@ -35,20 +36,3 @@ export default {
   },
 };
 </script>
-<style>
-.card-base {
-  border-radius: 6px;
-}
-.card-base .ant-card-body {
-  padding: 14px;
-}
-.card-base-icon {
-  text-align: center;
-  font-size: 30px;
-}
-.card-base-title {
-  text-align: center;
-  font-size: 14px;
-  margin-top: 6px;
-}
-</style>
