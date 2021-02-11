@@ -26,7 +26,7 @@ public class SecureCaptchaService {
      * 创 建 Captcha
      * */
     public SecureCaptcha createCaptcha(){
-        SpecCaptcha captcha = new SpecCaptcha(138,40);
+        SpecCaptcha captcha = new SpecCaptcha(142,38);
         var key = UUID.randomUUID().toString();
         var code = captcha.text().toLowerCase();
         redisTemplate.opsForValue().set(CacheNameConstant.CAPTCHA_NAME_PREFIX + key, code, SecurityConstant.CAPTCHA_EXPIRATION, TimeUnit.SECONDS);

@@ -1,11 +1,11 @@
 import axios from "axios";
 import { useStore } from "vuex";
-import { notification, message as Msg } from "ant-design-vue";
+import { notification, message as Msg, message } from "ant-design-vue";
 import store from "../store";
 class Http {
   constructor(config) {
     this.config = config || {
-      timeout: 10000,
+      timeout: 6000,
       withCredentials: true,
       baseURL: process.env.VUE_APP_API_BASE_URL,
       headers: {
@@ -21,15 +21,8 @@ class Http {
     instance.interceptors.request.use(
       config => {
         const token = localStorage.getItem("pear_admin_ant_token");
-        /**
-         * 跟据实际情况处理token. eg:
-         * 假设api请求的url为 'api/login', 若当前的请求的url不为登陆的则都带上token
-         * if (!config.url.includes('login')) {
-         *   config.headers.Token = token
-         * }
-         */
         if (token) {
-          config.headers["Access-Token"] = token;
+          config.headers["Authorization"] = token;
         }
         // 请求时缓存该请求，路由跳转时取消, 如果timeout值过大，可能在上一个次请求还没完成时，切换了页面。
         config.cancelToken = new axios.CancelToken(async cancel => {
@@ -42,26 +35,22 @@ class Http {
       }
     );
 
+    /**
+     * 响应拦截器 
+     */
     instance.interceptors.response.use(
       response => {
+        if (response.data.code !== 200) {
+          message.error(response.data.msg);
+          return false;
+        }
         return response.data;
       },
       error => {
         if (error.response) {
-          const data = error.response.data;
-          if (error.response.status === 403) {
-            notification.error({
-              message: "无权限访问",
-              description: data.message
-            });
-          }
-          if (error.response.status === 401) {
-            const store = useStore();
-            store.dispatch("app/logout").then(() => {
-              setTimeout(() => {
-                window.location.reload();
-              }, 2000);
-            });
+          const {status} = error.response;
+          if (status === 404) {
+            Msg.error("接口不存在");
           }
         } else {
           let { message } = error;

@@ -1,10 +1,9 @@
 import http from '../http'
 
 const Api = {
+  menu: '/sys/user/menu',
   login: '/login',
-  logout: '/logout',
-  getUserMenusArray: '/getUserMenusArray',
-  getUserMenusTree: '/getUserMenusTree',
+  logout: '/logout'
 }
 
 export const login = data => {
@@ -23,18 +22,10 @@ export const logout = data => {
   })
 }
 
-export const getUserMenusArray = data => {
+export const menu = data => {
   return http.request({
-    url: Api.getUserMenusArray,
+    url: Api.menu,
     data: data,
-    method: 'post'
-  })
-}
-
-export const getUserMenusTree = data => {
-  return http.request({
-    url: Api.getUserMenusTree,
-    data: data,
-    method: 'post'
+    method: 'get'
   })
 }

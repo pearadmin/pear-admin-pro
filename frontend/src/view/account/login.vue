@@ -11,20 +11,20 @@
           <a-input placeholder="账 户 : admin" v-model:value="param.username" />
         </a-form-item>
         <a-form-item v-bind="validateInfos.password">
-          <a-input
-            placeholder="密 码 : admin"
-            v-model:value="param.password"
-            type="password"
-          />
+          <a-input placeholder="密 码 : admin" type="password" v-model:value="param.password" />
         </a-form-item>
-        <a-form-item>
+        <a-form-item class="captchaKey">
           <a-input v-model:value="param.captchaKey" />
         </a-form-item>
         <a-form-item>
-          <a-input v-model:value="param.captchaCode" />
-        </a-form-item>
-        <a-form-item>
-          <img :src="param.captchaImage" />
+          <a-row :gutter="10">
+            <a-col :span="13">
+              <a-input v-model:value="param.captchaCode" />
+            </a-col>
+            <a-col :span="11">
+              <img class="captchaImage" @click="refreshCaptcha" style="margin-top:-3px;" :src="captcha" />
+            </a-col>
+          </a-row>
         </a-form-item>
         <a-form-item>
           <a-checkbox :checked="true"> 记住我 </a-checkbox>
@@ -44,7 +44,6 @@ import { reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { message } from "ant-design-vue";
 import { create } from "@/api/modules/captcha";
 export default {
   setup() {
@@ -58,8 +57,9 @@ export default {
       password: "admin",
       captchaKey: "key",
       captchaCode: "code",
-      captchaImage: "image"
     });
+
+    const captcha = ref();
 
     // 参数验证
     const { validate, validateInfos } = useForm(
@@ -73,32 +73,34 @@ export default {
     );
 
     // 验证码 初始化
-    const init = async function () {
+    const refreshCaptcha = async function () {
       const result = await create();
       param.captchaKey = result.data.key;
       param.captchaCode = result.data.code;
-      param.captchaImage = result.data.image;
+      captcha.value = result.data.image;
     };
-    init();
+    refreshCaptcha();
 
     // 登录 验证
     const onSubmit = async () => {
-      try {
+      try{
         const v = await validate();
         if (v) {
           load.value = true;
           await store.dispatch("user/login", param);
           await router.push("/");
         }
-      } catch (e) {
-        message.error(e);
+      }catch(e){
+        load.value = false
       }
     };
     return {
       labelCol: { span: 6 },
       wrapperCol: { span: 24 },
+      refreshCaptcha,
       validateInfos,
       onSubmit,
+      captcha,
       param,
       load,
     };
@@ -109,22 +111,29 @@ export default {
 #login {
   width: 100%;
   height: 100%;
-  background: url(../../assets/image/background.svg);
+  background: url(https://www.erupt.xyz/demo/login-img.jpg);
   background-size: cover;
   .login-form {
     margin: auto;
-    width: 350px;
+    width: 330px;
     min-height: 20px;
     padding-top: 150px;
+    .captchaKey {
+      display: none;
+    }
+    .captchaImage{
+      border-radius: 4px;
+      border: 1px solid #d9d9d9;
+    }
     .ant-input {
       border-radius: 4px;
-      line-height: 42px;
-      height: 42px;
+      line-height: 40px;
+      height: 40px;
     }
     .ant-btn {
       width: 100%;
-      height: 42px;
-      line-height: 42px;
+      height: 40px;
+      line-height: 40px;
     }
   }
   .logo {

@@ -1,7 +1,8 @@
-import {getUserMenusArray, getUserMenusTree, login, logout} from "@/api/modules/user";
+import { menu, login, logout } from "@/api/modules/user";
 import {
   generatorUserMenuForList, generatorUserMenuForTree
 } from "@/router/permission";
+import { message } from "ant-design-vue";
 
 const state = {
   token: '',
@@ -36,42 +37,32 @@ const mutations = {
 }
 
 const actions = {
-  setUserToken({commit}, token) {
+  setUserToken({ commit }, token) {
     return new Promise(resolve => {
       commit('SET_USER_TOKEN', token);
       resolve()
     })
   },
-  async logout({commit}) {
+  async logout({ commit }) {
     await logout()
-    commit('SET_USER_TOKEN', '')
+    commit('SET_USER_TOKEN')
     commit('SET_USER_MENU')
     commit('layout/closeAllTab', [], { root: true })
     return Promise.resolve()
   },
-  async login({commit}, data) {
-    try {
-      const result = await login(data)
-      const {code, msg, token} = result
+  async login( {commit} , data) {
+      const { code, msg, token } = await login(data)
       if (code === 200) {
         commit('SET_USER_TOKEN', token)
         return Promise.resolve()
       } else {
         return Promise.reject(msg)
       }
-    } catch (e) {
-      console.log(e)
-    }
   },
   // addUserRouteForArray, addUserRouteForTree 跟据后端返回数据结构来决定走哪个方法。
-  async addUserRouteForArray ({ state: { userRoutes }, commit }) {
-    const { result: menuList } = await getUserMenusArray()
-    const dynamicRoutes = generatorUserMenuForList(menuList)
-    commit('SET_USER_MENU', dynamicRoutes)
-  },
-  async addUserRouteForTree ({ state: { userRoutes }, commit }) {
-    const { result: menuList } = await getUserMenusTree()
-    const dynamicRoutes = generatorUserMenuForTree(menuList)
+  async addRoute( {commit} ) {
+    const { data } = await menu()
+    const dynamicRoutes = generatorUserMenuForList(data)
     commit('SET_USER_MENU', dynamicRoutes)
   }
 }

@@ -147,8 +147,8 @@ export const permissionController = async (to, from, next) => {
     // 如果基本路由中不包含页面前往的路径
     if (!router.getRoutes().map(it => it.path).includes(to.fullPath)) {
       console.log('========== 开始加载用户权限菜单 ==========')
-      // 后端返回的为一维数组菜单列表，如果返回的是树结构的菜单用 'user/addUserRouteForTree'
-      await store.dispatch('user/addUserRouteForArray')
+      // 后端返回的为一维数组菜单
+      await store.dispatch('user/addRoute')
       // 用户权限菜单保存在vuex中。vuex是不允许在mutations外部改变state中的属性。所以这里简单的深拷贝一份，用于改变component属性的值
       const userRoutes = JSON.parse(JSON.stringify(store.getters.menu))
       // 如果url被改变
