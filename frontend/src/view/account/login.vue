@@ -11,7 +11,11 @@
           <a-input placeholder="账 户 : admin" v-model:value="param.username" />
         </a-form-item>
         <a-form-item v-bind="validateInfos.password">
-          <a-input placeholder="密 码 : admin" type="password" v-model:value="param.password" />
+          <a-input
+            placeholder="密 码 : admin"
+            type="password"
+            v-model:value="param.password"
+          />
         </a-form-item>
         <a-form-item class="captchaKey">
           <a-input v-model:value="param.captchaKey" />
@@ -22,7 +26,12 @@
               <a-input v-model:value="param.captchaCode" />
             </a-col>
             <a-col :span="11">
-              <img class="captchaImage" @click="refreshCaptcha" style="margin-top:-3px;" :src="captcha" />
+              <img
+                class="captchaImage"
+                @click="refreshCaptcha"
+                style="margin-top: -3px"
+                :src="captcha"
+              />
             </a-col>
           </a-row>
         </a-form-item>
@@ -83,15 +92,16 @@ export default {
 
     // 登录 验证
     const onSubmit = async () => {
-      try{
-        const v = await validate();
-        if (v) {
+      try {
+        const result = await validate();
+        if (result) {
           load.value = true;
           await store.dispatch("user/login", param);
           await router.push("/");
         }
-      }catch(e){
-        load.value = false
+      } catch (e) {
+        load.value = false;
+        refreshCaptcha();
       }
     };
     return {
@@ -121,7 +131,7 @@ export default {
     .captchaKey {
       display: none;
     }
-    .captchaImage{
+    .captchaImage {
       border-radius: 4px;
       border: 1px solid #d9d9d9;
     }

@@ -37,12 +37,7 @@ const mutations = {
 }
 
 const actions = {
-  setUserToken({ commit }, token) {
-    return new Promise(resolve => {
-      commit('SET_USER_TOKEN', token);
-      resolve()
-    })
-  },
+  // 用户注销
   async logout({ commit }) {
     await logout()
     commit('SET_USER_TOKEN')
@@ -50,16 +45,18 @@ const actions = {
     commit('layout/closeAllTab', [], { root: true })
     return Promise.resolve()
   },
+  // 用户登录
   async login( {commit} , data) {
-      const { code, msg, token } = await login(data)
+      const { code, msg, token } = await login(data);
       if (code === 200) {
-        commit('SET_USER_TOKEN', token)
-        return Promise.resolve()
+        commit('SET_USER_TOKEN', token);
+        message.success(msg);
+        return Promise.resolve();
       } else {
-        return Promise.reject(msg)
+        return Promise.reject(msg);
       }
   },
-  // addUserRouteForArray, addUserRouteForTree 跟据后端返回数据结构来决定走哪个方法。
+  // 动态路由
   async addRoute( {commit} ) {
     const { data } = await menu()
     const dynamicRoutes = generatorUserMenuForList(data)
@@ -68,7 +65,7 @@ const actions = {
 }
 export default {
   namespaced: true,
-  state,
   mutations,
-  actions
+  actions,
+  state,
 }

@@ -12,7 +12,8 @@
         </div>
         <div class="menu-item" @click="refresh">
           <!-- 刷新当前页面路由 -->
-          <ReloadOutlined />
+          <ReloadOutlined v-if="routerActive"/>
+          <LoadingOutlined v-else/>
         </div>
       </div>
     </template>
@@ -47,7 +48,6 @@
       <div class="menu-item" v-else @click="full(2)">
         <CompressOutlined />
       </div>
-
       <a-dropdown class="notice-item">
         <BellOutlined />
         <template #overlay>
@@ -104,19 +104,15 @@
   </div>
 </template>
 <script>
-import { message } from "ant-design-vue";
 import {
   computed,
   watch,
-  getCurrentInstance,
-  ref,
-  nextTick,
-  reactive
+  ref
 } from "vue";
 import { useStore } from "vuex";
 import Menu from "../menu/index.vue";
 import Logo from "../logo/index.vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import _path from "path";
 import {
   AlignLeftOutlined,
@@ -126,7 +122,8 @@ import {
   CompressOutlined,
   ReloadOutlined,
   GlobalOutlined,
-  BellOutlined
+  BellOutlined,
+  LoadingOutlined
 } from "@ant-design/icons-vue";
 export default {
   components: {
@@ -139,7 +136,8 @@ export default {
     GlobalOutlined,
     Menu,
     Logo,
-    BellOutlined
+    BellOutlined,
+    LoadingOutlined
   },
 
   methods: {
@@ -176,7 +174,6 @@ export default {
   },
   setup() {
     const { getters, commit, dispatch } = useStore();
-    const router = useRouter();
     const layout = computed(() => getters.layout);
     const collapsed = computed(() => getters.collapsed);
     const fullscreen = computed(() => getters.fullscreen);
@@ -185,6 +182,7 @@ export default {
     const $route = useRoute();
     const active = ref($route.matched[0].path);
     const isMobile = computed(() => getters.isMobile);
+    const routerActive = computed(() => getters.routerActive);
 
     watch(
       computed(() => $route.fullPath),
@@ -227,6 +225,7 @@ export default {
       trigger: () => commit("layout/TOGGLE_SIDEBAR"),
       setting: () => commit("layout/TOGGLE_SETTING"),
       updateFullscreen: () => commit("layout/updateFullscreen"),
+      routerActive,
       menuModel,
       theme,
       refresh,

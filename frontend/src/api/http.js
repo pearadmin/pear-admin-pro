@@ -42,9 +42,10 @@ class Http {
       response => {
         if (response.data.code !== 200) {
           message.error(response.data.msg);
-          return false;
+          return response.data;
+        } else {
+          return response.data;
         }
-        return response.data;
       },
       error => {
         if (error.response) {

@@ -25,6 +25,10 @@
         <token.version>0.9.1</token.version>
         <mybatis.plus.version>3.4.1</mybatis.plus.version>
         <common.lang.version>3.5</common.lang.version>
+        <mysql.version>8.0.23</mysql.version>
+        <dynamic.datasource.version>3.3.1</dynamic.datasource.version>
+        <swagger.version>2.9.2</swagger.version>
+        <captcha.version>1.6.2</captcha.version>
     </properties>
 
     <dependencies>
@@ -42,6 +46,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
             <scope>runtime</scope>
         </dependency>
 
@@ -106,25 +111,25 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>3.3.1</version>
+            <version>${dynamic.datasource.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
         </dependency>
 
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
-            <version>2.9.2</version>
+            <version>${swagger.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.github.whvcse</groupId>
             <artifactId>easy-captcha</artifactId>
-            <version>1.6.2</version>
+            <version>${captcha.version}</version>
         </dependency>
 
     </dependencies>
@@ -148,5 +153,4 @@
         </resource>
     </resources>
     </build>
-
 </project>
