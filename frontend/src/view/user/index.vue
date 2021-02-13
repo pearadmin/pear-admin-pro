@@ -37,7 +37,9 @@
               <a-button @click="batchRemove">删除</a-button>
             </button-container>
             <button-container class="tool-right">
-              <a-button @click="reload">刷新</a-button>
+              <a-button @click="search"> 
+                  <template #icon><SyncOutlined /></template>
+              </a-button>
               <a-button>导出</a-button>
             </button-container>
             <a-table
@@ -46,8 +48,8 @@
               :columns="columns"
               :data-source="data"
             >
-              <template #locked="{ locked }">
-                <a-switch :checked="locked" />
+              <template #locked="{ text }">
+                <a-switch :checked="text" />
               </template>
               <template #gender="{ gender }">
                 <span v-if="gender === 0">男</span>
@@ -72,10 +74,14 @@
   </div>
 </template>
 <script>
+import { SyncOutlined } from "@ant-design/icons-vue";
 import { page } from "@/api/modules/user";
 import { reactive, ref } from "vue";
 
 export default {
+  components: {
+    SyncOutlined,
+  },
   setup() {
     const columns = [
       { dataIndex: "nickname", key: "nickname", title: "名称" },

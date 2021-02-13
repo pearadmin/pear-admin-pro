@@ -37,7 +37,9 @@
               <a-button @click="batchRemove">删除</a-button>
             </button-container>
             <button-container class="tool-right">
-              <a-button @click="reload">刷新</a-button>
+              <a-button @click="search">
+                <template #icon><SyncOutlined /></template>
+              </a-button>
               <a-button>导出</a-button>
             </button-container>
             <a-table
@@ -46,8 +48,8 @@
               :columns="columns"
               :data-source="data"
             >
-              <template #enable="{ enable }">
-                <a-switch :checked="enable" />
+              <template #enable="{ text }">
+                <a-switch :checked="text" />
               </template>
               <template v-slot:action="{ record }">
                 <span>
@@ -68,10 +70,14 @@
   </div>
 </template>
 <script>
+import { SyncOutlined } from "@ant-design/icons-vue";
 import { page } from "@/api/modules/role";
 import { reactive, ref } from "vue";
 
 export default {
+  components: {
+    SyncOutlined,
+  },
   setup() {
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
@@ -82,8 +88,14 @@ export default {
         title: "状态",
         slots: { customRender: "enable" },
       },
+      { dataIndex: "remark", key: "remark", title: "描述" },
       { dataIndex: "sort", key: "sort", title: "排序" },
-      { title: "操作", key: "action", slots: { customRender: "action" },fixed: "right" },
+      {
+        title: "操作",
+        key: "action",
+        slots: { customRender: "action" },
+        fixed: "right",
+      },
     ];
 
     const data = ref();
@@ -104,12 +116,17 @@ export default {
       loading.value = false;
     };
 
+    const search = function () {
+      loadData(param);
+    };
+
     loadData(param);
 
     return {
       pagination,
       loading,
       columns,
+      search,
       param,
       data,
     };
