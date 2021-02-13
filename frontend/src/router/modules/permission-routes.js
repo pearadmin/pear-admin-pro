@@ -23,4 +23,5 @@ export default {
   'permissionTest': () => import('@/view/permission/permission.vue'),
   'user-list': () => import('@/view/user/index.vue'),
   'role-list': () => import('@/view/role/index.vue'),
+  'power-list': () => import('@/view/power/index.vue'),
 }

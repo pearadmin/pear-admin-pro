@@ -5,26 +5,26 @@
         <a-col :span="24">
           <a-card>
             <a-form layout="inline" :model="param" @submit="reload">
-              <a-form-item label="用户名">
+              <a-form-item label="角色名">
                 <a-input
-                  v-model:value="param.username"
+                  v-model:value="param.name"
                   type="text"
-                  placeholder="用户名"
+                  placeholder="角色名"
                 >
                 </a-input>
               </a-form-item>
-              <a-form-item label="邮箱">
+              <a-form-item label="标识">
                 <a-input
-                  v-model:value="param.email"
+                  v-model:value="param.code"
                   type="text"
-                  placeholder="邮箱"
+                  placeholder="标识"
                 >
                 </a-input>
               </a-form-item>
               <a-form-item>
                 <button-container>
-                  <a-button type="primary" @click="search"> 查询 </a-button>
-                  <a-button html-type="submit"> 默认 </a-button>
+                  <a-button type="primary" html-type="submit"> 查询 </a-button>
+                  <a-button> 默认 </a-button>
                 </button-container>
               </a-form-item>
             </a-form>
@@ -42,16 +42,12 @@
             </button-container>
             <a-table
               :loading="loading"
-              :pagination="pagination"
+              :pagination="false"
               :columns="columns"
               :data-source="data"
             >
-              <template #locked="{ locked }">
-                <a-switch :checked="locked" />
-              </template>
-              <template #gender="{ gender }">
-                <span v-if="gender === 0">男</span>
-                <span v-else>女</span>
+              <template #enable="{ enable }">
+                <a-switch :checked="enable" />
               </template>
               <template v-slot:action="{ record }">
                 <span>
@@ -72,29 +68,22 @@
   </div>
 </template>
 <script>
-import { page } from "@/api/modules/user";
+import { page } from "@/api/modules/power";
 import { reactive, ref } from "vue";
 
 export default {
   setup() {
     const columns = [
-      { dataIndex: "nickname", key: "nickname", title: "名称" },
-      { dataIndex: "username", key: "username", title: "账号" },
+      { dataIndex: "title", key: "title", title: "名称" },
+      { dataIndex: "name", key: "name", title: "标识" },
+      { dataIndex: "code", key: "code", title: "账号" },
       {
-        dataIndex: "gender",
-        key: "gender",
-        title: "性别",
-        slots: { customRender: "gender" },
+        dataIndex: "enable",
+        key: "enable",
+        title: "状态",
+        slots: { customRender: "enable" },
       },
-      {
-        dataIndex: "locked",
-        key: "locked",
-        title: "锁定",
-        slots: { customRender: "locked" },
-      },
-      { dataIndex: "email", key: "email", title: "邮箱" },
-      { dataIndex: "phone", key: "phone", title: "电话" },
-      { dataIndex: "createTime", key: "createTime", title: "注册时间" },
+      { dataIndex: "sort", key: "sort", title: "排序" },
       {
         title: "操作",
         key: "action",
@@ -105,33 +94,20 @@ export default {
 
     const data = ref();
     const loading = ref(true);
-    const param = reactive({ current: 1, size: 10, username: null });
-    const pagination = reactive({
-      total: 0,
-      pageSize: 10,
-      showSizeChanger: true,
-      showTotal: (total) => `共有 ${total} 条`,
-    });
+    const param = reactive({ current: 1, size: 10 });
 
     const loadData = async function (param) {
       loading.value = true;
       const response = await page(param);
-      data.value = response.data.records;
-      pagination.total = response.data.total;
+      data.value = response.data;
       loading.value = false;
     };
 
-    const search = function () {
-      loadData(param);
-    };
-
-    search(param);
+    loadData(param);
 
     return {
-      pagination,
       loading,
       columns,
-      search,
       param,
       data,
     };

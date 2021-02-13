@@ -4,7 +4,6 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.pearadmin.pro.common.web.base.BaseDomain;
 import com.baomidou.mybatisplus.annotation.TableField;
-import lombok.ToString;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
@@ -16,7 +15,6 @@ import java.util.Set;
  * CreateTime: 2019/10/23
  * */
 @Data
-@ToString
 public class SecureUser extends BaseDomain implements UserDetails {
 
     /**
