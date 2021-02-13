@@ -144,6 +144,7 @@ export default defineComponent({
                 <a onClick={toggleAdvanced} style="margin-left: 8px">
                   {componentState.showHideQuery ? '收起' : '展开'}
                 </a>
+                &nbsp;
                 {
                   componentState.showHideQuery ? <UpOutlined/> : <DownOutlined/>
                 }

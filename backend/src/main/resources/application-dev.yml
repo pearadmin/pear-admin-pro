@@ -11,6 +11,11 @@ spring:
           url: jdbc:mysql://mysql.pearadmin.com/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
           username: root
           password: pear-mysql
+      hikari:
+        max-lifetime: 30000
+        min-idle: 3
+        max-pool-size: 10
+        connection-test-query: SELECT 1
   ## redis 配置
   redis:
     ## 默认数据库

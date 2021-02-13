@@ -18,12 +18,6 @@ public class SysRoleController extends BaseController {
     @Resource
     private SysRoleService sysRoleService;
 
-    @GetMapping("list")
-    public Result list(){
-        List<SysRole> data = sysRoleService.lambdaQuery().list();
-        return success(data);
-    }
-
     @GetMapping("page")
     public Result page(Page pageParam){
         IPage<SysRole> pageInfo = sysRoleService.lambdaQuery().page(pageParam);

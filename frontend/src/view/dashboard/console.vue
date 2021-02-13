@@ -181,99 +181,8 @@
             </a-tabs>
           </a-card>
         </a-col>
-        <a-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-          <a-card title="线上热门搜索">
-            <a-row :gutter="10">
-              <a-col :span="12">
-                <a-card>
-                  <a-statistic
-                    title="销量"
-                    :value="11.28"
-                    :precision="2"
-                    suffix="%"
-                    :value-style="{ color: '#3f8600' }"
-                    style="margin-right: 50px"
-                  >
-                    <template v-slot:prefix>
-                      <arrow-up-outlined />
-                    </template>
-                  </a-statistic>
-                </a-card>
-              </a-col>
-              <a-col :span="12">
-                <a-card>
-                  <a-statistic
-                    title="访客"
-                    :value="9.3"
-                    :precision="2"
-                    suffix="%"
-                    class="demo-class"
-                    :value-style="{ color: '#cf1322' }"
-                  >
-                    <template v-slot:prefix>
-                      <arrow-down-outlined />
-                    </template>
-                  </a-statistic>
-                </a-card>
-              </a-col>
-              <a-col span="24">
-                <a-table
-                  :columns="columns"
-                  :data-source="datas"
-                  style="margin-top: 10px"
-                />
-              </a-col>
-            </a-row>
-          </a-card>
-        </a-col>
-        <a-col :xs="24" :sm="24" :md="24" :lg="12" :xl="12">
-          <a-card title="销售类别占比">
-            <a-row :gutter="10">
-              <a-col :span="12">
-                <a-card>
-                  <a-statistic
-                    title="Feedback"
-                    :value="11.28"
-                    :precision="2"
-                    suffix="%"
-                    :value-style="{ color: '#3f8600' }"
-                    style="margin-right: 50px"
-                  >
-                    <template v-slot:prefix>
-                      <arrow-up-outlined />
-                    </template>
-                  </a-statistic>
-                </a-card>
-              </a-col>
-              <a-col :span="12">
-                <a-card>
-                  <a-statistic
-                    title="Idle"
-                    :value="9.3"
-                    :precision="2"
-                    suffix="%"
-                    class="demo-class"
-                    :value-style="{ color: '#cf1322' }"
-                  >
-                    <template v-slot:prefix>
-                      <arrow-down-outlined />
-                    </template>
-                  </a-statistic>
-                </a-card>
-              </a-col>
-              <a-col span="24">
-                <a-table
-                  :columns="columns"
-                  :data-source="datas"
-                  style="margin-top: 10px"
-                />
-              </a-col>
-            </a-row>
-          </a-card>
-        </a-col>
       </a-row>
     </page-layout>
-    <page-footer></page-footer>
   </div>
 </template>
 <script>
@@ -281,10 +190,6 @@ import { Chart } from "@antv/g2";
 import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons-vue";
 import {onMounted, ref, onUnmounted} from "vue";
 export default {
-  components: {
-    ArrowUpOutlined,
-    ArrowDownOutlined,
-  },
   setup() {
     const chartRef = ref(null)
     onMounted(() => {

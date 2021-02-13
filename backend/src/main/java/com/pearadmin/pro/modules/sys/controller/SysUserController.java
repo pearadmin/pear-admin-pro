@@ -20,26 +20,10 @@ public class SysUserController extends BaseController {
     @Resource
     private SysUserService sysUserService;
 
-    @GetMapping("info")
-    public Result info(){
-        return success();
-    }
-
-    @GetMapping("info/{id}")
-    public Result info(@PathVariable("id")String id){
-        return success(sysUserService.getById(id));
-    }
-
     @GetMapping("page")
-    public Result page(Page pageParam){
-        IPage<SysUser> pageInfo = sysUserService.lambdaQuery().page(pageParam);
+    public Result page(Page page){
+        IPage<SysUser> pageInfo = sysUserService.lambdaQuery().page(page);
         return success(pageInfo);
-    }
-
-    @GetMapping("list")
-    public Result list(){
-        List<SysUser> list = sysUserService.lambdaQuery().list();
-        return success(list);
     }
 
     @GetMapping("menu")
@@ -59,27 +43,4 @@ public class SysUserController extends BaseController {
         return success("用户菜单信息",menus);
     }
 
-    @PostMapping("add")
-    public Result add(@RequestBody SysUser sysUser){
-        boolean flag = sysUserService.save(sysUser);
-        return decide(flag);
-    }
-
-    @PutMapping("edit")
-    public Result edit(@RequestBody SysUser sysUser){
-        boolean flag = sysUserService.updateById(sysUser);
-        return success(flag);
-    }
-
-    @DeleteMapping("remove/{id}")
-    public Result remove(@PathVariable("id")String id){
-        boolean flag = sysUserService.removeById(id);
-        return decide(flag);
-    }
-
-    @DeleteMapping("batchRemove")
-    public Result batchRemove(List<String> ids){
-        boolean flag = sysUserService.removeByIds(ids);
-        return decide(flag);
-    }
 }
