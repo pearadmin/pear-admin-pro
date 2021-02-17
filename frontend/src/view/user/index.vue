@@ -33,8 +33,9 @@
         <a-col :span="24">
           <a-card>
             <button-container class="tool-left">
-              <a-button type="primary" @click="add">新增</a-button>
+              <a-button type="primary" @click="openAddModal">新增</a-button>
               <a-button @click="batchRemove">删除</a-button>
+              <a-button @click="batchRemove">高级</a-button>
             </button-container>
             <button-container class="tool-right">
               <a-button @click="search">
@@ -59,9 +60,9 @@
               </template>
               <template v-slot:action="{ record }">
                 <span>
-                  <a @click="see(record)"> 查看 </a>
+                  <a @click="openInfoModal(record)"> 查看 </a>
                   <a-divider type="vertical" />
-                  <a @click="edit(record)"> 编辑 </a>
+                  <a @click="openEditModal(record)"> 编辑 </a>
                   <a-divider type="vertical" />
                   <a @click="remove(record)"> 删除 </a>
                 </span>
@@ -71,19 +72,24 @@
         </a-col>
       </a-row>
     </page-layout>
-    <a-modal v-model:visible="visible" title="Basic Modal" @ok="handleOk">
+    <a-modal v-model:visible="addModal" title="新增用户" @ok="handleOk">
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>
     </a-modal>
+    <a-modal v-model:visible="editModal" title="编辑信息" @ok="handleOk">
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </a-modal>
+    <a-modal v-model:visible="infoModal" title="查看详情" @ok="handleOk">
+      <p>{{infoParam.nickname}}</p>
+      <p>{{infoParam.username}}</p>
+    </a-modal>
   </div>
 </template>
 <script>
-import {
-  SyncOutlined,
-  ExportOutlined,
-  ExclamationCircleOutlined,
-} from "@ant-design/icons-vue";
+import { SyncOutlined, ExportOutlined, ExclamationCircleOutlined} from "@ant-design/icons-vue";
 import { page } from "@/api/modules/user";
 import { Modal } from "ant-design-vue";
 import { createVNode, reactive, ref } from "vue";
@@ -102,12 +108,19 @@ export default {
       { dataIndex: "email", key: "email", title: "邮箱" },
       { dataIndex: "phone", key: "phone", title: "电话" },
       { dataIndex: "createTime", key: "createTime", title: "注册时间" },
-      { title: "操作", key: "action", slots: { customRender: "action" }, fixed: "right"}
+      { dataIndex: "action", key: "action",title: "操作", slots: { customRender: "action" }, fixed: "right"}
     ];
 
     const data = ref();
     const loading = ref(true);
-    const visible = ref(false);
+    
+    const addModal = ref(false);
+    const editModal = ref(false);
+    const infoModal = ref(false);
+  
+    const infoParam = ref({});
+    const addParam = ref({});
+
     const param = reactive({ current: 1, size: 10, username: null });
     const pagination = reactive({
       total: 0,
@@ -145,7 +158,7 @@ export default {
 
     const remove = (data) => {
       Modal.confirm({
-        title: 'Are you sure delete this task?',
+        title: '是否确实要删除此用户？',
         icon: createVNode(ExclamationCircleOutlined),
         content: 'Some descriptions',
         okText: 'Yes',
@@ -162,7 +175,7 @@ export default {
 
     const batchRemove = (data) => {
       Modal.confirm({
-        title: 'Are you sure delete this task?',
+        title: '是否确实要删除此用户？',
         icon: createVNode(ExclamationCircleOutlined),
         content: 'Some descriptions',
         okText: 'Yes',
@@ -177,32 +190,41 @@ export default {
       });
     }
 
-    const see = (data) => {
-      visible.value = true;
+    const openInfoModal = (data) => {
+      infoModal.value = true;
+      infoParam.value = data;
     }
 
-    const edit = (data) => {
-      visible.value = true;
+    const openEditModal = (data) => {
+      editModal.value = true;
     }
 
-    const add = () => {
-      visible.value = true;
+    const openAddModal = () => {
+      addModal.value = true;
     }
 
     return {
       batchRemove,
       pagination,
+      /** Modal 状态 */
+      editModal,
+      infoModal,
+      addModal,
+      /** 打开 Modal */
+      openInfoModal,
+      openEditModal,
+      openAddModal,
+
+      infoParam,
+
+      /** 其他 */
       loading,
       columns,
-      visible,
       search,
       remove,
       change,
       param,
-      edit,
-      data,
-      add,
-      see,
+      data
     };
   },
 };

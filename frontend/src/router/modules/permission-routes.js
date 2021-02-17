@@ -25,4 +25,5 @@ export default {
   'role-list': () => import('@/view/role/index.vue'),
   'power-list': () => import('@/view/power/index.vue'),
   'system-list': () => import('@/view/monitor/system/index.vue'),
+  'online-list': () => import('@/view/monitor/online/index.vue'),
 }

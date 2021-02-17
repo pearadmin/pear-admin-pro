@@ -1,6 +1,5 @@
 import axios from "axios";
-import { useStore } from "vuex";
-import { notification, message as Msg, message } from "ant-design-vue";
+import { message as Msg, message } from "ant-design-vue";
 import store from "../store";
 class Http {
   constructor(config) {

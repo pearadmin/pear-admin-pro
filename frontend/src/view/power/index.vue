@@ -5,11 +5,11 @@
         <a-col :span="24">
           <a-card>
             <a-form layout="inline" :model="param" @submit="reload">
-              <a-form-item label="角色名">
+              <a-form-item label="权限名称">
                 <a-input
                   v-model:value="param.name"
                   type="text"
-                  placeholder="角色名"
+                  placeholder="权限标识"
                 >
                 </a-input>
               </a-form-item>

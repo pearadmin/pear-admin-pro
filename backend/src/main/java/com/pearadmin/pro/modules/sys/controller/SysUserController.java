@@ -7,7 +7,9 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.controller.response.SysMenu;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
+import com.pearadmin.pro.modules.sys.domain.request.QueryUserRequest;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -21,8 +23,11 @@ public class SysUserController extends BaseController {
     private SysUserService sysUserService;
 
     @GetMapping("page")
-    public Result page(Page page){
-        IPage<SysUser> pageInfo = sysUserService.lambdaQuery().page(page);
+    public Result page(Page page, QueryUserRequest request){
+        IPage<SysUser> pageInfo = sysUserService.lambdaQuery()
+                .eq(Strings.isNotBlank(request.getUsername()),SysUser::getUsername,request.getUsername())
+                .eq(Strings.isNotBlank(request.getEmail()),SysUser::getEmail,request.getEmail())
+                .page(page);
         return success(pageInfo);
     }
 
@@ -34,8 +39,9 @@ public class SysUserController extends BaseController {
         menus.add(new SysMenu( "", "/dashboard", "dashboard", "dir", "HomeOutlined", "工作空间", 1, "", false, true));
         menus.add(new SysMenu( "dashboard", "console", "dashboard-console", "menu", "DashboardOutlined", "分析页", 0, "", false, true));
         menus.add(new SysMenu( "", "/list", "list", "dir", "UnorderedListOutlined", "系统监控", 3, "", false, true));
-        menus.add(new SysMenu( "list", "ops-user", "ops-user", "menu", "DatabaseOutlined", "在线用户", 0, "", false, true));
-        menus.add(new SysMenu( "list", "tableList", "table-list", "menu", "DatabaseOutlined", "缓存监控", 0, "", false, true));
+        menus.add(new SysMenu( "list", "onlineList", "online-list", "menu", "DatabaseOutlined", "在线用户", 0, "", false, true));
+        menus.add(new SysMenu( "list", "tableList", "online-li", "menu", "DatabaseOutlined", "缓存监控", 0, "", false, true));
+        menus.add(new SysMenu( "list", "systemList", "system-list", "menu", "DatabaseOutlined", "运行环境", 0, "", false, true));
         menus.add(new SysMenu( "", "/sys", "sys", "dir", "UnorderedListOutlined", "系统管理", 3, "", false, true));
         menus.add(new SysMenu( "sys", "/user/index", "user-list", "menu", "DatabaseOutlined", "用户列表", 0, "", false, true));
         menus.add(new SysMenu( "sys", "/role/index", "role-list", "menu", "DatabaseOutlined", "角色列表", 0, "", false, true));

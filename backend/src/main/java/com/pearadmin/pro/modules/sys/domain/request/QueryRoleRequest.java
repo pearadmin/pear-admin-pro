@@ -3,15 +3,15 @@ package com.pearadmin.pro.modules.sys.domain.request;
 import lombok.Data;
 
 @Data
-public class QueryUserRequest {
+public class QueryRoleRequest {
 
     /**
-     * 用户名
+     * 角色名称
      * */
-    private String username;
+    private String name;
 
     /**
-     * 邮箱
+     * 角色权鉴
      * */
-    private String email;
+    private String code;
 }

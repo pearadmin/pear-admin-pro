@@ -49,16 +49,4 @@ public class BaseDomain implements Serializable {
     @TableField("remark")
     private String remark;
 
-    /**
-     * 租户
-     * */
-    @TableField("tenant_id")
-    private String tenantId;
-
-    /**
-     * 项目
-     * */
-    @TableField("project_id")
-    private String projectId;
-
 }
