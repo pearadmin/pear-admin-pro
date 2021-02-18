@@ -1,8 +1,8 @@
 package com.pearadmin.pro.common.config;
 
 import com.pearadmin.pro.common.constant.SecurityConstant;
-import com.pearadmin.pro.common.secure.support.SecureCaptchaSupport;
-import com.pearadmin.pro.common.secure.support.SecureTokenSupport;
+import com.pearadmin.pro.common.secure.captcha.SecureCaptchaSupport;
+import com.pearadmin.pro.common.secure.uutoken.SecureUserTokenSupport;
 import com.pearadmin.pro.common.secure.process.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -112,7 +112,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         // Captcha / Token 过滤器
-        http.addFilterBefore(new SecureTokenSupport(), UsernamePasswordAuthenticationFilter.class);
+        http.addFilterBefore(new SecureUserTokenSupport(), UsernamePasswordAuthenticationFilter.class);
         http.addFilterBefore(new SecureCaptchaSupport(), UsernamePasswordAuthenticationFilter.class);
 
         // 禁用缓存

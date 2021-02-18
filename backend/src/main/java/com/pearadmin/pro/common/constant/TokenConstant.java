@@ -23,8 +23,13 @@ public class TokenConstant {
     public static final String ISSUER = "Pear-Admin";
 
     /**
-     * Http Header 请求头
+     * Http Header Token 请求头
      * */
     public static final String TOKEN_HEADER =  "Authorization";
+
+    /**
+     * Http Header Token Key
+     * */
+    public static final String TOKEN_HEADER_KEY = "Authorization-Key";
 
 }

@@ -3,6 +3,10 @@ package com.pearadmin.pro.common.web.domain;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Describe: Ajax 响应实体
  * Author: 就 眠 仪 式
@@ -11,11 +15,6 @@ import lombok.experimental.Accessors;
 @Data
 @Accessors(chain = true)
 public class Result<T> {
-
-    /**
-     * 身份令牌
-     * */
-    private String token;
 
     /**
      * 状态码
@@ -41,6 +40,16 @@ public class Result<T> {
      * 时间戳
      * */
     private long timeStamp = System.currentTimeMillis();
+
+    /**
+     * 权鉴相关
+     *
+     * @tokenKey
+     * @tokenValue
+     * */
+    private String tokenKey;
+
+    private String tokenValue;
 
     /**
      * 成 功 操 作
@@ -75,6 +84,16 @@ public class Result<T> {
      * */
     public static<T> Result<T> success(ResultCode resultCode){
         return success(resultCode.code(),resultCode.message());
+    }
+
+    /**
+     * 成 功 操 作, 携 带 自 定 义 状 态 码 和 消 息
+     * */
+    public static<T> Result<T> success(ResultCode resultCode,String tokenKey,String tokenValue){
+        Result result = success(resultCode.code(),resultCode.message());
+        result.setTokenKey(tokenKey);
+        result.setTokenValue(tokenValue);
+        return result;
     }
 
     public static<T> Result<T> success(int code,String message){

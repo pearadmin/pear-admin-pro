@@ -1,11 +1,11 @@
 package com.pearadmin.pro.common.secure.process;
 
-import com.pearadmin.pro.common.tools.core.ServletUtil;
+import com.pearadmin.pro.common.secure.uutoken.SecureUserToken;
+import com.pearadmin.pro.common.tools.core.spring.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
-import com.pearadmin.pro.common.constant.TokenConstant;
 import org.springframework.security.core.Authentication;
-import com.pearadmin.pro.common.secure.services.SecureUserTokenService;
+import com.pearadmin.pro.common.secure.uutoken.SecureUserTokenService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import com.pearadmin.pro.common.secure.services.SecureUser;
 import org.springframework.stereotype.Component;
@@ -27,9 +27,12 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Override
     public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
-            SecureUser customUserDetails = (SecureUser) authentication.getPrincipal();
-            String accessToken = TokenConstant.TOKEN_PREFIX + customUserDetailsTokenService.createAndSaveToken(customUserDetails);;
-            Result result = Result.success(ResultCode.LOGIN_SUCCESS).setToken(accessToken);;
-            ServletUtil.writeJson(result);
+            SecureUser secureUser = (SecureUser) authentication.getPrincipal();
+
+            SecureUserToken userToken = customUserDetailsTokenService.createToken(secureUser);
+            String tokenKey = customUserDetailsTokenService.saveToken(userToken);
+            String tokenValue = userToken.getToken();
+
+            ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,tokenKey,tokenValue));
     }
 }
