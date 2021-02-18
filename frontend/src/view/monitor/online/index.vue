@@ -1,8 +1,8 @@
 <template>
   <div>
     <page-header
-      title="在线用户"
-      describe="标准的列表，包含增删改查等基础操作."
+      title="在 线 用 户"
+      describe="用 户 Online 列 表，用 于 系 统 在 线 用 户 监 控."
     ></page-header>
     <page-layout>
       <a-card style="text-align: center">
@@ -42,52 +42,39 @@
                 lineHeight: '32px',
               }"
             >
-              <a-spin v-if="loadingMore" />
-              <a-button v-else @click="onLoadMore"> 加载更多 </a-button>
             </div>
           </template>
           <template v-slot:renderItem="{ item }">
             <a-list-item>
               <template v-slot:actions>
-                <a>edit</a>
-                <a>more</a>
+                <a>踢出</a>
               </template>
               <a-list-item-meta
                 description="Ant Design, a design language for background applications, is refined by Ant UED Team"
               >
                 <template v-slot:title>
-                  <a href="https://www.antdv.com/">{{ item.name.last }}</a>
+                  <a>{{ item.secureUser.username }}</a>
                 </template>
                 <template v-slot:avatar>
                   <a-avatar
-                    src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                    src="https://portrait.gitee.com/uploads/avatars/user/1611/4835367_Jmysy_1578975358.png"
                   />
                 </template>
               </a-list-item-meta>
-              <div>content</div>
+              <div>{{ item.createTime }}</div>
             </a-list-item>
           </template>
         </a-list>
       </a-card>
     </page-layout>
-    <page-footer></page-footer>
   </div>
 </template>
 <script>
-import reqwest from "reqwest";
 
-const fakeDataUrl =
-  "https://randomuser.me/api/?results=5&inc=name,gender,email,nat&noinfo";
+import { list } from "@/api/modules/ops/online";
+import { ref } from 'vue';
 
 export default {
-  data() {
-    return {
-      loading: true,
-      loadingMore: false,
-      showLoadingMore: true,
-      data: [],
-    };
-  },
   mounted() {
     this.getData((res) => {
       this.loading = false;
@@ -96,27 +83,28 @@ export default {
   },
   methods: {
     getData(callback) {
-      reqwest({
-        url: fakeDataUrl,
-        type: "json",
-        method: "get",
-        contentType: "application/json",
-        success: (res) => {
-          callback(res);
-        },
-      });
-    },
-    onLoadMore() {
-      this.loadingMore = true;
-      this.getData((res) => {
-        this.data = this.data.concat(res.results);
-        this.loadingMore = false;
-        this.$nextTick(() => {
-          window.dispatchEvent(new Event("resize"));
-        });
-      });
-    },
+      var response = list();
+      callback(response);
+    }
   },
+  setup(){
+
+    var data = ref();
+    var loading = ref(true);
+
+    const loadData = async function(){
+      var response = await list();
+      data.value = response.data;
+      loading.value = false;
+    }
+
+    loadData();
+
+    return {
+      loading,
+      data
+    };
+  }
 };
 </script>
 <style>

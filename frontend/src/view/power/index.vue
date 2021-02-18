@@ -74,9 +74,9 @@ import { reactive, ref } from "vue";
 export default {
   setup() {
     const columns = [
-      { dataIndex: "title", key: "title", title: "名称" },
-      { dataIndex: "name", key: "name", title: "标识" },
-      { dataIndex: "code", key: "code", title: "账号" },
+      { dataIndex: "title", key: "title", title: "标题" },
+      { dataIndex: "name", key: "name", title: "组件" },
+      { dataIndex: "path", key: "path", title: "路径" },
       {
         dataIndex: "enable",
         key: "enable",

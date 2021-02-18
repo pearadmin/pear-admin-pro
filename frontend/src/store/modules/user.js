@@ -5,19 +5,25 @@ import {
 import { message } from "ant-design-vue";
 
 const state = {
-  token: '',
+  tokenKey: '',
+  tokenValue: '',
   userInfo: localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')) : null,
   userRoutes: []
 }
 
 const mutations = {
   SET_USER_TOKEN(state, token) {
+
     if (token) {
-      state.token = token;
-      localStorage.setItem('pear_admin_ant_token', token);
+      state.tokenKey = token.key;
+      state.tokenValue = token.value;
+      localStorage.setItem('pear_admin_ant_token_key',token.key)
+      localStorage.setItem('pear_admin_ant_token_value', token.value)
     } else {
-      state.token = '';
-      localStorage.removeItem('pear_admin_ant_token')
+      state.tokenKey = '';
+      state.tokenValue = '';
+      localStorage.removeItem('pear_admin_ant_token_key')
+      localStorage.removeItem('pear_admin_ant_token_value')
     }
   },
   SET_USER_INFO(state, userInfo) {
@@ -47,9 +53,9 @@ const actions = {
   },
   // 用户登录
   async login( {commit} , data) {
-      const { code, msg, token } = await login(data);
+      const { code, msg, tokenKey, tokenValue } = await login(data);
       if (code === 200) {
-        commit('SET_USER_TOKEN', token);
+        commit('SET_USER_TOKEN', {key:tokenKey,value:tokenValue});
         message.success(msg);
         return Promise.resolve();
       } else {

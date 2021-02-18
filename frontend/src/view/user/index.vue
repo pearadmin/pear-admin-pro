@@ -42,6 +42,9 @@
                 <template #icon><SyncOutlined /></template>
               </a-button>
               <a-button>
+                <template #icon><AppstoreOutlined /></template>
+              </a-button>
+              <a-button>
                 <template #icon><ExportOutlined /></template>
               </a-button>
             </button-container>
@@ -89,13 +92,14 @@
   </div>
 </template>
 <script>
-import { SyncOutlined, ExportOutlined, ExclamationCircleOutlined} from "@ant-design/icons-vue";
+import { AppstoreOutlined, SyncOutlined, ExportOutlined, ExclamationCircleOutlined} from "@ant-design/icons-vue";
 import { page } from "@/api/modules/user";
 import { Modal } from "ant-design-vue";
 import { createVNode, reactive, ref } from "vue";
 
 export default {
   components: {
+    AppstoreOutlined,
     ExportOutlined,
     SyncOutlined,
   },

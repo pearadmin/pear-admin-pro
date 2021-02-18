@@ -19,9 +19,11 @@ class Http {
      */
     instance.interceptors.request.use(
       config => {
-        const token = localStorage.getItem("pear_admin_ant_token");
-        if (token) {
-          config.headers["Authorization"] = token;
+        const tokenKey = localStorage.getItem("pear_admin_ant_token_key");
+        const tokenValue = localStorage.getItem("pear_admin_ant_token_value")
+        if (tokenKey && tokenValue) {
+          config.headers["Authorization"] = tokenValue;
+          config.headers["Authorization-key"] = tokenKey;
         }
         // 请求时缓存该请求，路由跳转时取消, 如果timeout值过大，可能在上一个次请求还没完成时，切换了页面。
         config.cancelToken = new axios.CancelToken(async cancel => {

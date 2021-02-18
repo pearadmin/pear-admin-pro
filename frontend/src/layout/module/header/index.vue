@@ -6,9 +6,9 @@
       <div class="prev-menu">
         <!-- 左侧缩进功能键 -->
         <div class="menu-item" @click="trigger()">
-          <AlignLeftOutlined v-if="collapsed" />
+          <MenuUnfoldOutlined  v-if="collapsed" />
           <!-- 左侧缩进功能键盘 -->
-          <AlignRightOutlined v-else />
+          <MenuFoldOutlined  v-else />
         </div>
         <div class="menu-item" @click="refresh">
           <!-- 刷新当前页面路由 -->
@@ -115,20 +115,18 @@ import Logo from "../logo/index.vue";
 import { useRoute } from "vue-router";
 import _path from "path";
 import {
-  AlignLeftOutlined,
-  AlignRightOutlined,
   MoreOutlined,
   ExpandOutlined,
   CompressOutlined,
   ReloadOutlined,
   GlobalOutlined,
   BellOutlined,
-  LoadingOutlined
+  LoadingOutlined,
+  MenuUnfoldOutlined,
+  MenuFoldOutlined
 } from "@ant-design/icons-vue";
 export default {
   components: {
-    AlignLeftOutlined,
-    AlignRightOutlined,
     MoreOutlined,
     ExpandOutlined,
     CompressOutlined,
@@ -137,7 +135,9 @@ export default {
     Menu,
     Logo,
     BellOutlined,
-    LoadingOutlined
+    LoadingOutlined,
+    MenuUnfoldOutlined,
+    MenuFoldOutlined
   },
 
   methods: {
