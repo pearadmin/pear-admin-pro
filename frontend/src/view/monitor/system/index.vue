@@ -1,21 +1,21 @@
 <template>
   <div>
     <page-layout>
-      <a-row :gutter="[10,10]">
+      <a-row :gutter="[10, 10]">
         <a-col :span="24">
           <a-card title="概览">
             <a-row>
               <a-col :span="6">
-                <div>使用率</div>
+                <div id="container">使用率</div>
               </a-col>
               <a-col :span="6">
-                <div>使用率</div>
+                <div id="container">使用率</div>
               </a-col>
               <a-col :span="6">
-                <div>使用率</div>
+                <div id="container">使用率</div>
               </a-col>
               <a-col :span="6">
-                <div>使用率</div>
+                <div id="container">使用率</div>
               </a-col>
             </a-row>
           </a-card>
@@ -27,8 +27,8 @@
           <a-card title="内存"></a-card>
         </a-col>
         <a-col :span="24">
-          <a-card title="磁盘">
-            <a-table :dataSource="dataSource" :columns="columns" />
+          <a-card>
+            <a-table :dataSource="datasource" :columns="columns" />
           </a-card>
         </a-col>
       </a-row>
@@ -36,43 +36,53 @@
   </div>
 </template>
 <script>
+import { server } from "@/api/modules/ops/monitor";
+import { ref } from 'vue';
 export default {
-  setup(){
-     return {
-        dataSource: [
-          {
-            key: '1',
-            name: '胡彦斌',
-            age: 32,
-            address: '西湖区湖底公园1号',
-          },
-          {
-            key: '2',
-            name: '胡彦祖',
-            age: 42,
-            address: '西湖区湖底公园1号',
-          },
-        ],
+  setup() {
+    const datasource = ref();
 
-        columns: [
-          {
-            title: '姓名',
-            dataIndex: 'name',
-            key: 'name',
-          },
-          {
-            title: '年龄',
-            dataIndex: 'age',
-            key: 'age',
-          },
-          {
-            title: '住址',
-            dataIndex: 'address',
-            key: 'address',
-          },
-        ],
-      };
-  }
+    const loadData = async function(){
+        var response = await server();
+        datasource.value = response.data.sysFiles;
+    }
+
+    loadData();
+
+
+    return {
+      
+      datasource,
+
+      columns: [
+        {
+          title: "磁盘",
+          dataIndex: "typeName",
+          key: "typeName",
+        },
+        {
+          title: "路径",
+          dataIndex: "dirName",
+          key: "dirName",
+        },
+        {
+          title: "剩余",
+          dataIndex: "free",
+          key: "free",
+        },
+        {
+          title: "使用",
+          dataIndex: "used",
+          key: "used",
+        },
+        {
+          title: "大小",
+          dataIndex: "total",
+          key: "total",
+        },
+      ],
+    };
+  },
 };
 </script>
 <style>

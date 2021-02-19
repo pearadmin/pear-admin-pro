@@ -130,7 +130,7 @@
               <a-tab-pane key="1" tab="销量">
                 <a-row>
                   <a-col :xs="24" :sm="24" :md="24" :lg="16" :xl="16">
-                    <div id="container" style="width:100%;"></div>
+                    <div id="container" style="width: 100%"></div>
                   </a-col>
                   <a-col
                     :xs="24"
@@ -187,11 +187,10 @@
 </template>
 <script>
 import { Chart } from "@antv/g2";
-import { ArrowUpOutlined, ArrowDownOutlined } from "@ant-design/icons-vue";
-import {onMounted, ref, onUnmounted} from "vue";
+import { onMounted, ref, onUnmounted } from "vue";
 export default {
   setup() {
-    const chartRef = ref(null)
+    const chartRef = ref(null);
     onMounted(() => {
       const datass = [
         { year: "1951 年", sales: 38 },
@@ -212,7 +211,7 @@ export default {
         height: 320,
       });
 
-      chartRef.value = chart
+      chartRef.value = chart;
 
       chart.data(datass);
       chart.scale("sales", {
@@ -231,14 +230,13 @@ export default {
       chart.interaction("active-region");
       chart.render();
 
-      const e = document.createEvent('Event')
-      e.initEvent('resize', true, true)
-      window.dispatchEvent(e)
-
+      const e = document.createEvent("Event");
+      e.initEvent("resize", true, true);
+      window.dispatchEvent(e);
     });
     onUnmounted(() => {
-      chartRef.value && chartRef.value.destroy()
-    })
+      chartRef.value && chartRef.value.destroy();
+    });
 
     const data = [
       {
@@ -255,44 +253,8 @@ export default {
       },
     ];
 
-    const columns = [
-      { title: "排名", dataIndex: "key", key: "key" },
-      { title: "门店", dataIndex: "name", key: "name" },
-      { title: "销量", dataIndex: "age", key: "age" },
-      { title: "地址", dataIndex: "address", key: "address" },
-    ];
-
-    const datas = [
-      {
-        key: 1,
-        name: "1 号店",
-        age: 13323.34,
-        address: "北京市朝阳区凤鸣路 112 号.",
-      },
-      {
-        key: 2,
-        name: "2 号店",
-        age: 35432.41,
-        address: "北京市朝阳区凤鸣路 112 号.",
-      },
-      {
-        key: 3,
-        name: "3 号店",
-        age: 47452.44,
-        address: "北京市朝阳区凤鸣路 112 号.",
-      },
-      {
-        key: 4,
-        name: "4 号店",
-        age: 32352.44,
-        address: "北京市朝阳区凤鸣路 112 号.",
-      },
-    ];
-
     return {
-      data,
-      columns,
-      datas,
+      data
     };
   },
 };

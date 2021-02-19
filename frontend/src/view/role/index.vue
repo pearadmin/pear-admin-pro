@@ -57,7 +57,7 @@
                   <a-divider type="vertical" />
                   <a>修改</a>
                   <a-divider type="vertical" />
-                  <a>分配</a>
+                  <a @click="showDrawer">分配</a>
                   <a-divider type="vertical" />
                   <a @click="remove">删除</a>
                 </span>
@@ -67,6 +67,18 @@
         </a-col>
       </a-row>
     </page-layout>
+    <a-drawer
+      title="权限分配"
+      placement="right"
+      :closable="false"
+      v-model:visible="visible"
+      :after-visible-change="afterVisibleChange"
+      width="350"
+    >
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+      <p>Some contents...</p>
+    </a-drawer>
   </div>
 </template>
 <script>
@@ -79,6 +91,18 @@ export default {
     SyncOutlined,
   },
   setup() {
+
+    const visible = ref(false);
+
+    const afterVisibleChange = (bool) => {
+      console.log('visible', bool);
+    };
+
+    const showDrawer = () => {
+      visible.value = true;
+    };
+
+
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "code", key: "code", title: "账号" },
@@ -129,6 +153,10 @@ export default {
       search,
       param,
       data,
+
+      visible,
+      afterVisibleChange,
+      showDrawer,
     };
   },
 };

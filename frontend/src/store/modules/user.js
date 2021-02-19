@@ -13,7 +13,6 @@ const state = {
 
 const mutations = {
   SET_USER_TOKEN(state, token) {
-
     if (token) {
       state.tokenKey = token.key;
       state.tokenValue = token.value;

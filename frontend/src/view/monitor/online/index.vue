@@ -10,20 +10,19 @@
           <a-col :span="8">
             <a-statistic
               title="全部用户"
-              :value="1128"
-              style="margin-right: 50px"
+              :value="100"
             >
             </a-statistic>
           </a-col>
           <a-col :span="8">
-            <a-statistic title="上线比例" :value="93" class="demo-class">
+            <a-statistic title="上线比例" :value="15" class="demo-class">
               <template #suffix>
                 <span> / 100</span>
               </template>
             </a-statistic>
           </a-col>
           <a-col :span="8">
-            <a-statistic title="在线用户" :value="5433" class="demo-class">
+            <a-statistic title="在线用户" :value="15" class="demo-class">
             </a-statistic>
           </a-col>
         </a-row>

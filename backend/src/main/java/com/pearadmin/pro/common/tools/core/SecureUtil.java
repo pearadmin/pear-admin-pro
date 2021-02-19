@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.tools.core.secure;
+package com.pearadmin.pro.common.tools.core;
 
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import org.springframework.security.core.Authentication;
@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/2/3
  * */
-public class SecureUtil {
+public class SecurityUtil {
 
      /**
       * Authentication 认证对象
