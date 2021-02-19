@@ -28,7 +28,7 @@
         </a-col>
         <a-col :span="24">
           <a-card>
-            <a-table :dataSource="datasource" :columns="columns" />
+            <a-table :dataSource="datasource" :columns="columns" :loading="loading" />
           </a-card>
         </a-col>
       </a-row>
@@ -41,10 +41,12 @@ import { ref } from 'vue';
 export default {
   setup() {
     const datasource = ref();
+    const loading = ref(true);
 
     const loadData = async function(){
         var response = await server();
-        datasource.value = response.data.sysFiles;
+        datasource.value = response.data.disk;
+        loading.value = false;
     }
 
     loadData();
@@ -53,7 +55,7 @@ export default {
     return {
       
       datasource,
-
+      loading,
       columns: [
         {
           title: "磁盘",

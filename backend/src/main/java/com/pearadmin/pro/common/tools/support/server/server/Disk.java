@@ -1,10 +1,5 @@
-package com.ruoyi.framework.web.domain.server;
+package com.pearadmin.pro.common.tools.support.server.server;
 
-/**
- * 系统文件相关信息
- * 
- * @author ruoyi
- */
 public class SysFile
 {
     /**
