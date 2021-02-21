@@ -1,14 +1,9 @@
-package com.ruoyi.common.utils;
+package com.pearadmin.pro.common.tools.core;
 
+import javax.servlet.http.HttpServletRequest;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import javax.servlet.http.HttpServletRequest;
 
-/**
- * 获取IP方法
- * 
- * @author ruoyi
- */
 public class IpUtils
 {
     public static String getIpAddr(HttpServletRequest request)
@@ -51,7 +46,7 @@ public class IpUtils
 
     private static boolean internalIp(byte[] addr)
     {
-        if (StringUtils.isNull(addr) || addr.length < 2)
+        if (addr == null || addr.length < 2)
         {
             return true;
         }

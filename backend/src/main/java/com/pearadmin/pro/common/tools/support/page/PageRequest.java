@@ -23,5 +23,4 @@ public class PageRequest {
      * 页数量
      * */
     private int pageSize;
-
 }

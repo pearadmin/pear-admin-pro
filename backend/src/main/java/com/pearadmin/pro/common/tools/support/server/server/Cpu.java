@@ -1,12 +1,9 @@
-package com.ruoyi.framework.web.domain.server;
+package com.pearadmin.pro.common.tools.support.server.server;
 
-import com.ruoyi.common.utils.Arith;
 
-/**
- * CPU相关信息
- * 
- * @author ruoyi
- */
+import com.pearadmin.pro.common.tools.core.MathUtil;
+
+
 public class Cpu
 {
     /**
@@ -51,7 +48,7 @@ public class Cpu
 
     public double getTotal()
     {
-        return Arith.round(Arith.mul(total, 100), 2);
+        return MathUtil.round(MathUtil.mul(total, 100), 2);
     }
 
     public void setTotal(double total)
@@ -61,7 +58,7 @@ public class Cpu
 
     public double getSys()
     {
-        return Arith.round(Arith.mul(sys / total, 100), 2);
+        return MathUtil.round(MathUtil.mul(sys / total, 100), 2);
     }
 
     public void setSys(double sys)
@@ -71,7 +68,7 @@ public class Cpu
 
     public double getUsed()
     {
-        return Arith.round(Arith.mul(used / total, 100), 2);
+        return MathUtil.round(MathUtil.mul(used / total, 100), 2);
     }
 
     public void setUsed(double used)
@@ -81,7 +78,7 @@ public class Cpu
 
     public double getWait()
     {
-        return Arith.round(Arith.mul(wait / total, 100), 2);
+        return MathUtil.round(MathUtil.mul(wait / total, 100), 2);
     }
 
     public void setWait(double wait)
@@ -91,7 +88,7 @@ public class Cpu
 
     public double getFree()
     {
-        return Arith.round(Arith.mul(free / total, 100), 2);
+        return MathUtil.round(MathUtil.mul(free / total, 100), 2);
     }
 
     public void setFree(double free)

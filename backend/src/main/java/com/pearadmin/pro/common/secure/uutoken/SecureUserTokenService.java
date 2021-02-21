@@ -2,16 +2,14 @@ package com.pearadmin.pro.common.secure.uutoken;
 
 import java.util.*;
 import com.pearadmin.pro.common.secure.services.SecureUser;
-import com.pearadmin.pro.common.tools.core.secure.TokenUtil;
-import io.jsonwebtoken.Jwts;
+import com.pearadmin.pro.common.tools.core.TokenUtil;
+
 import java.util.concurrent.TimeUnit;
-import io.jsonwebtoken.SignatureAlgorithm;
+
 import com.pearadmin.pro.common.constant.CacheNameConstant;
 import com.pearadmin.pro.common.constant.SecurityConstant;
-import com.pearadmin.pro.common.constant.TokenConstant;
 import com.pearadmin.pro.common.web.exception.auth.token.TokenException;
 import com.pearadmin.pro.common.web.exception.auth.token.TokenExpiredException;
-import com.pearadmin.pro.common.web.exception.auth.token.TokenValidationException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;

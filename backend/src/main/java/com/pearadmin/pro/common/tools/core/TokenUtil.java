@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.tools.core.secure;
+package com.pearadmin.pro.common.tools.core;
 
 import com.pearadmin.pro.common.constant.TokenConstant;
 import com.pearadmin.pro.common.web.exception.auth.token.TokenValidationException;

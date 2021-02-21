@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.tools.core.lang;
+package com.pearadmin.pro.common.tools.core;
 
 public class DateUtil {
 

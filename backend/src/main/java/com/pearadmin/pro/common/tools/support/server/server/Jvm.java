@@ -1,14 +1,9 @@
-package com.ruoyi.framework.web.domain.server;
+package com.pearadmin.pro.common.tools.support.server.server;
 
+import com.pearadmin.pro.common.tools.core.MathUtil;
 import java.lang.management.ManagementFactory;
-import com.ruoyi.common.utils.Arith;
-import com.ruoyi.common.utils.DateUtils;
 
-/**
- * JVM相关信息
- * 
- * @author ruoyi
- */
+
 public class Jvm
 {
     /**
@@ -38,7 +33,7 @@ public class Jvm
 
     public double getTotal()
     {
-        return Arith.div(total, (1024 * 1024), 2);
+        return MathUtil.div(total, (1024 * 1024), 2);
     }
 
     public void setTotal(double total)
@@ -48,7 +43,7 @@ public class Jvm
 
     public double getMax()
     {
-        return Arith.div(max, (1024 * 1024), 2);
+        return MathUtil.div(max, (1024 * 1024), 2);
     }
 
     public void setMax(double max)
@@ -58,7 +53,7 @@ public class Jvm
 
     public double getFree()
     {
-        return Arith.div(free, (1024 * 1024), 2);
+        return MathUtil.div(free, (1024 * 1024), 2);
     }
 
     public void setFree(double free)
@@ -68,12 +63,12 @@ public class Jvm
 
     public double getUsed()
     {
-        return Arith.div(total - free, (1024 * 1024), 2);
+        return MathUtil.div(total - free, (1024 * 1024), 2);
     }
 
     public double getUsage()
     {
-        return Arith.mul(Arith.div(total - free, total, 4), 100);
+        return MathUtil.mul(MathUtil.div(total - free, total, 4), 100);
     }
 
     /**
@@ -102,21 +97,5 @@ public class Jvm
     public void setHome(String home)
     {
         this.home = home;
-    }
-
-    /**
-     * JDK启动时间
-     */
-    public String getStartTime()
-    {
-        return DateUtils.parseDateToStr(DateUtils.YYYY_MM_DD_HH_MM_SS, DateUtils.getServerStartDate());
-    }
-
-    /**
-     * JDK运行时间
-     */
-    public String getRunTime()
-    {
-        return DateUtils.getDatePoor(DateUtils.getNowDate(), DateUtils.getServerStartDate());
     }
 }

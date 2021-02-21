@@ -9,7 +9,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/2/3
  * */
-public class SecurityUtil {
+public class SecureUtil {
 
      /**
       * Authentication 认证对象

@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.tools.core.spring;
+package com.pearadmin.pro.common.tools.core;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;

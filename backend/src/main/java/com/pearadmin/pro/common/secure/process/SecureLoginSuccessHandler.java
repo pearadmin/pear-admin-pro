@@ -1,7 +1,7 @@
 package com.pearadmin.pro.common.secure.process;
 
 import com.pearadmin.pro.common.secure.uutoken.SecureUserToken;
-import com.pearadmin.pro.common.tools.core.spring.ServletUtil;
+import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
 import org.springframework.security.core.Authentication;

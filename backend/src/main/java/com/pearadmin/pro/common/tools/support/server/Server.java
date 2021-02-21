@@ -1,16 +1,8 @@
-package com.ruoyi.framework.web.domain;
+package com.pearadmin.pro.common.tools.support.server;
 
-import java.net.UnknownHostException;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Properties;
-import com.ruoyi.common.utils.Arith;
-import com.ruoyi.common.utils.IpUtils;
-import com.ruoyi.framework.web.domain.server.Cpu;
-import com.ruoyi.framework.web.domain.server.Jvm;
-import com.ruoyi.framework.web.domain.server.Mem;
-import com.ruoyi.framework.web.domain.server.Sys;
-import com.ruoyi.framework.web.domain.server.SysFile;
+import com.pearadmin.pro.common.tools.core.MathUtil;
+import com.pearadmin.pro.common.tools.core.IpUtils;
+import com.pearadmin.pro.common.tools.support.server.server.*;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.CentralProcessor.TickType;
@@ -20,6 +12,12 @@ import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 import oshi.util.Util;
+
+import java.net.UnknownHostException;
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Properties;
 
 /**
  * 服务器相关信息
@@ -54,7 +52,7 @@ public class Server
     /**
      * 磁盘相关信息
      */
-    private List<SysFile> sysFiles = new LinkedList<SysFile>();
+    private List<Disk> disk = new LinkedList<Disk>();
 
     public Cpu getCpu()
     {
@@ -96,14 +94,14 @@ public class Server
         this.sys = sys;
     }
 
-    public List<SysFile> getSysFiles()
+    public List<Disk> getDisk()
     {
-        return sysFiles;
+        return disk;
     }
 
-    public void setSysFiles(List<SysFile> sysFiles)
+    public void setSysFiles(List<Disk> disk)
     {
-        this.sysFiles = sysFiles;
+        this.disk = disk;
     }
 
     public void copyTo() throws Exception
@@ -119,7 +117,7 @@ public class Server
 
         setJvmInfo();
 
-        setSysFiles(si.getOperatingSystem());
+        setDisk(si.getOperatingSystem());
     }
 
     /**
@@ -187,24 +185,24 @@ public class Server
     /**
      * 设置磁盘信息
      */
-    private void setSysFiles(OperatingSystem os)
+    private void setDisk(OperatingSystem os)
     {
         FileSystem fileSystem = os.getFileSystem();
-        List<OSFileStore> fsArray = fileSystem.getFileStores();
+        List<OSFileStore> fsArray = Arrays.asList(fileSystem.getFileStores());
         for (OSFileStore fs : fsArray)
         {
             long free = fs.getUsableSpace();
             long total = fs.getTotalSpace();
             long used = total - free;
-            SysFile sysFile = new SysFile();
+            Disk sysFile = new Disk();
             sysFile.setDirName(fs.getMount());
             sysFile.setSysTypeName(fs.getType());
             sysFile.setTypeName(fs.getName());
             sysFile.setTotal(convertFileSize(total));
             sysFile.setFree(convertFileSize(free));
             sysFile.setUsed(convertFileSize(used));
-            sysFile.setUsage(Arith.mul(Arith.div(used, total, 4), 100));
-            sysFiles.add(sysFile);
+            sysFile.setUsage(MathUtil.mul(MathUtil.div(used, total, 4), 100));
+            disk.add(sysFile);
         }
     }
 

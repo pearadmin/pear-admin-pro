@@ -1,12 +1,7 @@
-package com.ruoyi.framework.web.domain.server;
+package com.pearadmin.pro.common.tools.support.server.server;
 
-import com.ruoyi.common.utils.Arith;
+import com.pearadmin.pro.common.tools.core.MathUtil;
 
-/**
- * 內存相关信息
- * 
- * @author ruoyi
- */
 public class Mem
 {
     /**
@@ -26,7 +21,7 @@ public class Mem
 
     public double getTotal()
     {
-        return Arith.div(total, (1024 * 1024 * 1024), 2);
+        return MathUtil.div(total, (1024 * 1024 * 1024), 2);
     }
 
     public void setTotal(long total)
@@ -36,7 +31,7 @@ public class Mem
 
     public double getUsed()
     {
-        return Arith.div(used, (1024 * 1024 * 1024), 2);
+        return MathUtil.div(used, (1024 * 1024 * 1024), 2);
     }
 
     public void setUsed(long used)
@@ -46,7 +41,7 @@ public class Mem
 
     public double getFree()
     {
-        return Arith.div(free, (1024 * 1024 * 1024), 2);
+        return MathUtil.div(free, (1024 * 1024 * 1024), 2);
     }
 
     public void setFree(long free)
@@ -56,6 +51,6 @@ public class Mem
 
     public double getUsage()
     {
-        return Arith.mul(Arith.div(used, total, 4), 100);
+        return MathUtil.mul(MathUtil.div(used, total, 4), 100);
     }
 }

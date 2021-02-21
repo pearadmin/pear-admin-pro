@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.tools.core.lang;
+package com.pearadmin.pro.common.tools.core;
 
 import com.pearadmin.pro.common.constant.SystemConstant;
 

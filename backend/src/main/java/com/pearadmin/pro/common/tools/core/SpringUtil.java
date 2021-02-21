@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.tools.core.spring;
+package com.pearadmin.pro.common.tools.core;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
