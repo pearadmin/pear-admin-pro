@@ -27,7 +27,7 @@ import java.util.Properties;
 public class Server
 {
     
-    private static final int OSHI_WAIT_SECOND = 1000;
+    private static final int WAIT_SECOND = 500;
     
     /**
      * CPU相关信息
@@ -127,7 +127,7 @@ public class Server
     {
         // CPU信息
         long[] prevTicks = processor.getSystemCpuLoadTicks();
-        Util.sleep(OSHI_WAIT_SECOND);
+        Util.sleep(WAIT_SECOND);
         long[] ticks = processor.getSystemCpuLoadTicks();
         long nice = ticks[TickType.NICE.getIndex()] - prevTicks[TickType.NICE.getIndex()];
         long irq = ticks[TickType.IRQ.getIndex()] - prevTicks[TickType.IRQ.getIndex()];
