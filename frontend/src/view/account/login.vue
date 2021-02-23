@@ -29,8 +29,9 @@
               <img
                 class="captchaImage"
                 @click="refreshCaptcha"
-                style="margin-top: -3px"
+                style="margin-top: -3px;"
                 :src="captcha"
+                alt="连接失败"
               />
             </a-col>
           </a-row>

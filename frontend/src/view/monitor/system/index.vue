@@ -2,53 +2,101 @@
   <div>
     <page-layout>
       <a-row :gutter="[10, 10]">
-        <a-col :span="24">
-          <a-card title="概览">
+        <a-col :span="6">
+          <a-card>
             <a-row>
-              <a-col :span="6">
-                <div id="container">
+              <a-col :span="12" style="padding-top:5px;">
+          
+              </a-col>
+              <a-col :span="12">
+                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="cpu.used" class="float-right"/>
+              </a-col>
+            </a-row>
+          </a-card>
+        </a-col>
+        <a-col :span="6">
+          <a-card>
+            <a-row>
+              <a-col :span="12"  style="padding-top:5px;">
+         
+              </a-col>
+              <a-col :span="12">
+                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="cpu.sys"  class="float-right"/>
+              </a-col>
+            </a-row>
+          </a-card>
+        </a-col>
+        <a-col :span="6">
+          <a-card>
+            <a-row>
+              <a-col :span="12"  style="padding-top:5px;">
+           
+              </a-col>
+              <a-col :span="12">
+                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="mem.usage"  class="float-right"/>
+              </a-col>
+            </a-row>
+          </a-card>
+        </a-col>
+        <a-col :span="6">
+          <a-card>
+            <a-row>
+              <a-col :span="12"  style="padding-top:5px;">
+           
+              </a-col>
+              <a-col :span="12">
+                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="jvm.usage"  class="float-right"/>
+              </a-col>
+            </a-row>
+          </a-card>
+        </a-col>
+        <a-col :span="12">
+          <a-card title="CPU">
+            <a-row :gutter="[20, 20]">
+              <a-col :span="12">
+                <div class="custom-card">
                   <a-statistic
-                    title="CPU使用率"
+                    title="核心数"
+                    :value="cpu.cpuNum"
+                    :precision="2"
+                    suffix="个"
+                    :value-style="{ color: '#3f8600' }"
+                    style="margin-right: 50px"
+                  >
+                  </a-statistic>
+                </div>
+              </a-col>
+              <a-col :span="12">
+                <div class="custom-card">
+                  <a-statistic
+                    title="空闲率"
+                    :value="cpu.free"
+                    :precision="2"
+                    suffix="%"
+                    :value-style="{ color: '#3f8600' }"
+                    style="margin-right: 50px"
+                  >
+                  </a-statistic>
+                </div>
+              </a-col>
+              <a-col :span="12">
+                <div class="custom-card">
+                  <a-statistic
+                    title="等待率"
+                    :value="cpu.wait"
+                    :precision="2"
+                    suffix="%"
+                    :value-style="{ color: '#3f8600' }"
+                    style="margin-right: 50px"
+                  >
+                  </a-statistic>
+                </div>
+              </a-col>
+              <a-col :span="12">
+                <div class="custom-card">
+                  <a-statistic
+                    title="使用率"
                     :value="cpu.used"
-                    :precision="2"
-                    suffix="%"
-                    :value-style="{ color: '#3f8600' }"
-                    style="margin-right: 50px"
-                  >
-                  </a-statistic>
-                </div>
-              </a-col>
-              <a-col :span="6">
-                <div id="container">
-                  <a-statistic
-                    title="系统使用率"
-                    :value="cpu.sys"
-                    :precision="2"
-                    suffix="%"
-                    :value-style="{ color: '#3f8600' }"
-                    style="margin-right: 50px"
-                  >
-                  </a-statistic>
-                </div>
-              </a-col>
-              <a-col :span="6">
-                <div id="container">
-                  <a-statistic
-                    title="内存使用率"
-                    :value="mem.usage"
-                    :precision="2"
-                    suffix="%"
-                    :value-style="{ color: '#3f8600' }"
-                    style="margin-right: 50px"
-                  >
-                  </a-statistic>
-                </div>
-              </a-col>
-              <a-col :span="6">
-                <div id="container">
-                  <a-statistic
-                    title="JVM使用率"
-                    :value="jvm.usage"
                     :precision="2"
                     suffix="%"
                     :value-style="{ color: '#3f8600' }"
@@ -61,10 +109,62 @@
           </a-card>
         </a-col>
         <a-col :span="12">
-          <a-card title="核心"></a-card>
-        </a-col>
-        <a-col :span="12">
-          <a-card title="内存"></a-card>
+          <a-card title="内存">
+            <a-row :gutter="[20, 20]">
+              <a-col :span="12">
+                <div class="custom-card">
+                  <a-statistic
+                    title="大小"
+                    :value="mem.total"
+                    :precision="2"
+                    suffix="GB"
+                    :value-style="{ color: '#3f8600' }"
+                    style="margin-right: 50px"
+                  >
+                  </a-statistic>
+                </div>
+              </a-col>
+              <a-col :span="12">
+                <div class="custom-card">
+                  <a-statistic
+                    title="空闲"
+                    :value="mem.free"
+                    :precision="2"
+                    suffix="GB"
+                    :value-style="{ color: '#3f8600' }"
+                    style="margin-right: 50px"
+                  >
+                  </a-statistic>
+                </div>
+              </a-col>
+              <a-col :span="12">
+                <div class="custom-card">
+                  <a-statistic
+                    title="已使用"
+                    :value="mem.used"
+                    :precision="2"
+                    suffix="GB"
+                    :value-style="{ color: '#3f8600' }"
+                    style="margin-right: 50px"
+                  >
+                  </a-statistic>
+                </div>
+              </a-col>
+              <a-col :span="12">
+                <div class="custom-card">
+                  <a-statistic
+                    title="使用率"
+                    :value="mem.usage"
+                    :precision="2"
+                    suffix="%"
+                    :value-style="{ color: '#3f8600' }"
+                    style="margin-right: 50px"
+                  >
+                  </a-statistic>
+                </div>
+              </a-col>
+            </a-row>
+          </a-card>
         </a-col>
         <a-col :span="24">
           <a-card>
@@ -148,10 +248,21 @@ export default {
       ],
       cpu,
       mem,
-      jvm
+      jvm,
     };
   },
 };
 </script>
 <style>
+.custom-card {
+  background-color: whitesmoke;
+  padding: 20px;
+  border-radius: 4px;
+}
+.float-right{
+  float:right;
+}
+.float-left{
+  float:left;
+}
 </style>

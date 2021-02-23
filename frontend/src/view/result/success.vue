@@ -39,6 +39,6 @@ export default {
     return {
       CloseCircleOutlined,
     };
-  },
+  }
 };
 </script>

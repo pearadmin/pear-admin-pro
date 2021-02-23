@@ -1,6 +1,10 @@
 import axios from "axios";
+import { useRouter } from "vue-router";
 import { message as Msg, message } from "ant-design-vue";
 import store from "../store";
+
+const router = useRouter()
+
 class Http {
   constructor(config) {
     this.config = config || {
@@ -57,7 +61,7 @@ class Http {
             message = "连接异常";
           }
           if (message.includes("timeout")) {
-            message = "请求超时";
+            message = "请求超时,稍后重试";
           }
           if (message.includes("Request failed with status code")) {
             const code = message.substr(message.length - 3);
