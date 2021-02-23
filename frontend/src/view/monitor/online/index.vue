@@ -22,8 +22,7 @@
             </a-statistic>
           </a-col>
           <a-col :span="8">
-            <a-statistic title="在线用户" :value="15" class="demo-class">
-            </a-statistic>
+            <a-statistic title="在线用户" :value="15" class="demo-class"></a-statistic>
           </a-col>
         </a-row>
       </a-card>

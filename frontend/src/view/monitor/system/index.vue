@@ -9,7 +9,7 @@
           
               </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="cpu.used" class="float-right"/>
+                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="cpu.used" class="float-right"/>
               </a-col>
             </a-row>
           </a-card>
@@ -21,7 +21,7 @@
          
               </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="cpu.sys"  class="float-right"/>
+                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="cpu.sys"  class="float-right"/>
               </a-col>
             </a-row>
           </a-card>
@@ -33,7 +33,7 @@
            
               </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="mem.usage"  class="float-right"/>
+                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="mem.usage"  class="float-right"/>
               </a-col>
             </a-row>
           </a-card>
@@ -45,7 +45,7 @@
            
               </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="80" :percent="jvm.usage"  class="float-right"/>
+                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="jvm.usage"  class="float-right"/>
               </a-col>
             </a-row>
           </a-card>
