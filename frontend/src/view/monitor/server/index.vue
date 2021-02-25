@@ -5,11 +5,15 @@
         <a-col :span="6">
           <a-card>
             <a-row>
-              <a-col :span="12" style="padding-top:5px;">
-          
-              </a-col>
+              <a-col :span="12"> CPU 使 用 率 </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="cpu.used" class="float-right"/>
+                <a-progress
+                  type="circle"
+                  strokeColor="#36b368"
+                  :width="80"
+                  :percent="cpu.used"
+                  class="float-right"
+                />
               </a-col>
             </a-row>
           </a-card>
@@ -17,11 +21,15 @@
         <a-col :span="6">
           <a-card>
             <a-row>
-              <a-col :span="12"  style="padding-top:5px;">
-         
-              </a-col>
+              <a-col :span="12"> 内 存 使 用 率 </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="cpu.sys"  class="float-right"/>
+                <a-progress
+                  type="circle"
+                  strokeColor="#36b368"
+                  :width="80"
+                  :percent="mem.usage"
+                  class="float-right"
+                />
               </a-col>
             </a-row>
           </a-card>
@@ -29,11 +37,15 @@
         <a-col :span="6">
           <a-card>
             <a-row>
-              <a-col :span="12"  style="padding-top:5px;">
-           
-              </a-col>
+              <a-col :span="12"> 系 统 使 用 率 </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="mem.usage"  class="float-right"/>
+                <a-progress
+                  type="circle"
+                  strokeColor="#36b368"
+                  :width="80"
+                  :percent="cpu.sys"
+                  class="float-right"
+                />
               </a-col>
             </a-row>
           </a-card>
@@ -41,17 +53,21 @@
         <a-col :span="6">
           <a-card>
             <a-row>
-              <a-col :span="12"  style="padding-top:5px;">
-           
-              </a-col>
+              <a-col :span="12"> JVM 使 用 率 </a-col>
               <a-col :span="12">
-                <a-progress type="circle" strokeColor="#36b368" :width="60" :percent="jvm.usage"  class="float-right"/>
+                <a-progress
+                  type="circle"
+                  strokeColor="#36b368"
+                  :width="80"
+                  :percent="jvm.usage"
+                  class="float-right"
+                />
               </a-col>
             </a-row>
           </a-card>
         </a-col>
         <a-col :span="12">
-          <a-card title="CPU">
+          <a-card title="内核">
             <a-row :gutter="[20, 20]">
               <a-col :span="12">
                 <div class="custom-card">
@@ -174,7 +190,7 @@
               :loading="loading"
             >
               <template #usage="{ text }">
-                <a-progress :show-info="true" :percent="text" />
+                <a-progress size="small" :show-info="false" :percent="text" />
               </template>
             </a-table>
           </a-card>
@@ -213,17 +229,18 @@ export default {
           title: "磁盘",
           dataIndex: "typeName",
           key: "typeName",
+          width: "200px"
+        },
+        {
+          title: "使用率",
+          dataIndex: "usage",
+          key: "usage",
+          slots: { customRender: "usage" }
         },
         {
           title: "路径",
           dataIndex: "dirName",
           key: "dirName",
-          align: "center",
-        },
-        {
-          title: "剩余",
-          dataIndex: "free",
-          key: "free",
           align: "center",
         },
         {
@@ -233,18 +250,17 @@ export default {
           align: "center",
         },
         {
+          title: "剩余",
+          dataIndex: "free",
+          key: "free",
+          align: "center",
+        },
+        {
           title: "大小",
           dataIndex: "total",
           key: "total",
           align: "center",
-        },
-        {
-          title: "使用率",
-          dataIndex: "usage",
-          key: "usage",
-          slots: { customRender: "usage" },
-          align: "center",
-        },
+        }
       ],
       cpu,
       mem,
@@ -259,10 +275,13 @@ export default {
   padding: 20px;
   border-radius: 4px;
 }
-.float-right{
-  float:right;
+.float-right {
+  float: right;
 }
-.float-left{
-  float:left;
+.float-left {
+  float: left;
+}
+.ant-progress-circle .ant-progress-text {
+  font-size: 16px !important;
 }
 </style>
