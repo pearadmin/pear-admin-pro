@@ -40,12 +40,15 @@ public class SysUserController extends BaseController {
         menus.add(new SysPower( "dashboard", "console", "dashboard-console", "menu", "DashboardOutlined", "分析页", 0, "", false, true));
         menus.add(new SysPower( "", "/list", "list", "dir", "StockOutlined", "系统监控", 3, "", false, true));
         menus.add(new SysPower( "list", "onlineList", "online-list", "menu", "DatabaseOutlined", "在线用户", 0, "", false, true));
-        menus.add(new SysPower( "list", "tableList", "online-li", "menu", "DatabaseOutlined", "缓存监控", 0, "", false, true));
-        menus.add(new SysPower( "list", "systemList", "system-list", "menu", "DatabaseOutlined", "运行环境", 0, "", false, true));
+        menus.add(new SysPower( "list", "redisList", "redis-list", "menu", "DatabaseOutlined", "缓存监控", 0, "", false, true));
+        menus.add(new SysPower( "list", "serverList", "server-list", "menu", "DatabaseOutlined", "运行环境", 0, "", false, true));
         menus.add(new SysPower( "", "/sys", "sys", "dir", "SettingOutlined", "系统管理", 3, "", false, true));
         menus.add(new SysPower( "sys", "/user/index", "user-list", "menu", "DatabaseOutlined", "用户列表", 0, "", false, true));
         menus.add(new SysPower( "sys", "/role/index", "role-list", "menu", "DatabaseOutlined", "角色列表", 0, "", false, true));
         menus.add(new SysPower( "sys", "/power/index", "power-list", "menu", "DatabaseOutlined", "权限列表", 0, "", false, true));
+        menus.add(new SysPower( "sys", "/dict/index", "dict-list", "menu", "DatabaseOutlined", "数据字典", 0, "", false, true));
+        menus.add(new SysPower( "sys", "/config/index", "config-list", "menu", "DatabaseOutlined", "配置中心", 0, "", false, true));
+        menus.add(new SysPower( "sys", "/post/index", "post-list", "menu", "DatabaseOutlined", "岗位列表", 0, "", false, true));
         return success("用户菜单信息",menus);
     }
 
