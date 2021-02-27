@@ -26,6 +26,7 @@ export default {
   'power-list': () => import('@/view/power/index.vue'),
   'config-list': () => import('@/view/config/index.vue'),
   'dict-list': () => import('@/view/dict/index.vue'),
+  'post-list': () => import('@/view/post/index.vue'),
   'server-list': () => import('@/view/monitor/server/index.vue'),
   'online-list': () => import('@/view/monitor/online/index.vue'),
   'redis-list': () => import('@/view/monitor/redis/index.vue')
