@@ -99,7 +99,7 @@ export default {
      * fade-right
      * fade-top
      */
-    routerAnimate: "fade-top",
+    routerAnimate: "fade-right",
 
     /**
      * 参数: 通栏 (待实现)
