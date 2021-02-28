@@ -1,8 +1,6 @@
 package com.pearadmin.pro.common.tools.support.server.server;
 
-
 import com.pearadmin.pro.common.tools.core.MathUtil;
-
 
 public class Cpu
 {

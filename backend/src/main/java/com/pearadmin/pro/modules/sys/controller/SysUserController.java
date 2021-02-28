@@ -49,6 +49,7 @@ public class SysUserController extends BaseController {
         menus.add(new SysPower( "sys", "/dict/index", "dict-list", "menu", "DatabaseOutlined", "数据字典", 0, "", false, true));
         menus.add(new SysPower( "sys", "/config/index", "config-list", "menu", "DatabaseOutlined", "配置中心", 0, "", false, true));
         menus.add(new SysPower( "sys", "/post/index", "post-list", "menu", "DatabaseOutlined", "岗位列表", 0, "", false, true));
+        menus.add(new SysPower( "sys", "/dept/index", "dept-list", "menu", "DatabaseOutlined", "部门列表", 0, "", false, true));
         return success("用户菜单信息",menus);
     }
 

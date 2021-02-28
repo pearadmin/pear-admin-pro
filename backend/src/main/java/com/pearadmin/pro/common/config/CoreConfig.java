@@ -16,7 +16,11 @@ import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactor
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import redis.clients.jedis.JedisPool;
+import redis.clients.jedis.JedisPoolConfig;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -29,6 +33,16 @@ public class CoreConfig implements WebMvcConfigurer {
     private static final String DEFAULT_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
     private static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd";
     private static final String DEFAULT_TIME_PATTERN = "HH:mm:ss";
+
+    @Bean
+    public JedisPool jedisPool(){
+        JedisPoolConfig config = new JedisPoolConfig();
+        config.setMaxTotal(1000);
+        config.setMaxIdle(10);
+        config.setMinIdle(1);
+        JedisPool jedisPool = new JedisPool(config, "127.0.0.1", 6379, 5000, null);
+        return jedisPool;
+    }
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {

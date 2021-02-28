@@ -32,9 +32,15 @@
         <api.version>2.3.0</api.version>
         <oshi.version>3.9.1</oshi.version>
         <hutool.version>5.5.7</hutool.version>
+        <jedis.version>2.9.0</jedis.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>redis.clients</groupId>
+            <artifactId>jedis</artifactId>
+            <version>${jedis.version}</version>
+        </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
             <artifactId>hutool-all</artifactId>

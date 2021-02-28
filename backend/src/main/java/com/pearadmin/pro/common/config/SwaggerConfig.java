@@ -3,6 +3,7 @@ package com.pearadmin.pro.common.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -21,7 +22,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.pearadmin.pro"))
+                .apis(RequestHandlerSelectors.basePackage("com.pearadmin.com"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -34,4 +35,5 @@ public class SwaggerConfig {
                 .version("1.0")
                 .build();
     }
+
 }

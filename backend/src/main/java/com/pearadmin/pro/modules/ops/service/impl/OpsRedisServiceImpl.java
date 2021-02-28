@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.ops.service.impl;
 
+import com.pearadmin.pro.modules.ops.service.OpsRedisService;
 import org.springframework.stereotype.Service;
 import redis.clients.jedis.Client;
 import redis.clients.jedis.Jedis;
@@ -10,14 +11,13 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class RedisUtil {
+public class OpsRedisServiceImpl implements OpsRedisService {
 
     @Resource
     private JedisPool jedisPool;
 
-    // 获取redis 服务器信息
-    public String getRedisInfo() {
-
+    @Override
+    public String info() {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
@@ -31,56 +31,16 @@ public class RedisUtil {
         }
     }
 
-    // 获取日志列表
-    public List<Slowlog> getLogs(long entries) {
+    @Override
+    public List<Slowlog> log(long count) {
         Jedis jedis = null;
         try {
             jedis = jedisPool.getResource();
-            List<Slowlog> logList = jedis.slowlogGet(entries);
+            List<Slowlog> logList = jedis.slowlogGet(count);
             return logList;
         } finally {
-            // 返还到连接池
             jedis.close();
         }
     }
 
-    // 获取日志条数
-    public Long getLogsLen() {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            long logLen = jedis.slowlogLen();
-            return logLen;
-        } finally {
-            // 返还到连接池
-            jedis.close();
-        }
-    }
-
-    // 清空日志
-    public String logEmpty() {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            return jedis.slowlogReset();
-        } finally {
-            // 返还到连接池
-            jedis.close();
-        }
-    }
-
-    // 获取占用内存大小
-    public Long dbSize() {
-        Jedis jedis = null;
-        try {
-            jedis = jedisPool.getResource();
-            // TODO 配置redis服务信息
-            Client client = jedis.getClient();
-            client.dbSize();
-            return client.getIntegerReply();
-        } finally {
-            // 返还到连接池
-            jedis.close();
-        }
-    }
 }

@@ -30,6 +30,7 @@ public class GlobalExceptionHandler {
      * */
     @ExceptionHandler(RuntimeException.class)
     public Result notFount(RuntimeException e){
+        e.printStackTrace();
         return Result.failure("运行时异常：" + e.getMessage());
     }
 

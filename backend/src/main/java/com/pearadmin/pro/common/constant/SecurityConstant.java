@@ -10,7 +10,7 @@ public class SecurityConstant {
     /**
      * 不需要认证的接口资源
      */
-    public static final String HTTP_ACT_MATCHERS="/api/login,/api/captcha/create,/swagger-ui.html";
+    public static final String HTTP_ACT_MATCHERS="/swagger-ui.html,/webjars/springfox-swagger-ui/springfox.css,/webjars/springfox-swagger-ui/swagger-ui.css,/api/login,/api/captcha/create,/swagger-ui.html";
 
     /**
      * 不需要认证的静态资源

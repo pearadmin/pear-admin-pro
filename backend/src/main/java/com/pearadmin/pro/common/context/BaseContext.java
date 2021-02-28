@@ -12,6 +12,8 @@ public abstract class BaseContext extends ResultController {
     public static UserContext USER_CONTEXT;
 
     static{
+
         USER_CONTEXT = new UserContext();
+
     }
 }
