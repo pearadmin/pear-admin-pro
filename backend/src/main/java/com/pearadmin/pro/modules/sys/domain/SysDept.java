@@ -13,4 +13,5 @@ import org.apache.ibatis.type.Alias;
 @Alias("SysDept")
 @TableName("sys_dept")
 public class SysDept {
+
 }

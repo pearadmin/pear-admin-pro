@@ -200,7 +200,7 @@
   </div>
 </template>
 <script>
-import { server } from "@/api/modules/ops/monitor";
+import { info } from "@/api/modules/ops/server";
 import { ref } from "vue";
 export default {
   setup() {
@@ -211,7 +211,7 @@ export default {
     const jvm = ref({});
 
     const loadData = async function () {
-      var response = await server();
+      var response = await info();
       datasource.value = response.data.disk;
       mem.value = response.data.mem;
       cpu.value = response.data.cpu;

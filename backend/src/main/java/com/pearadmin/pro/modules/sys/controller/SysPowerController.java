@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.controller;
 
+import com.pearadmin.pro.common.aop.lang.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -14,6 +15,7 @@ import java.util.List;
 public class SysPowerController extends BaseController {
 
     @GetMapping("page")
+    @Log(title = "查询权限", describe = "获取权限列表")
     public Result page(){
         List<SysPower> menus = new ArrayList<>();
         SysPower menu1 = new SysPower( "", "/dashboard", "dashboard", "dir", "HomeOutlined", "工作空间", 1, "", false, true);
@@ -25,6 +27,7 @@ public class SysPowerController extends BaseController {
         SysPower menu4 = new SysPower( "sys", "/user/index", "user-list", "menu", "DatabaseOutlined", "用户列表", 0, "", false, true);
         SysPower menu5 = new SysPower( "sys", "/role/index", "role-list", "menu", "DatabaseOutlined", "角色列表", 0, "", false, true);
         SysPower menu6 = new SysPower( "sys", "/power/index", "power-list", "menu", "DatabaseOutlined", "权限列表", 0, "", false, true);
+
         menu3.getChildren().add(menu4);
         menu3.getChildren().add(menu5);
         menu3.getChildren().add(menu6);

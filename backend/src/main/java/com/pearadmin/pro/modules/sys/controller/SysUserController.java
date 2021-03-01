@@ -25,6 +25,7 @@ public class SysUserController extends BaseController {
     private SysUserService sysUserService;
 
     @GetMapping("page")
+    @Log(title = "查询用户", describe = "获取用户列表")
     public Result page(Page page, QueryUserRequest request){
         IPage<SysUser> pageInfo = sysUserService.lambdaQuery()
                 .eq(Strings.isNotBlank(request.getUsername()),SysUser::getUsername,request.getUsername())
@@ -52,6 +53,8 @@ public class SysUserController extends BaseController {
         menus.add(new SysPower( "sys", "/config/index", "config-list", "menu", "DatabaseOutlined", "配置中心", 0, "", false, true));
         menus.add(new SysPower( "sys", "/post/index", "post-list", "menu", "DatabaseOutlined", "岗位列表", 0, "", false, true));
         menus.add(new SysPower( "sys", "/dept/index", "dept-list", "menu", "DatabaseOutlined", "部门列表", 0, "", false, true));
+        menus.add(new SysPower( "list", "/log/operate", "operate-list", "menu", "DatabaseOutlined", "操作日志", 0, "", false, true));
+        menus.add(new SysPower( "list", "/log/login", "login-list", "menu", "DatabaseOutlined", "登录日志", 0, "", false, true));
         return success("用户菜单信息",menus);
     }
 

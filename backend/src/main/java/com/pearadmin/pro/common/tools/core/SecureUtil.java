@@ -29,6 +29,11 @@ public class SecureUtil {
      public static String getUsername(){ return getPrincipal().getUsername(); }
 
      /**
+      * nickname 当前用户昵称
+      * */
+     public static String getNickName(){ return getPrincipal().getNickname(); }
+
+     /**
       * UserId 用户编号
       * */
      public static String getUserId(){ return getPrincipal().getId(); }

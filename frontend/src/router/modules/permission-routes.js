@@ -23,6 +23,8 @@ export default {
   'permissionTest': () => import('@/view/permission/permission.vue'),
   'user-list': () => import('@/view/user/index.vue'),
   'role-list': () => import('@/view/role/index.vue'),
+  'operate-list': () => import('@/view/log/operate.vue'),
+  'login-list': () => import('@/view/log/login.vue'),
   'power-list': () => import('@/view/power/index.vue'),
   'config-list': () => import('@/view/config/index.vue'),
   'dict-list': () => import('@/view/dict/index.vue'),
@@ -31,5 +33,4 @@ export default {
   'server-list': () => import('@/view/monitor/server/index.vue'),
   'online-list': () => import('@/view/monitor/online/index.vue'),
   'redis-list': () => import('@/view/monitor/redis/index.vue'),
-  
 }

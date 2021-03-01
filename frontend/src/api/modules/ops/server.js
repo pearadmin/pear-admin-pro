@@ -1,12 +1,12 @@
 import http from '../../http'
 
 const Api = {
-    server: '/ops/monitor/server',
+    info: '/ops/server/info',
 }
 
-export const server = data => {
+export const info = data => {
     return http.request({
-        url: Api.server,
+        url: Api.info,
         params: data,
         method: 'get'
     })

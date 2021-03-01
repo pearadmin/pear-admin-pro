@@ -80,20 +80,6 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: 判断是否为 Ajax 请求
-     * Param null
-     * Return HttpServletSession
-     * */
-    public static Boolean isAjax(HttpServletRequest request){
-        String requestType = request.getHeader("X-Requested-With");
-        if("XMLHttpRequest".equals(requestType)){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-    /**
      * Describe: Response 对象写出数据
      * Param: msg 消息数据
      * Return null

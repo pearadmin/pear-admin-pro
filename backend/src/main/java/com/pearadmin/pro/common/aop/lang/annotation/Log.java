@@ -13,7 +13,6 @@ import java.lang.annotation.*;
 @Documented
 public @interface Log {
 
-
     /**
      * 默认无参输入
      * */
