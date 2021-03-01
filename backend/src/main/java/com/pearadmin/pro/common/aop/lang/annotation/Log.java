@@ -8,9 +8,9 @@ import java.lang.annotation.*;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
+@Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
-@Documented
 public @interface Log {
 
     /**

@@ -58,11 +58,11 @@ public class LogAspect {
             sysLog.setTitle(title);
             sysLog.setDescribe(describe);
             sysLog.setAction(action);
-            sysLog.setOperator(SecureUtil.getUsername());
+            sysLog.setOperator(SecureUtil.getNickName());
             sysLog.setType(ServletUtil.getMethod());
             sysLog.setUrl(ServletUtil.getRequestURI());
             sysLog.setBrowser(ServletUtil.getBrowser());
-            sysLog.setMethod(ServletUtil.getRequestURI());
+            sysLog.setMethod(joinPoint.getTarget().getClass().getName());
             sysLog.setCreateBy(SecureUtil.getUserId());
             sysLog.setCreateTime(LocalDateTime.now());
             sysLog.setUpdateBy(SecureUtil.getUserId());
@@ -90,6 +90,9 @@ public class LogAspect {
         return result;
     }
 
+    /**
+     * 获 取 注 解
+     * */
     public Log getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();

@@ -8,4 +8,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "dept")
 public class SysDeptController extends BaseController {
+
 }

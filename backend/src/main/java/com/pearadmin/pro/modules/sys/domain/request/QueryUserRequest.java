@@ -2,6 +2,9 @@ package com.pearadmin.pro.modules.sys.domain.request;
 
 import lombok.Data;
 
+/**
+ * 用户查询参数实体
+ * */
 @Data
 public class QueryUserRequest {
 

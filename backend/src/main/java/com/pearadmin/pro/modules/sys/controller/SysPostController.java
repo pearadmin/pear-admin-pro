@@ -8,4 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "post")
 public class SysPostController extends BaseController {
+
+
 }

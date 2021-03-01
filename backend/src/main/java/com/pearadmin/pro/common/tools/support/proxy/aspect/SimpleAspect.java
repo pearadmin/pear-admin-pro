@@ -18,4 +18,5 @@ public class SimpleAspect implements Aspect {
     public boolean exception(Object target, Method method, Object[] args, Throwable e) {
         return true;
     }
+
 }

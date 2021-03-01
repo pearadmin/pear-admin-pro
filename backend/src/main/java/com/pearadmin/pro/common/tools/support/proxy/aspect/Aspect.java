@@ -2,6 +2,9 @@ package com.pearadmin.pro.common.tools.support.proxy.aspect;
 
 import java.lang.reflect.Method;
 
+/**
+ * 切 面
+ * */
 public interface Aspect {
 
     /**
