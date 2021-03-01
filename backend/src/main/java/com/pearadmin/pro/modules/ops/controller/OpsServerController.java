@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(ControllerConstant.PREFIX_OPS + "monitor")
-public class OpsMonitorController extends BaseController {
+@RequestMapping(ControllerConstant.PREFIX_OPS + "server")
+public class OpsServerController extends BaseController {
 
-    @GetMapping("server")
+    @GetMapping("info")
     public Result server() throws Exception{
         Server server = new Server();
         server.copyTo();

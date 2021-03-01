@@ -27,6 +27,11 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
+/**
+ * Describe: 核心配置
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Configuration
 public class CoreConfig implements WebMvcConfigurer {
 

@@ -31,5 +31,4 @@ public class SysPowerController extends BaseController {
         menus.add(menu3);
         return success("用户菜单信息",menus);
     }
-
 }
