@@ -13,14 +13,6 @@
                 >
                 </a-input>
               </a-form-item>
-              <a-form-item label="邮箱">
-                <a-input
-                  v-model:value="param.email"
-                  type="text"
-                  placeholder="邮箱"
-                >
-                </a-input>
-              </a-form-item>
               <a-form-item>
                 <button-container>
                   <a-button type="primary" @click="search"> 查询 </a-button>
@@ -33,9 +25,8 @@
         <a-col :span="24">
           <a-card>
             <button-container class="tool-left">
-              <a-button type="primary" @click="openAddModal">新增</a-button>
-              <a-button @click="batchRemove">删除</a-button>
-              <a-button @click="batchRemove">高级</a-button>
+              <a-button type="primary" @click="openAddModal">清空</a-button>
+              <a-button @click="batchRemove">备份</a-button>
             </button-container>
             <button-container class="tool-right">
               <a-button @click="search">
@@ -64,8 +55,6 @@
               <template v-slot:action="{ record }">
                 <span>
                   <a @click="openInfoModal(record)"> 查看 </a>
-                  <a-divider type="vertical" />
-                  <a @click="openEditModal(record)"> 编辑 </a>
                   <a-divider type="vertical" />
                   <a @click="remove(record)"> 删除 </a>
                 </span>
@@ -104,17 +93,17 @@ export default {
     SyncOutlined,
   },
   setup() {
-    const columns = [
-      { dataIndex: "nickname", key: "nickname", title: "名称" },
-      { dataIndex: "username", key: "username", title: "账号" },
-      { dataIndex: "gender", key: "gender", title: "性别", slots: { customRender: "gender" }},
-      { dataIndex: "locked", key: "locked", title: "锁定", slots: { customRender: "locked" }},
-      { dataIndex: "email", key: "email", title: "邮箱" },
-      { dataIndex: "phone", key: "phone", title: "电话" },
-      { dataIndex: "createTime", key: "createTime", title: "注册时间" },
+   const columns = [
+      { dataIndex: "title", key: "title", title: "标题" },
+      { dataIndex: "describe", key: "describe", title: "描述" },
+      { dataIndex: "action", key: "action", title: "动作"},
+      { dataIndex: "type", key: "type", title: "方式"},
+      { dataIndex: "browser", key: "browser", title: "浏览器" },
+      { dataIndex: "address", key: "address", title: "操作地" },
+      { dataIndex: "operator", key: "operator", title: "操作人" }, 
+      { dataIndex: "createTime", key: "createTime", title: "操作时间" },
       { dataIndex: "action", key: "action",title: "操作", slots: { customRender: "action" }, fixed: "right"}
     ];
-
     const data = ref();
     const loading = ref(true);
     

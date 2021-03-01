@@ -13,22 +13,6 @@
                 >
                 </a-input>
               </a-form-item>
-              <a-form-item label="开始时间">
-                <a-input
-                  v-model:value="param.email"
-                  type="text"
-                  placeholder="开始时间"
-                >
-                </a-input>
-              </a-form-item>
-               <a-form-item label="结束时间">
-                <a-input
-                  v-model:value="param.email"
-                  type="text"
-                  placeholder="结束时间"
-                >
-                </a-input>
-               </a-form-item>
               <a-form-item>
                 <button-container>
                   <a-button type="primary" @click="search"> 查询 </a-button>
@@ -41,9 +25,8 @@
         <a-col :span="24">
           <a-card>
             <button-container class="tool-left">
-              <a-button type="primary" @click="openAddModal">新增</a-button>
-              <a-button @click="batchRemove">删除</a-button>
-              <a-button @click="batchRemove">高级</a-button>
+              <a-button type="primary" @click="openAddModal">清空</a-button>
+              <a-button @click="batchRemove">备份</a-button>
             </button-container>
             <button-container class="tool-right">
               <a-button @click="search">
