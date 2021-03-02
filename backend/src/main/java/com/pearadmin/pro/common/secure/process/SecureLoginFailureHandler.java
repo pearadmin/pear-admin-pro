@@ -1,5 +1,7 @@
 package com.pearadmin.pro.common.secure.process;
 
+import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.context.BaseContext;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
@@ -11,6 +13,8 @@ import org.springframework.security.web.authentication.AuthenticationFailureHand
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
@@ -23,6 +27,9 @@ import java.io.IOException;
 @Component
 public class SecureLoginFailureHandler implements AuthenticationFailureHandler {
 
+    @Resource
+    private BaseContext context;
+
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
 
@@ -31,6 +38,9 @@ public class SecureLoginFailureHandler implements AuthenticationFailureHandler {
         if(e instanceof BadCredentialsException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_BAD_CREDENTIALS)); return;}
         if(e instanceof AccountExpiredException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_EXPIRED)); return;}
         if(e instanceof DisabledException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_NOT_ENABLE)); return;}
+
+        // 登 录 日 志
+        context.record("登录","登录失败", Action.AUTH, false, "","");
 
         ServletUtil.writeJson(Result.failure(ResultCode.LOGIN_FAILURE));
     }

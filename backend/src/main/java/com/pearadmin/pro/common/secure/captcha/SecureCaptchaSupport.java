@@ -11,7 +11,6 @@ import com.pearadmin.pro.common.web.exception.auth.captcha.CaptchaExpiredExcepti
 import com.pearadmin.pro.common.web.exception.auth.captcha.CaptchaValidationException;
 import org.apache.logging.log4j.util.Strings;
 import javax.servlet.http.HttpServletResponse;
-
 import org.springframework.web.filter.OncePerRequestFilter;
 import com.pearadmin.pro.common.web.domain.Result;
 import java.io.IOException;

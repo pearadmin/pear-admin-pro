@@ -74,7 +74,7 @@ public class LogAspect {
 
             // 补 充 结 果
             sysLog.setState(true);
-            sysLog.setResult(JSON.toJSONString(result));
+            sysLog.setResult(JSON.toJSONString(result).substring(0,100));
 
         }catch (Exception e){
 

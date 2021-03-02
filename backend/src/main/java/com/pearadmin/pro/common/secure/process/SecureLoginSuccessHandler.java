@@ -1,9 +1,12 @@
 package com.pearadmin.pro.common.secure.process;
 
+import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.context.BaseContext;
 import com.pearadmin.pro.common.secure.uutoken.SecureUserToken;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
+import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 import org.springframework.security.core.Authentication;
 import com.pearadmin.pro.common.secure.uutoken.SecureUserTokenService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -23,6 +26,9 @@ import java.io.IOException;
 public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
 
     @Resource
+    private BaseContext context;
+
+    @Resource
     private SecureUserTokenService customUserDetailsTokenService;
 
     @Override
@@ -32,6 +38,9 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
             SecureUserToken userToken = customUserDetailsTokenService.createToken(secureUser);
             String tokenKey = customUserDetailsTokenService.saveToken(userToken);
             String tokenValue = userToken.getToken();
+
+            // 登 录 日 志
+            context.record("登录","登录成功", Action.AUTH, false, "","");
 
             ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,tokenKey,tokenValue));
     }
