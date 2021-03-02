@@ -40,12 +40,10 @@ public class BaseContext {
        sysLog.setUpdateBy(SecureUtil.getUserId());
        sysLog.setUpdateTime(LocalDateTime.now());
        sysLog.setAddress(ServletUtil.getRemoteHost());
+       sysLog.setSystem(ServletUtil.getSystem());
        sysLog.setState(state);
        sysLog.setError(error);
        sysLog.setResult(JSON.toJSONString(result));
        sysLogService.save(sysLog);
     }
-
-
-
 }

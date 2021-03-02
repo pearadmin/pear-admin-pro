@@ -21,14 +21,28 @@ public class OpsRedisController extends BaseController {
     @Resource
     private OpsRedisService opsRedisService;
 
+    /**
+     * 详情
+     * */
     @GetMapping("info")
     public Result info(){
         return success(opsRedisService.info());
     }
 
+    /**
+     * 日志
+     * */
     @GetMapping("log")
     public Result log(){
         List<Slowlog> list = opsRedisService.log(20);
         return success(list);
+    }
+
+    /**
+     * 键值队
+     * */
+    @GetMapping("list")
+    public Result list(){
+        return null;
     }
 }

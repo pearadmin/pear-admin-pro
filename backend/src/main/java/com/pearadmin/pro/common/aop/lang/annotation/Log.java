@@ -14,11 +14,6 @@ import java.lang.annotation.*;
 public @interface Log {
 
     /**
-     * 默认无参输入
-     * */
-    String value() default "暂无标题";
-
-    /**
      * Title 默认输入
      * */
     String title() default "暂无标题";

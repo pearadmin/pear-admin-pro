@@ -98,4 +98,10 @@ public class SysLog extends BaseDomain {
     @TableField("error")
     private String error;
 
+    /**
+     * 系统
+     * */
+    @TableField("`system`")
+    private String system;
+
 }

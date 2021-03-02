@@ -3,6 +3,7 @@ package com.pearadmin.pro.common.aop;
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.pro.common.aop.lang.annotation.Log;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.context.BaseContext;
 import com.pearadmin.pro.common.tools.core.SecureUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
@@ -27,7 +28,7 @@ import java.time.LocalDateTime;
 public class LogAspect {
 
     @Resource
-    private SysLogService sysLogService;
+    private BaseContext context;
 
     /**
      * 切 面 编 程
@@ -42,50 +43,24 @@ public class LogAspect {
     private Object around(ProceedingJoinPoint joinPoint) throws Throwable
     {
         Object result = null;
-        SysLog sysLog = new SysLog();
+
+        // 注 解 解 析
+        Log annotation = getAnnotation(joinPoint);
+        String title = annotation.title();
+        Action action = annotation.action();
+        String describe = annotation.describe();
 
         try {
-
-            // 注 解 解 析
-            Log annotation = getAnnotation(joinPoint);
-            String value = annotation.value();
-            String title = annotation.title();
-            Action action = annotation.action();
-            String describe = annotation.describe();
-
-            // 填 充 信 息
-            sysLog.setTitle(value);
-            sysLog.setTitle(title);
-            sysLog.setDescribe(describe);
-            sysLog.setAction(action);
-            sysLog.setOperator(SecureUtil.getNickName());
-            sysLog.setType(ServletUtil.getMethod());
-            sysLog.setUrl(ServletUtil.getRequestURI());
-            sysLog.setBrowser(ServletUtil.getBrowser());
-            sysLog.setMethod(joinPoint.getTarget().getClass().getName());
-            sysLog.setCreateBy(SecureUtil.getUserId());
-            sysLog.setCreateTime(LocalDateTime.now());
-            sysLog.setUpdateBy(SecureUtil.getUserId());
-            sysLog.setUpdateTime(LocalDateTime.now());
-            sysLog.setAddress(ServletUtil.getRemoteHost());
 
             // 执 行 方 法
             result = joinPoint.proceed();
 
-            // 补 充 结 果
-            sysLog.setState(true);
-            sysLog.setResult(JSON.toJSONString(result).substring(0,100));
+            context.record(title, describe,action, true, result.toString(),null);
 
         }catch (Exception e){
 
             // 异 常 处 理
-            sysLog.setState(false);
-            sysLog.setError(e.getMessage());
-
-        }finally {
-
-            // 日 志 记 录
-            sysLogService.save(sysLog);
+            context.record(title, describe,action, true, result.toString(),e.getMessage());
         }
         return result;
     }
