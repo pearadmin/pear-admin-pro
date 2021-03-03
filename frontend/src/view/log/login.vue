@@ -99,6 +99,7 @@ export default {
       { dataIndex: "action", key: "action", title: "动作"},
       { dataIndex: "type", key: "type", title: "方式"},
       { dataIndex: "browser", key: "browser", title: "浏览器" },
+      { dataIndex: "system", key: "system", title: "系统" },
       { dataIndex: "address", key: "address", title: "操作地" },
       { dataIndex: "operator", key: "operator", title: "操作人" }, 
       { dataIndex: "createTime", key: "createTime", title: "操作时间" },

@@ -46,4 +46,10 @@ public class SysUser extends SecureUser {
     @TableField("gender")
     private Integer gender;
 
+    /**
+     * 部门
+     * */
+    @TableField("dept_id")
+    private String deptId;
+
 }

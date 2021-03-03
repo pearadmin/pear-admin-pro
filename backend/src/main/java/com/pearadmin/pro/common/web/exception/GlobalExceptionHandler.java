@@ -8,6 +8,7 @@ import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLSyntaxErrorException;
 
 /**
  * Describe: 全局异常处理
@@ -32,6 +33,15 @@ public class GlobalExceptionHandler {
     public Result notFount(RuntimeException e){
         e.printStackTrace();
         return Result.failure("运行时异常：" + e.getMessage());
+    }
+
+    /**
+     * 未 知 的 运 行 时 异 常
+     * */
+    @ExceptionHandler(SQLSyntaxErrorException.class)
+    public Result notColumn(RuntimeException e){
+        e.printStackTrace();
+        return Result.failure("列不存在：" + e.getMessage());
     }
 
     /**

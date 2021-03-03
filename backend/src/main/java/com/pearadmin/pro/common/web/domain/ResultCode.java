@@ -24,11 +24,14 @@ public enum ResultCode {
     TOKEN_EXPIRED(502, "Token 过期"),
     TOKEN_MISSION(503, "Token 缺失"),
 
+    REPEAT_SUBMIT(701,"不允许重复提交，请稍后再试"),
+
     USER_EXPIRED(604,"账户过期"),
     USER_BAD_CREDENTIALS(603,"密码不正确"),
     USER_USERNAME_NOT_FOUND(602,"用户不存在"),
     USER_LOCKED(601,"用户锁定"),
     USER_NOT_ENABLE(605,"用户未启用");
+
 
 
     /**

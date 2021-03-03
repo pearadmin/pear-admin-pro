@@ -8,14 +8,24 @@ package com.pearadmin.pro.common.aop.lang.enums;
 public enum Scope {
 
     /**
-     * 租户
+     * 全部
      * */
-    TENANT,
+    ALL,
 
     /**
-     * 用户
+     * 自己
      * */
-    USER,
+    SELF,
+
+    /**
+     * 部门
+     * */
+    DEPT,
+
+    /**
+     * 部门 及其 子部门
+     * */
+    DEPT_CHILD,
 
     /**
      * 自动
@@ -23,7 +33,8 @@ public enum Scope {
     AUTO,
 
     /**
-     * 关闭
+     * 自定义
      * */
-    CLOSE
+    CUSTOM
+
 }

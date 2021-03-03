@@ -1,13 +1,8 @@
 package com.pearadmin.pro.common.aop;
 
-import com.alibaba.fastjson.JSON;
 import com.pearadmin.pro.common.aop.lang.annotation.Log;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.context.BaseContext;
-import com.pearadmin.pro.common.tools.core.SecureUtil;
-import com.pearadmin.pro.common.tools.core.ServletUtil;
-import com.pearadmin.pro.modules.sys.domain.SysLog;
-import com.pearadmin.pro.modules.sys.service.SysLogService;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,7 +11,6 @@ import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
-import java.time.LocalDateTime;
 
 /**
  * Describe: 系统日志实现
@@ -55,12 +49,14 @@ public class LogAspect {
             // 执 行 方 法
             result = joinPoint.proceed();
 
-            context.record(title, describe,action, true, result.toString(),null);
+            // 记 录 日 志
+            context.record(title, describe,action, true, null,null);
 
         }catch (Exception e){
 
+            e.printStackTrace();
             // 异 常 处 理
-            context.record(title, describe,action, true, result.toString(),e.getMessage());
+            context.record(title, describe,action, true, null, null);
         }
         return result;
     }
@@ -80,5 +76,4 @@ public class LogAspect {
             return log;
         }
     }
-
 }

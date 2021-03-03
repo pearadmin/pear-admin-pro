@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.controller;
 
+import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
 import com.pearadmin.pro.common.aop.lang.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
@@ -15,6 +16,7 @@ import java.util.List;
 public class SysPowerController extends BaseController {
 
     @GetMapping("page")
+    @DataScope
     @Log(title = "查询权限", describe = "获取权限列表")
     public Result page(){
         List<SysPower> menus = new ArrayList<>();

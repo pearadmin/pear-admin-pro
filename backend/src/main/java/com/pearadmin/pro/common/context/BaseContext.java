@@ -2,7 +2,6 @@ package com.pearadmin.pro.common.context;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
-import com.pearadmin.pro.common.tools.core.SecureUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
@@ -22,6 +21,9 @@ public class BaseContext {
     @Resource
     private SysLogService sysLogService;
 
+    @Resource
+    private UserContext userContext;
+
     /**
       * 日 志 记 录
       * */
@@ -31,13 +33,13 @@ public class BaseContext {
        sysLog.setTitle(title);
        sysLog.setDescribe(describe);
        sysLog.setAction(action);
-       sysLog.setOperator(SecureUtil.getNickName());
+       sysLog.setOperator(userContext.getNickName());
        sysLog.setType(ServletUtil.getMethod());
        sysLog.setUrl(ServletUtil.getRequestURI());
        sysLog.setBrowser(ServletUtil.getBrowser());
-       sysLog.setCreateBy(SecureUtil.getUserId());
+       sysLog.setCreateBy(userContext.getUserId());
        sysLog.setCreateTime(LocalDateTime.now());
-       sysLog.setUpdateBy(SecureUtil.getUserId());
+       sysLog.setUpdateBy(userContext.getUserId());
        sysLog.setUpdateTime(LocalDateTime.now());
        sysLog.setAddress(ServletUtil.getRemoteHost());
        sysLog.setSystem(ServletUtil.getSystem());
