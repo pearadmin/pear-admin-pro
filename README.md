@@ -30,11 +30,6 @@
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2020/1112/005939_5a252a51_4835367.png" />
 </div>
 
-
-### 基本介绍
-
-🦄 Pear Admin 社区企业级 WEB 开发框架
-
 ### 界面预览
 
 | 界面              |                预览  |  
