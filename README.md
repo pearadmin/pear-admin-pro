@@ -30,6 +30,22 @@
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2020/1112/005939_5a252a51_4835367.png" />
 </div>
 
+### 功能概览
+
+- [x] 基础设施
+- [x] 认证登录
+- [x] 用户管理
+- [ ] 角色管理
+- [ ] 权限处理
+- [ ] 权限管理
+- [ ] 数据字典
+- [ ] 资源管理
+- [ ] 配置中心
+- [x] 系统监控
+- [ ] 定时任务
+- [x] 登录日志
+- [x] 操作日志
+
 ### 业务流程
 
 <div align="center">
