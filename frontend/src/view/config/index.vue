@@ -57,8 +57,6 @@
                   <a-divider type="vertical" />
                   <a>修改</a>
                   <a-divider type="vertical" />
-                  <a @click="showDrawer">分配</a>
-                  <a-divider type="vertical" />
                   <a @click="remove">删除</a>
                 </span>
               </template>
@@ -83,7 +81,7 @@
 </template>
 <script>
 import { SyncOutlined } from "@ant-design/icons-vue";
-import { page } from "@/api/modules/role";
+import { page } from "@/api/modules/config";
 import { reactive, ref } from "vue";
 
 export default {
@@ -102,18 +100,13 @@ export default {
       visible.value = true;
     };
 
-
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "账号" },
-      {
-        dataIndex: "enable",
-        key: "enable",
-        title: "状态",
-        slots: { customRender: "enable" },
-      },
+      { dataIndex: "key", key: "key", title: "键" },
+      { dataIndex: "value", key: "value", title: "值"},
       { dataIndex: "remark", key: "remark", title: "描述" },
-      { dataIndex: "sort", key: "sort", title: "排序" },
+      { dataIndex: "createTime", key: "createTime", title: "创建时间" },
+      { dataIndex: "updateTime", key: "updateTime", title: "修改时间" },
       {
         title: "操作",
         key: "action",

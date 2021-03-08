@@ -1,9 +1,11 @@
 package com.pearadmin.pro.common.context;
 
 import com.alibaba.fastjson.JSON;
+import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
+import com.pearadmin.pro.modules.sys.service.SysConfigService;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -21,6 +23,10 @@ public class BaseContext {
     // 日 志 服 务
     @Resource
     private SysLogService sysLogService;
+
+    // 配 置 服 务
+    @Resource
+    private SysConfigService sysConfigService;
 
     // 用 户 上 下 文
     @Resource

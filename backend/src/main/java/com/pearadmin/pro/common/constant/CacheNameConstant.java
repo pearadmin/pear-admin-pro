@@ -18,6 +18,11 @@ public class CacheNameConstant {
     public static final String CAPTCHA_NAME_PREFIX = "CAPTCHA-";
 
     /**
+     * Config 存储前缀
+     * */
+    public static final String CONFIG_NAME_PREFIX = "CONFIG-";
+
+    /**
      * Remember 存储前缀
      *
      * TODO 待实现
