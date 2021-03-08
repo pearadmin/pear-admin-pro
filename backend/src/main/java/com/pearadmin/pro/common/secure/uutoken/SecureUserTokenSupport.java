@@ -1,12 +1,15 @@
 package com.pearadmin.pro.common.secure.uutoken;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import cn.hutool.extra.spring.SpringUtil;
+import com.pearadmin.pro.common.context.BeanContext;
 import com.pearadmin.pro.common.secure.services.SecureUser;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
-import com.pearadmin.pro.common.tools.core.SpringUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
 import com.pearadmin.pro.common.constant.TokenConstant;
@@ -27,10 +30,14 @@ import java.util.List;
  * */
 public class SecureUserTokenSupport extends OncePerRequestFilter {
 
+    @Resource
+    private BeanContext beanContext;
+
     private SecureUserTokenService customUserDetailsTokenService;
 
     public SecureUserTokenSupport(){
-        this.customUserDetailsTokenService = SpringUtil.getBean("secureUserTokenService", SecureUserTokenService.class);
+        // Secure Details
+        this.customUserDetailsTokenService = beanContext.getBean("secureUserTokenService", SecureUserTokenService.class);
     }
 
     @Override

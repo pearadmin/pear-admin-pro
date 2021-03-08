@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.web.base;
+package com.pearadmin.pro.common.web.base.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;

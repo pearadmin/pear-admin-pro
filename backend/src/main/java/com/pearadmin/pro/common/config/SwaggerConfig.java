@@ -22,6 +22,9 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    /**
+     * 初 始 化 SWAGGER
+     * */
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
@@ -32,6 +35,9 @@ public class SwaggerConfig {
                 .build();
     }
 
+    /**
+     * 接 口 详 情
+     * */
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Boot Admin")

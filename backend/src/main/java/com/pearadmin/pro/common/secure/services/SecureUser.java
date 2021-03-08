@@ -2,7 +2,7 @@ package com.pearadmin.pro.common.secure.services;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.pearadmin.pro.common.web.base.BaseDomain;
+import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

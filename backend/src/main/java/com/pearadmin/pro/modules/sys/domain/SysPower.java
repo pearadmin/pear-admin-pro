@@ -1,9 +1,7 @@
 package com.pearadmin.pro.modules.sys.domain;
 
-import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
-import com.pearadmin.pro.common.web.base.BaseDomain;
+import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -30,22 +28,49 @@ public class SysPower extends BaseDomain {
      * */
     private String parent;
 
+    /**
+     * 路由
+     * */
     private String path;
 
+    /**
+     * 权限名称
+     * */
     private String name;
 
+    /**
+     * 类型
+     * */
     private String type;
 
+    /**
+     * 图标
+     * */
     private String icon;
 
+    /**
+     * 标题
+     * */
     private String title;
 
+    /**
+     * 排序
+     * */
     private Integer sort;
 
+    /**
+     * 链接
+     * */
     private String link;
 
+    /**
+     * 隐藏
+     * */
     private Boolean hidden;
 
+    /**
+     * 状态
+     * */
     private Boolean status;
 
     private List<SysPower> children = new ArrayList<>();

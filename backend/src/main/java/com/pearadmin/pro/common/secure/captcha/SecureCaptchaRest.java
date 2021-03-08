@@ -1,7 +1,6 @@
 package com.pearadmin.pro.common.secure.captcha;
 
 import com.pearadmin.pro.common.web.domain.Result;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.pearadmin.pro.common.web.domain.ResultController;
 import com.pearadmin.pro.common.constant.ControllerConstant;
@@ -28,4 +27,5 @@ public class SecureCaptchaRest extends ResultController {
     public Result createCaptcha(){
         return success(customCaptchaService.createCaptcha());
     }
+
 }

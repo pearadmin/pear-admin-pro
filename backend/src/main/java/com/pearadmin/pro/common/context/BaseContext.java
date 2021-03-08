@@ -1,9 +1,9 @@
 package com.pearadmin.pro.common.context;
 
 import com.alibaba.fastjson.JSON;
+import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
-import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -18,15 +18,23 @@ import java.time.LocalDateTime;
 @Component
 public class BaseContext {
 
+    // 日 志 服 务
     @Resource
     private SysLogService sysLogService;
 
+    // 用 户 上 下 文
     @Resource
     private UserContext userContext;
 
     /**
-      * 日 志 记 录
-      * */
+     * 记录日志
+     * @param title 标题
+     * @param describe 描述
+     * @param action 动作
+     * @param state 状态
+     * @param result 结果
+     * @param error 异常
+     * */
     @Async
     public void record(String title, String describe, Action action, Boolean state ,String result, String error) {
        SysLog sysLog = new SysLog();
@@ -47,5 +55,22 @@ public class BaseContext {
        sysLog.setError(error);
        sysLog.setResult(JSON.toJSONString(result));
        sysLogService.save(sysLog);
+    }
+
+    /**
+     * 邮件发送
+     * */
+    public void sendEmail(){
+
+        //
+
+    }
+
+    /**
+     * 短信发送
+     * */
+    public void sendSms(){
+
+        //
     }
 }

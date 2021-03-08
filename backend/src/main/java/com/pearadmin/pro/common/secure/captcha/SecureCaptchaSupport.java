@@ -1,11 +1,12 @@
 package com.pearadmin.pro.common.secure.captcha;
 
+import javax.annotation.Resource;
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import com.pearadmin.pro.common.constant.SecurityConstant;
+import com.pearadmin.pro.common.context.BeanContext;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
-import com.pearadmin.pro.common.tools.core.SpringUtil;
 import com.pearadmin.pro.common.web.domain.ResultCode;
 import com.pearadmin.pro.common.web.exception.auth.captcha.CaptchaExpiredException;
 import com.pearadmin.pro.common.web.exception.auth.captcha.CaptchaValidationException;
@@ -27,8 +28,11 @@ public class SecureCaptchaSupport extends OncePerRequestFilter {
 
     private SecureCaptchaService customCaptchaService;
 
+    @Resource
+    private BeanContext beanContext;
+
     public SecureCaptchaSupport(){
-        this.customCaptchaService = SpringUtil.getBean("secureCaptchaService", SecureCaptchaService.class);
+        this.customCaptchaService = beanContext.getBean("secureCaptchaService", SecureCaptchaService.class);
     }
 
     @Override

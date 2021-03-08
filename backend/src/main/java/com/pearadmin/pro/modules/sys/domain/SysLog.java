@@ -4,8 +4,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
-import com.pearadmin.pro.common.web.base.BaseController;
-import com.pearadmin.pro.common.web.base.BaseDomain;
+import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 

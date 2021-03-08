@@ -2,6 +2,10 @@ package com.pearadmin.pro.common.Interceptor;
 
 import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
 import com.pearadmin.pro.common.aop.lang.enums.Scope;
+import com.pearadmin.pro.common.context.UserContext;
+import com.pearadmin.pro.modules.sys.domain.SysDept;
+import com.pearadmin.pro.modules.sys.domain.SysRole;
+import com.pearadmin.pro.modules.sys.service.SysRoleService;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -19,8 +23,13 @@ import org.springframework.stereotype.Component;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import org.aspectj.lang.annotation.Aspect;
+import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Aspect
 @Component
@@ -29,6 +38,13 @@ import java.sql.SQLException;
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})
 })
 public class DataScopeInterceptor implements Interceptor {
+
+    @Resource
+    private UserContext userContext;
+
+    @Resource
+    private SysRoleService roleService;
+
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -52,9 +68,54 @@ public class DataScopeInterceptor implements Interceptor {
 
             if(scope.equals(Scope.AUTO)){
 
-                // 根 据 用 户 定 义 权 限 填 充 SQL
+                // 查 询 角 色 权 限
+                List<SysRole> roles = userContext.getRole();
+
+                Set<String> set = new HashSet<>();
+
+                for (SysRole role : roles) {
+
+                    Scope roleScope = role.getScope();
+                    String roleId = role.getId();
+
+                    // 根 据 用 户 定 义 权 限 填 充 SQL
+                    if(roleScope.equals(Scope.ALL)){
+                        break;
+                    }
+
+                    if(roleScope.equals(Scope.CUSTOM)){
+
+                        // 查 询 自 定 义
+                       List<SysDept> deptIds = roleService.dept(roleId);
+
+                       //
+
+                    }
+
+                    if(roleScope.equals(Scope.DEPT)){
+
+                        // 所 属 部 门
+                        String deptId = userContext.getDeptId();
+
+                        set.add(deptId);
+                    }
+
+                    if(roleScope.equals(Scope.DEPT_CHILD)){
+
+                        // 所 属 下 级 部 门
+
+                    }
+
+                    if(roleScope.equals(Scope.SELF)){
+
+                        // 用 户 编 号
+                        String userId = userContext.getUserId();
+
+                        //
 
 
+                    }
+                }
             }
 
             // 回填 SQL 语句
