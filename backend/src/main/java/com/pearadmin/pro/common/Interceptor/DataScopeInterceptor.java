@@ -2,7 +2,7 @@ package com.pearadmin.pro.common.Interceptor;
 
 import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
 import com.pearadmin.pro.common.aop.lang.enums.Scope;
-import com.pearadmin.pro.common.context.UserContext;
+import com.pearadmin.pro.common.web.context.UserContext;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
@@ -29,7 +29,6 @@ import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 @Aspect
 @Component

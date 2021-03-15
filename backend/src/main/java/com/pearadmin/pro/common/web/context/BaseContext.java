@@ -1,7 +1,6 @@
-package com.pearadmin.pro.common.context;
+package com.pearadmin.pro.common.web.context;
 
 import com.alibaba.fastjson.JSON;
-import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.tools.core.ServletUtil;

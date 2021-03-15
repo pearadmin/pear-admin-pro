@@ -1,12 +1,11 @@
 package com.pearadmin.pro.common.secure.process;
 
 import com.pearadmin.pro.common.aop.lang.enums.Action;
-import com.pearadmin.pro.common.context.BaseContext;
+import com.pearadmin.pro.common.web.context.BaseContext;
 import com.pearadmin.pro.common.secure.uutoken.SecureUserToken;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
-import org.springframework.boot.autoconfigure.web.ConditionalOnEnabledResourceChain;
 import org.springframework.security.core.Authentication;
 import com.pearadmin.pro.common.secure.uutoken.SecureUserTokenService;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
