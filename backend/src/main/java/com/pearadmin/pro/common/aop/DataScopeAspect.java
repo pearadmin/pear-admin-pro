@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.Interceptor;
+package com.pearadmin.pro.common.aop;
 
 import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
 import com.pearadmin.pro.common.aop.lang.enums.Scope;
@@ -36,7 +36,7 @@ import java.util.Set;
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})
 })
-public class DataScopeInterceptor implements Interceptor {
+public class DataScopeAspect implements Interceptor {
 
     @Resource
     private UserContext userContext;

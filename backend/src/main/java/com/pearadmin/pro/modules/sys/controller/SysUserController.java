@@ -3,8 +3,7 @@ package com.pearadmin.pro.modules.sys.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
-import com.pearadmin.pro.common.aop.lang.annotation.Log;
-import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.aop.lang.annotation.OperateLog;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -27,7 +26,7 @@ public class SysUserController extends BaseController {
 
     @DataScope
     @GetMapping("page")
-    @Log(title = "查询用户", describe = "获取用户列表")
+    @OperateLog(title = "查询用户", describe = "获取用户列表")
     public Result page(Page page, QueryUserRequest request){
         IPage<SysUser> pageInfo = sysUserService.lambdaQuery()
                 .eq(Strings.isNotBlank(request.getUsername()),SysUser::getUsername,request.getUsername())

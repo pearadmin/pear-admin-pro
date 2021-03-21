@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.aop;
 
-import com.pearadmin.pro.common.aop.lang.annotation.Log;
+import com.pearadmin.pro.common.aop.lang.annotation.OperateLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.web.context.BaseContext;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -19,7 +19,7 @@ import java.lang.reflect.Method;
  * */
 @Aspect
 @Component
-public class LogAspect {
+public class OperateLogAspect {
 
     @Resource
     private BaseContext context;
@@ -27,7 +27,7 @@ public class LogAspect {
     /**
      * 切 面 编 程
      * */
-    @Pointcut("@annotation(com.pearadmin.pro.common.aop.lang.annotation.Log) || @within(com.pearadmin.pro.common.aop.lang.annotation.Log)")
+    @Pointcut("@annotation(com.pearadmin.pro.common.aop.lang.annotation.OperateLog) || @within(com.pearadmin.pro.common.aop.lang.annotation.OperateLog)")
     public void dsPointCut() { }
 
     /**
@@ -39,7 +39,7 @@ public class LogAspect {
         Object result = null;
 
         // 注 解 解 析
-        Log annotation = getAnnotation(joinPoint);
+        OperateLog annotation = getAnnotation(joinPoint);
         String title = annotation.title();
         Action action = annotation.action();
         String describe = annotation.describe();
@@ -64,16 +64,16 @@ public class LogAspect {
     /**
      * 获 取 注 解
      * */
-    public Log getAnnotation(ProceedingJoinPoint point) {
+    public OperateLog getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();
-        Log targetLog = targetClass.getAnnotation(Log.class);
-        if ( targetLog != null) {
-            return targetLog;
+        OperateLog targetOperateLog = targetClass.getAnnotation(OperateLog.class);
+        if ( targetOperateLog != null) {
+            return targetOperateLog;
         } else {
             Method method = signature.getMethod();
-            Log log = method.getAnnotation(Log.class);
-            return log;
+            OperateLog operateLog = method.getAnnotation(OperateLog.class);
+            return operateLog;
         }
     }
 }

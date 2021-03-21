@@ -2,12 +2,11 @@ package com.pearadmin.pro.modules.sys.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.pearadmin.pro.common.aop.lang.annotation.Log;
+import com.pearadmin.pro.common.aop.lang.annotation.OperateLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
-import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.domain.request.QueryLogRequest;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
@@ -24,16 +23,16 @@ public class SysLogController extends BaseController {
     private SysLogService sysLogService;
 
     @GetMapping("operate")
-    @Log(title = "查询日志", describe = "获取操作日志")
+    @OperateLog(title = "查询日志", describe = "获取操作日志")
     public Result operate(Page page, QueryLogRequest request){
-        IPage<SysUser> pageInfo = sysLogService.lambdaQuery().ne(SysLog::getAction, Action.AUTH).orderByDesc(SysLog::getCreateTime).page(page);
+        IPage<SysUser> pageInfo = sysLogService.lambdaQuery().ne(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH).orderByDesc(com.pearadmin.pro.modules.sys.domain.SysLog::getCreateTime).page(page);
         return success(pageInfo);
     }
 
     @GetMapping("login")
-    @Log(title = "查询日志", describe = "获取登录日志")
+    @OperateLog(title = "查询日志", describe = "获取登录日志")
     public Result login(Page page, QueryLogRequest request){
-        IPage<SysUser> pageInfo = sysLogService.lambdaQuery().eq(SysLog::getAction, Action.AUTH).orderByDesc(SysLog::getCreateTime).page(page);
+        IPage<SysUser> pageInfo = sysLogService.lambdaQuery().eq(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH).orderByDesc(com.pearadmin.pro.modules.sys.domain.SysLog::getCreateTime).page(page);
         return success(pageInfo);
     }
 }

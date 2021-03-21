@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.Interceptor;
+package com.pearadmin.pro.common.aop;
 
 import com.pearadmin.pro.common.aop.lang.annotation.RepeatSubmit;
 import com.pearadmin.pro.common.tools.core.JsonUtil;
@@ -16,7 +16,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class RepeatSubmitInterceptor  extends HandlerInterceptorAdapter {
+public class RepeatSubmitAspect extends HandlerInterceptorAdapter {
 
     public final String REPEAT_PARAMS = "repeatParams";
 
