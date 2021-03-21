@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
-import com.pearadmin.pro.modules.sys.service.SysConfigService;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
@@ -19,11 +18,15 @@ import java.time.LocalDateTime;
 @Component
 public class BaseContext {
 
-    // 日 志 服 务
+    /**
+     * 日 志 服 务
+     * */
     @Resource
     private SysLogService sysLogService;
 
-    // 用 户 上 下 文
+    /**
+     * 用 户 上 下 文
+     * */
     @Resource
     private UserContext userContext;
 
@@ -40,21 +43,21 @@ public class BaseContext {
     public void record(String title, String describe, Action action, Boolean state ,String result, String error) {
        SysLog sysLog = new SysLog();
        sysLog.setTitle(title);
-       sysLog.setDescribe(describe);
        sysLog.setAction(action);
-       sysLog.setOperator(userContext.getNickName());
+       sysLog.setDescribe(describe);
        sysLog.setType(ServletUtil.getMethod());
        sysLog.setUrl(ServletUtil.getRequestURI());
        sysLog.setBrowser(ServletUtil.getBrowser());
        sysLog.setCreateBy(userContext.getUserId());
-       sysLog.setCreateTime(LocalDateTime.now());
-       sysLog.setUpdateBy(userContext.getUserId());
-       sysLog.setUpdateTime(LocalDateTime.now());
        sysLog.setAddress(ServletUtil.getRemoteHost());
+       sysLog.setOperator(userContext.getNickName());
+       sysLog.setResult(JSON.toJSONString(result));
+       sysLog.setUpdateBy(userContext.getUserId());
+       sysLog.setCreateTime(LocalDateTime.now());
+       sysLog.setUpdateTime(LocalDateTime.now());
        sysLog.setSystem(ServletUtil.getSystem());
        sysLog.setState(state);
        sysLog.setError(error);
-       sysLog.setResult(JSON.toJSONString(result));
        sysLogService.save(sysLog);
     }
 
