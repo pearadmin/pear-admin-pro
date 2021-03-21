@@ -57,7 +57,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private SecureNoAuthenticationHandler secureAuthenticationEntryPointHandler;
 
     /**
-     * 加密方式
+     * 密码加密方式
      */
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder(){

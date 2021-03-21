@@ -18,7 +18,6 @@ import java.lang.reflect.Method;
  * CreateTime: 2019/10/23
  * */
 @Aspect
-@Component
 public class BehaveLogAspect {
 
     /**

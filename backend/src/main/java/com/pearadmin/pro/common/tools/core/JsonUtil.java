@@ -12,9 +12,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 
 /**
- * JSON解析处理
- * 
- * @author ruoyi
+ * JSON 解析处理
  */
 public class JsonUtil
 {
