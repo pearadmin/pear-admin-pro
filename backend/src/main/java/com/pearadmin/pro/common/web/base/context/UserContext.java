@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.web.context;
+package com.pearadmin.pro.common.web.base.context;
 
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;

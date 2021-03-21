@@ -5,7 +5,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import com.pearadmin.pro.common.constant.SecurityConstant;
-import com.pearadmin.pro.common.web.context.BeanContext;
+import com.pearadmin.pro.common.web.base.context.BeanContext;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.ResultCode;
 import com.pearadmin.pro.common.web.exception.auth.captcha.CaptchaExpiredException;
@@ -26,6 +26,9 @@ public class SecureCaptchaSupport extends OncePerRequestFilter {
     public static final String CAPTCHA_KEY = "captchaKey";
     public static final String CAPTCHA_CODE = "captchaCode";
 
+    /**
+     * 验证码支持
+     * */
     private SecureCaptchaService customCaptchaService;
 
     @Resource

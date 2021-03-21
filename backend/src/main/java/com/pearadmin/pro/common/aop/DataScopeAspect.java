@@ -2,7 +2,7 @@ package com.pearadmin.pro.common.aop;
 
 import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
 import com.pearadmin.pro.common.aop.lang.enums.Scope;
-import com.pearadmin.pro.common.web.context.UserContext;
+import com.pearadmin.pro.common.web.base.context.UserContext;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
