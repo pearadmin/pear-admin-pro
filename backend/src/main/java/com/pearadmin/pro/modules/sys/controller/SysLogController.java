@@ -2,7 +2,7 @@ package com.pearadmin.pro.modules.sys.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.pearadmin.pro.common.aop.lang.annotation.OperateLog;
+import com.pearadmin.pro.common.aop.lang.annotation.BehaveLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
@@ -23,14 +23,14 @@ public class SysLogController extends BaseController {
     private SysLogService sysLogService;
 
     @GetMapping("operate")
-    @OperateLog(title = "查询日志", describe = "获取操作日志")
+    @BehaveLog(title = "查询日志", describe = "获取操作日志")
     public Result operate(Page page, QueryLogRequest request){
         IPage<SysUser> pageInfo = sysLogService.lambdaQuery().ne(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH).orderByDesc(com.pearadmin.pro.modules.sys.domain.SysLog::getCreateTime).page(page);
         return success(pageInfo);
     }
 
     @GetMapping("login")
-    @OperateLog(title = "查询日志", describe = "获取登录日志")
+    @BehaveLog(title = "查询日志", describe = "获取登录日志")
     public Result login(Page page, QueryLogRequest request){
         IPage<SysUser> pageInfo = sysLogService.lambdaQuery().eq(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH).orderByDesc(com.pearadmin.pro.modules.sys.domain.SysLog::getCreateTime).page(page);
         return success(pageInfo);

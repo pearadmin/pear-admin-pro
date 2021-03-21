@@ -11,7 +11,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
-public @interface OperateLog {
+public @interface BehaveLog {
 
     /**
      * Title 默认输入

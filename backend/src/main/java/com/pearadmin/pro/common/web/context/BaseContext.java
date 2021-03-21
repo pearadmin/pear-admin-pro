@@ -23,10 +23,6 @@ public class BaseContext {
     @Resource
     private SysLogService sysLogService;
 
-    // 配 置 服 务
-    @Resource
-    private SysConfigService sysConfigService;
-
     // 用 户 上 下 文
     @Resource
     private UserContext userContext;

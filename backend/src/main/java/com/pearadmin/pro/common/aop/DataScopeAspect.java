@@ -44,7 +44,6 @@ public class DataScopeAspect implements Interceptor {
     @Resource
     private SysRoleService roleService;
 
-
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
 

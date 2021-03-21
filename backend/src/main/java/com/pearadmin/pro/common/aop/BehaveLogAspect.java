@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.aop;
 
-import com.pearadmin.pro.common.aop.lang.annotation.OperateLog;
+import com.pearadmin.pro.common.aop.lang.annotation.BehaveLog;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.web.context.BaseContext;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -19,15 +19,18 @@ import java.lang.reflect.Method;
  * */
 @Aspect
 @Component
-public class OperateLogAspect {
+public class BehaveLogAspect {
 
+    /**
+     * 基 础 上 下 文
+     * */
     @Resource
     private BaseContext context;
 
     /**
      * 切 面 编 程
      * */
-    @Pointcut("@annotation(com.pearadmin.pro.common.aop.lang.annotation.OperateLog) || @within(com.pearadmin.pro.common.aop.lang.annotation.OperateLog)")
+    @Pointcut("@annotation(com.pearadmin.pro.common.aop.lang.annotation.BehaveLog) || @within(com.pearadmin.pro.common.aop.lang.annotation.BehaveLog)")
     public void dsPointCut() { }
 
     /**
@@ -39,7 +42,7 @@ public class OperateLogAspect {
         Object result = null;
 
         // 注 解 解 析
-        OperateLog annotation = getAnnotation(joinPoint);
+        BehaveLog annotation = getAnnotation(joinPoint);
         String title = annotation.title();
         Action action = annotation.action();
         String describe = annotation.describe();
@@ -64,16 +67,16 @@ public class OperateLogAspect {
     /**
      * 获 取 注 解
      * */
-    public OperateLog getAnnotation(ProceedingJoinPoint point) {
+    public BehaveLog getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();
-        OperateLog targetOperateLog = targetClass.getAnnotation(OperateLog.class);
-        if ( targetOperateLog != null) {
-            return targetOperateLog;
+        BehaveLog targetBehaveLog = targetClass.getAnnotation(BehaveLog.class);
+        if ( targetBehaveLog != null) {
+            return targetBehaveLog;
         } else {
             Method method = signature.getMethod();
-            OperateLog operateLog = method.getAnnotation(OperateLog.class);
-            return operateLog;
+            BehaveLog behaveLog = method.getAnnotation(BehaveLog.class);
+            return behaveLog;
         }
     }
 }
