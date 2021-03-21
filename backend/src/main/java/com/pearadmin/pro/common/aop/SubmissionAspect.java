@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.aop;
 
-import com.pearadmin.pro.common.aop.lang.annotation.RepeatSubmit;
+import com.pearadmin.pro.common.aop.lang.annotation.Submission;
 import com.pearadmin.pro.common.tools.core.JsonUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -16,12 +16,21 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Component
-public class RepeatSubmitAspect extends HandlerInterceptorAdapter {
+public class SubmissionAspect extends HandlerInterceptorAdapter {
 
+    /**
+     * 参数
+     * */
     public final String REPEAT_PARAMS = "repeatParams";
 
+    /**
+     * 时间
+     * */
     public final String REPEAT_TIME = "repeatTime";
 
+    /**
+     * 数据
+     * */
     public final String SESSION_REPEAT_KEY = "repeatData";
 
     /**
@@ -43,7 +52,7 @@ public class RepeatSubmitAspect extends HandlerInterceptorAdapter {
         {
             HandlerMethod handlerMethod = (HandlerMethod) handler;
             Method method = handlerMethod.getMethod();
-            RepeatSubmit annotation = method.getAnnotation(RepeatSubmit.class);
+            Submission annotation = method.getAnnotation(Submission.class);
             if(annotation != null)
             {
                 if (this.isRepeatSubmit(request))
