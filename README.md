@@ -70,6 +70,14 @@ BaseCache 提供缓存策略，AllocationCache 为 SysConfig 缓存实现
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/130407_362156fa_4835367.png" />
 </div>
 
+#### 数据字典
+
+BaseCache 提供缓存策略，DictionaryCache 为 SysDict 缓存实现
+
+<div align="center">
+  <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/131529_eceee5d8_4835367.png" />
+</div>
+
 
 ### 界面预览
 
