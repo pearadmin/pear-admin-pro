@@ -27,6 +27,15 @@ public abstract class BaseCache<T> {
     }
 
     /**
+     * 刷新
+     * */
+    public void refresh(){
+
+        // REFRESH
+        cache = load();
+    }
+
+    /**
      * 加载
      * */
     public abstract Map<String,T> load();
@@ -36,6 +45,8 @@ public abstract class BaseCache<T> {
      * */
     @Scheduled(fixedDelay = 5000)
     public void time(){
+
+        // LOAD
         cache = load();
     }
 }
