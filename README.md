@@ -30,6 +30,10 @@
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/013718_9c359d6a_4835367.png" />
 </div>
 
+### 项目介绍  :jack_o_lantern: 
+
+Spring Boot + Security + MyBatis Plus + Vue + Ant Design Vue 快速开发平台
+
 ### 功能概览
 
 - [x] 基础设施
