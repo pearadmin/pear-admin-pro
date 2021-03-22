@@ -1,9 +1,6 @@
 import axios from "axios";
-import { useRouter } from "vue-router";
 import { message as Msg, message } from "ant-design-vue";
 import store from "../store";
-
-const router = useRouter()
 
 class Http {
   constructor(config) {
