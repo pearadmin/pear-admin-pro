@@ -49,9 +49,19 @@
 
 ### 业务流程
 
+
+#### 登录认证
+
 <div align="center">
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="readmes/9.jpg" />
 </div>
+
+#### 系统配置
+
+<div align="center">
+  <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/130407_362156fa_4835367.png" />
+</div>
+
 
 ### 界面预览
 
