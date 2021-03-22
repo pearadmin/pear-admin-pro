@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.aop;
 
-import com.pearadmin.pro.common.aop.lang.annotation.BehaveLog;
+import com.pearadmin.pro.common.aop.lang.annotation.Log;
 import com.pearadmin.pro.common.aop.lang.enums.Action;
 import com.pearadmin.pro.common.web.base.context.BaseContext;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -8,6 +8,7 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
@@ -18,7 +19,8 @@ import java.lang.reflect.Method;
  * CreateTime: 2019/10/23
  * */
 @Aspect
-public class BehaveLogAspect {
+@Component
+public class LogAspect {
 
     /**
      * 基 础 上 下 文
@@ -29,7 +31,7 @@ public class BehaveLogAspect {
     /**
      * 切 面 编 程
      * */
-    @Pointcut("@annotation(com.pearadmin.pro.common.aop.lang.annotation.BehaveLog) || @within(com.pearadmin.pro.common.aop.lang.annotation.BehaveLog)")
+    @Pointcut("@annotation(com.pearadmin.pro.common.aop.lang.annotation.Log) || @within(com.pearadmin.pro.common.aop.lang.annotation.Log)")
     public void dsPointCut() { }
 
     /**
@@ -41,7 +43,7 @@ public class BehaveLogAspect {
         Object result = null;
 
         // 注 解 解 析
-        BehaveLog annotation = getAnnotation(joinPoint);
+        Log annotation = getAnnotation(joinPoint);
         String title = annotation.title();
         Action action = annotation.action();
         String describe = annotation.describe();
@@ -50,12 +52,12 @@ public class BehaveLogAspect {
 
             // 执 行 方 法
             result = joinPoint.proceed();
-
             // 记 录 日 志
             context.record(title, describe,action, true, null,null);
 
         }catch (Exception e){
 
+            // 堆 栈 信 息
             e.printStackTrace();
             // 异 常 处 理
             context.record(title, describe,action, true, null, null);
@@ -66,16 +68,16 @@ public class BehaveLogAspect {
     /**
      * 获 取 注 解
      * */
-    public BehaveLog getAnnotation(ProceedingJoinPoint point) {
+    public Log getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();
-        BehaveLog targetBehaveLog = targetClass.getAnnotation(BehaveLog.class);
-        if ( targetBehaveLog != null) {
-            return targetBehaveLog;
+        Log targetLog = targetClass.getAnnotation(Log.class);
+        if ( targetLog != null) {
+            return targetLog;
         } else {
             Method method = signature.getMethod();
-            BehaveLog behaveLog = method.getAnnotation(BehaveLog.class);
-            return behaveLog;
+            Log log = method.getAnnotation(Log.class);
+            return log;
         }
     }
 }

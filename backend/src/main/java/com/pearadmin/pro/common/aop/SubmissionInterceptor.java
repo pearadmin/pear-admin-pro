@@ -15,8 +15,13 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Describe: 重复提交
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Component
-public class SubmissionAspect extends HandlerInterceptorAdapter {
+public class SubmissionInterceptor extends HandlerInterceptorAdapter {
 
     /**
      * 参数
@@ -40,6 +45,9 @@ public class SubmissionAspect extends HandlerInterceptorAdapter {
      */
     private int intervalTime = 10;
 
+    /**
+     * 设置，间隔时间
+     * */
     public void setIntervalTime(int intervalTime)
     {
         this.intervalTime = intervalTime;

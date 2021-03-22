@@ -14,7 +14,7 @@
     "@antv/g2": "^4.1.0",
     "@tinymce/tinymce-vue": "^4.0.0",
     "ant-design-vue": "^2.0.1",
-    "axios": "^0.21.0",
+    "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "lodash.get": "^4.4.2",
     "moment": "^2.27.0",

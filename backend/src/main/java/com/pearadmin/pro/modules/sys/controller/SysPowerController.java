@@ -1,7 +1,7 @@
 package com.pearadmin.pro.modules.sys.controller;
 
 import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
-import com.pearadmin.pro.common.aop.lang.annotation.BehaveLog;
+import com.pearadmin.pro.common.aop.lang.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -17,7 +17,7 @@ public class SysPowerController extends BaseController {
 
     @GetMapping("page")
     @DataScope
-    @BehaveLog(title = "查询权限", describe = "获取权限列表")
+    @Log(title = "查询权限", describe = "获取权限列表")
     public Result page(){
         List<SysPower> menus = new ArrayList<>();
         SysPower menu1 = new SysPower( "", "/dashboard", "dashboard", "dir", "HomeOutlined", "工作空间", 1, "", false, true);

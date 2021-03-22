@@ -30,13 +30,17 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@Aspect
+/**
+ * Describe: 数据权限
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Component
 @Intercepts({
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})
 })
-public class DataScopeAspect implements Interceptor {
+public class DataScopeInterceptor implements Interceptor {
 
     @Resource
     private UserContext userContext;
