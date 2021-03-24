@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.aop.lang.enums;
+package com.pearadmin.pro.common.interceptor.enums;
 
 /**
  * Describe: 接口权限限制

@@ -2,8 +2,8 @@ package com.pearadmin.pro.modules.sys.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
-import com.pearadmin.pro.common.aop.lang.annotation.Log;
+import com.pearadmin.pro.common.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;

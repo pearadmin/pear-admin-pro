@@ -1,7 +1,7 @@
 package com.pearadmin.pro.common.aop;
 
-import com.pearadmin.pro.common.aop.lang.annotation.Log;
-import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.aop.annotation.Log;
+import com.pearadmin.pro.common.aop.enums.Action;
 import com.pearadmin.pro.common.web.base.context.BaseContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -31,7 +31,7 @@ public class LogAspect {
     /**
      * 切 面 编 程
      * */
-    @Pointcut("@annotation(com.pearadmin.pro.common.aop.lang.annotation.Log) || @within(com.pearadmin.pro.common.aop.lang.annotation.Log)")
+    @Pointcut("@annotation(com.pearadmin.pro.common.aop.annotation.Log) || @within(com.pearadmin.pro.common.aop.annotation.Log)")
     public void dsPointCut() { }
 
     /**

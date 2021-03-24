@@ -1,6 +1,6 @@
-package com.pearadmin.pro.common.aop;
+package com.pearadmin.pro.common.interceptor;
 
-import com.pearadmin.pro.common.aop.lang.annotation.Submission;
+import com.pearadmin.pro.common.interceptor.annotation.Submission;
 import com.pearadmin.pro.common.tools.core.JsonUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;

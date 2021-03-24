@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.secure.process;
 
-import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.aop.enums.Action;
 import com.pearadmin.pro.common.web.base.context.BaseContext;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;

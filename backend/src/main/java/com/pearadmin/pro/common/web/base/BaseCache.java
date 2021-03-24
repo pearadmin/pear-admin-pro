@@ -1,7 +1,6 @@
 package com.pearadmin.pro.common.web.base;
 
 import org.springframework.scheduling.annotation.Scheduled;
-
 import java.util.HashMap;
 import java.util.Map;
 

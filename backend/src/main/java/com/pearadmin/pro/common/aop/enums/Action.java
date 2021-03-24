@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.aop.lang.enums;
+package com.pearadmin.pro.common.aop.enums;
 
 /**
  * Describe: 操作分类

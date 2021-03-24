@@ -2,7 +2,7 @@ package com.pearadmin.pro.common.web.base.context;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
-import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.aop.enums.Action;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
 import org.springframework.scheduling.annotation.Async;

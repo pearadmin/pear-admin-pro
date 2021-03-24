@@ -1,6 +1,6 @@
-package com.pearadmin.pro.common.aop.lang.annotation;
+package com.pearadmin.pro.common.aop.annotation;
 
-import com.pearadmin.pro.common.aop.lang.enums.Action;
+import com.pearadmin.pro.common.aop.enums.Action;
 import java.lang.annotation.*;
 
 /**

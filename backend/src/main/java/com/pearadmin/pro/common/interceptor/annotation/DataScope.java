@@ -1,6 +1,6 @@
-package com.pearadmin.pro.common.aop.lang.annotation;
+package com.pearadmin.pro.common.interceptor.annotation;
 
-import com.pearadmin.pro.common.aop.lang.enums.Scope;
+import com.pearadmin.pro.common.interceptor.enums.Scope;
 
 /**
  * Describe: 数据权限注解

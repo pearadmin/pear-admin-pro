@@ -1,7 +1,7 @@
-package com.pearadmin.pro.common.aop;
+package com.pearadmin.pro.common.interceptor;
 
-import com.pearadmin.pro.common.aop.lang.annotation.DataScope;
-import com.pearadmin.pro.common.aop.lang.enums.Scope;
+import com.pearadmin.pro.common.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.interceptor.enums.Scope;
 import com.pearadmin.pro.common.web.base.context.UserContext;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
@@ -22,7 +22,7 @@ import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.springframework.stereotype.Component;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-import org.aspectj.lang.annotation.Aspect;
+
 import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
