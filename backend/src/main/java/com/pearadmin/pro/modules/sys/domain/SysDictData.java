@@ -1,8 +1,10 @@
 package com.pearadmin.pro.modules.sys.domain;
 
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
+import lombok.Data;
 
-public class SysDict extends BaseDomain {
+@Data
+public class SysDictData extends BaseDomain {
 
     /**
      * 编号
@@ -10,18 +12,23 @@ public class SysDict extends BaseDomain {
     private String id;
 
     /**
-     * 名称
+     * 标签
      * */
-    private String name;
+    private String label;
 
     /**
-     * 标识
+     * 值
      * */
-    private String code;
+    private String value;
 
     /**
      * 启用
      * */
     private boolean enable;
+
+    /**
+     * 标识
+     * */
+    private String code;
 
 }

@@ -26,14 +26,6 @@ public class AllocationCache extends BaseCache<String> {
     public Map<String, String> load()
     {
         List<SysConfig> list = sysConfigService.list();
-
-        // TO MAP
-        Map<String, String> map = list.stream().collect(Collectors.toMap(e -> e.getKey(), SysConfig::getValue));
-
-        // LOG
-        log.info("刷新全局配置, 数量：" + map.size());
-
-        // RETURN
-        return map;
+        return list.stream().collect(Collectors.toMap(e -> e.getKey(), SysConfig::getValue));
     }
 }

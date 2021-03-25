@@ -89,37 +89,27 @@ public class DataScopeInterceptor implements Interceptor {
 
                         // 查 询 自 定 义
                        List<SysDept> deptIds = roleService.dept(roleId);
-
-                       //
-
                     }
 
                     if(roleScope.equals(Scope.DEPT)){
 
                         // 所 属 部 门
                         String deptId = userContext.getDeptId();
-
                         set.add(deptId);
                     }
 
                     if(roleScope.equals(Scope.DEPT_CHILD)){
 
                         // 所 属 下 级 部 门
-
                     }
 
                     if(roleScope.equals(Scope.SELF)){
 
                         // 用 户 编 号
                         String userId = userContext.getUserId();
-
-                        //
-
-
                     }
                 }
             }
-
             // 回填 SQL 语句
             setSql(invocation, sql);
         }
@@ -141,7 +131,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 包装sql后，重置到invocation中
+     * 包装sql后，重置到 invocation 中
      * @param invocation
      * @param sql
      * @throws SQLException

@@ -26,9 +26,6 @@ public class SecureCaptchaSupport extends OncePerRequestFilter {
     public static final String CAPTCHA_KEY = "captchaKey";
     public static final String CAPTCHA_CODE = "captchaCode";
 
-    /**
-     * 验证码支持
-     * */
     private SecureCaptchaService customCaptchaService;
 
     @Resource
