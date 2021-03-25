@@ -79,6 +79,10 @@ Pear Admin Pro
 │      │   │   └─web 核心封装
 │      │   │   
 │      │   ├─modules 业务代码
+│      │   │   │
+│      │   │   ├─job 定时任务
+│      │   │   │
+│      │   │   └─sys 基础功能
 │      │   │   
 │      │   └─EntranceApplication 启动类
 │      │   
