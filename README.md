@@ -6,9 +6,9 @@
     Pear Admin Pro
   </h1>
   
-  <b align="center">
+  <h4 align="center">
      开 箱 即 用 的 Spring 企 业 级 开 发 平 台
-  </b> 
+  </h4> 
   
   [预 览](http://ant.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
 
