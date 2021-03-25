@@ -78,7 +78,9 @@ Pear Admin Pro
 │      │   │   │
 │      │   │   └─web 核心封装
 │      │   │   
-│      │   └─modules 业务代码
+│      │   ├─modules 业务代码
+│      │   │   
+│      │   └─EntranceApplication 启动类
 │      │   
 │      └─resource 资源文件
 │  
