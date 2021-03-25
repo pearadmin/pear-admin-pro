@@ -56,6 +56,7 @@ Spring Boot + Security + MyBatis Plus + Vue + Ant Design Vue 快速开发平台
 
 Spring Security 提供实现，扩展 Token Captcha 相关过滤器
 
+
 <div align="center">
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="readmes/9.jpg" />
 </div>
@@ -64,11 +65,13 @@ Spring Security 提供实现，扩展 Token Captcha 相关过滤器
 
 BaseCache 提供缓存策略，AllocationCache 为 SysConfig 缓存实现
 
+
 <div align="center">
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/131750_80597c05_4835367.png" />
 </div>
 
 #### 数据字典
+
 
 BaseCache 提供缓存策略，DictionaryCache 为 SysDict 缓存实现
 
