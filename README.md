@@ -54,16 +54,33 @@ Spring Boot + Security + MyBatis Plus + Vue + Ant Design Vue 快速开发平台
 ```
 Pear Admin Pro
 │
-├─annex  Sql 资源
+├─annex SQL 脚本
 │
 ├─src 公共模块
 │  │
 │  └─main 
-│     │
-│     ├─java  源码文件
-│     │  
-│     │   
-│     └─resource 资源文件
+│      │
+│      ├─java 源码文件
+│      │   │
+│      │   ├─common 公共代码
+│      │   │   │
+│      │   │   ├─aop 切面逻辑
+│      │   │   │
+│      │   │   ├─config 集成配置
+│      │   │   │
+│      │   │   ├─constant 静态常量
+│      │   │   │
+│      │   │   ├─interceptor 拦截器
+│      │   │   │
+│      │   │   ├─secure 安全
+│      │   │   │
+│      │   │   ├─tools 工具包
+│      │   │   │
+│      │   │   └─web 核心封装
+│      │   │   
+│      │   └─modules 业务代码
+│      │   
+│      └─resource 资源文件
 │  
 └─pom.xml  Maven 配置
 
