@@ -16,13 +16,13 @@
 
 <p align="center">
     <a href="#">
-        <img src="https://img.shields.io/badge/Pear Admin Pro-1.0.0.release-green.svg" alt="Pear Admin Pro Version">
+        <img src="https://img.shields.io/badge/Pear Admin Pro-1.0.0-green.svg" alt="Pear Admin Pro Version">
     </a>
     <a href="#">
         <img src="https://img.shields.io/badge/Vue-3.0.0+-green.svg" alt="Vue Version">
     </a>
       <a href="#">
-        <img src="https://img.shields.io/badge/Spring Boot-2.4.0.beta+-green.svg" alt="Spring Boot Version">
+        <img src="https://img.shields.io/badge/Spring Boot-2.4.0-green.svg" alt="Spring Boot Version">
     </a>
 </p>
 
