@@ -49,7 +49,7 @@ Spring Boot + Security + MyBatis Plus + Vue + Ant Design Vue 快速开发平台
 - [x] 登录日志: 系统登录日志记录查询包含登录异常。
 - [x] 操作日志: 系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 
-#### 项目结构
+### 项目结构
 
 ```
 Pear Admin Pro
