@@ -6,7 +6,7 @@
     Pear Admin Pro
   </h1>
   
-  <p style="font-size:30px" align="center">
+  <p style="font-size:100px" align="center">
      开 箱 即 用 的 Spring 企 业 级 开 发 平 台
   </p> 
   
