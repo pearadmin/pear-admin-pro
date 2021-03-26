@@ -16,13 +16,13 @@
 
 <p align="center">
     <a href="#">
-        <img src="https://img.shields.io/badge/Pear Admin Pro-1.0.0.release-green.svg" alt="Pear Admin Pro Version">
+        <img src="https://img.shields.io/badge/Pear Admin Pro-1.0.0-green.svg" alt="Pear Admin Pro Version">
     </a>
     <a href="#">
         <img src="https://img.shields.io/badge/Vue-3.0.0+-green.svg" alt="Vue Version">
     </a>
       <a href="#">
-        <img src="https://img.shields.io/badge/Ant Design Vue-2.0.0.beta+-green.svg" alt="Ant Design Vue Version">
+        <img src="https://img.shields.io/badge/Spring Boot-2.4.0-green.svg" alt="Spring Boot Version">
     </a>
 </p>
 
@@ -30,9 +30,11 @@
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/013718_9c359d6a_4835367.png" />
 </div>
 
-### 项目介绍  :jack_o_lantern: 
+### 项目概述
 
-Spring Boot + Security + MyBatis Plus + Vue + Ant Design Vue 快速开发平台
+* 基于 Spring 实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
+* 核心模块包括：用户、角色、职位、组织机构、菜单、字典、日志、多应用管理、文件管理、定时任务等功能。
+* 代码量少、学习简单、功能强大、轻量级、易扩展，轻松开发从现在开始！
 
 ### 功能概览
 
@@ -49,12 +51,57 @@ Spring Boot + Security + MyBatis Plus + Vue + Ant Design Vue 快速开发平台
 - [x] 登录日志: 系统登录日志记录查询包含登录异常。
 - [x] 操作日志: 系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 
+### 项目结构
+
+```
+Pear Admin Pro
+│
+├─annex SQL 脚本
+│
+├─src 公共模块
+│  │
+│  └─main 
+│      │
+│      ├─java 源码文件
+│      │   │
+│      │   ├─common 公共代码
+│      │   │   │
+│      │   │   ├─aop 切面逻辑
+│      │   │   │
+│      │   │   ├─config 集成配置
+│      │   │   │
+│      │   │   ├─constant 静态常量
+│      │   │   │
+│      │   │   ├─interceptor 拦截器
+│      │   │   │
+│      │   │   ├─secure 安全
+│      │   │   │
+│      │   │   ├─tools 工具包
+│      │   │   │
+│      │   │   └─web 核心封装
+│      │   │   
+│      │   ├─modules 业务代码
+│      │   │   │
+│      │   │   ├─job 定时任务
+│      │   │   │
+│      │   │   └─sys 基础功能
+│      │   │   
+│      │   └─EntranceApplication 启动类
+│      │   
+│      └─resource 资源文件
+│  
+└─pom.xml  Maven 配置
+
+```
+
+
 ### 业务流程
 
 
 #### 登录认证
 
 Spring Security 提供实现，扩展 Token Captcha 相关过滤器
+
 
 <div align="center">
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="readmes/9.jpg" />
@@ -64,11 +111,13 @@ Spring Security 提供实现，扩展 Token Captcha 相关过滤器
 
 BaseCache 提供缓存策略，AllocationCache 为 SysConfig 缓存实现
 
+
 <div align="center">
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/131750_80597c05_4835367.png" />
 </div>
 
 #### 数据字典
+
 
 BaseCache 提供缓存策略，DictionaryCache 为 SysDict 缓存实现
 
