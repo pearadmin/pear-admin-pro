@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * Describe: 重复提交
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/23
  * */
 @Component
 public class SubmissionInterceptor extends HandlerInterceptorAdapter {
@@ -74,13 +74,12 @@ public class SubmissionInterceptor extends HandlerInterceptorAdapter {
     }
 
     public boolean isRepeatSubmit(HttpServletRequest request) throws Exception{
-        // 本次参数及系统时间
+
         String nowParams = JsonUtil.marshal(request.getParameterMap());
         Map<String, Object> nowDataMap = new HashMap<String, Object>();
         nowDataMap.put(REPEAT_PARAMS, nowParams);
         nowDataMap.put(REPEAT_TIME, System.currentTimeMillis());
 
-        // 请求地址（作为存放session的key值）
         String url = request.getRequestURI();
 
         HttpSession session = request.getSession();

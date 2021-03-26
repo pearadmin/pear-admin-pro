@@ -1,4 +1,4 @@
-package com.pearadmin.pro.modules.ops.controller;
+package com.pearadmin.pro.modules.sys.controller;
 
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.tools.support.server.Server;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_OPS + "server")
-public class OpsServerController extends BaseController {
+public class SysServerController extends BaseController {
 
     @GetMapping("info")
     public Result server() throws Exception{

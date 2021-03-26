@@ -1,4 +1,4 @@
-package com.pearadmin.pro.modules.ops.controller;
+package com.pearadmin.pro.modules.sys.controller;
 
 import com.pearadmin.pro.common.constant.CacheNameConstant;
 import com.pearadmin.pro.common.constant.ControllerConstant;
@@ -15,7 +15,7 @@ import java.util.Set;
 
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_OPS + "online")
-public class OpsOnlineController extends BaseController {
+public class SysOnlineController extends BaseController {
 
     @Resource
     private RedisTemplate<String, SecureUserToken> redisTemplate;

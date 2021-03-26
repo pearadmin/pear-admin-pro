@@ -26,4 +26,5 @@ public class SecureUserToken {
      * 创建时间
      * */
     private LocalDateTime createTime = LocalDateTime.now();
+
 }
