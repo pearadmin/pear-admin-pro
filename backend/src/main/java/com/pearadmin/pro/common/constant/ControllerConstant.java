@@ -27,19 +27,5 @@ public class ControllerConstant {
      * */
     public static final String PREFIX_OSS = PREFIX + "/oss/";
 
-    /**
-     * 日志 API 根路径
-     * */
-    public static final String PREFIX_LOG = PREFIX + "/log/";
-
-    /**
-     * 监控 API 根路径
-     * */
-    public static final String PREFIX_OPS = PREFIX + "/ops/";
-
-    /**
-     * 你的 API 根路径
-     * */
-    public static final String PREFIX_YOU = PREFIX + "/you/";
 
 }

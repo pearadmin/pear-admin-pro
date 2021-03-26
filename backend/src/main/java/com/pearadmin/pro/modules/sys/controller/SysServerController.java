@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(ControllerConstant.PREFIX_OPS + "server")
+@RequestMapping(ControllerConstant.PREFIX_SYS + "server")
 public class SysServerController extends BaseController {
 
     @GetMapping("info")

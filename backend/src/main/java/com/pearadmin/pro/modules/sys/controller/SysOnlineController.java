@@ -14,7 +14,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping(ControllerConstant.PREFIX_OPS + "online")
+@RequestMapping(ControllerConstant.PREFIX_SYS + "online")
 public class SysOnlineController extends BaseController {
 
     @Resource

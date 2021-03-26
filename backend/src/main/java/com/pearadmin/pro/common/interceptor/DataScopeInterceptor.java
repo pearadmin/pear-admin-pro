@@ -2,6 +2,8 @@ package com.pearadmin.pro.common.interceptor;
 
 import com.pearadmin.pro.common.interceptor.annotation.DataScope;
 import com.pearadmin.pro.common.interceptor.enums.Scope;
+import com.pearadmin.pro.common.secure.uutoken.SecureUserTokenService;
+import com.pearadmin.pro.common.web.base.context.BeanContext;
 import com.pearadmin.pro.common.web.base.context.UserContext;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
@@ -19,6 +21,7 @@ import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
@@ -42,14 +45,11 @@ import java.util.Set;
 })
 public class DataScopeInterceptor implements Interceptor {
 
-    @Resource
-    private UserContext userContext;
-
-    @Resource
-    private SysRoleService roleService;
-
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
+
+        UserContext userContext = BeanContext.getBean(UserContext.class);
+        SysRoleService roleService = BeanContext.getBean(SysRoleService.class);
 
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
 
@@ -65,12 +65,12 @@ public class DataScopeInterceptor implements Interceptor {
 
             System.out.println("存在 DataScope 注解");
 
-             // 根 据 注 解 模 式, 处 理 预 定 义 SQL 语 句
+            // 根 据 注 解 模 式, 处 理 预 定 义 SQL 语 句
             Scope scope = annotation.scope();
 
             if(scope.equals(Scope.AUTO)){
 
-                // 查 询 角 色 权 限
+                // 根 据 用 户 定 义 权 限 填 充 SQL
                 List<SysRole> roles = userContext.getRole();
 
                 Set<String> set = new HashSet<>();
@@ -88,28 +88,35 @@ public class DataScopeInterceptor implements Interceptor {
                     if(roleScope.equals(Scope.CUSTOM)){
 
                         // 查 询 自 定 义
-                       List<SysDept> deptIds = roleService.dept(roleId);
+                        List<SysDept> deptIds = roleService.dept(roleId);
+
+                        //
                     }
 
                     if(roleScope.equals(Scope.DEPT)){
 
                         // 所 属 部 门
                         String deptId = userContext.getDeptId();
+
                         set.add(deptId);
                     }
 
                     if(roleScope.equals(Scope.DEPT_CHILD)){
 
                         // 所 属 下 级 部 门
+
                     }
 
                     if(roleScope.equals(Scope.SELF)){
 
                         // 用 户 编 号
                         String userId = userContext.getUserId();
+
+                        //
                     }
                 }
             }
+
             // 回填 SQL 语句
             setSql(invocation, sql);
         }
