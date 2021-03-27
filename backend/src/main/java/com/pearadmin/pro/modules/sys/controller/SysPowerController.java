@@ -7,7 +7,6 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.ArrayList;
 import java.util.List;
 

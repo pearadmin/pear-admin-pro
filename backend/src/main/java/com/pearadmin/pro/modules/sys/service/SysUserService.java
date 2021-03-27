@@ -6,7 +6,6 @@ import com.pearadmin.pro.modules.sys.domain.SysUser;
 
 import java.util.List;
 
-
 public interface SysUserService extends IService<SysUser> {
 
     public List<SysRole> role(String userId);

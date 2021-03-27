@@ -9,5 +9,4 @@ import org.springframework.stereotype.Service;
 @Service
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig> implements SysConfigService {
 
-
 }
