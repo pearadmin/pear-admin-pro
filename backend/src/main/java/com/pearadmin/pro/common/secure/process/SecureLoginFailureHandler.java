@@ -22,7 +22,7 @@ import java.io.IOException;
 /**
  * Describe: Security 登陆失败处理类
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/23
  * */
 @Component
 public class SecureLoginFailureHandler implements AuthenticationFailureHandler {

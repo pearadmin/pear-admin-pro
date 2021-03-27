@@ -6,6 +6,7 @@ import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +17,7 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
+@Api(tags = {"权限"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "power")
 public class SysPowerController extends BaseController {

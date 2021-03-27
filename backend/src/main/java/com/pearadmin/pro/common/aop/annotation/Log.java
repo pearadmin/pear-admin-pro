@@ -4,7 +4,8 @@ import com.pearadmin.pro.common.aop.enums.Action;
 import java.lang.annotation.*;
 
 /**
- * Describe: 行为日志注解
+ * 行 为 日 志 注 解
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

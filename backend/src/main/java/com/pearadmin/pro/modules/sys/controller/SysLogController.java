@@ -10,6 +10,8 @@ import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.domain.request.QueryLogRequest;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,6 +23,7 @@ import javax.annotation.Resource;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
+@Api(tags = {"日志"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "log")
 public class SysLogController extends BaseController {
@@ -29,6 +32,7 @@ public class SysLogController extends BaseController {
     private SysLogService sysLogService;
 
     @GetMapping("operate")
+    @ApiOperation(value = "操作日志")
     @Log(title = "查询日志", describe = "获取操作日志")
     public Result operate(Page page, QueryLogRequest request){
         IPage<SysUser> pageInfo = sysLogService.lambdaQuery().ne(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH).orderByDesc(com.pearadmin.pro.modules.sys.domain.SysLog::getCreateTime).page(page);
@@ -36,6 +40,7 @@ public class SysLogController extends BaseController {
     }
 
     @GetMapping("login")
+    @ApiOperation(value = "登录日志")
     @Log(title = "查询日志", describe = "获取登录日志")
     public Result login(Page page, QueryLogRequest request){
         IPage<SysUser> pageInfo = sysLogService.lambdaQuery().eq(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH).orderByDesc(com.pearadmin.pro.modules.sys.domain.SysLog::getCreateTime).page(page);

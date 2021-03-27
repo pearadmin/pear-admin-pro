@@ -11,6 +11,8 @@ import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.domain.request.QueryUserRequest;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -21,8 +23,9 @@ import java.util.List;
  * 用户控制器
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/28
  * */
+@Api(tags = {"用户"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "user")
 public class SysUserController extends BaseController {
@@ -30,8 +33,10 @@ public class SysUserController extends BaseController {
     @Resource
     private SysUserService sysUserService;
 
+
     @DataScope
     @GetMapping("page")
+    @ApiOperation(value = "查询用户")
     @Log(title = "查询用户", describe = "获取用户列表")
     public Result page(Page page, QueryUserRequest request){
         IPage<SysUser> pageInfo = sysUserService.lambdaQuery()
@@ -42,6 +47,7 @@ public class SysUserController extends BaseController {
     }
 
     @GetMapping("menu")
+    @ApiOperation(value = "用户菜单")
     public Result menu(){
         List<SysPower> menus = new ArrayList<>();
         menus.add(new SysPower( "", "/account", "account", "dir", "", "", 0, "", true, true));

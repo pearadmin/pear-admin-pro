@@ -24,7 +24,7 @@ public class SwaggerConfig  {
     public Docket docker(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .groupName("")
+                .groupName("default")
                 .enable(true)
                 .select()
                 .apis(RequestHandlerSelectors.basePackage("com.pearadmin"))
@@ -33,12 +33,12 @@ public class SwaggerConfig  {
 
     private ApiInfo apiInfo(){
         return new ApiInfo(
-                "Pear Admin Pro",
-                "基于 Spring Boot 的企业级开发平台" ,
+                "Pear Admin",
+                "基于 Spring 的企业级开发平台" ,
                 "",
-                "www.pearadmin.com",new Contact("","",""),
-                "",
-                "",
+                "www.pearadmin.com",new Contact("pear-admin","https://gitee.com/pear-admin","jmys1992@gmail.com"),
+                "apache license",
+                "https://gitee.com/pear-admin",
                 new ArrayList<>()
         );
     }

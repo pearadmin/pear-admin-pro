@@ -9,6 +9,7 @@ import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.domain.request.QueryConfigRequest;
 import com.pearadmin.pro.modules.sys.service.SysConfigService;
+import io.swagger.annotations.Api;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import javax.annotation.Resource;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
+@Api(tags = {"配置"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "config")
 public class SysConfigController extends BaseController {

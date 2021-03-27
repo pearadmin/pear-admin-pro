@@ -5,6 +5,7 @@ import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.secure.uutoken.SecureUserToken;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
+import io.swagger.annotations.Api;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,6 +20,7 @@ import java.util.Set;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
+@Api(tags = {"在线"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "online")
 public class SysOnlineController extends BaseController {

@@ -9,6 +9,7 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
+import io.swagger.annotations.Api;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
@@ -17,6 +18,7 @@ import javax.annotation.Resource;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/24
  * */
+@Api(tags = {"角色"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "role")
 public class SysRoleController extends BaseController {
