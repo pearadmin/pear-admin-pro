@@ -35,7 +35,7 @@ import java.util.List;
 /**
  * Describe: 核心配置
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/23
  * */
 @Configuration
 public class CoreConfig implements WebMvcConfigurer {
@@ -44,6 +44,9 @@ public class CoreConfig implements WebMvcConfigurer {
     private static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd";
     private static final String DEFAULT_TIME_PATTERN = "HH:mm:ss";
 
+    /**
+     * Redis 连 接 池
+     * */
     @Bean
     public JedisPool jedisPool(){
         JedisPoolConfig config = new JedisPoolConfig();
@@ -54,6 +57,9 @@ public class CoreConfig implements WebMvcConfigurer {
         return jedisPool;
     }
 
+    /**
+     * 跨 域 配 置
+     * */
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -61,6 +67,9 @@ public class CoreConfig implements WebMvcConfigurer {
         return new CorsFilter(source);
     }
 
+    /**
+     * 日 期 序 列 化
+     * */
     @Bean
     @Primary
     public ObjectMapper objectMapper(){
@@ -78,6 +87,9 @@ public class CoreConfig implements WebMvcConfigurer {
         return objectMapper;
     }
 
+    /**
+     * Redis 操 作 工 具
+     * */
     @Bean
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory){
         RedisTemplate<String,Serializable> redisTemplate = new RedisTemplate<>();
@@ -87,6 +99,9 @@ public class CoreConfig implements WebMvcConfigurer {
         return redisTemplate;
     }
 
+    /**
+     * 跨 域 配 置
+     * */
     private CorsConfiguration corsConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
         corsConfiguration.setAllowCredentials(true);

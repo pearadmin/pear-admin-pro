@@ -52,18 +52,11 @@ public class DataScopeInterceptor implements Interceptor {
         SysRoleService roleService = BeanContext.getBean(SysRoleService.class);
 
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
-
-        // 获 取 权 限 注 解
         DataScope annotation = getAnnotation(mappedStatement);
-
-        // 处 理 当 前 用户 权 限
-        String sql = getSql(invocation);
-
-        System.out.println("打印 SQL :" + sql);
 
         if(annotation!=null){
 
-            System.out.println("存在 DataScope 注解");
+            String sql = getSql(invocation);
 
             // 根 据 注 解 模 式, 处 理 预 定 义 SQL 语 句
             Scope scope = annotation.scope();

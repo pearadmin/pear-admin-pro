@@ -7,9 +7,9 @@ server:
 spring:
   profiles:
     ## 激活配置
-    active: dev
+    active: source
 
-## mybatis plus 配置
+## mybatis 配置
 mybatis-plus:
   ## mapper 文件位置
   mapper-locations: classpath*:com/pearadmin/modules/**/xml/*Mapper.xml
