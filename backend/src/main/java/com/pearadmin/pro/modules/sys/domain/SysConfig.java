@@ -7,24 +7,37 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+/**
+ * Describe: 配置模型
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/03/27
+ * */
 @Data
 @Alias("SysConfig")
 @TableName("sys_config")
 public class SysConfig extends BaseDomain {
 
-    /** 编号 */
+    /**
+     * 编号
+     * */
     @TableId("id")
     private String id;
 
-    /** 名称 */
+    /**
+     * 名称
+     * */
     @TableField("name")
     private String name;
 
-    /** 键 */
+    /**
+     * 键
+     * */
     @TableField("`key`")
     private String key;
 
-    /** 值 */
+    /**
+     * 值
+     * */
     @TableField("value")
     private String value;
 

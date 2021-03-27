@@ -13,6 +13,11 @@ import javax.annotation.Resource;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Describe: 在线用户控制器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "online")
 public class SysOnlineController extends BaseController {

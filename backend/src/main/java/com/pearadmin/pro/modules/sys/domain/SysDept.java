@@ -8,7 +8,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.TreeDomain;
 
 /**
- * Describe: 部门领域模型
+ * Describe: 部门模型
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

@@ -7,8 +7,7 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
-import com.pearadmin.pro.modules.sys.domain.request.QueryConfigRequest;
-import com.pearadmin.pro.modules.sys.service.SysConfigService;
+import com.pearadmin.pro.modules.sys.domain.request.QueryConfigRequest;import com.pearadmin.pro.modules.sys.service.SysConfigService;
 import org.apache.logging.log4j.util.Strings;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +15,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 
+/**
+ * Describe: 配置控制器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "config")
 public class SysConfigController extends BaseController {

@@ -3,7 +3,9 @@ package com.pearadmin.pro.modules.sys.domain.request;
 import lombok.Data;
 
 /**
- * 用户查询参数实体
+ * Describe: 用户查询参数实体
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
  * */
 @Data
 public class QueryUserRequest {

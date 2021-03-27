@@ -118,9 +118,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 获取sql语句
-     * @param invocation
-     * @return
+     * 获 取 SQL
      */
     private String getSql(Invocation invocation) {
         final Object[] args = invocation.getArgs();
@@ -131,10 +129,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 包装sql后，重置到 invocation 中
-     * @param invocation
-     * @param sql
-     * @throws SQLException
+     * 包装 sql 后，回填到 invocation 中
      */
     private void setSql(Invocation invocation, String sql) throws SQLException {
         final Object[] args = invocation.getArgs();
@@ -172,7 +167,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 获取数据权限注解信息
+     * 权 限 注 解 信 息 获 取
      */
     private DataScope getAnnotation(MappedStatement mappedStatement) {
         DataScope dataAuth = null;
@@ -194,7 +189,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 内部类 作用于 SQL 包装
+     * 内 部 类 作 用 于 SQL 包 装
      * */
     class BoundSqlSqlSource implements SqlSource {
         private BoundSql boundSql;

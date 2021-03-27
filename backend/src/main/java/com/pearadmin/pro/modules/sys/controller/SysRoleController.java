@@ -12,6 +12,11 @@ import com.pearadmin.pro.modules.sys.service.SysRoleService;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 
+/**
+ * Describe: 角色控制器
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "role")
 public class SysRoleController extends BaseController {

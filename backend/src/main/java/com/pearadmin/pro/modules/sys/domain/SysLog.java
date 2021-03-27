@@ -1,13 +1,18 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.aop.enums.Action;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
-import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
+/**
+ * Describe: 日志模型
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @Data
 @Alias("SysLog")
 @TableName("sys_log")

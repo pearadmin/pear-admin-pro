@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Describe: 权限领域模型
+ * Describe: 权限模型
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
