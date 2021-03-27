@@ -33,4 +33,5 @@ export default {
   'server-list': () => import('@/view/monitor/server/index.vue'),
   'online-list': () => import('@/view/monitor/online/index.vue'),
   'redis-list': () => import('@/view/monitor/redis/index.vue'),
+  'doc-list': () => import('@/view/doc/index.vue'),
 }
