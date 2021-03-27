@@ -17,6 +17,12 @@ import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 用户控制器
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2019/10/23
+ * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "user")
 public class SysUserController extends BaseController {

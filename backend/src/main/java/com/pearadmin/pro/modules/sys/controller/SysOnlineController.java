@@ -14,9 +14,10 @@ import java.util.HashSet;
 import java.util.Set;
 
 /**
- * Describe: 在线用户控制器
+ * 在线用户控制器
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/27
  * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "online")
@@ -25,6 +26,12 @@ public class SysOnlineController extends BaseController {
     @Resource
     private RedisTemplate<String, SecureUserToken> redisTemplate;
 
+    /**
+     * 在线用户列表
+     *
+     * param: null
+     * return: Result
+     * */
     @GetMapping("list")
     public Result list(){
         Set<String> keys = redisTemplate.keys(CacheNameConstant.TOKEN_NAME_PREFIX + "*");

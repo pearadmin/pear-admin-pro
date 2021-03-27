@@ -15,7 +15,7 @@ import javax.annotation.Resource;
 /**
  * Describe: 角色控制器
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/24
  * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "role")
@@ -24,8 +24,8 @@ public class SysRoleController extends BaseController {
     @Resource
     private SysRoleService sysRoleService;
 
-    @GetMapping("page")
     @DataScope
+    @GetMapping("page")
     @Log(title = "查询角色", describe = "获取角色列表")
     public Result page(Page pageParam){
         IPage<SysRole> pageInfo = sysRoleService.lambdaQuery().page(pageParam);

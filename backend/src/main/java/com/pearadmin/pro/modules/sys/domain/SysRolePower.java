@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
 
 /**
@@ -10,5 +11,6 @@ import lombok.Data;
  * */
 @Data
 @TableName("sys_role_power")
-public class SysRolePower {
+public class SysRolePower extends BaseDomain {
+
 }

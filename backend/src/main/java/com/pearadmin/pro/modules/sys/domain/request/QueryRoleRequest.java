@@ -19,4 +19,5 @@ public class QueryRoleRequest {
      * 角色权鉴
      * */
     private String code;
+
 }

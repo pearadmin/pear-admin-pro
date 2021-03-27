@@ -5,9 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Describe: Bean Cache
+ * Bean Cache
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/27
  * */
 public abstract class BaseCache<T> {
 

@@ -24,7 +24,10 @@ import java.util.Properties;
  */
 public class Server
 {
-    
+
+    /**
+     * 阻塞时长
+     * */
     private static final int WAIT_SECOND = 500;
     
     /**
@@ -106,16 +109,11 @@ public class Server
     {
         SystemInfo si = new SystemInfo();
         HardwareAbstractionLayer hal = si.getHardware();
-
-        setCpuInfo(hal.getProcessor());
-
-        setMemInfo(hal.getMemory());
-
-        setSysInfo();
-
-        setJvmInfo();
-
         setDisk(si.getOperatingSystem());
+        setCpuInfo(hal.getProcessor());
+        setMemInfo(hal.getMemory());
+        setSysInfo();
+        setJvmInfo();
     }
 
     /**
