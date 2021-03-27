@@ -5,7 +5,7 @@ import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import com.pearadmin.pro.common.tools.core.PatternUtil;
 import com.pearadmin.pro.common.web.base.context.BeanContext;
 import com.pearadmin.pro.common.secure.services.SecureUser;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
@@ -23,9 +23,10 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Describe: Token Filter 主要增加 Token 的验证
+ * Token Filter 主要增加 Token 的验证
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/27
  * */
 public class SecureUserTokenSupport extends OncePerRequestFilter {
 
@@ -61,13 +62,11 @@ public class SecureUserTokenSupport extends OncePerRequestFilter {
         chain.doFilter(request, response);
     }
 
+
+    // TODO 修正匹配策略
     @Override
-    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        List<String> urls = Arrays.asList(SecurityConstant.HTTP_ACT_MATCHERS.split(","));
-        boolean b = false;
-        for (String url: urls) {
-            if(request.getRequestURI().equals(url)) b = true;
-        }
-        return b;
+    protected boolean shouldNotFilter(HttpServletRequest request) {
+        List<String> pattern = Arrays.asList(SecurityConstant.HTTP_ACT_MATCHERS.split(","));
+        return PatternUtil.matches(pattern, ServletUtil.getRequestURI());
     }
 }

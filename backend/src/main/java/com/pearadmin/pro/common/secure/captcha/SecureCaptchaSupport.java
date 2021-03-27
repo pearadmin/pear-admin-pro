@@ -17,7 +17,8 @@ import com.pearadmin.pro.common.web.domain.Result;
 import java.io.IOException;
 
 /**
- * Describe: Captcha Filter 主要增加 Token 的验证
+ * Captcha Filter 主要增加 Token 的验证
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

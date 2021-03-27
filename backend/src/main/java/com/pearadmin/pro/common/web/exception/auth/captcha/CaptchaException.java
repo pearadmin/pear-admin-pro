@@ -3,7 +3,8 @@ package com.pearadmin.pro.common.web.exception.auth.captcha;
 import org.springframework.security.core.AuthenticationException;
 
 /**
- * Describe: 验证码异常基类
+ * 验 证 码 异 常 基 类
+ *
  * Author: 就眠仪式
  * CreateTime: 2019/10/23
  * */

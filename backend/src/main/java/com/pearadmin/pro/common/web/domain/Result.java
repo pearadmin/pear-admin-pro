@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * Describe: Ajax 响应实体
+ * Ajax 响 应 实 体
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

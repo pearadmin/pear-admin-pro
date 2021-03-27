@@ -1,9 +1,10 @@
 package com.pearadmin.pro.common.web.domain;
 
 /**
- * Describe: Ajax 响应处理
+ * Ajax 响 应 处 理
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/27
  * */
 public class ResultController {
 

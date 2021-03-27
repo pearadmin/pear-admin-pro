@@ -11,7 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLSyntaxErrorException;
 
 /**
- * Describe: 全局异常处理
+ * 全 局 异 常 处 理
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

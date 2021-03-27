@@ -1,7 +1,8 @@
 package com.pearadmin.pro.common.web.exception.base;
 
 /**
- * Describe: 业 务 异 常
+ * 业 务 异 常
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

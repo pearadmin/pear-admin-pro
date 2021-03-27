@@ -1,16 +1,17 @@
 package com.pearadmin.pro.common.constant;
 
 /**
- * Describe: Security 静态配置
+ * Security 静态配置
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/28
  * */
 public class SecurityConstant {
 
     /**
      * 不需要认证的接口资源
      */
-    public static final String HTTP_ACT_MATCHERS="/swagger-ui.html,/webjars/springfox-swagger-ui/springfox.css,/webjars/springfox-swagger-ui/swagger-ui.css,/api/login,/api/captcha/create,/swagger-ui.html";
+    public static final String HTTP_ACT_MATCHERS="/webjars/springfox-swagger-ui/fonts/**,/swagger-resources,/swagger-resources/configuration/**,/webjars**,/swagger-ui.html,/webjars/springfox-swagger-ui/**,/v2/api-docs,/api/login,/api/captcha/create";
 
     /**
      * 不需要认证的静态资源

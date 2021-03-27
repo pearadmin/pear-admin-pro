@@ -11,9 +11,10 @@ import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
 /**
- * Describe: Base Context
+ * Base Context
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/27
  * */
 @Component
 public class BaseContext {

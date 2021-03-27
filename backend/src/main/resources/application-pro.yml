@@ -1,0 +1,38 @@
+spring:
+  ## mysql 配置
+  datasource:
+    dynamic:
+      ## 默认启用
+      primary: master
+      strict: false
+      datasource:
+        ## 主库配置
+        master:
+          url: jdbc:mysql://mysql.pearadmin.com/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
+          username: root
+          password: pear-mysql
+      hikari:
+        max-lifetime: 30000
+        min-idle: 3
+        max-pool-size: 10
+        connection-test-query: SELECT 1
+
+  ## redis 配置
+  redis:
+    ## 默认数据库
+    database: 2
+    ## 链接信息
+    host: 127.0.0.1
+    port: 6379
+    password:
+    ## 超时时间
+    timeout: 3000
+    ## lettuce 配置
+    lettuce:
+      ## 连接池配置
+      pool:
+        ## 优化配置
+        max-active: 8
+        max-wait: -1
+        max-idle: 6
+        min-idle: 0

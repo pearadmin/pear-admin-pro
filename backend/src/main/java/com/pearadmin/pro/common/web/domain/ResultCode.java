@@ -32,8 +32,6 @@ public enum ResultCode {
     USER_LOCKED(601,"用户锁定"),
     USER_NOT_ENABLE(605,"用户未启用");
 
-
-
     /**
      * 标识
      * */

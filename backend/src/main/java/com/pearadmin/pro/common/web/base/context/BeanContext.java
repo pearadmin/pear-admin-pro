@@ -6,9 +6,10 @@ import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
 /**
- * Describe: Bean Context
+ * Bean Context
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/03/27
  * */
 @Component
 public class BeanContext  implements ApplicationContextAware {
