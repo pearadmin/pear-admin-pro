@@ -108,6 +108,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf()
                 .disable();
 
+        // 处理 Iframe 响应
+        http.headers().frameOptions().disable();
+
         // 基于 Token 不需要 session
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 

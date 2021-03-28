@@ -57,6 +57,7 @@ public class SysUserController extends BaseController {
         menus.add(new SysPower( "", "/list", "list", "dir", "StockOutlined", "系统监控", 3, "", false, true));
         menus.add(new SysPower( "list", "onlineList", "online-list", "menu", "DatabaseOutlined", "在线用户", 0, "", false, true));
         menus.add(new SysPower( "list", "redisList", "redis-list", "menu", "DatabaseOutlined", "缓存监控", 0, "", false, true));
+        menus.add(new SysPower( "list", "docList", "doc-list", "menu", "DatabaseOutlined", "接口文档", 0, "", false, true));
         menus.add(new SysPower( "list", "serverList", "server-list", "menu", "DatabaseOutlined", "运行环境", 0, "", false, true));
         menus.add(new SysPower( "", "/sys", "sys", "dir", "SettingOutlined", "系统管理", 3, "", false, true));
         menus.add(new SysPower( "sys", "/user/index", "user-list", "menu", "DatabaseOutlined", "用户列表", 0, "", false, true));
