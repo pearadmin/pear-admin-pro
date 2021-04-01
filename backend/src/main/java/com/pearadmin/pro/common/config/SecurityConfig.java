@@ -17,9 +17,10 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import javax.annotation.Resource;
 
 /**
- * Describe: Security 安全核心配置类
+ * Security 安全核心配置类
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 @Configuration
 @EnableWebSecurity

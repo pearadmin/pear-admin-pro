@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 /**
  * Describe: 全局配置缓存
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 @Slf4j
 @Component

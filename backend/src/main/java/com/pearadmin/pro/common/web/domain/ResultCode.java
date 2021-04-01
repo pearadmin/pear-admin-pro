@@ -9,6 +9,7 @@ public enum ResultCode {
 
     SUCCESS(200, "成功"),
     FAILURE(500, "失败"),
+
     LOGIN_SUCCESS(200, "登录成功"),
     LOGIN_FAILURE(500, "登录失败"),
     LOGOUT_SUCCESS(200,"注销成功"),

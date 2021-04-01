@@ -1,10 +1,10 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import lombok.Data;
+import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.secure.services.SecureUser;
-import lombok.Data;
-import org.apache.ibatis.type.Alias;
 
 /**
  * 用户领域模型
@@ -14,7 +14,6 @@ import org.apache.ibatis.type.Alias;
  * */
 @Data
 @Alias("SysUser")
-@TableName(value="sys_user")
 public class SysUser extends SecureUser {
 
     /**

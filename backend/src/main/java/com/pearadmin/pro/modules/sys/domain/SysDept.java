@@ -8,19 +8,19 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.TreeDomain;
 
 /**
- * Describe: 部门模型
+ * 部门模型
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
 @Data
 @Alias("SysDept")
-@TableName("sys_dept")
 public class SysDept extends TreeDomain<SysDept> {
 
     /**
      * 部门 ID
      * */
-    @TableId
+    @TableId("id")
     private String id;
 
     /**

@@ -30,7 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Describe: 核心配置
+ * 核心配置
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/23
  * */

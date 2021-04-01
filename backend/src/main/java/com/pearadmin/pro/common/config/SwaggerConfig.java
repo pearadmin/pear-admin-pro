@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * Swagger 文档配置
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/03/27
+ * CreateTime: 2021/04/01
  * */
 @Configuration
 @EnableSwagger2
@@ -27,14 +27,14 @@ public class SwaggerConfig  {
                 .groupName("default")
                 .enable(true)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.pearadmin"))
+                .apis(RequestHandlerSelectors.basePackage("com.pearadmin.*"))
                 .build();
     }
 
     private ApiInfo apiInfo(){
         return new ApiInfo(
                 "Pear Admin",
-                "基于 Spring 的企业级开发平台" ,
+                "构建于 Spring 之上企业级开发平台" ,
                 "",
                 "www.pearadmin.com",new Contact("pear-admin","https://gitee.com/pear-admin","jmys1992@gmail.com"),
                 "apache license",

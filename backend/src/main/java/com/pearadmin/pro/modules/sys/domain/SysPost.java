@@ -1,21 +1,20 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import lombok.Data;
+import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
-import lombok.Data;
-import org.apache.ibatis.type.Alias;
-
 
 /**
- * Describe: 岗位模型
+ * 岗位模型
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
 @Data
 @Alias("SysPost")
-@TableName("sys_post")
 public class SysPost extends BaseDomain {
 
     /**

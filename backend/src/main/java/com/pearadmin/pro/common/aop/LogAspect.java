@@ -14,9 +14,10 @@ import javax.annotation.Resource;
 import java.lang.reflect.Method;
 
 /**
- * Describe: 系统日志实现
+ * 系统日志实现
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 @Aspect
 @Component

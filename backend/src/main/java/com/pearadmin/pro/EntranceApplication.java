@@ -8,7 +8,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 /**
  * Describe: Spring Boot Application 启 动 类
  * Author: 就 眠 仪 式
- * CreateTime: 2020/10/23
+ * CreateTime: 2021/04/01
  * */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class EntranceApplication {

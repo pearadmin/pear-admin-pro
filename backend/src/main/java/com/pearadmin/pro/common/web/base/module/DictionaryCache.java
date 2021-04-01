@@ -8,7 +8,7 @@ import java.util.Map;
 /**
  * Describe: 全局字典缓存
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 @Slf4j
 @Component
