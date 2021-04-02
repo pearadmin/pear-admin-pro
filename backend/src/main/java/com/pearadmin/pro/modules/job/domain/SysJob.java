@@ -12,7 +12,7 @@ import org.apache.ibatis.type.Alias;
  * */
 @Data
 @Alias("Job")
-public class Job extends BaseDomain {
+public class SysJob extends BaseDomain {
 
     /**
      * 任务编号

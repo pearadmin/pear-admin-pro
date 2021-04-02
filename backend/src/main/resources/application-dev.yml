@@ -1,5 +1,5 @@
 spring:
-  ## mysql 配置
+  ## Mysql 数据库
   datasource:
     dynamic:
       ## 默认启用
@@ -17,7 +17,7 @@ spring:
         max-pool-size: 10
         connection-test-query: SELECT 1
 
-  ## redis 配置
+  ## Redis 缓存
   redis:
     ## 默认数据库
     database: 2
@@ -36,3 +36,27 @@ spring:
         max-wait: -1
         max-idle: 6
         min-idle: 0
+
+  ### 定时任务
+  quartz:
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: clusteredScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 10
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true
+    job-store-type: jdbc
+    jdbc:
+      initialize-schema: always

@@ -156,6 +156,11 @@
             <artifactId>easy-captcha</artifactId>
             <version>${captcha.version}</version>
         </dependency>
+        <!-- 定 时 任 务 依 赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

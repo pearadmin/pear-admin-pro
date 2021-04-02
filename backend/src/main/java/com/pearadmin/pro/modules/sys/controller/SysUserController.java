@@ -1,19 +1,19 @@
 package com.pearadmin.pro.modules.sys.controller;
 
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.pearadmin.pro.common.interceptor.annotation.DataScope;
-import com.pearadmin.pro.common.aop.annotation.Log;
-import com.pearadmin.pro.common.constant.ControllerConstant;
-import com.pearadmin.pro.common.web.base.BaseController;
-import com.pearadmin.pro.common.web.domain.Result;
-import com.pearadmin.pro.modules.sys.domain.SysPower;
-import com.pearadmin.pro.modules.sys.domain.SysUser;
-import com.pearadmin.pro.modules.sys.domain.request.QueryUserRequest;
-import com.pearadmin.pro.modules.sys.service.SysUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.util.Strings;
+import com.pearadmin.pro.common.web.domain.Result;
+import com.pearadmin.pro.common.aop.annotation.Log;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.pearadmin.pro.modules.sys.domain.SysUser;
+import com.pearadmin.pro.modules.sys.domain.SysPower;
+import com.pearadmin.pro.modules.sys.domain.request.QueryUserRequest;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.pearadmin.pro.common.interceptor.annotation.DataScope;
+import com.pearadmin.pro.modules.sys.service.SysUserService;
+import com.pearadmin.pro.common.constant.ControllerConstant;
+import com.pearadmin.pro.common.web.base.BaseController;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -32,7 +32,6 @@ public class SysUserController extends BaseController {
 
     @Resource
     private SysUserService sysUserService;
-
 
     @DataScope
     @GetMapping("page")

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_JOB)
-public class JobController extends BaseController {
+public class SysJobController extends BaseController {
 
 
 }

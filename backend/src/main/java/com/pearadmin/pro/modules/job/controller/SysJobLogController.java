@@ -13,6 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
  * */
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_JOB + "log")
-public class JobLogController extends BaseController {
+public class SysJobLogController extends BaseController {
 
 }

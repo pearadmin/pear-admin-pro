@@ -1,10 +1,61 @@
 package com.pearadmin.pro.common.web.base.context;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Task Context
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/10/23
  * */
+@Component
 public class TaskContext {
+
+    /**
+     * 保存定时任务
+     * */
+    public Boolean add(){
+
+        return true;
+    }
+
+    /**
+     * 恢复定时任务
+     * */
+    public Boolean resume(){
+
+        return true;
+    }
+
+    /**
+     * 修改定时任务
+     * */
+    public Boolean update(){
+
+        return true;
+    }
+
+    /**
+     * 停止定时任务
+     * */
+    public Boolean pause(){
+
+        return true;
+    }
+
+    /**
+     * 删除定时任务
+     * */
+    public Boolean delete(){
+
+        return true;
+    }
+
+    /**
+     * 是否存在
+     * */
+    public Boolean exists(){
+
+        return true;
+    }
 }

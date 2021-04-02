@@ -1,4 +1,4 @@
 package com.pearadmin.pro.modules.job.service.impl;
 
-public class JobServiceImpl {
+public class SysJobLogServiceImpl {
 }
