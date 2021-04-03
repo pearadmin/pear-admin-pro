@@ -1,11 +1,11 @@
-package com.pearadmin.pro.common.web.base;
+package com.pearadmin.pro.common.cache;
 
 import org.springframework.scheduling.annotation.Scheduled;
 import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Bean Cache
+ * Base Cache
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27

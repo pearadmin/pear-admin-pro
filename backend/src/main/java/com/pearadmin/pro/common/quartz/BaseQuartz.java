@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.web.base;
+package com.pearadmin.pro.common.quartz;
 
 /**
  * Base Quartz

@@ -4,7 +4,6 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.pearadmin.pro.common.secure.services.SecureUser;
-
 import javax.validation.constraints.NotNull;
 
 /**
@@ -29,6 +28,7 @@ public class SysUser extends SecureUser {
      * 邮箱
      * */
     @TableField("email")
+    @NotNull(message = "邮箱不能为空")
     private String email;
 
     /**

@@ -1,6 +1,6 @@
-package com.pearadmin.pro.common.web.base.module;
+package com.pearadmin.pro.common.cache.impl;
 
-import com.pearadmin.pro.common.web.base.BaseCache;
+import com.pearadmin.pro.common.cache.BaseCache;
 import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.service.SysConfigService;
 import lombok.extern.slf4j.Slf4j;
@@ -11,7 +11,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 /**
- * Describe: 全局配置缓存
+ * 全 局 配 置 缓 存
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  * */

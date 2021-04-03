@@ -48,4 +48,5 @@ public class SysJob extends BaseDomain {
      * 分组
      * */
     private String groupId;
+
 }

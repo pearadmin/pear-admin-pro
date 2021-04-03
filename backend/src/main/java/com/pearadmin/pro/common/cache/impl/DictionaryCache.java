@@ -1,12 +1,13 @@
-package com.pearadmin.pro.common.web.base.module;
+package com.pearadmin.pro.common.cache.impl;
 
-import com.pearadmin.pro.common.web.base.BaseCache;
+import com.pearadmin.pro.common.cache.BaseCache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import java.util.Map;
 
 /**
- * Describe: 全局字典缓存
+ * 全 局 字 典 缓 存
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  * */
