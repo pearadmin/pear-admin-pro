@@ -14,6 +14,7 @@ import com.pearadmin.pro.common.interceptor.annotation.DataScope;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.ArrayList;
@@ -32,6 +33,12 @@ public class SysUserController extends BaseController {
 
     @Resource
     private SysUserService sysUserService;
+
+    @GetMapping("add")
+    public Result add(@Validated @RequestBody SysUser user){
+
+        return success();
+    }
 
     @DataScope
     @GetMapping("page")

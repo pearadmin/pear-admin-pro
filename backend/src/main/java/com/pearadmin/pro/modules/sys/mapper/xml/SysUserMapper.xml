@@ -5,7 +5,7 @@
     <!-- 查 询 用 户 列 表 -->
     <!-- @param QueryUserRequest -->
     <!-- @param QueryUserResponse -->
-    <select id="selectList" parameterType="QueryUserRequest" resultType="SysUser">
+    <select id="selectList" parameterType="QueryUserRequest" resultType="QueryUserResponse">
         select * from sys_user
 
     </select>

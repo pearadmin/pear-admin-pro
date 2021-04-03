@@ -13,7 +13,7 @@ public class QueryConfigRequest {
     /**
      * 配置名称
      * */
-    private String name;
+     private String name;
 
     /**
      * 配置标识

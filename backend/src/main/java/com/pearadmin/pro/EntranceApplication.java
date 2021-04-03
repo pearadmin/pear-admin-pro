@@ -6,7 +6,8 @@ import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 /**
- * Describe: Spring Boot Application 启 动 类
+ * Spring Boot Application 启 动 类
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  * */

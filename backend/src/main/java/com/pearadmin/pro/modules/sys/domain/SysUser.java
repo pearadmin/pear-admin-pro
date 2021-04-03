@@ -3,14 +3,16 @@ package com.pearadmin.pro.modules.sys.domain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.secure.services.SecureUser;
+
+import javax.validation.constraints.NotNull;
 
 /**
  * 用户领域模型
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
+ * Extend: {@link SecureUser}
  * */
 @Data
 @Alias("SysUser")
@@ -20,6 +22,7 @@ public class SysUser extends SecureUser {
      * 昵称
      * */
     @TableField("nickname")
+    @NotNull(message = "昵称不能为空")
     private String nickname;
 
     /**
