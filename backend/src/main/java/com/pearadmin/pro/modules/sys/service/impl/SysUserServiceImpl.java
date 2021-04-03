@@ -20,4 +20,14 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     public List<SysRole> role(String userId) {
         return sysRoleMapper.selectRoleByUserId(userId);
     }
+
+    @Override
+    public List<SysUser> list(SysUser sysUser) {
+        return null;
+    }
+
+    @Override
+    public List<SysUser> page(SysUser sysUser) {
+        return null;
+    }
 }

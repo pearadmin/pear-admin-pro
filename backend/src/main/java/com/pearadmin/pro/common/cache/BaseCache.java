@@ -8,7 +8,7 @@ import java.util.Map;
  * Base Cache
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/03/27
+ * CreateTime: 2021/04/01
  * */
 public abstract class BaseCache<T> {
 
@@ -29,9 +29,9 @@ public abstract class BaseCache<T> {
     /**
      * 刷新
      * */
-    public void refresh(){
+    public void reload(){
 
-        // REFRESH
+        // RELOAD
         cache = load();
     }
 

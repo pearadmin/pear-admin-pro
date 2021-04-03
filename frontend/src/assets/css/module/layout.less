@@ -3,7 +3,7 @@
 }
 #layout.layout-head.theme-light {
   #logo {
-    height: 64px;
+    height: 60px;
     border-bottom: 1px solid whitesmoke;
     background: white;
   }
@@ -14,7 +14,7 @@
 }
 #layout.layout-head.theme-dark {
   #logo {
-    height: 64px;
+    height: 60px;
     img {
       margin-top: -3.5px;
     }
@@ -36,7 +36,7 @@
 }
 #layout.theme-dark.layout-side {
   #logo {
-    height: 64px;
+    height: 60px;
     border-bottom: 1px solid #101117;
     background: #191a23;
   }
@@ -51,7 +51,7 @@
 }
 #layout.theme-light.layout-side {
   #logo {
-    height: 64px;
+    height: 60px;
     border-bottom: 1px solid whitesmoke;
     background: white;
   }
@@ -67,7 +67,7 @@
 }
 #layout.theme-dark.layout-comp {
   #logo {
-    height: 64px;
+    height: 60px;
     border-bottom: 1px solid #101117;
     background: #191a23;
   }
@@ -78,13 +78,13 @@
   .ant-layout-header {
     .comp-menu {
       display: inline-block;
-      height: 64px;
-      line-height: 64px;
+      height: 60px;
+      line-height: 60px;
       padding-left: 30px;
       .menu-item {
         color: unset;
-        height: 64px;
-        line-height: 64px;
+        height: 60px;
+        line-height: 60px;
         display: inline-block;
         padding-left: 15px;
         padding-right: 15px;
@@ -103,7 +103,7 @@
 }
 #layout.theme-light.layout-comp {
   #logo {
-    height: 64px;
+    height: 60px;
     border-bottom: 1px solid whitesmoke;
     background: white;
   }
@@ -114,12 +114,12 @@
   .ant-layout-header {
     .comp-menu {
       display: inline-block;
-      height: 64px;
-      line-height: 64px;
+      height: 60px;
+      line-height: 60px;
       padding-left: 30px;
       .menu-item {
-        height: 64px;
-        line-height: 64px;
+        height:60px;
+        line-height: 60px;
         display: inline-block;
         padding-left: 15px;
         padding-right: 15px;
@@ -143,23 +143,7 @@
   box-shadow: 0 1px 4px rgba(0, 21, 41, 0.08);
   z-index: 100;
 }
-// 菜单样式
-.ant-menu-sub.ant-menu-inline > .ant-menu-item,
-.ant-menu-sub.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
-  height: 48px;
-  line-height: 48px;
-}
-.ant-menu-vertical > .ant-menu-item,
-.ant-menu-vertical-left > .ant-menu-item,
-.ant-menu-vertical-right > .ant-menu-item,
-.ant-menu-inline > .ant-menu-item,
-.ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title,
-.ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
-.ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title,
-.ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
-  height: 48px !important;
-  line-height: 48px !important;
-}
+
 .ant-layout-sider {
   background: #191a23 !important;
   &.fixed-side {
@@ -227,27 +211,28 @@
   line-height: 53px;
 }
 #header {
-  height: 65px;
-  line-height: 65px;
+  height: 60px;
+  line-height: 60px;
   background-color: white;
 }
 #header .next-menu {
   float: right;
-  height: 65px;
+  height: 60px;
 }
 #header .prev-menu {
   display: inline-block;
-  height: 65px;
+  height: 60px;
 }
 #header .head-logo {
   width: 250px;
-  height: 64px;
+  height: 60px;
   display: inline-block;
 }
 #header .head-menu {
+  position: absolute;
   .ant-menu {
-    height: 65px;
-    line-height: 65px;
+    height: 60px;
+    line-height: 60px;
   }
   display: inline-block;
 }
@@ -255,8 +240,8 @@
 #header .next-menu .menu-item {
   font-size: 15.8px;
   padding: 0 13.5px;
-  height: 64px;
-  line-height: 64px;
+  height: 60px;
+  line-height: 60px;
   display: inline-block;
 }
 .avatar-dropdown {
@@ -269,6 +254,14 @@
   width: 368px !important;
   height: 300px;
   margin: 10px;
+}
+#header .prev-menu .locale-item,
+#header .next-menu .locale-item {
+  font-size: 15.8px;
+  padding: 0 13.5px;
+  height: 60px;
+  line-height: 60px;
+  display: inline-block;
 }
 #header .prev-menu .avatar-item,
 #header .next-menu .avatar-item {
@@ -290,13 +283,14 @@
   margin-left: 13px;
   margin-right: 13px;
   height: 60px;
-  padding-top: 13px;
+  padding-top: 18px;
   padding-bottom: 15px;
   padding-right: 5px;
   padding-left: 5px;
   font-size: 16px;
   display: inline-block;
 }
+
 #header .prev-menu .menu-item:hover,
 #header .next-menu .menu-item:hover {
   background-color: #f7f7f7;
@@ -392,4 +386,8 @@
   text-align: center;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   line-height: 30px;
+}
+.ant-layout-header{
+  height: 60px !important;
+  line-height: 60px !important;
 }

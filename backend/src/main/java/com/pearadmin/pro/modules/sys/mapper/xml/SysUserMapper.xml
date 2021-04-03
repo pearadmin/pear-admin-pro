@@ -3,11 +3,10 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.mapper.SysUserMapper">
 
     <!-- 查 询 用 户 列 表 -->
-    <!-- @param QueryUserRequest -->
-    <!-- @param QueryUserResponse -->
-    <select id="selectList" parameterType="QueryUserRequest" resultType="QueryUserResponse">
+    <!-- @param SysUser -->
+    <!-- @return SysUser -->
+    <select id="selectList" parameterType="SysUser" resultType="SysUser">
         select * from sys_user
-
     </select>
 
 </mapper>

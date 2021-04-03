@@ -8,7 +8,6 @@ import com.pearadmin.pro.common.aop.annotation.Log;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
-import com.pearadmin.pro.modules.sys.domain.request.QueryUserRequest;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pearadmin.pro.common.interceptor.annotation.DataScope;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
@@ -44,7 +43,7 @@ public class SysUserController extends BaseController {
     @GetMapping("page")
     @ApiOperation(value = "查询用户")
     @Log(title = "查询用户", describe = "获取用户列表")
-    public Result page(Page page, QueryUserRequest request){
+    public Result page(Page page, SysUser request){
         IPage<SysUser> pageInfo = sysUserService.lambdaQuery()
                 .eq(Strings.isNotBlank(request.getUsername()),SysUser::getUsername,request.getUsername())
                 .eq(Strings.isNotBlank(request.getEmail()),SysUser::getEmail,request.getEmail())

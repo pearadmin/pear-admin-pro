@@ -1,5 +1,5 @@
 import config from "../../config/pear.config";
-import { message } from 'ant-design-vue';
+import { message } from "ant-design-vue";
 
 const state = {
   /**
@@ -12,8 +12,8 @@ const state = {
     config.layout == null
       ? "layout-side"
       : localStorage.getItem("layout") == null
-        ? config.layout
-        : localStorage.getItem("layout"),
+      ? config.layout
+      : localStorage.getItem("layout"),
 
   /**
    * 系统主题（整体色调）
@@ -25,8 +25,8 @@ const state = {
     config.theme == null
       ? "theme-dark"
       : localStorage.getItem("theme") == null
-        ? config.theme
-        : localStorage.getItem("theme"),
+      ? config.theme
+      : localStorage.getItem("theme"),
 
   /**
    * 主题颜色(主题颜色)
@@ -35,8 +35,8 @@ const state = {
     config.color == null
       ? "theme-green"
       : localStorage.getItem("color") == null
-        ? config.color
-        : localStorage.getItem("color"),
+      ? config.color
+      : localStorage.getItem("color"),
 
   /**
    * 侧边状态
@@ -47,8 +47,8 @@ const state = {
     config.collapsed == null
       ? false
       : localStorage.getItem("collapsed") == null
-        ? config.collapsed
-        : localStorage.getItem("collapsed"),
+      ? config.collapsed
+      : localStorage.getItem("collapsed"),
 
   /**
    * 菜单头部
@@ -59,8 +59,8 @@ const state = {
     config.logo == null
       ? true
       : localStorage.getItem("logo") == null
-        ? config.logo
-        : localStorage.getItem("logo"),
+      ? config.logo
+      : localStorage.getItem("logo"),
 
   /**
    * 是否开启多标签页
@@ -71,8 +71,8 @@ const state = {
     config.tab == null
       ? true
       : localStorage.getItem("tab") == null
-        ? config.tab
-        : localStorage.getItem("tab"),
+      ? config.tab
+      : localStorage.getItem("tab"),
 
   /**
    * 多标签页样式
@@ -83,14 +83,19 @@ const state = {
     config.tabType == null
       ? "pear-dot-tab"
       : localStorage.getItem("tabType") == null
-        ? config.tabType
-        : localStorage.getItem("tabType"),
+      ? config.tabType
+      : localStorage.getItem("tabType"),
 
   /**
    * 侧边菜单栏宽度
    * 单位:px
    * */
-  sideWitch: config.sideWidth == null ? 250 : config.sideWidth,
+  sideWitch: config.sideWidth == null ? 220 : config.sideWidth,
+  /**
+   * 侧边菜单栏宽度(折叠)
+   * 单位:px
+   * */
+  collapsedWidth: config.collapsedWidth == null ? 60 : config.collapsedWidth,
 
   /**
    * 固定头部
@@ -101,8 +106,8 @@ const state = {
     config.fixedHeader == null
       ? true
       : localStorage.getItem("fixedHeader") == null
-        ? config.fixedHeader
-        : localStorage.getItem("fixedHeader"),
+      ? config.fixedHeader
+      : localStorage.getItem("fixedHeader"),
 
   /**
    * 固定侧边
@@ -113,8 +118,8 @@ const state = {
     config.fixedSide == null
       ? true
       : localStorage.getItem("fixedSide") == null
-        ? config.fixedSide
-        : localStorage.getItem("fixedSide"),
+      ? config.fixedSide
+      : localStorage.getItem("fixedSide"),
 
   /**
    * 路由动画
@@ -125,8 +130,8 @@ const state = {
     config.routerAnimate == null
       ? ""
       : localStorage.getItem("routerAnimate") == null
-        ? config.routerAnimate
-        : localStorage.getItem("routerAnimate"),
+      ? config.routerAnimate
+      : localStorage.getItem("routerAnimate"),
 
   /**
    * 配色列表
@@ -197,11 +202,9 @@ const mutations = {
   TOGGLE_SIDEBAR(state) {
     if (state.collapsed) {
       // 要展开
-      state.sideWitch = 250;
       state.openKey = JSON.parse(localStorage.getItem("openKey"));
     } else {
       // 要隐藏
-      state.sideWitch = 80;
       localStorage.setItem("openKey", JSON.stringify(state.openKey));
       state.openKey = [];
     }
@@ -254,6 +257,11 @@ const mutations = {
       state.panes.push(value);
       sessionStorage.setItem("pear_tabs", JSON.stringify(state.panes));
     }
+    // if (value.isTop) {
+    //   const subPath = value.path.substring(0, value.path.lastIndexOf("/"));
+    //   state.activeKey = subPath;
+    //   return;
+    // }
     state.activeKey = value.path;
   },
   // 删除选项卡实现
@@ -261,7 +269,7 @@ const mutations = {
     //当前激活的选项卡, 选项卡列表
     let { activeKey, panes } = state;
     panes.forEach((pane, index) => {
-      if (pane.path === targetKey) { 
+      if (pane.path === targetKey) {
         if (pane.closable != false) {
           panes.splice(index, 1);
           state.panes = panes;
@@ -315,6 +323,6 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state,
-  mutations
+  mutations,
+  state
 };

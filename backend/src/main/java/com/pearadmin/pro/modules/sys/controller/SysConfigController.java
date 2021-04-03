@@ -7,7 +7,6 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
-import com.pearadmin.pro.modules.sys.domain.request.QueryConfigRequest;
 import com.pearadmin.pro.modules.sys.service.SysConfigService;
 import io.swagger.annotations.Api;
 import org.apache.logging.log4j.util.Strings;
@@ -31,7 +30,7 @@ public class SysConfigController extends BaseController {
     private SysConfigService sysConfigService;
 
     @GetMapping("page")
-    public Result page(Page page, QueryConfigRequest request){
+    public Result page(Page page, SysConfig request){
         IPage<SysUser> pageInfo = sysConfigService.lambdaQuery()
                 .eq(Strings.isNotBlank(request.getName()), SysConfig::getName,request.getName())
                 .eq(Strings.isNotBlank(request.getKey()),SysConfig::getKey,request.getKey())

@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  * */
-@Slf4j
+
 @Component
 public class AllocationCache extends BaseCache<String> {
 

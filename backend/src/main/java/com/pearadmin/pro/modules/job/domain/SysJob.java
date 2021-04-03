@@ -1,8 +1,8 @@
 package com.pearadmin.pro.modules.job.domain;
 
-import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
+import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 
 /**
  * 任务模型

@@ -11,6 +11,7 @@
       :width="sideWitch"
       :collapsed="collapsed"
       :trigger="null"
+      :collapsedWidth="collapsedWidth"
       collapsible
       :class="[
         fixedSide ? 'fixed-side' : '',
@@ -74,6 +75,7 @@ export default {
     const fixedHeader = computed(() => getters.fixedHeader);
     const fixedSide = computed(() => getters.fixedSide);
     const isMobile = computed(() => getters.isMobile);
+    const collapsedWidth = computed(() => getters.collapsedWidth);
     const closeSideBar = () => {
       const isComputedMobile = computed(() => getters.isMobile);
       if (isComputedMobile.value) {
@@ -89,7 +91,7 @@ export default {
     };
     const handleLayouts = () => {
       const domWidth = document.body.getBoundingClientRect().width;
-      const isLayoutMobile = domWidth - 1 < 992;
+      const isLayoutMobile = domWidth !== 0 && domWidth - 1 < 992;
       commit("layout/UPDATE_ISMOBILE", isLayoutMobile);
       if (isLayoutMobile) {
         setTimeout(() => {
@@ -110,11 +112,41 @@ export default {
       layout,
       theme,
       logo,
-      tab
+      tab,
+      collapsedWidth
     };
   }
 };
 </script>
+<style lang="less">
+#layout {
+  height: 100%;
+  .ant-menu-inline-collapsed {
+    width: auto;
+  }
+  .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
+    padding: 0 !important;
+    text-align: center;
+  }
+  @ant-menu-hieht: 48px;
+  .ant-menu-vertical > .ant-menu-item,
+  .ant-menu-vertical-left > .ant-menu-item,
+  .ant-menu-vertical-right > .ant-menu-item,
+  .ant-menu-inline > .ant-menu-item,
+  .ant-menu-vertical > .ant-menu-submenu > .ant-menu-submenu-title,
+  .ant-menu-vertical-left > .ant-menu-submenu > .ant-menu-submenu-title,
+  .ant-menu-vertical-right > .ant-menu-submenu > .ant-menu-submenu-title,
+  .ant-menu-inline > .ant-menu-submenu > .ant-menu-submenu-title {
+    height: @ant-menu-hieht !important;
+    line-height: @ant-menu-hieht !important;
+  }
+
+  .ant-menu-inline-collapsed > .ant-menu-item {
+    padding: 0px !important;
+    text-align: center;
+  }
+}
+</style>
 <style lang="less" scoped>
 //移动端侧边栏遮罩层
 .layout_mobile_mask {

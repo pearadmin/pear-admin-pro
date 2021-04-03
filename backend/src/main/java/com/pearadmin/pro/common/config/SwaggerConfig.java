@@ -20,14 +20,20 @@ import java.util.ArrayList;
 @EnableSwagger2
 public class SwaggerConfig  {
 
+    private static final String BASE_PACKAGE = "com.pearadmin";
+
+    private static final String DEFAULT_GROUP = "default";
+
+    private static final Boolean ENABLE = true;
+
     @Bean
     public Docket docker(){
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
-                .groupName("default")
-                .enable(true)
+                .groupName(DEFAULT_GROUP)
+                .enable(ENABLE)
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("com.pearadmin.*"))
+                .apis(RequestHandlerSelectors.basePackage(BASE_PACKAGE))
                 .build();
     }
 

@@ -1,16 +1,33 @@
 <template>
   <template v-if="!item.hidden">
+    <a-menu-item
+      v-if="
+        item.children &&
+          item.children.length == 1 &&
+          item.meta.alwaysShow != true
+      "
+      :key="resolvePath(item.path, true)"
+      @click="handleFoldSideBar"
+    >
+      <router-link :to="item.path + '/' + item.children[0].path">
+        <MenuIcon />
+        <!-- <span>{{ item.meta.title }}</span> -->
+        <span>{{ t(item.meta.i18nTitle) }}</span>
+      </router-link>
+    </a-menu-item>
+
     <!-- if item.children is not null 渲染 a-sub-menu -->
     <a-sub-menu
       @click="handleFoldSideBar"
       :key="item.path"
-      v-if="item.children && item.children.length > 0"
+      v-else-if="item.children && item.children.length > 0"
     >
       <template v-slot:title>
         <span>
           <MenuIcon v-if="level === 0" />
           <span v-else><div class="indent"></div></span>
-          <span>{{ item.meta.title }}</span>
+          <!-- <span>{{ item.meta.title }}</span> -->
+          <span>{{ t(item.meta.i18nTitle) }}</span>
         </span>
       </template>
       <!-- 递归 item.children -->
@@ -32,7 +49,8 @@
       <router-link :to="resolvePath(item.path, true)">
         <MenuIcon v-if="level === 0" />
         <span v-else><div class="indent"></div></span>
-        <span>{{ item.meta.title }}</span>
+        <!-- <span>{{ item.meta.title }} </span>-->
+        <span>{{ t(item.meta.i18nTitle) }}</span>
       </router-link>
     </a-menu-item>
   </template>
@@ -41,9 +59,11 @@
 <script>
 import { computed } from "vue";
 import path from "path";
-import { useStore, getter } from "vuex";
+import { useStore } from "vuex";
 import * as Icons from "@ant-design/icons-vue";
+import {useI18n} from "vue-i18n";
 export default {
+  emits: ["click"],
   name: "SubMenu",
   props: {
     item: {
@@ -68,6 +88,7 @@ export default {
       if (single) {
         return props.basePath;
       }
+      // 当处于 comp 模式下拼接相关路由
       return path.resolve(props.basePath, routePath);
     };
     const handleFoldSideBar = () => {
@@ -76,13 +97,16 @@ export default {
         commit("layout/UPDATE_COLLAPSED", true);
       }
     };
-
     const MenuIcon = Icons[(props.item.meta || {}).icon] || {};
+
+    // i18n
+    const { t } = useI18n()
 
     return {
       handleFoldSideBar,
       resolvePath,
-      MenuIcon
+      MenuIcon,
+      t
     };
   }
 };

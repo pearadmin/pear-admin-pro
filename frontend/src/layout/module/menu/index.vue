@@ -36,10 +36,18 @@ export default {
       getters.layout == "layout-head" ? "horizontal" : "inline"
     );
     const menuTheme = computed(() =>
-      getters.theme === "theme-dark" || getters.theme === "theme-night" ? "dark": "light"
+      getters.theme === "theme-dark" || getters.theme === "theme-night"
+        ? "dark"
+        : "light"
     );
     const storeOpenKey = computed(() => getters.openKey);
-    const activeKey = computed(() => getters.activeKey);
+    const activeKey = computed(() => {
+      const propRoute = route.matched[0];
+      if (propRoute.children.length == 1 && propRoute.meta.alwaysShow != true) {
+        return propRoute.path;
+      }
+      return getters.activeKey;
+    });
 
     const openKey = ref([...storeOpenKey.value]);
     const selectKey = ref([activeKey.value]);
@@ -93,7 +101,10 @@ export default {
     };
 
     watch(layout, n => changeLayout(n));
-    watch(computed(() => route.fullPath),dynamicRoute);
+    watch(
+      computed(() => route.fullPath),
+      dynamicRoute
+    );
     watch(activeKey, n => (selectKey.value = [n]));
     watch(storeOpenKey, n => (openKey.value = n), { deep: true });
     dynamicRoute(route);

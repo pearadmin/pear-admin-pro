@@ -11,7 +11,7 @@ import java.util.Map;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  * */
-@Slf4j
+
 @Component
 public class DictionaryCache extends BaseCache<String> {
 
