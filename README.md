@@ -93,6 +93,37 @@ Pear Admin Pro
 
 ```
 
+### 功能手册
+
+#### 权限控制
+
+#### 参数验证
+
+| 注解 | 功能 |
+|----|----|
+| @AssertFalse   | 必须是 false  |
+| @AssertTrue   | 必须是 true   |
+| @DecimalMax   | 小于等于给定的值   |
+| @DecimalMin   | 大于等于给定的值  |
+| @Digits   | 可设定最大整数位数和最大小数位数   |
+| @Email   | 校验是否符合 Email 格式   |
+| @Future  | 必须是将来的时间   |
+| @FutureOrPresent   | 当前或将来时间   |
+| @Max   | 最大值   |
+| @Min   | 最小值  |
+| @Negative   | 负数（不包括0）   |
+| @NegativeOrZero   | 负数或0   |
+| @NotBlank  | 不为 null 并且包含至少一个非空白字符   |
+| @NotEmpty  | 不为 null 并且不为空   |
+| @NotNull   | 不为 null   |
+| @Null   | 为 null  |
+| @Past  | 必须是过去的时间   |
+| @PositiveOrZero  | 正数或 0   |
+| @Size   | 校验容器的元素个数  |
+
+#### 接口响应
+
+#### 定时任务
 
 ### 业务流程
 
