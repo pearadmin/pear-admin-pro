@@ -1,4 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pearadmin.pro.modules.sys.mapper.SysUserMapper">
+
+    <!-- 查 询 用 户 列 表 -->
+    <!-- @param QueryUserRequest -->
+    <!-- @param QueryUserResponse -->
+    <select id="selectList" parameterType="QueryUserRequest" resultType="SysUser">
+        select * from sys_user
+
+    </select>
+
 </mapper>
