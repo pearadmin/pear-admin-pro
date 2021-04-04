@@ -100,6 +100,18 @@ Pear Admin Pro
 Base 基础
 
 ```
+@Autowired
+private UserContext userContext；
+
+// 获取 Authentication 认证对象
+userContext.getAuthentication()；
+
+// 获取 SysUser 当前用户
+userContext.getPrincipal()；
+
+// 获取 当前用户角色集合 
+userContext.getRole()；
+
 ```
 
 User 用户
