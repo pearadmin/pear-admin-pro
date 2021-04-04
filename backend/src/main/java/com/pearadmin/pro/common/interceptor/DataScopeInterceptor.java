@@ -2,7 +2,6 @@ package com.pearadmin.pro.common.interceptor;
 
 import com.pearadmin.pro.common.interceptor.annotation.DataScope;
 import com.pearadmin.pro.common.interceptor.enums.Scope;
-import com.pearadmin.pro.common.secure.uutoken.SecureUserTokenService;
 import com.pearadmin.pro.common.web.base.context.BeanContext;
 import com.pearadmin.pro.common.web.base.context.UserContext;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
@@ -21,12 +20,10 @@ import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 
-import javax.annotation.Resource;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.HashSet;

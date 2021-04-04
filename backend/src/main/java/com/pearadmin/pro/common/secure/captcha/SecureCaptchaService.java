@@ -14,7 +14,7 @@ import java.util.UUID;
 /**
  * Describe: Captcha 验证码服务
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 @Service
 public class SecureCaptchaService {

@@ -4,7 +4,6 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 
 /**

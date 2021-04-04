@@ -14,7 +14,7 @@ import javax.annotation.Resource;
  * Captcha Rest 服务
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 @Api(tags = {"验证"})
 @RestController

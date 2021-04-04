@@ -2,7 +2,6 @@ package com.pearadmin.pro.modules.sys.domain;
 
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import com.pearadmin.pro.common.aop.enums.Action;

@@ -16,4 +16,3 @@ mybatis-plus:
   ## domain 实体别名
   type-aliases-package: com.pearadmin
 
-## Security 配置

@@ -2,7 +2,6 @@ package com.pearadmin.pro.modules.sys.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.interceptor.enums.Scope;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import org.apache.ibatis.type.Alias;

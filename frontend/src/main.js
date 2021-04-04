@@ -6,10 +6,8 @@ import Store from "./store";
 import Pear from "./component";
 import "./assets/css/index.less";
 import "ant-design-vue/dist/antd.less";
-import "./mock";
-import directives from "./directives"
-import i18n from './locales'
-
+import directives from "./script"
+import i18n from './locale'
 
 const app = createApp(App);
 app.use(Antd);

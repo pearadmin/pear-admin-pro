@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
  * Captcha 验证码实体
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 @Data
 @NoArgsConstructor

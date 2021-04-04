@@ -122,7 +122,7 @@ export default {
 #login {
   width: 100%;
   height: 100%;
-  background: url(https://www.erupt.xyz/demo/login-img.jpg);
+  background: url(../../assets/image/background.svg);
   background-size: cover;
   .login-form {
     margin: auto;

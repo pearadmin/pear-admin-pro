@@ -20,7 +20,7 @@ import java.io.IOException;
  * Captcha Filter 主要增加 Token 的验证
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/01
  * */
 public class SecureCaptchaSupport extends OncePerRequestFilter {
 

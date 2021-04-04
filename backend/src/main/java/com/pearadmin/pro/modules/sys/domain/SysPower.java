@@ -4,7 +4,6 @@ import lombok.Data;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import java.util.ArrayList;
 import java.util.List;
@@ -72,6 +71,11 @@ public class SysPower extends BaseDomain {
      * */
     @TableField("link")
     private String link;
+
+    /**
+     * 国际化
+     * */
+    private String i18n;
 
     /**
      * 隐藏
