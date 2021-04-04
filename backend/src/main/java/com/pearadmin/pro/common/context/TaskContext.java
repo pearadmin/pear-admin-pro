@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.web.base.context;
+package com.pearadmin.pro.common.context;
 
 import org.springframework.stereotype.Component;
 

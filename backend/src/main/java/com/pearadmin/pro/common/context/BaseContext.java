@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.web.base.context;
+package com.pearadmin.pro.common.context;
 
 import com.alibaba.fastjson.JSON;
 import com.pearadmin.pro.modules.sys.domain.SysLog;

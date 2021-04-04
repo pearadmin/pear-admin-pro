@@ -1,7 +1,6 @@
 package com.pearadmin.pro.common.cache.impl;
 
 import com.pearadmin.pro.common.cache.BaseCache;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import java.util.Map;
 

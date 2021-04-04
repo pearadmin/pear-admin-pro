@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.config;
+package com.pearadmin.pro.common.configure;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
 import com.fasterxml.jackson.databind.ObjectMapper;

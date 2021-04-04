@@ -10,9 +10,10 @@ import java.util.Collection;
 import java.util.Set;
 
 /**
- * Describe: 基础 UserInfo 实体, 为安全验证提供支持的公共属性
+ * 基础 UserInfo 实体, 为安全验证提供支持的公共属性
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/10/23
  * */
 @Data
 public class SecureUser extends BaseDomain implements UserDetails {

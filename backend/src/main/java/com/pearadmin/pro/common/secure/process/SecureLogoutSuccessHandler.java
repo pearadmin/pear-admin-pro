@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.pearadmin.pro.common.aop.enums.Action;
-import com.pearadmin.pro.common.web.base.context.BaseContext;
+import com.pearadmin.pro.common.context.BaseContext;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
@@ -17,7 +17,8 @@ import javax.annotation.Resource;
 import java.io.IOException;
 
 /**
- * Describe: Security 注销成功处理类
+ * Security 注销成功处理类
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

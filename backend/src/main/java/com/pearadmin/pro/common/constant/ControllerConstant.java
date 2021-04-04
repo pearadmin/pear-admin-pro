@@ -1,9 +1,10 @@
 package com.pearadmin.pro.common.constant;
 
 /**
- * Describe: Controller 静态配置
+ * Controller 静态配置
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/10/23
  * */
 public class ControllerConstant {
 

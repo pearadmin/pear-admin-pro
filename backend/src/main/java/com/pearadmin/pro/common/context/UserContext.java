@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.web.base.context;
+package com.pearadmin.pro.common.context;
 
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
@@ -61,4 +61,7 @@ public class UserContext {
      * */
     public String getDeptId(){ return getPrincipal().getDeptId(); }
 
+    /**
+     * deptId 当前用户数据权限
+     * */
 }

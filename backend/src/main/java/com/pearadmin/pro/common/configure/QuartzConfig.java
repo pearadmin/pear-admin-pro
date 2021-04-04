@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.config;
+package com.pearadmin.pro.common.configure;
 
 import org.springframework.context.annotation.Configuration;
 

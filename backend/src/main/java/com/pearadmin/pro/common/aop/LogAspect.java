@@ -2,7 +2,7 @@ package com.pearadmin.pro.common.aop;
 
 import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.aop.enums.Action;
-import com.pearadmin.pro.common.web.base.context.BaseContext;
+import com.pearadmin.pro.common.context.BaseContext;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;

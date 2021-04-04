@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.config;
+package com.pearadmin.pro.common.configure;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -48,4 +48,5 @@ public class SwaggerConfig  {
                 new ArrayList<>()
         );
     }
+
 }

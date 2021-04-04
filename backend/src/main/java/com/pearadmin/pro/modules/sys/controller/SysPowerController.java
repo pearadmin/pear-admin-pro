@@ -1,6 +1,6 @@
 package com.pearadmin.pro.modules.sys.controller;
 
-import com.pearadmin.pro.common.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
 import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;

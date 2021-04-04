@@ -15,7 +15,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 
 /**
- * Describe: Security User Token 操作服务
+ * Security User Token 操作服务
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

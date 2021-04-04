@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.interceptor.annotation;
+package com.pearadmin.pro.common.web.interceptor.annotation;
 
 import java.lang.annotation.*;
 

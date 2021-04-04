@@ -5,7 +5,8 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 /**
- * Describe: 用户 Token 封装实体
+ * 用户 Token 封装实体
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

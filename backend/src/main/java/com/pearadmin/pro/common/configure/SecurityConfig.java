@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.config;
+package com.pearadmin.pro.common.configure;
 
 import com.pearadmin.pro.common.constant.SecurityConstant;
 import com.pearadmin.pro.common.secure.captcha.SecureCaptchaSupport;

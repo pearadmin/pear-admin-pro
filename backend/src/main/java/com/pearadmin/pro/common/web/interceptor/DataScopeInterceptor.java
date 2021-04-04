@@ -1,9 +1,9 @@
-package com.pearadmin.pro.common.interceptor;
+package com.pearadmin.pro.common.web.interceptor;
 
-import com.pearadmin.pro.common.interceptor.annotation.DataScope;
-import com.pearadmin.pro.common.interceptor.enums.Scope;
-import com.pearadmin.pro.common.web.base.context.BeanContext;
-import com.pearadmin.pro.common.web.base.context.UserContext;
+import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.web.interceptor.enums.Scope;
+import com.pearadmin.pro.common.context.BeanContext;
+import com.pearadmin.pro.common.context.UserContext;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;

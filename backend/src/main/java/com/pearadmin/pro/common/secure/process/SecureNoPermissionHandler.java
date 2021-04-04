@@ -11,9 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
 /**
- * Describe: Security 用户暂无权限处理类
+ * Security 用户暂无权限处理类
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/23
  * */
 @Component
 public class SecureNoPermissionHandler implements AccessDeniedHandler{

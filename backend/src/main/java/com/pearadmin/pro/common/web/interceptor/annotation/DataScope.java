@@ -1,6 +1,6 @@
-package com.pearadmin.pro.common.interceptor.annotation;
+package com.pearadmin.pro.common.web.interceptor.annotation;
 
-import com.pearadmin.pro.common.interceptor.enums.Scope;
+import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 
 /**
  * 数据权限注解

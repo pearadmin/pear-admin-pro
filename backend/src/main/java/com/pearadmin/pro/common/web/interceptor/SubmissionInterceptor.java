@@ -1,6 +1,6 @@
-package com.pearadmin.pro.common.interceptor;
+package com.pearadmin.pro.common.web.interceptor;
 
-import com.pearadmin.pro.common.interceptor.annotation.Submission;
+import com.pearadmin.pro.common.web.interceptor.annotation.Submission;
 import com.pearadmin.pro.common.tools.core.JsonUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -16,7 +16,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Describe: 重复提交
+ * 重复提交
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/23
  * */
