@@ -136,6 +136,9 @@ public class paramDome{
     @NotNull(message = "密码不能为空")
     private string password;
     
+    @Email(message = "邮箱格式不支持")
+    private String email;    
+    
 }
 
 ```
