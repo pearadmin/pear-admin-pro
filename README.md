@@ -97,22 +97,22 @@ Pear Admin Pro
 
 #### 全局方法
 
-Base 基础上下文
+Base 基础
 
 ```
 ```
 
-User 用户上下文
+User 用户
 
 ```
 ```
 
-Task 任务上下文
+Task 任务
 
 ```
 ```
 
-Bean 对象上下文
+Bean 对象
 
 ```
 ```
