@@ -95,6 +95,28 @@ Pear Admin Pro
 
 ### 功能手册
 
+#### 全局方法
+
+Base Context 基础上下文
+
+```
+```
+
+User Context 用户上下文
+
+```
+```
+
+Task Context 引用上下文
+
+```
+```
+
+Bean Context 对象上下文
+
+```
+```
+
 #### 权限控制
 
 #### 参数验证
