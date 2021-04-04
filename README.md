@@ -99,6 +99,8 @@ Pear Admin Pro
 
 #### 参数验证
 
+文档
+
 | 注解 | 功能 |
 |----|----|
 | @AssertFalse   | 必须是 false  |
@@ -120,6 +122,23 @@ Pear Admin Pro
 | @Past  | 必须是过去的时间   |
 | @PositiveOrZero  | 正数或 0   |
 | @Size   | 校验容器的元素个数  |
+
+
+示例
+
+```
+@Data
+public class paramDome{
+    
+    @NotNull(message = "账户不能为空")
+    private String username;
+
+    @NotNull(message = "密码不能为空")
+    private string password;
+    
+}
+
+```
 
 #### 接口响应
 
