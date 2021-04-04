@@ -97,22 +97,22 @@ Pear Admin Pro
 
 #### 全局方法
 
-Base Context 基础上下文
+Base 基础上下文
 
 ```
 ```
 
-User Context 用户上下文
+User 用户上下文
 
 ```
 ```
 
-Task Context 引用上下文
+Task 任务上下文
 
 ```
 ```
 
-Bean Context 对象上下文
+Bean 对象上下文
 
 ```
 ```
