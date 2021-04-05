@@ -1,5 +1,6 @@
 package com.pearadmin.pro.common.cache.impl;
 
+import java.util.stream.Collectors;
 import com.pearadmin.pro.common.cache.BaseCache;
 import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.service.SysConfigService;
@@ -7,7 +8,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * 全 局 配 置 缓 存

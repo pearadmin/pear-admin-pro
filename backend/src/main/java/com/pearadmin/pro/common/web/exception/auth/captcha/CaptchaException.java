@@ -6,7 +6,7 @@ import org.springframework.security.core.AuthenticationException;
  * 验 证 码 异 常 基 类
  *
  * Author: 就眠仪式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/23
  * */
 public class CaptchaException extends AuthenticationException {
 

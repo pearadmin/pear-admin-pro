@@ -4,7 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.util.Strings;
 import com.pearadmin.pro.common.web.domain.Result;
-import com.pearadmin.pro.common.aop.annotation.Log;
+import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
@@ -42,7 +42,7 @@ public class SysUserController extends BaseController {
     @DataScope
     @GetMapping("page")
     @ApiOperation(value = "查询用户")
-    @Log(title = "查询用户", describe = "获取用户列表")
+    @SysLog(title = "查询用户", describe = "获取用户列表")
     public Result page(Page page, SysUser request){
         IPage<SysUser> pageInfo = sysUserService.lambdaQuery()
                 .eq(Strings.isNotBlank(request.getUsername()),SysUser::getUsername,request.getUsername())

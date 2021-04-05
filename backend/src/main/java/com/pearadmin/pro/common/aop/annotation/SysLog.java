@@ -1,6 +1,7 @@
 package com.pearadmin.pro.common.aop.annotation;
 
 import com.pearadmin.pro.common.aop.enums.Action;
+
 import java.lang.annotation.*;
 
 /**
@@ -12,7 +13,7 @@ import java.lang.annotation.*;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE, ElementType.METHOD})
-public @interface Log {
+public @interface SysLog {
 
     /**
      * Title 默认输入

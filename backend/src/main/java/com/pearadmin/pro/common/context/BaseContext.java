@@ -41,7 +41,7 @@ public class BaseContext {
      * @param error 异常
      * */
     @Async
-    public void record(String title, String describe, Action action, Boolean state ,String result, String error) {
+    public void record(String title, String describe, Action action, Boolean state , String result, String error) {
        SysLog sysLog = new SysLog();
        sysLog.setTitle(title);
        sysLog.setAction(action);

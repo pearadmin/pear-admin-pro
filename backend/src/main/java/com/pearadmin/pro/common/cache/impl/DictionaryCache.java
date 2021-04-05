@@ -16,6 +16,7 @@ public class DictionaryCache extends BaseCache<String> {
 
     @Override
     public Map<String, String> load() {
+
         return null;
     }
 }

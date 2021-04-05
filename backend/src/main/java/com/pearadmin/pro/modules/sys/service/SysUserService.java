@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 
@@ -13,19 +14,27 @@ public interface SysUserService extends IService<SysUser> {
      *
      * @param userId 用户编号
      * */
-    public List<SysRole> role(String userId);
+    List<SysRole> role(String userId);
 
     /**
      * 获取用户列表
      *
      * @param sysUser 参数实体
      * */
-    public List<SysUser> list(SysUser sysUser);
+    List<SysUser> list(SysUser sysUser);
 
     /**
      * 获取用户列表 (分页)
      *
      * @param sysUser 参数实体
      * */
-    public List<SysUser> page(SysUser sysUser);
+    List<SysUser> page(SysUser sysUser);
+
+    /**
+     * 获取用户菜单
+     *
+     * @param userId 用户编号
+     * */
+    List<SysPower> menu(String userId);
+
 }

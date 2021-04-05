@@ -11,7 +11,6 @@ import javax.validation.constraints.NotNull;
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
- * Extend: {@link SecureUser}
  * */
 @Data
 @Alias("SysUser")

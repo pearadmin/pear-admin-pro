@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.aop;
 
-import com.pearadmin.pro.common.aop.annotation.Log;
+import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.pearadmin.pro.common.aop.enums.Action;
 import com.pearadmin.pro.common.context.BaseContext;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
  * */
 @Aspect
 @Component
-public class LogAspect {
+public class SysLogAspect {
 
     /**
      * 基 础 上 下 文
@@ -32,7 +32,7 @@ public class LogAspect {
     /**
      * 切 面 编 程
      * */
-    @Pointcut("@annotation(com.pearadmin.pro.common.aop.annotation.Log) || @within(com.pearadmin.pro.common.aop.annotation.Log)")
+    @Pointcut("@annotation(com.pearadmin.pro.common.aop.annotation.SysLog) || @within(com.pearadmin.pro.common.aop.annotation.SysLog)")
     public void dsPointCut() { }
 
     /**
@@ -44,7 +44,7 @@ public class LogAspect {
         Object result = null;
 
         // 注 解 解 析
-        Log annotation = getAnnotation(joinPoint);
+        SysLog annotation = getAnnotation(joinPoint);
         String title = annotation.title();
         Action action = annotation.action();
         String describe = annotation.describe();
@@ -54,14 +54,14 @@ public class LogAspect {
             // 执 行 方 法
             result = joinPoint.proceed();
             // 记 录 日 志
-            context.record(title, describe,action, true, null,null);
+            context.record(title, describe, action, true, null,null);
 
         }catch (Exception e){
 
             // 堆 栈 信 息
             e.printStackTrace();
             // 异 常 处 理
-            context.record(title, describe,action, true, null, null);
+            context.record(title, describe, action, true, null, null);
         }
         return result;
     }
@@ -69,16 +69,16 @@ public class LogAspect {
     /**
      * 获 取 注 解
      * */
-    public Log getAnnotation(ProceedingJoinPoint point) {
+    public SysLog getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();
-        Log targetLog = targetClass.getAnnotation(Log.class);
-        if ( targetLog != null) {
-            return targetLog;
+        SysLog targetSysLog = targetClass.getAnnotation(SysLog.class);
+        if ( targetSysLog != null) {
+            return targetSysLog;
         } else {
             Method method = signature.getMethod();
-            Log log = method.getAnnotation(Log.class);
-            return log;
+            SysLog sysLog = method.getAnnotation(SysLog.class);
+            return sysLog;
         }
     }
 }

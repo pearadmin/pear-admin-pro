@@ -28,4 +28,5 @@ public class SysUserRole extends BaseDomain {
      * 角色编号
      * */
     private String roleId;
+
 }

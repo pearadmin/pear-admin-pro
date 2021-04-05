@@ -6,7 +6,7 @@ import org.springframework.security.core.AuthenticationException;
  * TOKEN 异 常 类
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/23
  * */
 public class TokenException extends AuthenticationException {
 

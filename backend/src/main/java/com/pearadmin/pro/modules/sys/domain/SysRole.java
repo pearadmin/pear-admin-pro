@@ -7,6 +7,8 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
+import javax.validation.constraints.NotBlank;
+
 /**
  * 角色模型
  *
@@ -27,12 +29,14 @@ public class SysRole extends BaseDomain {
      * 名称
      * */
     @TableField("name")
+    @NotBlank(message = "名称不能为空")
     private String name;
 
     /**
      * 标识
      * */
     @TableField("code")
+    @NotBlank(message = "标识不能为空")
     private String code;
 
     /**

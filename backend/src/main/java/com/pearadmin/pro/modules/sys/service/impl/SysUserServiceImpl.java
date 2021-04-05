@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.mapper.SysRoleMapper;
@@ -16,6 +17,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
     @Resource
     private SysRoleMapper sysRoleMapper;
 
+    @Resource
+    private SysUserMapper sysUserMapper;
+
     @Override
     public List<SysRole> role(String userId) {
         return sysRoleMapper.selectRoleByUserId(userId);
@@ -28,6 +32,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 
     @Override
     public List<SysUser> page(SysUser sysUser) {
+        return null;
+    }
+
+    @Override
+    public List<SysPower> menu(String userId) {
         return null;
     }
 }
