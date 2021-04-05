@@ -4,7 +4,7 @@ package com.pearadmin.pro.common.constant;
  * Controller 静态配置
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/10/23
+ * CreateTime: 2021/04/23
  * */
 public class ControllerConstant {
 

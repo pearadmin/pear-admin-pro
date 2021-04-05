@@ -31,7 +31,8 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * Describe: 数据权限
+ * 数 据 权 限 拦 截 器
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */

@@ -1,9 +1,10 @@
 package com.pearadmin.pro.common.constant;
 
 /**
- * Describe: Redis 缓存区分前缀
+ * Redis 缓存区分前缀
+ *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/10/23
+ * CreateTime: 2021/04/23
  * */
 public class CacheNameConstant {
 

@@ -1,5 +1,6 @@
 package com.pearadmin.pro.common.cache;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
@@ -48,6 +49,8 @@ public abstract class BaseCache<T> {
     @Scheduled(fixedDelay = 10000)
     public void time()
     {
+        /// System Log
+
         cache = load();
     }
 }

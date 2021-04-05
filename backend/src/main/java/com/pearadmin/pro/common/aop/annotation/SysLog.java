@@ -5,10 +5,10 @@ import com.pearadmin.pro.common.aop.enums.Action;
 import java.lang.annotation.*;
 
 /**
- * 行 为 日 志 注 解
+ * 行为日志注解
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/10/23
+ * CreateTime: 2021/04/20
  * */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)

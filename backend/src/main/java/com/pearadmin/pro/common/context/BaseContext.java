@@ -76,6 +76,13 @@ public class BaseContext {
      * */
     public void sendSms(){
 
-        //
+        
+    }
+
+    /**
+     * 文件存储
+     * */
+    public void upload(){
+
     }
 }

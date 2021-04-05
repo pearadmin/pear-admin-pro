@@ -8,5 +8,11 @@ import java.util.List;
 
 public interface SysRoleService extends IService<SysRole> {
 
-    public List<SysDept> dept(String roleId);
+    /**
+     * 获取角色部门
+     *
+     * @param roleId 用户编号
+     * */
+    List<SysDept> dept(String roleId);
+
 }

@@ -9,6 +9,11 @@ package com.pearadmin.pro.common.constant;
 public class SecurityConstant {
 
     /**
+     * 是否开启预览模式
+     * */
+    public static final Boolean PREVIEW_MODE = true;
+
+    /**
      * 不需要认证的接口资源
      */
     public static final String HTTP_ACT_MATCHERS="/webjars/springfox-swagger-ui/fonts/**,/swagger-resources,/swagger-resources/configuration/**,/webjars**,/swagger-ui.html,/webjars/springfox-swagger-ui/**,/v2/api-docs,/api/login,/api/captcha/create";

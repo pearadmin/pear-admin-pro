@@ -29,6 +29,9 @@ public class DictionaryCache extends BaseCache<List<SysDictData>> {
     @Resource
     private SysDictTypeService sysDictTypeService;
 
+    /**
+     * 加载 字典 数据
+     */
     @Override
     public Map<String, List<SysDictData>> load()
     {

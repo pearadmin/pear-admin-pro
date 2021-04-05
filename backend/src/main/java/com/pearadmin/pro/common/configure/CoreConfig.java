@@ -1,6 +1,8 @@
 package com.pearadmin.pro.common.configure;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
+import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClientBuilder;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
@@ -18,6 +20,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import redis.clients.jedis.JedisPool;
 import redis.clients.jedis.JedisPoolConfig;
@@ -111,4 +114,11 @@ public class CoreConfig implements WebMvcConfigurer {
         return corsConfiguration;
     }
 
+    /**
+     * Oss 存储
+     * */
+    @Bean
+    public OSS oss(){
+       return new OSSClientBuilder().build("","","");
+    }
 }

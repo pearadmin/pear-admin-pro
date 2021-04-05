@@ -21,6 +21,9 @@ public class AllocationCache extends BaseCache<String> {
     @Resource
     private SysConfigService sysConfigService;
 
+    /**
+     * 加载 配置 数据
+     */
     @Override
     public Map<String, String> load()
     {
