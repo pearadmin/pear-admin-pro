@@ -1,6 +1,9 @@
 package com.pearadmin.pro.common.cache;
 
+import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -10,6 +13,7 @@ import java.util.Map;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  * */
+@EnableScheduling
 public abstract class BaseCache<T> {
 
     /**
@@ -20,18 +24,16 @@ public abstract class BaseCache<T> {
     /**
      * 获取
      * */
-    public T get(String key){
-
-        // GET API
+    public T get(String key)
+    {
         return cache.get(key);
     }
 
     /**
      * 刷新
      * */
-    public void reload(){
-
-        // RELOAD
+    public void reload()
+    {
         cache = load();
     }
 
@@ -43,10 +45,9 @@ public abstract class BaseCache<T> {
     /**
      * 刷新
      * */
-    @Scheduled(fixedDelay = 5000)
-    public void time(){
-
-        // LOAD
+    @Scheduled(fixedDelay = 10000)
+    public void time()
+    {
         cache = load();
     }
 }
