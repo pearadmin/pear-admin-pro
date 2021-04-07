@@ -23,10 +23,10 @@
         <common.pool.version>2.6.2</common.pool.version>
         <fastjson.version>1.2.45</fastjson.version>
         <token.version>0.9.1</token.version>
+        <datasource.version>3.3.0</datasource.version>
         <mybatis.plus.version>3.4.1</mybatis.plus.version>
         <common.lang.version>3.5</common.lang.version>
         <mysql.version>8.0.22</mysql.version>
-        <dynamic.datasource.version>3.3.0</dynamic.datasource.version>
         <swagger.version>2.9.2</swagger.version>
         <captcha.version>1.6.2</captcha.version>
         <api.version>2.3.0</api.version>
@@ -34,7 +34,7 @@
         <hutool.version>5.5.7</hutool.version>
         <jedis.version>2.9.0</jedis.version>
         <oss.version>3.10.2</oss.version>
-        <page.version>1.2.10</page.version>
+        <page.version>1.3.0</page.version>
     </properties>
 
     <dependencies>
@@ -139,7 +139,7 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>dynamic-datasource-spring-boot-starter</artifactId>
-            <version>${dynamic.datasource.version}</version>
+            <version>${datasource.version}</version>
         </dependency>
         <!-- 接 口 文 档 -->
         <dependency>
@@ -173,6 +173,11 @@
             <groupId>com.aliyun.oss</groupId>
             <artifactId>aliyun-sdk-oss</artifactId>
             <version>${oss.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper-spring-boot-starter</artifactId>
+            <version>${page.version}</version>
         </dependency>
     </dependencies>
 

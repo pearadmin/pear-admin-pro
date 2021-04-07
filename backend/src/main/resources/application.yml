@@ -12,7 +12,7 @@ spring:
 ## mybatis 配置
 mybatis-plus:
   ## mapper 文件位置
-  mapper-locations: classpath*:com/pearadmin/modules/**/xml/*Mapper.xml
+  mapper-locations: classpath*:com/pearadmin/pro/modules/**/xml/*Mapper.xml
   ## domain 实体别名
   type-aliases-package: com.pearadmin
 

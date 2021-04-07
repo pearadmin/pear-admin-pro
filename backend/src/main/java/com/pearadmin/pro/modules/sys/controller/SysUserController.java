@@ -1,19 +1,13 @@
 package com.pearadmin.pro.modules.sys.controller;
 
-import com.pearadmin.pro.common.web.base.domain.PageDomain;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
 import com.pearadmin.pro.modules.sys.validation.SysUserValid;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.apache.logging.log4j.util.Strings;
 import com.pearadmin.pro.common.web.domain.Result;
-import com.pearadmin.pro.common.aop.annotation.SysLog;
-import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.pearadmin.pro.common.constant.ControllerConstant;
-import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import com.pearadmin.pro.common.web.base.BaseController;
 import org.springframework.validation.annotation.Validated;
@@ -44,8 +38,6 @@ public class SysUserController extends BaseController {
      *
      * @param sysUserValid 参数验证
      * @param sysUser 用户实体
-     *
-     * @return {@link Result}
      */
     @PostMapping("add")
     public Result add(@RequestBody @Validated SysUserValid sysUserValid,
@@ -59,12 +51,9 @@ public class SysUserController extends BaseController {
      *
      * @param sysUserValid 参数验证
      * @param sysUser 用户实体
-     *
-     * @return {@link Result}
      * */
     @PutMapping("edit")
-    public Result edit(@RequestBody @Validated SysUserValid sysUserValid,
-                       @RequestBody SysUser sysUser){
+    public Result edit(@RequestBody @Validated SysUserValid sysUserValid, @RequestBody SysUser sysUser){
 
         return success();
     }
@@ -72,15 +61,20 @@ public class SysUserController extends BaseController {
     /**
      * 查询用户列表
      *
-     * @param request 查询参数 {@link SysUserRequest}
-     *
-     * @return {@link Result}
+     * @param request 查询参数
      * */
     @GetMapping("page")
-    public Result page(SysUserRequest request, PageDomain pageDomain){
-
-        return success();
+    public Result page(SysUserRequest request){
+        return success(sysUserService.page(request));
     }
+
+    /**
+     * 查询用户列表
+     *
+     * @param request 查询参数
+     * */
+    @GetMapping("list")
+    public Result list(SysUserRequest request){ return success(sysUserService.list(request)); }
 
     /**
      * 获取用户菜单

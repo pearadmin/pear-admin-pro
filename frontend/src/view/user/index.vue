@@ -125,7 +125,7 @@ export default {
     const infoParam = ref({});
     const addParam = ref({});
 
-    const param = reactive({ current: 1, size: 10, username: null });
+    const param = reactive({ pageNum: 1, pageSize: 10, username: null });
     const pagination = reactive({
       total: 0,
       pageSize: 10,
@@ -136,7 +136,7 @@ export default {
     const loadData = async function (param) {
       loading.value = true;
       const response = await page(param);
-      data.value = response.data.records;
+      data.value = response.data.record;
       pagination.total = response.data.total;
       loading.value = false;
     };

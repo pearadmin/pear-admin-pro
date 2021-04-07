@@ -1,14 +1,15 @@
-package com.pearadmin.pro.common.tools.support.page;
+package com.pearadmin.pro.common.web.base.page;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 内存分页请求对象
+ * 分页参数
  *
- * @author 就眠仪式
- */
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/04/01
+ * */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class PageRequest {
     /**
      * 当前页
      * */
-    private int pageIndex;
+    private int pageNum;
 
     /**
      * 页数量
