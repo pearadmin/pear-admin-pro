@@ -114,11 +114,4 @@ public class CoreConfig implements WebMvcConfigurer {
         return corsConfiguration;
     }
 
-    /**
-     * Oss 存储
-     * */
-    @Bean
-    public OSS oss(){
-       return new OSSClientBuilder().build("","","");
-    }
 }

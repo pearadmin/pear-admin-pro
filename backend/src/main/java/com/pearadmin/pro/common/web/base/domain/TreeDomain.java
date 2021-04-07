@@ -5,7 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import java.util.List;
 
 /**
- * Bae Tree 实体
+ * Base Tree 实体
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/23

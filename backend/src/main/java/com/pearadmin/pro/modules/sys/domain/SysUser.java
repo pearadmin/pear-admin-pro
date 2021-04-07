@@ -20,14 +20,12 @@ public class SysUser extends SecureUser {
      * 昵称
      * */
     @TableField("nickname")
-    @NotNull(message = "昵称不能为空")
     private String nickname;
 
     /**
      * 邮箱
      * */
     @TableField("email")
-    @NotNull(message = "邮箱不能为空")
     private String email;
 
     /**

@@ -1,5 +1,8 @@
 package com.pearadmin.pro.modules.sys.controller;
 
+import com.pearadmin.pro.common.web.base.domain.PageDomain;
+import com.pearadmin.pro.modules.sys.param.SysUserRequest;
+import com.pearadmin.pro.modules.sys.validation.SysUserValid;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.util.Strings;
@@ -30,27 +33,60 @@ import java.util.List;
 @RequestMapping(ControllerConstant.PREFIX_SYS + "user")
 public class SysUserController extends BaseController {
 
+    /**
+     * 服务注入
+     * */
     @Resource
     private SysUserService sysUserService;
 
-    @GetMapping("add")
-    public Result add(@Validated @RequestBody SysUser user){
+    /**
+     * 新增用户信息
+     *
+     * @param sysUserValid 参数验证
+     * @param sysUser 用户实体
+     *
+     * @return {@link Result}
+     */
+    @PostMapping("add")
+    public Result add(@RequestBody @Validated SysUserValid sysUserValid,
+                      @RequestBody SysUser sysUser){
 
         return success();
     }
 
-    @DataScope
-    @GetMapping("page")
-    @ApiOperation(value = "查询用户")
-    @SysLog(title = "查询用户", describe = "获取用户列表")
-    public Result page(Page page, SysUser request){
-        IPage<SysUser> pageInfo = sysUserService.lambdaQuery()
-                .eq(Strings.isNotBlank(request.getUsername()),SysUser::getUsername,request.getUsername())
-                .eq(Strings.isNotBlank(request.getEmail()),SysUser::getEmail,request.getEmail())
-                .page(page);
-        return success(pageInfo);
+    /**
+     * 修改用户信息
+     *
+     * @param sysUserValid 参数验证
+     * @param sysUser 用户实体
+     *
+     * @return {@link Result}
+     * */
+    @PutMapping("edit")
+    public Result edit(@RequestBody @Validated SysUserValid sysUserValid,
+                       @RequestBody SysUser sysUser){
+
+        return success();
     }
 
+    /**
+     * 查询用户列表
+     *
+     * @param request 查询参数 {@link SysUserRequest}
+     *
+     * @return {@link Result}
+     * */
+    @GetMapping("page")
+    public Result page(SysUserRequest request, PageDomain pageDomain){
+
+        return success();
+    }
+
+    /**
+     * 获取用户菜单
+     *
+     * @return {@link Result}
+     * */
     @GetMapping("menu")
     @ApiOperation(value = "用户菜单")
     public Result menu(){

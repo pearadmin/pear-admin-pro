@@ -16,3 +16,10 @@ mybatis-plus:
   ## domain 实体别名
   type-aliases-package: com.pearadmin
 
+## 分页工具
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+

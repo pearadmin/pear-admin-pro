@@ -23,7 +23,6 @@ import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.springframework.stereotype.Component;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
-
 import java.lang.reflect.Method;
 import java.sql.SQLException;
 import java.util.HashSet;
