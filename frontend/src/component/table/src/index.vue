@@ -204,6 +204,15 @@ export default defineComponent({
       await fetchData();
     });
 
+
+     watch(
+      () => props.param,
+      () => {
+        fetchData();
+      },
+      {deep: true}
+    )
+
     return {
       /// 数据信息
       ...toRefs(state),

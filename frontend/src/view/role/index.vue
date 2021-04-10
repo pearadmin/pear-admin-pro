@@ -97,7 +97,6 @@ export default {
 
     /// 查询操作
     const search = function(value) {
-      alert(JSON.stringify(value));
       state.param = value;
     }
 
