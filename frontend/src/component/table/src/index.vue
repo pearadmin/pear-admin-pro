@@ -1,258 +1,222 @@
+<template>
+  <div id="pro-table">
+    <div class="pro-table-tool">
+      <!-- 表格工具栏 -->
+      <div class="pro-table-prev">
+        <template :key="index" v-for="(item, index) in toolbar">
+          <!-- 更多按钮 -->
+          <a-dropdown v-if="item.children && item.children.length > 0">
+            <a-button @click="item.event(selectedRowKeys)">
+              {{ item.label }}
+            </a-button>
+            <template #overlay>
+              <a-menu>
+                <!-- 遍历子集 -->
+                <a-menu-item v-for="(child, i) in item.children" :key="i">
+                  <a @click="child.event(selectedRowKeys)">
+                    {{ child.label }}
+                  </a>
+                </a-menu-item>
+              </a-menu>
+            </template>
+          </a-dropdown>
+          <a-button
+            v-else
+            :type="index == 0 ? 'primary' : ''"
+            @click="item.event(selectedRowKeys)"
+          >
+            {{ item.label }}
+          </a-button>
+        </template>
+      </div>
+      <!-- 默认工具栏 -->
+      <div class="pro-table-next">
+        <!-- 刷新工具栏 -->
+        <a-button @click="reload">
+          <template #icon><SyncOutlined/></template>
+        </a-button>
+        <!-- 过滤工具栏 -->
+        <a-dropdown>
+          <a-button>
+            <template #icon><AppstoreOutlined /></template>
+          </a-button>
+          <template #overlay>
+            <a-menu class="filtration">
+              <a-checkbox-group
+                v-model:value="filtrationColumnKeys"
+                @change="filtration"
+              >
+                <a-row>
+                  <a-col
+                    :span="24"
+                    :key="index"
+                    v-for="(filtrationColumn, index) in filtrationColumns"
+                  >
+                    <a-checkbox :value="filtrationColumn.value">
+                      {{ filtrationColumn.label }}
+                    </a-checkbox>
+                  </a-col>
+                </a-row>
+              </a-checkbox-group>
+            </a-menu>
+          </template>
+        </a-dropdown>
+        <a-button>
+          <template #icon><ExportOutlined /></template>
+        </a-button>
+      </div>
+    </div>
+    <!-- 表格组件 -->
+    <a-table
+      @change="fetch"
+      :columns="columns"
+      :loading="loading"
+      :pagination="pagination"
+      :dataSource="datasource"
+      :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
+    >
+      <!-- 默认插槽 [自定义列替换]-->
+      <slot></slot>
+      <!-- 行操作 -->
+      <template v-slot:action="{ record }">
+        <span>
+          <template :key="index" v-for="(item, index) in operate">
+            <!-- 下拉操作 -->
+            <a-dropdown v-if="item.children && item.children.length > 0">
+              <a> {{ item.label }} </a>
+              <template #overlay>
+                <a-menu>
+                  <!-- 遍历子集 -->
+                  <a-menu-item v-for="(child, i) in item.children" :key="i">
+                    <a @click="child.event(record)"> {{ child.label }} </a>
+                  </a-menu-item>
+                </a-menu>
+              </template>
+            </a-dropdown>
+            <!-- 单个操作 -->
+            <a v-else @click="item.event(record)"> {{ item.label }} </a>
+            <a-divider type="vertical" />
+          </template>
+        </span>
+      </template>
+    </a-table>
+  </div>
+</template>
 <script>
-import {defineComponent, onMounted, reactive, Fragment} from 'vue'
-import T from 'ant-design-vue/es/table/Table'
-import get from 'lodash.get'
-import {useRoute} from "vue-router";
+import "./index.less";
+import T from "ant-design-vue/es/table/Table";
+import {defineComponent, onMounted, reactive, toRefs, watch } from "vue";
+import {
+  AppstoreOutlined,
+  ExportOutlined,
+  SyncOutlined,
+} from "@ant-design/icons-vue";
 
-const TProps = T.props
+const TProps = T.props;
 export default defineComponent({
-  name: 'p-table',
+  /// 组件名称
+  name: "pro-table",
+  /// 图标组件
+  components: {
+    AppstoreOutlined,
+    ExportOutlined,
+    SyncOutlined,
+  },
+  /// 数据来源
   props: Object.assign({}, TProps, {
+    /// 扩展参数
+    param: {
+      type: Object
+    },
+    /// 数据来源
     fetch: {
       type: Function,
-      required: false
+      required: false,
     },
-    alert: {
-      type: [Object, Boolean],
-      default: null
+    /// 数据解析
+    columns: {
+      type: Array,
+      required: true,
     },
-    rowSelection: {
-      type: Object,
-      default: null
+    /// 头工具栏
+    toolbar: {
+      type: Array,
     },
-    showAlertInfo: {
-      type: Boolean,
-      default: false
+    /// 行工具栏
+    operate: {
+      type: Array,
     },
-    pageNum: {
-      type: Number,
-      default: 1
-    },
-    pageSize: {
-      type: Number,
-      default: 10
-    },
-    showSizeChanger: {
-      type: Boolean,
-      default: true
-    },
-    showPagination: {
-      type: Boolean,
-      default: true
-    },
-    pageURI: {
-      type: Boolean,
-      default: false
-    },
-    rowKey: {
-      type: [String, Function],
-      default: 'key'
-    },
-    size: {
-      type: String,
-      default: 'default'
-    }
   }),
-  setup(props, {attrs, slots, emit}) {
-    // data
+  setup(props) {
+
+    /// 状态共享
     const state = reactive({
-      needTotalList: [],
-      selectedRows: [],
+      pagination: Object.assign({}, props.pagination),
+      datasource: [],
+      loading: true,
+      columns: props.columns,
+      filtrationColumnKeys: [],
       selectedRowKeys: [],
-      localLoading: false,
-      localDataSource: [],
-      localPagination: Object.assign({}, props.pagination)
-    })
+    });
 
-    // 统计
-    const initTotalList = columns => {
-      const totalList = []
-      columns && columns instanceof Array && columns.forEach(column => {
-        if (column.needTotal) {
-          totalList.push({
-            ...column,
-            total: 0
-          })
-        }
-      })
-      return totalList
+    /// 默认操作
+    if (props.operate != false) {
+      state.columns.push({dataIndex: "action",key: "action",title: "操作",slots: { customRender: "action" },fixed: "right"});
     }
 
-    /**
-     * 加载表格数据
-     * @param e
-     */
-    const fetchData = async (pagination, filters, sorter) => {
-      state.localLoading = true
-      const params = Object.assign(
-        {
-          pageNo: (pagination && pagination.current) ||
-            props.showPagination && state.localPagination.current || props.pageNum,
-          pageSize: (pagination && pagination.pageSize) ||
-            props.showPagination && state.localPagination.pageSize || props.pageSize
-        },
-        (sorter && sorter.field && {
-          sortField: sorter.field
-        }) || {},
-        (sorter && sorter.order && {
-          sortOrder: sorter.order
-        }) || {}, {
-          ...filters
-        })
+    /// 过滤字段
+    const filtrationColumns = [];
+    props.columns.forEach(function (item) {
+      filtrationColumns.push({ label: item.title, value: item.key });
+      state.filtrationColumnKeys.push(item.key);
+    });
 
-      try {
-        const {pageNo: responsePageNo, total: responseTotal, data: responseData } = await props.fetch(params)
-        state.localPagination = props.showPagination && Object.assign({}, state.localPagination, {
-          current: responsePageNo, // 返回结果中的当前分页数
-          total: responseTotal, // 返回结果中的总记录数
-          showSizeChanger: props.showSizeChanger,
-          pageSize: (pagination && pagination.pageSize) ||
-            state.localPagination.pageSize
-        }) || false
-        // 为防止删除数据后导致页面当前页面数据长度为 0 ,自动翻页到上一页
-        if (responseData.length === 0 && props.showPagination && state.localPagination.current > 1) {
-          state.localPagination.current--
-          await fetchData()
-          return
-        }
-        if ((['auto', true].includes(props.showPagination) && responseTotal <= (responsePageNo * state.localPagination.pageSize))) {
-          state.localPagination.hideOnSinglePage = true
-        }
-        state.localDataSource = responseData // 返回结果中的数组数据
-      } catch (e) {
-        console.log(e)
-      } finally {
-        state.localLoading = false
-      }
-    }
+    /// 过滤字段
+    const filtration = function (value) {
+      state.columns = props.columns.filter((item) => value.includes(item.key));
+      state.filtrationColumnKeys = value;
+    };
 
-    // 初次加载
+    /// 选中回调
+    const onSelectChange = (selectedRowKeys) => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
+
+    /// 数据请求
+    const fetchData = async () => {
+      /// 开启加载
+      state.loading = true;
+      /// 请求数据
+      const { total, data } = await props.fetch(Object.assign({}, props.pagination, props.param));
+      /// 状态重置
+      state.pagination.total = total;
+      state.datasource = data;
+      state.loading = false;
+    };
+
+    /// 刷新方法
+    const reload = function () {
+      fetchData();
+    };
+
+    /// 初始数据
     onMounted(async () => {
-      const { pageNo: routePageNo } = useRoute().params
-      const localPageNum = props.pageURI && (routePageNo && parseInt(routePageNo)) || props.pageNum
-      state.localPagination = ['auto', true].includes(props.showPagination) && Object.assign({}, state.localPagination, {
-        current: localPageNum,
-        pageSize: props.pageSize,
-        showSizeChanger: props.showSizeChanger
-      }) || false
-      state.needTotalList = initTotalList(props.columns)
-      await fetchData()
-    })
+      await fetchData();
+    });
 
-    // 更新选择
-    const updateSelect = (selectedRowKeys, selectedRows) => {
-      state.selectedRows = selectedRows
-      state.selectedRowKeys = selectedRowKeys
-      const list = state.needTotalList
-      state.needTotalList = list.map(item => {
-        return {
-          ...item,
-          total: selectedRows.reduce((sum, val) => {
-            const total = sum + parseInt(get(val, item.dataIndex))
-            return isNaN(total) ? 0 : total
-          }, 0)
-        }
-      })
-    }
-
-    /**
-     * 清空 table 已选中项
-     */
-    const clearSelected = () => {
-      if (props.rowSelection) {
-        props.rowSelection.onChange([], [])
-        updateSelect([], [])
-      }
-    }
-    /**
-     * 处理交给 table 使用者去处理 clear 事件时，内部选中统计同时调用
-     * @param callback
-     * @returns {*}
-     */
-    const renderClear = (callback) => {
-      if (state.selectedRowKeys.length <= 0) return null
-      return (
-        <a style="margin-left: 24px" onClick={() => {
-          callback()
-          clearSelected()
-        }}>清空</a>
-      )
-    }
-
-    const renderAlert = () => {
-      // 绘制统计列数据
-      const needTotalItems = state.needTotalList.map((item) => {
-        return (<span style="margin-right: 12px">
-          {item.title}总计 <a style="font-weight: 600">{!item.customRender ? item.total : item.customRender(item.total)}</a>
-        </span>)
-      })
-
-      // 绘制 清空 按钮
-      const clearItem = (props.alert && typeof props.alert.clear === 'boolean' && props.alert.clear) ? (
-        renderClear(clearSelected)
-      ) : (props.alert !== null && typeof props.alert.clear === 'function') ? (
-        renderClear(props.alert.clear)
-      ) : null
-
-      // 绘制 alert 组件
-      const alertSlots = {
-        message: () => (
-          <Fragment>
-            <span style="margin-right: 12px">已选择: <a style="font-weight: 600">{state.selectedRows.length}</a></span>
-            {needTotalItems}
-            {clearItem}
-          </Fragment>
-        )
-      }
-      return (
-        <a-alert type="success" showIcon={true} style="margin-bottom: 16px" v-slots={alertSlots}></a-alert>
-      )
-    }
-
-    return () => {
-      // table props
-      const showAlert = (typeof props.alert === 'object' && props.alert !== null && props.alert.show) && typeof props.rowSelection.selectedRowKeys !== 'undefined' || props.alert
-      const localKeys = Object.keys(state)
-      const tableProps = {}
-      Object.keys(T.props).forEach(k => {
-        const localKey = `local${k.substring(0, 1).toUpperCase()}${k.substring(1)}`
-        if (localKeys.includes(localKey)) {
-          tableProps[k] = state[localKey]
-          return tableProps[k]
-        }
-        if (k === 'rowSelection') {
-          if (showAlert && props.rowSelection) {
-            // 如果需要使用alert，则重新绑定 rowSelection 事件
-            tableProps[k] = {
-              ...props.rowSelection,
-              selectedRows: state.selectedRows,
-              selectedRowKeys: state.selectedRowKeys,
-              onChange: (selectedRowKeys, selectedRows) => {
-                updateSelect(selectedRowKeys, selectedRows)
-                typeof props[k].onChange !== 'undefined' && props[k].onChange(selectedRowKeys, selectedRows)
-              }
-            }
-            return tableProps[k]
-          } else if (!props.rowSelection) {
-            // 如果没打算开启 rowSelection 则清空默认的选择项
-            tableProps[k] = null
-            return tableProps[k]
-          }
-        }
-        props[k] && (tableProps[k] = props[k])
-        return tableProps[k]
-      })
-      return (
-        <div>
-          { showAlert ? renderAlert() : null }
-          <a-table
-            {...tableProps}
-            v-slots={slots}
-            change={fetchData}
-          ></a-table>
-        </div>
-      )
-    }
-  }
-})
+    return {
+      /// 数据信息
+      ...toRefs(state),
+      /// 数据加载
+      fetch: fetchData,
+      /// 刷新方法
+      reload: reload,
+      /// 过滤字段
+      filtrationColumns,
+      filtration,
+      /// 选中字段
+      onSelectChange,
+    };
+  },
+});
 </script>

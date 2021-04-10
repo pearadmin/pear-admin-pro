@@ -192,6 +192,8 @@ export default defineComponent({
     DownOutlined,
   },
   setup () {
+
+    /// 加载数据
     const fetch = () => {
       return new Promise((resolve, reject) => {
         setTimeout(() => {
@@ -204,6 +206,7 @@ export default defineComponent({
       })
     }
 
+    /// 状态共享
     const state = reactive({
       selectedRowKeys: [],
       selectedRows: []
@@ -272,10 +275,12 @@ export default defineComponent({
       }
     ]
 
+    /// 查询表格
     const handleSearch = data => {
       console.log('query-data ==> ', data)
     }
 
+    /// 表单重置
     const handleReset = e => {
       console.log('reset form')
     }

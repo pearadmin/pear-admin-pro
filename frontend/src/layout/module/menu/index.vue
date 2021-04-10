@@ -32,14 +32,8 @@ export default {
     const { getters, commit } = useStore();
     const route = useRoute();
     const layout = computed(() => getters.layout);
-    const menuModel = computed(() =>
-      getters.layout == "layout-head" ? "horizontal" : "inline"
-    );
-    const menuTheme = computed(() =>
-      getters.theme === "theme-dark" || getters.theme === "theme-night"
-        ? "dark"
-        : "light"
-    );
+    const menuModel = computed(() => getters.layout == "layout-head" ? "horizontal" : "inline");
+    const menuTheme = computed(() => getters.theme === "theme-dark" || getters.theme === "theme-night" ? "dark" : "light");
     const storeOpenKey = computed(() => getters.openKey);
     const activeKey = computed(() => {
       const propRoute = route.matched[0];

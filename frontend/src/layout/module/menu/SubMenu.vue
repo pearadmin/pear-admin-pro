@@ -12,7 +12,7 @@
       <router-link :to="item.path + '/' + item.children[0].path">
         <MenuIcon />
         <!-- <span>{{ item.meta.title }}</span> -->
-        <span>{{ t(item.meta.i18nTitle) }}</span>
+        <span>{{ t(item.meta.i18n) }}</span>
       </router-link>
     </a-menu-item>
 
@@ -27,7 +27,7 @@
           <MenuIcon v-if="level === 0" />
           <span v-else><div class="indent"></div></span>
           <!-- <span>{{ item.meta.title }}</span> -->
-          <span>{{ t(item.meta.i18nTitle) }}</span>
+          <span>{{ t(item.meta.i18n) }}</span>
         </span>
       </template>
       <!-- 递归 item.children -->
@@ -50,12 +50,11 @@
         <MenuIcon v-if="level === 0" />
         <span v-else><div class="indent"></div></span>
         <!-- <span>{{ item.meta.title }} </span>-->
-        <span>{{ t(item.meta.i18nTitle) }}</span>
+        <span>{{ t(item.meta.i18n) }}</span>
       </router-link>
     </a-menu-item>
   </template>
 </template>
-
 <script>
 import { computed } from "vue";
 import path from "path";
