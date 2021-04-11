@@ -21,6 +21,7 @@ const getters = {
   routerAnimate: state => state.layout.routerAnimate,
   language: state => state.layout.language,
   isMobile: state => state.layout.isMobile,
+  keepAlive: state=> state.layout.keepAlive,
   token: state =>
     state.user.token
       ? state.user.token

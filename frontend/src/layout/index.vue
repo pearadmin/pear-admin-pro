@@ -1,6 +1,6 @@
 <template>
   <a-layout id="layout" :class="[theme, layout]">
-    <!-- 侧边栏 -->
+    <!-- 侧边菜单 -->
     <div
       v-if="isMobile && !collapsed"
       class="layout_mobile_mask"
@@ -20,7 +20,7 @@
       ]"
     >
       <div class="pear-layout-left-sider">
-        <!-- 顶部图标 -->
+        <!-- 菜单图标 -->
         <Logo v-if="logo"></Logo>
         <!-- 垂直菜单 -->
         <Menu></Menu>
@@ -28,7 +28,7 @@
     </a-layout-sider>
     <!-- 右边区域 -->
     <a-layout>
-      <!-- header区域 -->
+      <!-- 顶部区域 -->
       <a-layout-header>
         <Header></Header>
       </a-layout-header>
@@ -38,7 +38,7 @@
       >
         <!-- 选项卡页面 -->
         <Tab v-if="tab"></Tab>
-        <!-- main区域 -->
+        <!-- 内容区域 -->
         <Content :style="{ overflow: fixedHeader ? 'auto' : '' }"></Content>
         <!-- 设置页面 -->
         <Setup></Setup>

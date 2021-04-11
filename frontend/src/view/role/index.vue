@@ -1,5 +1,4 @@
 <template>
-  <div id="role">
     <page-layout>
       <a-row :gutter="[10, 10]">
         <a-col :span="24">
@@ -28,7 +27,6 @@
         </a-col>
       </a-row>
     </page-layout>
-  </div>
 </template>
 <script>
 import { page } from "@/api/modules/role";
@@ -42,7 +40,7 @@ export default {
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "code", key: "code", title: "账号" },
       { dataIndex: "enable", key: "enable", title: "状态" },
-      { dataIndex: "remark", key: "remark", title: "描述" },
+      { dataIndex: "remark", key: "remark", title: "描述"},
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
 
@@ -87,6 +85,7 @@ export default {
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
         { key: "state", type: "select", label: "状态", value: "0",
+          hidden: true,
           options: [
             { text: "全部", value: "0"},
             { text: "开启", value: "1"},
