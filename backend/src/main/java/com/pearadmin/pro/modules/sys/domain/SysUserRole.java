@@ -1,7 +1,7 @@
 package com.pearadmin.pro.modules.sys.domain;
 
-import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
+import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import org.apache.ibatis.type.Alias;
 
 /**

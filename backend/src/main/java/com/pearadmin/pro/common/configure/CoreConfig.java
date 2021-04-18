@@ -1,8 +1,6 @@
 package com.pearadmin.pro.common.configure;
 
 import com.alibaba.fastjson.support.spring.GenericFastJsonRedisSerializer;
-import com.aliyun.oss.OSS;
-import com.aliyun.oss.OSSClientBuilder;
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.extension.plugins.MybatisPlusInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.inner.PaginationInnerInterceptor;
@@ -23,10 +21,7 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
-import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-import redis.clients.jedis.JedisPool;
-import redis.clients.jedis.JedisPoolConfig;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -49,20 +44,7 @@ public class CoreConfig implements WebMvcConfigurer {
     private static final String DEFAULT_TIME_PATTERN = "HH:mm:ss";
 
     /**
-     * Redis 连 接 池
-     * */
-    @Bean
-    public JedisPool jedisPool(){
-        JedisPoolConfig config = new JedisPoolConfig();
-        config.setMaxTotal(1000);
-        config.setMaxIdle(10);
-        config.setMinIdle(1);
-        JedisPool jedisPool = new JedisPool(config, "127.0.0.1", 6379, 5000, null);
-        return jedisPool;
-    }
-
-    /**
-     * 跨 域 配 置
+     * 跨域配置
      * */
     @Bean
     public CorsFilter corsFilter() {
@@ -72,7 +54,7 @@ public class CoreConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 日 期 序 列 化
+     * 日期序列化
      * */
     @Bean
     @Primary
@@ -92,7 +74,7 @@ public class CoreConfig implements WebMvcConfigurer {
     }
 
     /**
-     * Redis 操 作 工 具
+     * Redis 操作工具
      * */
     @Bean
     public RedisTemplate<String, Serializable> redisTemplate(LettuceConnectionFactory connectionFactory){
@@ -104,7 +86,7 @@ public class CoreConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 跨 域 配 置
+     * 跨域配置
      * */
     private CorsConfiguration corsConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
@@ -118,7 +100,7 @@ public class CoreConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 分 页 拦 截 器
+     * 分页拦截器
      * */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
@@ -126,5 +108,4 @@ public class CoreConfig implements WebMvcConfigurer {
         interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.H2));
         return interceptor;
     }
-
 }

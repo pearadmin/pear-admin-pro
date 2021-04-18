@@ -6,8 +6,9 @@ import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
-import com.pearadmin.pro.modules.sys.mapper.SysRoleMapper;
-import com.pearadmin.pro.modules.sys.mapper.SysUserMapper;
+import com.pearadmin.pro.modules.sys.repository.SysPowerRepository;
+import com.pearadmin.pro.modules.sys.repository.SysRoleRepository;
+import com.pearadmin.pro.modules.sys.repository.SysUserRepository;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import org.springframework.stereotype.Service;
@@ -15,31 +16,39 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Service
-public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
+public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> implements SysUserService {
 
     @Resource
-    private SysRoleMapper sysRoleMapper;
+    private SysRoleRepository sysRoleRepository;
 
     @Resource
-    private SysUserMapper sysUserMapper;
+    private SysUserRepository sysUserRepository;
+
+    @Resource
+    private SysPowerRepository sysPowerRepository;
 
     @Override
     public List<SysRole> role(String userId) {
-        return sysRoleMapper.selectRoleByUserId(userId);
+        return sysRoleRepository.selectRoleByUserId(userId);
     }
 
     @Override
     public List<SysPower> menu(String userId) {
-        return null;
+        return sysPowerRepository.selectTreeByUserId(userId);
     }
 
     @Override
     public List<SysUser> list(SysUserRequest request) {
-        return sysUserMapper.selectList(request);
+        return sysUserRepository.selectList(request);
     }
 
     @Override
     public PageResponse<SysUser> page(SysUserRequest request) {
-        return Pageable.of(request, (()-> sysUserMapper.selectList(request)));
+        return Pageable.of(request, (()-> sysUserRepository.selectList(request)));
+    }
+
+    @Override
+    public List<SysPower> power(String userId) {
+        return sysPowerRepository.selectListByUserId(userId);
     }
 }

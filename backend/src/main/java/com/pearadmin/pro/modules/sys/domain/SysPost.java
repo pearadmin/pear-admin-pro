@@ -19,7 +19,7 @@ public class SysPost extends BaseDomain {
     /**
      * 编号
      * */
-    @TableId
+    @TableId("id")
     private String id;
 
     /**

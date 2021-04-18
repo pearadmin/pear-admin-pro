@@ -14,4 +14,9 @@ import org.apache.ibatis.type.Alias;
 @Alias("SysRolePower")
 public class SysRolePower extends BaseDomain {
 
+    private String id;
+
+    private String roleId;
+
+    private String powerId;
 }

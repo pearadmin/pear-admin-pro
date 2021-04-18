@@ -1,13 +1,8 @@
 import config from "@/config/pear.config";
 
 const state = {
-  language:
-    config.defaultLanguage == null
-      ? "zh-CN"
-      : localStorage.getItem("pear_lang") == null
-      ? config.defaultLanguage
-      : localStorage.getItem("pear_lang"),
-  cancelToken: [] // 已发送的http请求的取消回调函数数组
+  language: config.defaultLanguage == null ? "zh-CN" : localStorage.getItem("pear_lang") == null ? config.defaultLanguage : localStorage.getItem("pear_lang"),
+  cancelToken: []
 }
 
 const mutations = {

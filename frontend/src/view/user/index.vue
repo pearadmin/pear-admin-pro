@@ -1,243 +1,123 @@
 <template>
-  <div>
     <page-layout>
       <a-row :gutter="[10, 10]">
+        <!-- 顶部区域 -->
         <a-col :span="24">
           <a-card>
-            <a-form layout="inline" :model="param" @submit="reload">
-              <a-form-item label="用户名">
-                <a-input
-                  v-model:value="param.username"
-                  type="text"
-                  placeholder="用户名"
-                >
-                </a-input>
-              </a-form-item>
-              <a-form-item label="邮箱">
-                <a-input
-                  v-model:value="param.email"
-                  type="text"
-                  placeholder="邮箱"
-                >
-                </a-input>
-              </a-form-item>
-              <a-form-item>
-                <button-container>
-                  <a-button type="primary" @click="search"> 查询 </a-button>
-                  <a-button html-type="submit"> 默认 </a-button>
-                </button-container>
-              </a-form-item>
-            </a-form>
+            <!-- 查询参数 -->
+            <pro-query
+              :searchParam="searchParam"
+              @on-search ="search"
+            ></pro-query>
           </a-card>
         </a-col>
+        <!-- 中心区域 -->
         <a-col :span="24">
           <a-card>
-            <button-container class="tool-left">
-              <a-button type="primary" @click="openAddModal">新增</a-button>
-              <a-button @click="batchRemove">删除</a-button>
-              <a-button @click="batchRemove">高级</a-button>
-            </button-container>
-            <button-container class="tool-right">
-              <a-button @click="search">
-                <template #icon><SyncOutlined /></template>
-              </a-button>
-              <a-button>
-                <template #icon><AppstoreOutlined /></template>
-              </a-button>
-              <a-button>
-                <template #icon><ExportOutlined /></template>
-              </a-button>
-            </button-container>
-            <a-table
-              :loading="loading"
-              :pagination="pagination"
+            <!-- 列表 -->
+            <pro-table
+              :fetch="fetch"
               :columns="columns"
-              :data-source="data"
+              :toolbar="toolbar"
+              :operate="operate"
+              :param="state.param"
+              :pagination="pagination"
             >
-              <template #locked="{ text }">
-                <a-switch @change="change(text)" :checked="text" />
-              </template>
-              <template #gender="{ gender }">
-                <span v-if="gender === 0">男</span>
-                <span v-else>女</span>
-              </template>
-              <template v-slot:action="{ record }">
-                <span>
-                  <a @click="openInfoModal(record)"> 查看 </a>
-                  <a-divider type="vertical" />
-                  <a @click="openEditModal(record)"> 编辑 </a>
-                  <a-divider type="vertical" />
-                  <a @click="remove(record)"> 删除 </a>
-                </span>
-              </template>
-            </a-table>
+              <!-- 继承至 a-table 的默认插槽 -->
+            </pro-table>
           </a-card>
         </a-col>
       </a-row>
     </page-layout>
-    <a-modal v-model:visible="addModal" title="新增用户" @ok="handleOk">
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-    </a-modal>
-    <a-modal v-model:visible="editModal" title="编辑信息" @ok="handleOk">
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-    </a-modal>
-    <a-modal v-model:visible="infoModal" title="查看详情" @ok="handleOk">
-      <p>{{infoParam.nickname}}</p>
-      <p>{{infoParam.username}}</p>
-    </a-modal>
-  </div>
 </template>
+
 <script>
-import { AppstoreOutlined, SyncOutlined, ExportOutlined, ExclamationCircleOutlined} from "@ant-design/icons-vue";
 import { page } from "@/api/modules/user";
-import { Modal } from "ant-design-vue";
-import { createVNode, reactive, ref } from "vue";
+import { reactive } from 'vue';
 
 export default {
-  components: {
-    AppstoreOutlined,
-    ExportOutlined,
-    SyncOutlined,
-  },
   setup() {
+
+    /// 列配置
     const columns = [
       { dataIndex: "nickname", key: "nickname", title: "名称" },
       { dataIndex: "username", key: "username", title: "账号" },
-      { dataIndex: "gender", key: "gender", title: "性别", slots: { customRender: "gender" }},
-      { dataIndex: "locked", key: "locked", title: "锁定", slots: { customRender: "locked" }},
+      { dataIndex: "gender", key: "gender", title: "性别"},
+      { dataIndex: "locked", key: "locked", title: "锁定"},
       { dataIndex: "email", key: "email", title: "邮箱" },
       { dataIndex: "phone", key: "phone", title: "电话" },
-      { dataIndex: "createTime", key: "createTime", title: "注册时间" },
-      { dataIndex: "action", key: "action",title: "操作", slots: { customRender: "action" }, fixed: "right"}
+      { dataIndex: "createTime", key: "createTime", title: "注册时间" }
     ];
 
-    const data = ref();
-    const loading = ref(true);
-    
-    const addModal = ref(false);
-    const editModal = ref(false);
-    const infoModal = ref(false);
-  
-    const infoParam = ref({});
-    const addParam = ref({});
+    /// 数据来源 [模拟]
+    const fetch = async (param) => {
+      var response = await page(param);
+      return {
+        total: response.data.total,
+        data: response.data.record,
+      };
+    };
 
-    const param = reactive({ pageNum: 1, pageSize: 10, username: null });
-    const pagination = reactive({
-      total: 0,
+    /// 工具栏
+    const toolbar = [
+      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+    ];
+
+    /// 行操作
+    const operate = [
+      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
+    ];
+
+    /// 分页参数
+    const pagination = {
+      pageNum: 1,
       pageSize: 10,
-      showSizeChanger: true,
-      showTotal: (total) => `共有 ${total} 条`,
-    });
-
-    const loadData = async function (param) {
-      loading.value = true;
-      const response = await page(param);
-      data.value = response.data.record;
-      pagination.total = response.data.total;
-      loading.value = false;
-    };
-
-    const search = function () {
-      loadData(param);
-    };
-
-    search(param);
-
-    const change = (text) => {
-      Modal.confirm({
-        title: text === true ? "是否锁定该用户?" : "是否解锁该用户?",
-        icon: createVNode(ExclamationCircleOutlined),
-        onOk() {
-          console.log("OK");
-        },
-        onCancel() {
-          console.log("Cancel");
-        },
-      });
-    };
-
-    const remove = (data) => {
-      Modal.confirm({
-        title: '是否确实要删除此用户？',
-        icon: createVNode(ExclamationCircleOutlined),
-        content: 'Some descriptions',
-        okText: 'Yes',
-        okType: 'danger',
-        cancelText: 'No',
-        onOk() {
-          console.log('OK');
-        },
-        onCancel() {
-          console.log('Cancel');
-        },
-      });
     }
 
-    const batchRemove = (data) => {
-      Modal.confirm({
-        title: '是否确实要删除此用户？',
-        icon: createVNode(ExclamationCircleOutlined),
-        content: 'Some descriptions',
-        okText: 'Yes',
-        okType: 'danger',
-        cancelText: 'No',
-        onOk() {
-          console.log('OK');
-        },
-        onCancel() {
-          console.log('Cancel');
-        },
-      });
+    /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
+    const state = reactive({
+      param: {
+        name: "", // 名称
+        code: ""  // 标识
+      }
+    })
+
+    /// 查询参数
+    const searchParam = [
+        { key: "name", type: "input", label: "名称"},
+        { key: "code", type: "input", label: "描述"},
+        { key: "state", type: "select", label: "状态", value: "0",
+          hidden: true ,
+          options: [
+            { text: "全部", value: "0"},
+            { text: "开启", value: "1"},
+            { text: "关闭", value: "2"}
+          ]
+        }
+    ]
+
+    /// 查询操作
+    const search = function(value) {
+      
+      /// 通过动态修改入参, 触发表格刷新
+      state.param = value
     }
 
-    const openInfoModal = (data) => {
-      infoModal.value = true;
-      infoParam.value = data;
-    }
-
-    const openEditModal = (data) => {
-      editModal.value = true;
-    }
-
-    const openAddModal = () => {
-      addModal.value = true;
-    }
-
+    /// 声明抛出
     return {
-      batchRemove,
-      pagination,
-      /** Modal 状态 */
-      editModal,
-      infoModal,
-      addModal,
-      /** 打开 Modal */
-      openInfoModal,
-      openEditModal,
-      openAddModal,
+      state: state, // 状态共享
+      fetch: fetch, // 数据回调
+      toolbar: toolbar, // 工具栏
+      columns: columns, // 列配置
+      operate: operate, // 行操作
+      pagination: pagination, // 分页配置
 
-      infoParam,
-
-      /** 其他 */
-      loading,
-      columns,
-      search,
-      remove,
-      change,
-      param,
-      data
+      search: search,
+      searchParam: searchParam, // 查询参数
     };
   },
 };
 </script>
-<style lang="less">
-.tool-left {
-  display: inline-block;
-}
-.tool-right {
-  float: right;
-}
-</style>

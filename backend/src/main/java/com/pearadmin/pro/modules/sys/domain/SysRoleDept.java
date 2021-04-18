@@ -14,4 +14,18 @@ import org.apache.ibatis.type.Alias;
 @Alias("SysRoleDept")
 public class SysRoleDept extends BaseDomain {
 
+    /**
+     * 编号
+     */
+    private String id;
+
+    /**
+     * 角色编号
+     */
+    private String roleId;
+
+    /**
+     * 部门编号
+     */
+    private String deptId;
 }

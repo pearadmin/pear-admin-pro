@@ -11,7 +11,7 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
  * CreateTime: 2021/03/23
  * */
 @Data
-@Alias("Job")
+@Alias("SysJob")
 public class SysJob extends BaseDomain {
 
     /**

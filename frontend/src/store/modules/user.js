@@ -1,6 +1,6 @@
 import { menu, login, logout } from "@/api/modules/user";
 import {
-  generatorUserMenuForList, generatorUserMenuForTree
+  generateUserMenuForList, generateUserMenuForTree
 } from "@/router/permission";
 import { message } from "ant-design-vue";
 
@@ -12,6 +12,7 @@ const state = {
 }
 
 const mutations = {
+  /// 存储 Token
   SET_USER_TOKEN(state, token) {
     if (token) {
       state.tokenKey = token.key;
@@ -25,10 +26,12 @@ const mutations = {
       localStorage.removeItem('pear_admin_ant_token_value')
     }
   },
+  /// 存储用户详情
   SET_USER_INFO(state, userInfo) {
     state.userInfo = userInfo
     localStorage.setItem('user_info', JSON.stringify(userInfo))
   },
+  /// 存储用户菜单
   SET_USER_MENU(state, menuList) {
     if (menuList && menuList.length === 0) {
       state.userRoutes = []
@@ -42,7 +45,7 @@ const mutations = {
 }
 
 const actions = {
-  // 用户注销
+  /// 注销
   async logout({ commit }) {
     await logout()
     commit('SET_USER_TOKEN')
@@ -50,22 +53,22 @@ const actions = {
     commit('layout/closeAllTab', [], { root: true })
     return Promise.resolve()
   },
-  // 用户登录
+  // 登录
   async login( {commit} , data) {
       const { code, msg, tokenKey, tokenValue } = await login(data);
       if (code === 200) {
-        commit('SET_USER_TOKEN', {key:tokenKey,value:tokenValue});
+        commit('SET_USER_TOKEN', {key:tokenKey, value:tokenValue});
         message.success(msg);
         return Promise.resolve();
       } else {
         return Promise.reject(msg);
       }
   },
-  // 动态路由
+  // 路由
   async addRoute( {commit} ) {
     const { data } = await menu()
-    const dynamicRoutes = generatorUserMenuForList(data)
-    commit('SET_USER_MENU', dynamicRoutes)
+    const routes = generateUserMenuForList(data)
+    commit('SET_USER_MENU', routes)
   }
 }
 export default {

@@ -1,11 +1,9 @@
 package com.pearadmin.pro.common.secure.uutoken;
 
 import java.util.*;
-import com.pearadmin.pro.common.secure.services.SecureUser;
-import com.pearadmin.pro.common.tools.core.TokenUtil;
-
 import java.util.concurrent.TimeUnit;
-
+import com.pearadmin.pro.common.tools.core.TokenUtil;
+import com.pearadmin.pro.common.secure.services.SecureUser;
 import com.pearadmin.pro.common.constant.CacheNameConstant;
 import com.pearadmin.pro.common.constant.SecurityConstant;
 import com.pearadmin.pro.common.web.exception.auth.token.TokenException;

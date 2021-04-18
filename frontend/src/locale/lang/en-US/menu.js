@@ -23,5 +23,8 @@ export default {
   "error-404": "error-404",
   "error-500": "error-500",
   "permission": "permission",
-  "permission-test": "permission-test"
+  "permission-test": "permission-test",
+  "sys": "sys",
+  "sys.user": "role",
+  "sys.role": "user"
 }

@@ -2,23 +2,20 @@ package com.pearadmin.pro.common.cache.impl;
 
 import com.pearadmin.pro.common.cache.BaseCache;
 import com.pearadmin.pro.modules.sys.domain.SysDictData;
-import com.pearadmin.pro.modules.sys.domain.SysDictType;
-import com.pearadmin.pro.modules.sys.mapper.SysDictDataMapper;
+import com.pearadmin.pro.modules.sys.domain.SysDict;
 import com.pearadmin.pro.modules.sys.service.SysDictDataService;
-import com.pearadmin.pro.modules.sys.service.SysDictTypeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.pearadmin.pro.modules.sys.service.SysDictService;
 import org.springframework.stereotype.Component;
-
 import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * 全 局 字 典 缓 存
+ * 全局字典缓存
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/04/01
+ * CreateTime: 2021/04/21
  * */
 @Component
 public class DictionaryCache extends BaseCache<List<SysDictData>> {
@@ -27,17 +24,16 @@ public class DictionaryCache extends BaseCache<List<SysDictData>> {
     private SysDictDataService sysDictDataService;
 
     @Resource
-    private SysDictTypeService sysDictTypeService;
+    private SysDictService sysDictTypeService;
 
     /**
-     * 加载 字典 数据
+     * 字典信息
      */
     @Override
     public Map<String, List<SysDictData>> load()
     {
         Map<String,List<SysDictData>> map = new HashMap<>();
-        List<SysDictType> dictTypes = sysDictTypeService.list();
-
+        List<SysDict> dictTypes = sysDictTypeService.list();
         dictTypes.forEach(dictType -> {
             map.put(dictType.getCode(),sysDictDataService.lambdaQuery().eq(SysDictData::getCode,dictType.getCode()).list());
         });

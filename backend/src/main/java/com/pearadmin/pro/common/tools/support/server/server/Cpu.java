@@ -2,6 +2,12 @@ package com.pearadmin.pro.common.tools.support.server.server;
 
 import com.pearadmin.pro.common.tools.core.MathUtil;
 
+/**
+ * Cpu 信息
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/04/01
+ * */
 public class Cpu
 {
     /**

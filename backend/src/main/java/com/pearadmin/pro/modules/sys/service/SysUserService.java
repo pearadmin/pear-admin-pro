@@ -52,4 +52,12 @@ public interface SysUserService extends IService<SysUser> {
      * */
     List<SysPower> menu(String userId);
 
+    /**
+     * 获取用户权限
+     *
+     * @param userId 用户编号
+     *
+     * @return {@link SysPower}
+     */
+    List<SysPower> power(String userId);
 }

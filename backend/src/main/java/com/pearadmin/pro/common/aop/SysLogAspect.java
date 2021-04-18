@@ -50,17 +50,14 @@ public class SysLogAspect {
         String describe = annotation.describe();
 
         try {
-
             // 执 行 方 法
             result = joinPoint.proceed();
             // 记 录 日 志
             context.record(title, describe, action, true, null,null);
-
         }catch (Exception e){
-
             // 堆 栈 信 息
             e.printStackTrace();
-            // 异 常 处 理
+            // 异 常 记 录
             context.record(title, describe, action, true, null, null);
         }
         return result;

@@ -74,36 +74,15 @@ public class ResultController {
     /**
      * 选择返回
      * */
-    public Result decide(Boolean b){
+    public Result auto(Boolean b){
         return Result.decide(b);
     }
 
     /**
      * 选择返回
      * */
-    public Result decide(Boolean b,String success,String failure){
+    public Result auto(Boolean b,String success,String failure){
         return Result.decide(b,success,failure);
     }
 
-    /**
-     * 选择返回
-     * */
-    public Result decide(int result){
-        if(result>0){
-            return Result.decide(true);
-        }else{
-            return Result.decide(false);
-        }
-    }
-
-    /**
-     * 选择返回
-     * */
-    public Result decide(int result, String success, String failure){
-        if(result>0){
-            return Result.decide(true,success,failure);
-        }else{
-            return Result.decide(false,success,failure);
-        }
-    }
 }

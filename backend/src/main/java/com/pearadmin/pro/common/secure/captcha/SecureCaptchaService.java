@@ -1,10 +1,10 @@
 package com.pearadmin.pro.common.secure.captcha;
 
+import com.wf.captcha.SpecCaptcha;
+import java.util.concurrent.TimeUnit;
 import com.pearadmin.pro.common.constant.SecurityConstant;
 import com.pearadmin.pro.common.web.exception.auth.captcha.CaptchaExpiredException;
 import com.pearadmin.pro.common.web.exception.auth.captcha.CaptchaValidationException;
-import com.wf.captcha.SpecCaptcha;
-import java.util.concurrent.TimeUnit;
 import com.pearadmin.pro.common.constant.CacheNameConstant;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,7 @@ import java.util.UUID;
  * Captcha 验证码服务
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/04/01
+ * CreateTime: 2021/04/10
  * */
 @Service
 public class SecureCaptchaService {

@@ -28,10 +28,3 @@ export default defineComponent({
   }
 })
 </script>
-<style>
-#app,
-body,
-html {
-  height: 100%;
-}
-</style>

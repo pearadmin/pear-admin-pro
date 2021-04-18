@@ -1,7 +1,8 @@
 <template>
   <div id="pro-table">
+    <!-- 表格工具栏 -->
     <div class="pro-table-tool">
-      <!-- 表格工具栏 -->
+      <!-- 自定义工具栏 -->
       <div class="pro-table-prev">
         <template :key="index" v-for="(item, index) in toolbar">
           <!-- 更多按钮 -->
@@ -23,8 +24,7 @@
           <a-button
             v-else
             :type="index == 0 ? 'primary' : ''"
-            @click="item.event(selectedRowKeys)"
-          >
+            @click="item.event(selectedRowKeys)">
             {{ item.label }}
           </a-button>
         </template>
@@ -42,16 +42,10 @@
           </a-button>
           <template #overlay>
             <a-menu class="filtration">
-              <a-checkbox-group
-                v-model:value="filtrationColumnKeys"
-                @change="filtration"
-              >
+              <a-checkbox-group v-model:value="filtrationColumnKeys" @change="filtration">
                 <a-row>
-                  <a-col
-                    :span="24"
-                    :key="index"
-                    v-for="(filtrationColumn, index) in filtrationColumns"
-                  >
+                  <!-- 遍历字段 -->
+                  <a-col :span="24" :key="index" v-for="(filtrationColumn, index) in filtrationColumns">
                     <a-checkbox :value="filtrationColumn.value">
                       {{ filtrationColumn.label }}
                     </a-checkbox>
@@ -116,7 +110,7 @@ const TProps = T.props;
 export default defineComponent({
   /// 组件名称
   name: "pro-table",
-  /// 图标组件
+  /// 注册图标
   components: {
     AppstoreOutlined,
     ExportOutlined,
@@ -151,12 +145,12 @@ export default defineComponent({
 
     /// 状态共享
     const state = reactive({
-      pagination: Object.assign({}, props.pagination),
-      datasource: [],
-      loading: true,
-      columns: props.columns,
-      filtrationColumnKeys: [],
-      selectedRowKeys: [],
+      pagination: Object.assign({}, props.pagination), // 分页
+      datasource: [], // 数据源
+      loading: true, // 加载
+      columns: props.columns, // 字段
+      filtrationColumnKeys: [], // 过滤
+      selectedRowKeys: [], // 选中项
     });
 
     /// 默认操作
@@ -204,15 +198,12 @@ export default defineComponent({
       await fetchData();
     });
 
-
-     watch(
-      () => props.param,
-      () => {
+    /// 监听扩展参数, 触发表格刷新
+    watch(() => props.param,() => {
         fetchData();
-      },
-      {deep: true}
-    )
+    },{deep: true});
 
+    /// 
     return {
       /// 数据信息
       ...toRefs(state),

@@ -2,6 +2,7 @@ import { loadLocaleMessages, setupI18n } from './i18n'
 import config from '@/config/pear.config'
 
 const DEFAULT_LANG = localStorage.getItem('pear_lang') ? localStorage.getItem('pear_lang') : config.defaultLanguage
+
 const i18n = setupI18n({
   globalInjection: true,
   legacy: false,

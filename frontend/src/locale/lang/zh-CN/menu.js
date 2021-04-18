@@ -24,6 +24,7 @@ export default {
   "error-500": "500",
   "permission": "系统权限",
   "permission-test": "权限测试",
+  "sys": "系统管理",
   "sys.user": "用户管理",
   "sys.role": "角色管理"
 }

@@ -55,7 +55,8 @@ class Http {
         } else {
           let { message } = error;
           if (message === "Network Error") {
-            message = "连接异常";
+            /// ERROR 500
+            message = "连接异常"
           }
           if (message.includes("timeout")) {
             message = "请求超时,稍后重试";

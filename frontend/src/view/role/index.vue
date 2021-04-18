@@ -1,24 +1,26 @@
 <template>
     <page-layout>
       <a-row :gutter="[10, 10]">
+        <!-- 顶部区域 -->
         <a-col :span="24">
           <a-card>
-            <!-- 查询 -->
+            <!-- 查询参数 -->
             <pro-query
               :searchParam="searchParam"
               @on-search ="search"
             ></pro-query>
           </a-card>
         </a-col>
+        <!-- 中心区域 -->
         <a-col :span="24">
           <a-card>
             <!-- 列表 -->
             <pro-table
-              :param="state.param"
               :fetch="fetch"
               :columns="columns"
               :toolbar="toolbar"
               :operate="operate"
+              :param="state.param"
               :pagination="pagination"
             >
               <!-- 继承至 a-table 的默认插槽 -->
@@ -28,6 +30,7 @@
       </a-row>
     </page-layout>
 </template>
+
 <script>
 import { page } from "@/api/modules/role";
 import { reactive } from 'vue';
@@ -37,11 +40,11 @@ export default {
 
     /// 列配置
     const columns = [
-      { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "账号" },
-      { dataIndex: "enable", key: "enable", title: "状态" },
-      { dataIndex: "remark", key: "remark", title: "描述"},
-      { dataIndex: "sort", key: "sort", title: "排序" },
+      { dataIndex: "name", key: "name", title: "名称", type: "text" },
+      { dataIndex: "code", key: "code", title: "账号", type: "text" },
+      { dataIndex: "enable", key: "enable", title: "状态", type: "text"},
+      { dataIndex: "remark", key: "remark", title: "描述", type: "text"},
+      { dataIndex: "sort", key: "sort", title: "排序", type: "text" },
     ];
 
     /// 数据来源 [模拟]
@@ -49,7 +52,7 @@ export default {
       var response = await page(param);
       return {
         total: response.data.total,
-        data: response.data.records,
+        data: response.data.record,
       };
     };
 
@@ -68,15 +71,15 @@ export default {
 
     /// 分页参数
     const pagination = {
-      current: 1,
+      pageNum: 1,
       pageSize: 10,
-    };
+    }
 
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       param: {
-        name: "123",
-        code: "123"
+        name: "", // 名称
+        code: ""  // 标识
       }
     })
 
@@ -85,7 +88,7 @@ export default {
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
         { key: "state", type: "select", label: "状态", value: "0",
-          hidden: true,
+          hidden: true ,
           options: [
             { text: "全部", value: "0"},
             { text: "开启", value: "1"},
@@ -96,19 +99,21 @@ export default {
 
     /// 查询操作
     const search = function(value) {
-      state.param = value;
+      
+      /// 通过动态修改入参, 触发表格刷新
+      state.param = value
     }
 
     /// 声明抛出
     return {
-
-      state: state,
+      state: state, // 状态共享
       fetch: fetch, // 数据回调
       toolbar: toolbar, // 工具栏
       columns: columns, // 列配置
       operate: operate, // 行操作
       pagination: pagination, // 分页配置
 
+      /// 
       search: search,
       searchParam: searchParam, // 查询参数
     };

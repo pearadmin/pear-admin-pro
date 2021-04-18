@@ -7,13 +7,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
  * User Context
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/04/23
  * */
 @Component
 public class UserContext {
@@ -61,7 +62,4 @@ public class UserContext {
      * */
     public String getDeptId(){ return getPrincipal().getDeptId(); }
 
-    /**
-     * deptId 当前用户数据权限
-     * */
 }

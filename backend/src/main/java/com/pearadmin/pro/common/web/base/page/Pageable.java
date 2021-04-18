@@ -2,10 +2,9 @@ package com.pearadmin.pro.common.web.base.page;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-
+import java.util.stream.Collectors;
 import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * 分页工具类
@@ -15,6 +14,10 @@ import java.util.stream.Collectors;
  * */
 public class Pageable {
 
+    /**
+     * 私有构造方法
+     *
+     * */
     private Pageable(){ }
 
     /**

@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * 全 局 配 置 缓 存
+ * 全局配置缓存
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2021/04/01
+ * CreateTime: 2021/04/21
  * */
 @Component
 public class AllocationCache extends BaseCache<String> {
@@ -22,7 +22,7 @@ public class AllocationCache extends BaseCache<String> {
     private SysConfigService sysConfigService;
 
     /**
-     * 加载 配置 数据
+     * 配置信息
      */
     @Override
     public Map<String, String> load()

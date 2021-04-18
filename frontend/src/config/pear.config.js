@@ -103,13 +103,7 @@
    * 参数: 可选的主题颜色列表
    * color - key
    */
-  colorList: [
-    "#2d8cf0",
-    "rgb(255, 184, 0)",
-    "rgb(255, 87, 34)",
-    "#36b368",
-    "black",
-    "gray"
+  colorList: ["#2d8cf0","#36b368","black","gray"
   ],
 
   /**
@@ -132,10 +126,10 @@
   defaultTab: "dashboard-console",
 
   /**
-   * 参数：国际化默认语言
+   * 参数：国际化
    * 
-   * zh-CN 中文
-   * en-US 英文
+   * zh-cn 中文
+   * en-us 英文
    */
-  defaultLanguage: 'zh-CN'
+  defaultLanguage: 'zh-cn'
 };

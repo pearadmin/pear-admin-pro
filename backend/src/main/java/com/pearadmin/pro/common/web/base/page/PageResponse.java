@@ -39,7 +39,6 @@ public class PageResponse<T> {
      * 构建实体
      * */
     public PageResponse(PageInfo pageInfo){
-
         this.record = pageInfo.getList();
         this.total = pageInfo.getTotal();
     }
