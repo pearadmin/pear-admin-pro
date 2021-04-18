@@ -91,7 +91,7 @@ export default {
     };
     refreshCaptcha();
 
-    // 登录 验证
+    // 登录验证
     const onSubmit = async () => {
       try {
         const result = await validate();

@@ -1,6 +1,8 @@
 package com.pearadmin.pro.common.web.base.domain;
 
 import lombok.Data;
+
+import java.util.ArrayList;
 import java.util.List;
 import com.baomidou.mybatisplus.annotation.TableField;
 
@@ -23,5 +25,5 @@ public class TreeDomain<T> extends BaseDomain{
      * 子级集合
      * */
     @TableField(exist = false)
-    private List<T> children;
+    private List<T> children = new ArrayList<>();
 }

@@ -70,4 +70,14 @@
         where sur.user_id = #{userId}
     </select>
 
+    <select id="selectMenu" resultType="SysPower">
+        select * from sys_power sp
+        left join sys_role_power srp on srp.power_id = sp.id
+        left join sys_role sr on sr.id = srp.role_id
+        left join sys_user_role sur on sur.role_id = sr.id
+        where sur.user_id = #{userId}
+        and sr.enable = 1
+        and sp.enable = 1
+    </select>
+
 </mapper>

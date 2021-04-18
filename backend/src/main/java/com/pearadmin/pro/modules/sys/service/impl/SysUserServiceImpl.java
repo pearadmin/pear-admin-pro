@@ -13,6 +13,7 @@ import com.pearadmin.pro.modules.sys.param.SysUserRequest;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,7 +35,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
 
     @Override
     public List<SysPower> menu(String userId) {
-        return sysPowerRepository.selectTreeByUserId(userId);
+        return toTree(sysPowerRepository.selectMenu(userId),"0");
     }
 
     @Override
@@ -51,4 +52,21 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
     public List<SysPower> power(String userId) {
         return sysPowerRepository.selectListByUserId(userId);
     }
+
+    /**
+     * Describe: 递归获取菜单tree
+     * Param: sysMenus
+     * Return: 操作结果
+     * */
+    public List<SysPower> toTree(List<SysPower> sysMenus,String parent) {
+        List<SysPower> list = new ArrayList<>();
+        for (SysPower menu : sysMenus) {
+            if (parent.equals(menu.getParent())) {
+                menu.setChildren(toTree(sysMenus, menu.getId()));
+                list.add(menu);
+            }
+        }
+        return list;
+    }
+
 }

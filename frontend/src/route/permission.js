@@ -4,45 +4,18 @@ import store from "@/store";
 import router from "@/route/index";
 
 /**
- * 列表结构 转换 树状结构
- * @param list
- * @returns {[]}
- */
-export const listToTree = list => {
-  list.sort((a, b) => { return a.sort - b.sort })
-  let node
-  const map = {}
-  const tree = []
-  for (let i = 0; i < list.length; i++) {
-    map[list[i].name] = i;
-  }
-  for (let i = 0; i < list.length; i++) {
-    node = list[i];
-    if (node.parent) {
-      const children = list[map[node.parent]].children || []
-      list[map[node.parent]].children = [...children, node]
-    } else {
-      tree.push(node)
-    }
-  }
-  return tree
-}
-
-/**
- * 菜单树转换路由树
+ * 路由信息
  * @param menus
  * @returns {*}
  */
-export const generateUserMenuForTree = (menus) => {
+export const generateRoute = (menus) => {
   const userRoutes = menus.map(menu => {
-    const {parent, icon, name, children = [], path, hidden = false, title, i18n} = menu
-    // key是唯一的，防止重复，所以拼上父级菜单
-    const key = parent ? `${parent}-${name}` : `${name}`
+    const {parent, icon, name, children = [], path, hidden = false, title, i18n, id} = menu
     // todo: 如果后端返回的父级菜单的路径为不带'/'号，则需要拼上 '/', 子菜单不需要，因为vue-router会自动跟据路径拼
     const currentMenu = {
       path, name, hidden, parent,
-      meta: { key: key, title, i18n, icon },
-      children: children.length === 0 ? [] : generateUserMenuForTree(children)
+      meta: { key: id, title, i18n, icon },
+      children: children.length === 0 ? [] : generateRoute(children)
     }
     if (children.length <= 0) {
       delete currentMenu.children
@@ -52,21 +25,9 @@ export const generateUserMenuForTree = (menus) => {
   return userRoutes
 }
 
-/**
- * 菜单列表转换路由树
- * @param menus
- * @returns {*}
- */
-export const generateUserMenuForList = menus => {
-  // 如果后端返回的是纯数组的菜单（即：没有转换成菜单树结构的，要先转化成树结构）
-  const tree = listToTree(menus)
-  const routes = generateUserMenuForTree(tree)
-  return routes
-}
-
 export const setUserRouteComponent = routes => {
   routes.forEach(r => {
-    r.component = !r.parent ? permissionRoutes.Layout : permissionRoutes[r.name]
+    r.component = r.parent == '0' ? permissionRoutes.Layout : permissionRoutes[r.name]
     if (r.children && r.children.length > 0) {
       setUserRouteComponent(r.children)
     }
@@ -137,6 +98,8 @@ export const permissionController = async (to, from, next) => {
       // 是否存在
       const hasRoute = findRouteForUserRoutes(userRoutes, to.fullPath)
       
+      alert(hasRoute)
+
       if (hasRoute) {
         // 注册路由 并 跳转
         setUserRouteComponent(userRoutes)

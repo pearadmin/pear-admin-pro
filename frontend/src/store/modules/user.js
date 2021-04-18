@@ -1,7 +1,5 @@
 import { menu, login, logout } from "@/api/modules/user";
-import {
-  generateUserMenuForList, generateUserMenuForTree
-} from "@/route/permission";
+import { generateRoute } from "@/route/permission";
 import { message } from "ant-design-vue";
 
 const state = {
@@ -64,10 +62,12 @@ const actions = {
         return Promise.reject(msg);
       }
   },
+
   // 路由
   async addRoute( {commit} ) {
     const { data } = await menu()
-    const routes = generateUserMenuForList(data)
+    const routes = generateRoute(data)
+    alert(JSON.stringify(routes));
     commit('SET_USER_MENU', routes)
   }
 }

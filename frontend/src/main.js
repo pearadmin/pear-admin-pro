@@ -4,7 +4,7 @@ import App from "./App.vue";
 import Router from "./route";
 import Store from "./store";
 import Pear from "./component";
-import directives from "./script"
+import directive from "./directive"
 import i18n from './locale'
 
 import "./assets/css/index.less";
@@ -17,8 +17,8 @@ app.use(Store);
 app.use(Router);
 app.use(i18n)
 
-Object.keys(directives).forEach(directive => {
-  app.directive(directive, directives[directive])
+Object.keys(directive).forEach(d => {
+  app.directive(d, directive[d])
 })
 
 app.mount("#app");

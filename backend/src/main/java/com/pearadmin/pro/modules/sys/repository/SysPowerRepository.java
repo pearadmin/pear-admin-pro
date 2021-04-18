@@ -56,4 +56,11 @@ public interface SysPowerRepository extends BaseMapper<SysPower> {
      * */
     List<SysPower> selectChildrenByUserId(String parent,String userId);
 
+    /**
+     * 根据 userId 获取菜单
+     *
+     * @param userId 用户编号
+     * @return {@link SysPower}
+     * */
+    List<SysPower> selectMenu(String userId);
 }
