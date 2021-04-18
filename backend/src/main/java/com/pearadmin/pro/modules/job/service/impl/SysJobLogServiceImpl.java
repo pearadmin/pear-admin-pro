@@ -8,7 +8,6 @@ import com.pearadmin.pro.modules.job.repository.SysJobLogRepository;
 import com.pearadmin.pro.modules.job.param.SysJobLogRequest;
 import com.pearadmin.pro.modules.job.service.SysJobLogService;
 import org.springframework.stereotype.Service;
-
 import javax.annotation.Resource;
 import java.util.List;
 

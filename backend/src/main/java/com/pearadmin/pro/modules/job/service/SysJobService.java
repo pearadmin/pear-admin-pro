@@ -8,7 +8,17 @@ import java.util.List;
 
 public interface SysJobService extends IService<SysJob> {
 
+    /**
+     * 获取任务列表
+     *
+     * @param request 查询参数
+     * */
     List<SysJob> list(SysJobRequest request);
 
+    /**
+     * 获取任务列表 (分页)
+     *
+     * @param request 查询参数
+     * */
     PageResponse<SysJob> page(SysJobRequest request);
 }

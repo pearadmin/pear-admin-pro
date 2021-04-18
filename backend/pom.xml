@@ -16,6 +16,7 @@
     <name> Pear Admin Pro </name>
     <description> 企 业 级 Java 快 速 开 发 框 架 </description>
 
+    <!-- 版 本 管 理 -->
     <properties>
         <java.version>11</java.version>
         <maven.compiler.source>11</maven.compiler.source>
@@ -38,12 +39,7 @@
     </properties>
 
     <dependencies>
-        <!-- Quartz 定时任务框架 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-quartz</artifactId>
-        </dependency>
-        <!-- Redis 连接池 -->
+        <!-- Redis 连 接 池 -->
         <dependency>
             <groupId>redis.clients</groupId>
             <artifactId>jedis</artifactId>
@@ -84,7 +80,7 @@
             <artifactId>lombok</artifactId>
             <optional>true</optional>
         </dependency>
-        <!-- Security 测试框架 -->
+        <!-- Security 测 试 框 架 -->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
@@ -147,12 +143,13 @@
             <artifactId>springfox-swagger2</artifactId>
             <version>${swagger.version}</version>
         </dependency>
+        <!-- 接 口 文 档 界 面 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger-ui</artifactId>
             <version>${swagger.version}</version>
         </dependency>
-        <!-- 验 证 码 框 架 -->
+        <!-- 验 证 码 -->
         <dependency>
             <groupId>com.github.whvcse</groupId>
             <artifactId>easy-captcha</artifactId>
@@ -174,6 +171,7 @@
             <artifactId>aliyun-sdk-oss</artifactId>
             <version>${oss.version}</version>
         </dependency>
+        <!-- 分 页 插 件 -->
         <dependency>
             <groupId>com.github.pagehelper</groupId>
             <artifactId>pagehelper-spring-boot-starter</artifactId>
