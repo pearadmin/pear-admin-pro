@@ -1,7 +1,7 @@
 import permissionRoutes from './module/main-routes'
 import NProgress from "nprogress";
 import store from "@/store";
-import router from "@/router/index";
+import router from "@/route/index";
 
 /**
  * 列表结构 转换 树状结构
@@ -64,10 +64,6 @@ export const generateUserMenuForList = menus => {
   return routes
 }
 
-/**
- * 动态路由新增 Layout 布局
- * @param routes
- */
 export const setUserRouteComponent = routes => {
   routes.forEach(r => {
     r.component = !r.parent ? permissionRoutes.Layout : permissionRoutes[r.name]

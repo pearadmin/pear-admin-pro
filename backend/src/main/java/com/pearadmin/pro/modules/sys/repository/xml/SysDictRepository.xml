@@ -3,7 +3,7 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysDictRepository">
 
     <select id="selectList" resultType="SysDict">
-        select * from sys_dict_type
+        select * from sys_dict
     </select>
 
 </mapper>

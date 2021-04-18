@@ -9,7 +9,7 @@ import org.apache.ibatis.type.Alias;
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
- * */
+ */
 @Data
 @Alias("SysUserRequest")
 public class SysUserRequest extends PageRequest {

@@ -1,7 +1,7 @@
 package com.pearadmin.pro.common.aop.enums;
 
 /**
- * 日 志 操 作 分 类
+ * 日 志 分 类
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01

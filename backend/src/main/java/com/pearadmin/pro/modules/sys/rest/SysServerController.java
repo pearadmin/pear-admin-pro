@@ -10,10 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * 服务器控制器
- *
- * Author: 就 眠 仪 式
- * CreateTime: 2021/03/23
+ * 服务器监控 Api
  * */
 @Api(tags = {"服务"})
 @RestController
@@ -21,10 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class SysServerController extends BaseController {
 
     /**
-     * 运行环境
+     * 监控详情
      *
-     * param param
-     * return Result
+     * @return {@link Server}
      * */
     @GetMapping("info")
     public Result server() throws Exception{

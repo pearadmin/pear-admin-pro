@@ -18,7 +18,7 @@
 
 <script>
 import { ref, onUnmounted } from "vue";
-import router from "@/router";
+import router from "@/route";
 export default {
   setup() {
     const overTime = ref(5);

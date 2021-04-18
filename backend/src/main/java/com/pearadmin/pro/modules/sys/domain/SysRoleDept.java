@@ -28,4 +28,5 @@ public class SysRoleDept extends BaseDomain {
      * 部门编号
      */
     private String deptId;
+
 }

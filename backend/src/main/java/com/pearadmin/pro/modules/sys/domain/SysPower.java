@@ -26,16 +26,16 @@ public class SysPower extends TreeDomain<SysPower> {
     private String id;
 
     /**
-     * 路由
-     * */
-    @TableField("path")
-    private String path;
-
-    /**
      * 权限名称
      * */
     @TableField("name")
     private String name;
+
+    /**
+     * 路由
+     * */
+    @TableField("path")
+    private String path;
 
     /**
      * 类型

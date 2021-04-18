@@ -1,5 +1,5 @@
 import {createRouter, createWebHashHistory} from 'vue-router';
-import { permissionController } from "@/router/permission";
+import { permissionController } from "@/route/permission";
 import routes from './module/base-routes';
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";

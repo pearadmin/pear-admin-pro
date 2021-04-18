@@ -1,7 +1,7 @@
 import { createApp } from "vue";
 import Antd from "ant-design-vue/es";
 import App from "./App.vue";
-import Router from "./router";
+import Router from "./route";
 import Store from "./store";
 import Pear from "./component";
 import directives from "./script"

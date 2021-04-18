@@ -1,4 +1,4 @@
-import config from "@/config/pear.config";
+import config from '@/pear';
 
 const state = {
   language: config.defaultLanguage == null ? "zh-CN" : localStorage.getItem("pear_lang") == null ? config.defaultLanguage : localStorage.getItem("pear_lang"),

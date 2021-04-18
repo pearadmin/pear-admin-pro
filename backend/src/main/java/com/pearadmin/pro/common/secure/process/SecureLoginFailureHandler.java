@@ -33,6 +33,8 @@ public class SecureLoginFailureHandler implements AuthenticationFailureHandler {
     @Override
     public void onAuthenticationFailure(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, AuthenticationException e) throws IOException {
 
+        e.printStackTrace();
+
         if(e instanceof UsernameNotFoundException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_USERNAME_NOT_FOUND)); return;}
         if(e instanceof LockedException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_LOCKED)); return;}
         if(e instanceof BadCredentialsException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_BAD_CREDENTIALS)); return;}

@@ -1,5 +1,5 @@
 import store from "@/store/store";
-import router from '@/router'
+import router from '@/route'
 export default function permission(el, binding, VNode, prevNode) {
   /// 当前路由
   const { currentRoute } = router

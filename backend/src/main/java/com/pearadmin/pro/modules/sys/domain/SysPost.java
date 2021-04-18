@@ -9,7 +9,7 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 /**
  * 岗位模型
  *
- * Author: 就 眠 仪 式
+ * Author: 就眠仪式
  * CreateTime: 2021/03/27
  * */
 @Data
@@ -23,16 +23,16 @@ public class SysPost extends BaseDomain {
     private String id;
 
     /**
-     * 编码
-     * */
-    @TableField("code")
-    private String code;
-
-    /**
      * 名称
      * */
     @TableField("name")
     private String name;
+
+    /**
+     * 编码
+     * */
+    @TableField("code")
+    private String code;
 
     /**
      * 排序

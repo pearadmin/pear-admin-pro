@@ -8,7 +8,7 @@ import lombok.Data;
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
- * */
+ */
 @Data
 public class SysConfigRequest extends PageRequest {
 

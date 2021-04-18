@@ -1,5 +1,5 @@
 import { loadLocaleMessages, setupI18n } from './i18n'
-import config from '@/config/pear.config'
+import config from '@/pear'
 
 const DEFAULT_LANG = localStorage.getItem('pear_lang') ? localStorage.getItem('pear_lang') : config.defaultLanguage
 

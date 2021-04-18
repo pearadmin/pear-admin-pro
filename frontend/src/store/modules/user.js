@@ -1,7 +1,7 @@
 import { menu, login, logout } from "@/api/modules/user";
 import {
   generateUserMenuForList, generateUserMenuForTree
-} from "@/router/permission";
+} from "@/route/permission";
 import { message } from "ant-design-vue";
 
 const state = {

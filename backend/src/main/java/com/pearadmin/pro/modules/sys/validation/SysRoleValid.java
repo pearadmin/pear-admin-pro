@@ -6,9 +6,9 @@ import javax.validation.constraints.NotNull;
 /**
  * 角色模型 - 参数校监
  *
- * Author: 就 眠 仪 式
+ * Author: 就眠仪式
  * CreateTime: 2021/03/27
- * */
+ */
 @Data
 public class SysRoleValid {
 
@@ -17,4 +17,5 @@ public class SysRoleValid {
 
     @NotNull(message = "标识不能为空")
     private String code;
+
 }

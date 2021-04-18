@@ -6,7 +6,7 @@
         select * from sys_role sr
         left join sys_user_role sur on sr.id = sur.role_id
         left join sys_user su on su.id = sur.user_id
-        where su.id = #{userId}
+        where su.id = #{userId} and sr.enable = 1
     </select>
 
     <select id="selectList" resultType="SysRole">

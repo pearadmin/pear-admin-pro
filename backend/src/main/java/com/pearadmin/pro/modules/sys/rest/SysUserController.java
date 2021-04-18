@@ -1,11 +1,11 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.pearadmin.pro.common.context.UserContext;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
 import com.pearadmin.pro.modules.sys.validation.SysUserValid;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.common.constant.ControllerConstant;
@@ -95,7 +95,6 @@ public class SysUserController extends BaseController {
 
     /**
      * 获取当前用户
-     *
      */
     @GetMapping("profile")
     @SysLog(title = "个人资料")

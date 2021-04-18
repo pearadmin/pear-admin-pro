@@ -3,6 +3,7 @@ package com.pearadmin.pro.modules.sys.repository;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -22,7 +23,7 @@ public interface SysPowerRepository extends BaseMapper<SysPower> {
      * @param userId 用户编号
      * @return {@link SysPower}
      * */
-    List<SysPower> selectListByUserId(String userId);
+    List<SysPower> selectListByUserId(@Param("userId") String userId);
 
     /**
      * 获取权限树

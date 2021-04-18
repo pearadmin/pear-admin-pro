@@ -62,7 +62,7 @@
         select * from sys_power
     </select>
 
-    <select id="selectListByUserId" resultType="SysPower">
+    <select id="selectListByUserId" parameterType="string" resultType="SysPower">
         select * from sys_power sp
         left join sys_role_power srp on srp.power_id = sp.id
         left join sys_role sr on sr.id = srp.role_id
