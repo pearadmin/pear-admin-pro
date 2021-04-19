@@ -42,5 +42,6 @@ export default {
   "error-404": "404",
   "error-500": "500",
   /// 开发工具
-  "develop": "开发工具"
+  "develop": "开发工具",
+  "develop-mail": "邮箱发送"
 }

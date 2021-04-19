@@ -36,4 +36,5 @@ public interface SysRoleService extends IService<SysRole> {
      * @return {@link SysRole}
      * */
     PageResponse<SysRole> page(SysRoleRequest request);
+    
 }

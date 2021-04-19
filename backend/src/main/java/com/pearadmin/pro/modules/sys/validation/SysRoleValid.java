@@ -7,7 +7,7 @@ import javax.validation.constraints.NotNull;
  * 角色模型 - 参数校监
  *
  * Author: 就眠仪式
- * CreateTime: 2021/03/27
+ * CreateTime: 2021-03-27
  */
 @Data
 public class SysRoleValid {

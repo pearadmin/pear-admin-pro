@@ -23,7 +23,7 @@
           </a-dropdown>
           <a-button
             v-else
-            :type="index == 0 ? 'primary' : ''"
+            :type="index == 0 ? 'primary' : 'default'"
             @click="item.event(selectedRowKeys)">
             {{ item.label }}
           </a-button>
@@ -69,7 +69,6 @@
       :dataSource="datasource"
       :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
     >
-      <!-- 默认插槽 [自定义列替换]-->
       <slot></slot>
       <!-- 行操作 -->
       <template v-slot:action="{ record }">
