@@ -97,13 +97,12 @@ export const permissionController = async (to, from, next) => {
       
       // 是否存在
       const hasRoute = findRouteForUserRoutes(userRoutes, to.fullPath)
-      
-      alert(hasRoute)
 
       if (hasRoute) {
-        // 注册路由 并 跳转
+        // 注册路由
         setUserRouteComponent(userRoutes)
         userRoutes.forEach(r => { router.addRoute(r) })
+        // 目标跳转
         next(to.fullPath)
       } else {
         // 重定向 404

@@ -15,9 +15,7 @@ export default [
   {
     path: '/error/403',
     component: () => import('@/view/error/404.vue'),
-    meta: {
-      title: '404'
-    },
+    meta: { title: '404' },
     hidden: true,
   }, 
   {

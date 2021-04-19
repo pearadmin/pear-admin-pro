@@ -18,13 +18,27 @@ export default {
   "result-failure": "失败",
   "result-warning": "警告",
   "result-info": "详情",
+  "permission": "系统权限",
+  "permission-test": "权限测试",
+  /// 系统
+  "system": "系统管理",
+  "system-user": "用户管理",
+  "system-role": "角色管理",
+  "system-power": "权限管理",
+  "system-config": "配置管理",
+  "system-dict": "数据字典",
+  "system-post": "岗位管理",
+  /// 监控
+  "monitor": "系统监控",
+  "monitor-server": "运行环境",
+  "monitor-online": "在线用户",
+  "monitor-doc": "接口文档",
+  "monitor-redis": "缓存监控",
+  "monitor-log-operate": "操作日志",
+  "monitor-log-login": "登录日志",
+  /// 错误
   "error": "错误页面",
   "error-403": "403",
   "error-404": "404",
   "error-500": "500",
-  "permission": "系统权限",
-  "permission-test": "权限测试",
-  "sys": "系统管理",
-  "sys.user": "用户管理",
-  "sys.role": "角色管理"
 }

@@ -93,6 +93,7 @@ export default {
     SyncOutlined,
   },
   setup() {
+    
    const columns = [
       { dataIndex: "title", key: "title", title: "标题" },
       { dataIndex: "describe", key: "describe", title: "描述" },

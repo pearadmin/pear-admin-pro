@@ -219,49 +219,21 @@ export default {
       loading.value = false;
     };
 
+    const columns = [
+        { title: "磁盘", dataIndex: "typeName", key: "typeName", width: "200px"},
+        { title: "使用率", dataIndex: "usage", key: "usage", slots: { customRender: "usage" }},
+        { title: "路径", dataIndex: "dirName", key: "dirName", align: "center"},
+        { title: "使用", dataIndex: "used", key: "used", align: "center"},
+        { title: "剩余", dataIndex: "free", key: "free", align: "center"},
+        { title: "大小", dataIndex: "total", key: "total", align: "center"}
+      ];
+
     loadData();
 
     return {
+      columns,
       datasource,
       loading,
-      columns: [
-        {
-          title: "磁盘",
-          dataIndex: "typeName",
-          key: "typeName",
-          width: "200px"
-        },
-        {
-          title: "使用率",
-          dataIndex: "usage",
-          key: "usage",
-          slots: { customRender: "usage" }
-        },
-        {
-          title: "路径",
-          dataIndex: "dirName",
-          key: "dirName",
-          align: "center",
-        },
-        {
-          title: "使用",
-          dataIndex: "used",
-          key: "used",
-          align: "center",
-        },
-        {
-          title: "剩余",
-          dataIndex: "free",
-          key: "free",
-          align: "center",
-        },
-        {
-          title: "大小",
-          dataIndex: "total",
-          key: "total",
-          align: "center",
-        }
-      ],
       cpu,
       mem,
       jvm,

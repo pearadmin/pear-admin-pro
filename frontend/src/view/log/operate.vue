@@ -78,7 +78,7 @@
 </template>
 <script>
 import { AppstoreOutlined, SyncOutlined, ExportOutlined, ExclamationCircleOutlined} from "@ant-design/icons-vue";
-import { login, operate } from "@/api/modules/log";
+import { operate } from "@/api/modules/log";
 import { Modal } from "ant-design-vue";
 import { createVNode, reactive, ref } from "vue";
 

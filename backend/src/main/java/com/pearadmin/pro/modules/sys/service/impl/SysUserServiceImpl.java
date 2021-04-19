@@ -34,11 +34,6 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
     }
 
     @Override
-    public List<SysPower> menu(String userId) {
-        return toTree(sysPowerRepository.selectMenu(userId),"0");
-    }
-
-    @Override
     public List<SysUser> list(SysUserRequest request) {
         return sysUserRepository.selectList(request);
     }
@@ -53,11 +48,11 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
         return sysPowerRepository.selectListByUserId(userId);
     }
 
-    /**
-     * Describe: 递归获取菜单tree
-     * Param: sysMenus
-     * Return: 操作结果
-     * */
+    @Override
+    public List<SysPower> menu(String userId) {
+        return toTree(sysPowerRepository.selectMenu(userId),"0");
+    }
+
     public List<SysPower> toTree(List<SysPower> sysMenus,String parent) {
         List<SysPower> list = new ArrayList<>();
         for (SysPower menu : sysMenus) {

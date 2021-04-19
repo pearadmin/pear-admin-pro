@@ -1,12 +1,12 @@
 import http from '../http'
 
 const Api = {
-    page: '/sys/power/page',
+    tree: '/sys/power/tree',
 }
 
-export const page = data => {
+export const tree = data => {
     return http.request({
-        url: Api.page,
+        url: Api.tree,
         params: data,
         method: 'get'
     })

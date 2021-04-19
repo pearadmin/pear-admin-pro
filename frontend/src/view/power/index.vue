@@ -66,28 +66,19 @@
   </div>
 </template>
 <script>
-import { page } from "@/api/modules/power";
+import { tree } from "@/api/modules/power";
 import { reactive, ref } from "vue";
 
 export default {
+  
   setup() {
     const columns = [
       { dataIndex: "title", key: "title", title: "标题" },
       { dataIndex: "name", key: "name", title: "组件" },
       { dataIndex: "path", key: "path", title: "路径" },
-      {
-        dataIndex: "enable",
-        key: "enable",
-        title: "状态",
-        slots: { customRender: "enable" },
-      },
+      { dataIndex: "enable", key: "enable", title: "状态", slots: { customRender: "enable" }},
       { dataIndex: "sort", key: "sort", title: "排序" },
-      {
-        title: "操作",
-        key: "action",
-        slots: { customRender: "action" },
-        fixed: "right",
-      },
+      { dataIndex: "sort", title: "操作", key: "action", slots: { customRender: "action" }, fixed: "right"},
     ];
 
     const data = ref();
@@ -96,7 +87,7 @@ export default {
 
     const loadData = async function (param) {
       loading.value = true;
-      const response = await page(param);
+      const response = await tree(param);
       data.value = response.data;
       loading.value = false;
     };

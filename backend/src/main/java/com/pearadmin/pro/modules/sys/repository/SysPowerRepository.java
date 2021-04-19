@@ -4,7 +4,6 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-
 import java.util.List;
 
 @Mapper
@@ -24,37 +23,6 @@ public interface SysPowerRepository extends BaseMapper<SysPower> {
      * @return {@link SysPower}
      * */
     List<SysPower> selectListByUserId(@Param("userId") String userId);
-
-    /**
-     * 获取权限树
-     *
-     * @return {@link SysPower}
-     * */
-    List<SysPower> selectTree();
-
-    /**
-     * 根据 userId 获取权限树
-     *
-     * @param userId 用户编号
-     * @return {@link SysPower}
-     * */
-    List<SysPower> selectTreeByUserId(String userId);
-
-    /**
-     * 获取权限子集
-     *
-     * @param parent 父级编号
-     * @return {@link SysPower}
-     * */
-    List<SysPower> selectChildren(String parent);
-
-    /**
-     * 根据 userId 获取权限子集
-     *
-     * @param userId 用户编号
-     * @return {@link SysPower}
-     * */
-    List<SysPower> selectChildrenByUserId(String parent,String userId);
 
     /**
      * 根据 userId 获取菜单

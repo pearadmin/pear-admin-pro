@@ -66,7 +66,7 @@
   </div>
 </template>
 <script>
-import { page } from "@/api/modules/power";
+import { tree } from "@/api/modules/power";
 import { reactive, ref } from "vue";
 
 export default {
@@ -96,7 +96,7 @@ export default {
 
     const loadData = async function (param) {
       loading.value = true;
-      const response = await page(param);
+      const response = await tree(param);
       data.value = response.data;
       loading.value = false;
     };

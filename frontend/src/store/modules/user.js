@@ -67,7 +67,6 @@ const actions = {
   async addRoute( {commit} ) {
     const { data } = await menu()
     const routes = generateRoute(data)
-    alert(JSON.stringify(routes));
     commit('SET_USER_MENU', routes)
   }
 }
