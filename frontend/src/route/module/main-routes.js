@@ -30,5 +30,7 @@ export default {
   'server': () => import('@/view/server/index.vue'),
   'online': () => import('@/view/online/index.vue'),
   'redis': () => import('@/view/redis/index.vue'),
-  'doc': () => import('@/view/doc/index.vue')
+  'doc': () => import('@/view/doc/index.vue'),
+  'mail': () => import('@/view/mail/index.vue'),
+  'file': () => import('@/view/file/index.vue')
 }

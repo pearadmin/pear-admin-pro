@@ -8,7 +8,7 @@ import java.time.LocalDateTime;
  * 用户 Token 封装实体
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2021/10/23
  * */
 @Data
 public class SecureUserToken {

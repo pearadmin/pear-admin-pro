@@ -26,6 +26,7 @@ export const generateRoute = (menus) => {
 }
 
 export const setUserRouteComponent = routes => {
+  /// 路由组件匹配
   routes.forEach(r => {
     r.component = r.parent == '0' ? permissionRoutes.Layout : permissionRoutes[r.name]
     if (r.children && r.children.length > 0) {
@@ -40,7 +41,7 @@ export const setUserRouteComponent = routes => {
  * @param path
  * @returns {boolean}
  */
-export const findRouteForUserRoutes = (routes, path) => {
+export const inCloudRoute = (routes, path) => {
   let hasRoute = false
   const routeArr = path.split('/')
   const routePath = routeArr[routeArr.length - 1]
@@ -49,7 +50,7 @@ export const findRouteForUserRoutes = (routes, path) => {
     if (path === routePath) {
       hasRoute = true
     } else if (children.length > 0) {
-      hasRoute = findRouteForUserRoutes(children, routePath)
+      hasRoute = inCloudRoute(children, routePath)
     }
     if (hasRoute) {
       break
@@ -92,11 +93,9 @@ export const permissionController = async (to, from, next) => {
       // 注册路由
       await store.dispatch('user/addRoute')
 
-      // 用户路由 
+      // 路由判定
       const userRoutes = JSON.parse(JSON.stringify(store.getters.menu))
-      
-      // 是否存在
-      const hasRoute = findRouteForUserRoutes(userRoutes, to.fullPath)
+      const hasRoute = inCloudRoute(userRoutes, to.fullPath)
 
       if (hasRoute) {
         // 注册路由

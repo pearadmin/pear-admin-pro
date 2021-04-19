@@ -9,10 +9,10 @@ const router = createRouter({
   routes
 })
 
-// To 拦截
+// 前置拦截器
 router.beforeEach(permissionController)
 
-// Next 拦截
+// 后置拦截器
 router.afterEach((to, from) => {
   NProgress.done();
 })

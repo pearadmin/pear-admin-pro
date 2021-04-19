@@ -1,7 +1,7 @@
 package com.pearadmin.pro.common.secure.captcha;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
 /**

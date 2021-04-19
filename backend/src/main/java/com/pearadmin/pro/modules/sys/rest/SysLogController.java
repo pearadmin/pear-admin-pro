@@ -36,6 +36,7 @@ public class SysLogController extends BaseController {
     @ApiOperation(value = "操作日志")
     @SysLog(title = "查询日志", describe = "获取操作日志")
     public Result operate(SysLogRequest request){
+        // TODO 操作日志
         return success(sysLogService.page(request));
     }
 
@@ -48,6 +49,7 @@ public class SysLogController extends BaseController {
     @ApiOperation(value = "登录日志")
     @SysLog(title = "查询日志", describe = "获取登录日志")
     public Result login(SysLogRequest request){
+        // TODO 登录日志
         return success(sysLogService.page(request));
     }
 }

@@ -62,7 +62,7 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "备份", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
     ];
 

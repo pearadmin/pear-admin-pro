@@ -2,21 +2,26 @@
   <div id="doc">
     <page-layout>
       <a-card>
-        <iframe frameborder="0" height="545px" width="100%" src="http://localhost:9191/swagger-ui.html"></iframe>
+        <iframe id="show-iframe" frameborder="0" name="showHere" width="100%" scrolling="auto" src="http://localhost:9191/swagger-ui.html"></iframe>
       </a-card>
     </page-layout>
-    <page-footer></page-footer>
   </div>
 </template>
 <script>
+import { onMounted } from "vue";
 export default {
   setup() {
- 
-  }
+    // TODO iframe 动态高度
+    onMounted(() => {
+      const oIframe = document.getElementById("show-iframe");
+      const deviceHeight = document.documentElement.clientHeight - 180;
+      oIframe.style.height = deviceHeight  + "px";
+    });
+  },
 };
 </script>
 <style scoped>
-iframe{
-    border-width:0px!important;
+iframe {
+  border-width: 0px !important;
 }
 </style>

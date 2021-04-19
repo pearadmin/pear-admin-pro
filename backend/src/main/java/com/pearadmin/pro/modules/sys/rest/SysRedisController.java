@@ -1,9 +1,11 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -32,6 +34,8 @@ public class SysRedisController extends BaseController {
      * Redis 服务信息
      */
     @GetMapping("info")
+    @SysLog(title = "缓存详情")
+    @ApiOperation(value = "缓存详情")
     public Result info(){
         Properties info = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info());
         Properties commandStats = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info("commandstats"));

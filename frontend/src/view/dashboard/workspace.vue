@@ -7,7 +7,7 @@
       >
       </a-avatar>
       <span style="margin-left: 30px; margin-top:0px; font-size: 18px"
-        >&nbsp;江湖无名，安心练剑 </span>
+        >&nbsp; 江湖无名，安心练剑 </span>
       <div style="float: right; width: 340px">
         <a-row
           :gutter="16"
