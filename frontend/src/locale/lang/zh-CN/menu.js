@@ -25,7 +25,7 @@ export default {
   "system-user": "用户管理",
   "system-role": "角色管理",
   "system-power": "权限管理",
-  "system-config": "配置管理",
+  "system-config": "全局配置",
   "system-dict": "数据字典",
   "system-post": "岗位管理",
   /// 监控
@@ -41,4 +41,6 @@ export default {
   "error-403": "403",
   "error-404": "404",
   "error-500": "500",
+  /// 开发工具
+  "develop": "开发工具"
 }

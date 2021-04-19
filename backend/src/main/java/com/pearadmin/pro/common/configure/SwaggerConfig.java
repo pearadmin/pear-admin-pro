@@ -40,7 +40,7 @@ public class SwaggerConfig  {
     private ApiInfo apiInfo(){
         return new ApiInfo(
                 "Pear Admin",
-                "构建于 Spring 之上企业级开发平台" ,
+                "Spring Boot 企业级开发平台" ,
                 "",
                 "www.pearadmin.com",new Contact("pear-admin","https://gitee.com/pear-admin","jmys1992@gmail.com"),
                 "apache license",

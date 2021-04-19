@@ -1,105 +1,44 @@
 <template>
-  <div>
     <page-layout>
       <a-row :gutter="[10, 10]">
+        <!-- 顶部区域 -->
         <a-col :span="24">
           <a-card>
-            <a-form layout="inline" :model="param" @submit="reload">
-              <a-form-item label="配置名称">
-                <a-input
-                  v-model:value="param.name"
-                  type="text"
-                  placeholder="名称"
-                >
-                </a-input>
-              </a-form-item>
-              <a-form-item label="配置标识">
-                <a-input
-                  v-model:value="param.code"
-                  type="text"
-                  placeholder="标识"
-                >
-                </a-input>
-              </a-form-item>
-              <a-form-item>
-                <button-container>
-                  <a-button type="primary" html-type="submit"> 查询 </a-button>
-                  <a-button> 默认 </a-button>
-                </button-container>
-              </a-form-item>
-            </a-form>
+            <!-- 查询参数 -->
+            <pro-query
+              :searchParam="searchParam"
+              @on-search ="search"
+            ></pro-query>
           </a-card>
         </a-col>
+        <!-- 中心区域 -->
         <a-col :span="24">
           <a-card>
-            <button-container class="tool-left">
-              <a-button type="primary" @click="add">新增</a-button>
-              <a-button @click="batchRemove">删除</a-button>
-            </button-container>
-            <button-container class="tool-right">
-              <a-button @click="search">
-                <template #icon><SyncOutlined /></template>
-              </a-button>
-              <a-button>导出</a-button>
-            </button-container>
-            <a-table
-              :loading="loading"
-              :pagination="pagination"
+            <!-- 列表 -->
+            <pro-table
+              :fetch="fetch"
               :columns="columns"
-              :data-source="data"
+              :toolbar="toolbar"
+              :operate="operate"
+              :param="state.param"
+              :pagination="pagination"
             >
-              <template #enable="{ text }">
-                <a-switch :checked="text" />
-              </template>
-              <template v-slot:action="{ record }">
-                <span>
-                  <a @click="info(record)">查看</a>
-                  <a-divider type="vertical" />
-                  <a>修改</a>
-                  <a-divider type="vertical" />
-                  <a @click="remove">删除</a>
-                </span>
-              </template>
-            </a-table>
+              <!-- 继承至 a-table 的默认插槽 -->
+            </pro-table>
           </a-card>
         </a-col>
       </a-row>
     </page-layout>
-    <a-drawer
-      title="权限分配"
-      placement="right"
-      :closable="false"
-      v-model:visible="visible"
-      :after-visible-change="afterVisibleChange"
-      width="350"
-    >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-    </a-drawer>
-  </div>
 </template>
+
 <script>
-import { SyncOutlined } from "@ant-design/icons-vue";
 import { page } from "@/api/modules/config";
-import { reactive, ref } from "vue";
+import { reactive } from 'vue';
 
 export default {
-  components: {
-    SyncOutlined,
-  },
   setup() {
 
-    const visible = ref(false);
-
-    const afterVisibleChange = (bool) => {
-      console.log('visible', bool);
-    };
-
-    const showDrawer = () => {
-      visible.value = true;
-    };
-
+    /// 列配置
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "key", key: "key", title: "键" },
@@ -107,58 +46,78 @@ export default {
       { dataIndex: "remark", key: "remark", title: "描述" },
       { dataIndex: "createTime", key: "createTime", title: "创建时间" },
       { dataIndex: "updateTime", key: "updateTime", title: "修改时间" },
-      {
-        title: "操作",
-        key: "action",
-        slots: { customRender: "action" },
-        fixed: "right",
-      },
     ];
 
-    const data = ref();
-    const loading = ref(true);
-    const param = reactive({ current: 1, size: 10, username: "" });
-    const pagination = reactive({
-      total: 0,
+    /// 数据来源 [模拟]
+    const fetch = async (param) => {
+      var response = await page(param);
+      return {
+        total: response.data.total,
+        data: response.data.record,
+      };
+    };
+
+    /// 工具栏
+    const toolbar = [
+      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+    ];
+
+    /// 行操作
+    const operate = [
+      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
+    ];
+
+    /// 分页参数
+    const pagination = {
+      pageNum: 1,
       pageSize: 10,
-      showSizeChanger: true,
-      showTotal: (total) => `共有 ${total} 条`,
-    });
+    }
 
-    const loadData = async function (param) {
-      loading.value = true;
-      const response = await page(param);
-      data.value = response.data.records;
-      pagination.total = response.data.total;
-      loading.value = false;
-    };
+    /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
+    const state = reactive({
+      param: {
+        name: "", // 名称
+        code: ""  // 标识
+      }
+    })
 
-    const search = function () {
-      loadData(param);
-    };
+    /// 查询参数
+    const searchParam = [
+        { key: "name", type: "input", label: "名称"},
+        { key: "code", type: "input", label: "描述"},
+        { key: "state", type: "select", label: "状态", value: "0",
+          hidden: true ,
+          options: [
+            { text: "全部", value: "0"},
+            { text: "开启", value: "1"},
+            { text: "关闭", value: "2"}
+          ]
+        }
+    ]
 
-    loadData(param);
+    /// 查询操作
+    const search = function(value) {
+      
+      /// 通过动态修改入参, 触发表格刷新
+      state.param = value
+    }
 
+    /// 声明抛出
     return {
-      pagination,
-      loading,
-      columns,
-      search,
-      param,
-      data,
+      state: state, // 状态共享
+      fetch: fetch, // 数据回调
+      toolbar: toolbar, // 工具栏
+      columns: columns, // 列配置
+      operate: operate, // 行操作
+      pagination: pagination, // 分页配置
 
-      visible,
-      afterVisibleChange,
-      showDrawer,
+      /// 
+      search: search,
+      searchParam: searchParam, // 查询参数
     };
   },
 };
-</script>
-<style lang="less">
-.tool-left {
-  display: inline-block;
-}
-.tool-right {
-  float: right;
-}
-</style>
+</script>  
