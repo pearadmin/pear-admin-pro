@@ -38,17 +38,6 @@ import { reactive } from 'vue';
 export default {
   setup() {
 
-    /// 列配置
-    const columns = [
-      { dataIndex: "nickname", key: "nickname", title: "名称" },
-      { dataIndex: "username", key: "username", title: "账号" },
-      { dataIndex: "gender", key: "gender", title: "性别" , conver: [ {label:"男",value:0},{label:"女",value:1}]},
-      { dataIndex: "locked", key: "locked", title: "锁定" , switch: { condition: true } },
-      { dataIndex: "email", key: "email", title: "邮箱" },
-      { dataIndex: "phone", key: "phone", title: "电话" },
-      { dataIndex: "createTime", key: "createTime", title: "注册时间" }
-    ];
-
     /// 数据来源 [模拟]
     const fetch = async (param) => {
       var response = await page(param);
@@ -71,19 +60,28 @@ export default {
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
-    /// 分页参数
-    const pagination = {
-      pageNum: 1,
-      pageSize: 10,
-    }
+    /// 文本转换
+    const converFormat = [{label:"男", value:0},{label:"女", value:1}]
 
-    /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
-    const state = reactive({
-      param: {
-        name: "", // 名称
-        code: ""  // 标识
-      }
-    })
+    /// 开关转换
+    const switchFormat = { yes: true, no: false }
+
+    /// 列配置
+    const columns = [
+      { dataIndex: "nickname", key: "nickname", title: "名称" },
+      { dataIndex: "username", key: "username", title: "账号" },
+      { dataIndex: "gender", key: "gender", title: "性别", conver: converFormat},
+      { dataIndex: "locked", key: "locked", title: "锁定", switch: switchFormat},
+      { dataIndex: "email", key: "email", title: "邮箱" },
+      { dataIndex: "phone", key: "phone", title: "电话" },
+      { dataIndex: "createTime", key: "createTime", title: "注册时间" }
+    ];
+
+    /// 分页参数
+    const pagination = { pageNum: 1, pageSize: 10}
+
+    /// 外置参数
+    const state = reactive({ param: { name: "",  code: "" } })
 
     /// 查询参数
     const searchParam = [

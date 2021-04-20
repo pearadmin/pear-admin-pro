@@ -34,10 +34,9 @@ import { reactive } from "vue";
 
 export default {
   setup() {
-    
+
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "账号" },
       { dataIndex: "enable", key: "enable", title: "状态", switch: { condition: true } },
       { dataIndex: "remark", key: "remark", title: "描述" },
       { dataIndex: "sort", key: "sort", title: "排序" },

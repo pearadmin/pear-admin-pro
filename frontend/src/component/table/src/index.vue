@@ -100,12 +100,12 @@
           </template>
         </span>
 
-        <!-- Switch convert -->
+        <!-- 开关转换 -->
         <span v-else-if="column.switch">
-            <a-switch :checked="record[column.dataIndex] === column.switch.condition" />
+            <a-switch :checked="record[column.dataIndex] === column.switch.yes" />
         </span>
 
-        <!-- Text convert -->
+        <!-- 文本转换 -->
         <span v-else-if="column.conver">
              <template v-for="(data,index) in column.conver">
                <span :key="index" v-if="data.value === record[column.dataIndex]">
@@ -114,7 +114,7 @@
              </template>
         </span>
 
-        <!-- Text convert -->
+        <!-- 原样输出 -->
         <span v-else>
           {{record[column.dataIndex]}}
         </span>

@@ -2,12 +2,12 @@
   <div class="pro-query">
     <!-- 表单内容 -->
     <a-form layout="inline" :model="formState">
-      <a-form-item :label="param.label" :key="index" v-for="(param, index) in searchParam">
+      <a-form-item v-show="!param.hidden || !hidden" :label="param.label" :key="index" v-for="(param, index) in searchParam">
         <!-- 输入框 -->
         <a-input v-model:value="formState[param.key]" v-show="!param.hidden || !hidden" v-if="param.type == 'input'" type="text">
         </a-input>
         <!-- 选择框 -->
-        <a-select v-show="!param.hidden || !hidden" v-if="param.type == 'select'" v-model:value="formState[param.key]" class="pro-query-select">
+        <a-select v-if="param.type == 'select'" v-model:value="formState[param.key]" class="pro-query-select">
             <a-select-option :key="index" v-for="(option,index) in param.options" :value="option.value">{{option.text}}</a-select-option>
         </a-select>
       </a-form-item>
