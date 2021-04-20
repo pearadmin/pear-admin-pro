@@ -102,7 +102,7 @@
 
         <!-- 开关转换 -->
         <span v-else-if="column.switch">
-            <a-switch :checked="record[column.dataIndex] === column.switch.yes" />
+            <a-switch @change="column.switch.event($event,record)" :checked="record[column.dataIndex] === column.switch.yes" />
         </span>
 
         <!-- 文本转换 -->
@@ -164,7 +164,7 @@ export default defineComponent({
       type: Array,
     },
   }),
-  setup(props, {slots}) {
+  setup(props) {
     /// 状态共享
     const state = reactive({
       pagination: Object.assign({}, props.pagination), // 分页
@@ -177,12 +177,7 @@ export default defineComponent({
 
     /// 默认操作
     if (props.operate != false) {
-      state.columns.push({
-        dataIndex: "operate",
-        key: "operate",
-        title: "操作",
-        fixed: "right",
-      });
+      state.columns.push({ dataIndex: "operate", key: "operate", title: "操作", fixed: "right"});
     }
 
     /// 为所有 column 新增默认 customRender 属性
@@ -233,13 +228,7 @@ export default defineComponent({
     });
 
     /// 监听扩展参数, 触发表格刷新
-    watch(
-      () => props.param,
-      () => {
-        fetchData();
-      },
-      { deep: true }
-    );
+    watch(() => props.param,() => { fetchData();},{ deep: true });
 
     ///
     return {
@@ -253,7 +242,7 @@ export default defineComponent({
       filtrationColumns,
       filtration,
       /// 选中字段
-      onSelectChange,
+      onSelectChange
     };
   },
 });

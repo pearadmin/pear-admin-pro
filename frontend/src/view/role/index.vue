@@ -27,18 +27,25 @@
     </a-row>
   </page-layout>
 </template>
-
 <script>
 import { page } from "@/api/modules/role";
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 
 export default {
   setup() {
 
+    const TableRef = ref();
+
+    const switchFormat = { yes: true, no: false, event: function(value,record){
+      // TODO 刷新表格问题
+      record.enable = !record.enable;
+      return value;
+    }}
+
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "enable", key: "enable", title: "状态", switch: { condition: true } },
       { dataIndex: "remark", key: "remark", title: "描述" },
+      { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat },
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
 
@@ -53,77 +60,34 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      {
-        label: "新增",
-        event: function (keys) {
-          alert("新增操作:" + JSON.stringify(keys));
-        },
-      },
-      {
-        label: "删除",
-        event: function (keys) {
-          alert("批量删除:" + JSON.stringify(keys));
-        },
-      },
+      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys)); }},
+      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys)); }},
     ];
 
     /// 行操作
     const operate = [
-      {
-        label: "查看",
-        event: function (record) {
-          alert("查看详情:" + JSON.stringify(record));
-        },
-      },
-      {
-        label: "修改",
-        event: function (record) {
-          alert("修改事件:" + JSON.stringify(record));
-        },
-      },
-      {
-        label: "删除",
-        event: function (record) {
-          alert("删除事件:" + JSON.stringify(record));
-        },
-      },
+      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record)); }},
+      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record)); }},
+      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record)); }},
     ];
 
     /// 分页参数
-    const pagination = {
-      pageNum: 1,
-      pageSize: 10,
-    };
+    const pagination = { pageNum: 1, pageSize: 10 };
 
-    /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
+    /// 外置参数
     const state = reactive({
-      param: {
-        name: "", // 名称
-        code: "", // 标识
-      },
+      param: { name: "", code: "" },
     });
 
     /// 查询参数
     const searchParam = [
       { key: "name", type: "input", label: "名称" },
       { key: "code", type: "input", label: "描述" },
-      {
-        key: "state",
-        type: "select",
-        label: "状态",
-        value: "0",
-        hidden: true,
-        options: [
-          { text: "全部", value: "0" },
-          { text: "开启", value: "1" },
-          { text: "关闭", value: "2" },
-        ],
-      },
     ];
 
     /// 查询操作
     const search = function (value) {
-      /// 通过动态修改入参, 触发表格刷新
+      /// 刷新表格
       state.param = value;
     };
 
@@ -136,7 +100,6 @@ export default {
       operate: operate, // 行操作
       pagination: pagination, // 分页配置
 
-      ///
       search: search,
       searchParam: searchParam, // 查询参数
     };
