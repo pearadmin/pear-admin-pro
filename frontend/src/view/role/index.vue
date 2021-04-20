@@ -21,10 +21,6 @@
             :param="state.param"
             :pagination="pagination"
           >
-            <!-- 继承至 a-table 的默认插槽 -->
-            <template #enable="{ text }">
-              {{text}}
-            </template>
           </pro-table>
         </a-card>
       </a-col>
@@ -38,12 +34,11 @@ import { reactive } from "vue";
 
 export default {
   setup() {
-
-    /// 列配置
+    
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "账号"},
-      { dataIndex: "enable", key: "enable", title: "状态",  slots: { customRender: 'enable' }},
+      { dataIndex: "code", key: "code", title: "账号" },
+      { dataIndex: "enable", key: "enable", title: "状态", switch: { condition: true } },
       { dataIndex: "remark", key: "remark", title: "描述" },
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];

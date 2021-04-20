@@ -42,8 +42,8 @@ export default {
     const columns = [
       { dataIndex: "nickname", key: "nickname", title: "名称" },
       { dataIndex: "username", key: "username", title: "账号" },
-      { dataIndex: "gender", key: "gender", title: "性别"},
-      { dataIndex: "locked", key: "locked", title: "锁定"},
+      { dataIndex: "gender", key: "gender", title: "性别" , conver: [ {label:"男",value:0},{label:"女",value:1}]},
+      { dataIndex: "locked", key: "locked", title: "锁定" , switch: { condition: true } },
       { dataIndex: "email", key: "email", title: "邮箱" },
       { dataIndex: "phone", key: "phone", title: "电话" },
       { dataIndex: "createTime", key: "createTime", title: "注册时间" }

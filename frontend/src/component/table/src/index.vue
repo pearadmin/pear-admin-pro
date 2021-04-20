@@ -24,7 +24,8 @@
           <a-button
             v-else
             :type="index == 0 ? 'primary' : 'default'"
-            @click="item.event(selectedRowKeys)">
+            @click="item.event(selectedRowKeys)"
+          >
             {{ item.label }}
           </a-button>
         </template>
@@ -33,7 +34,7 @@
       <div class="pro-table-next">
         <!-- 刷新工具栏 -->
         <a-button @click="reload">
-          <template #icon><SyncOutlined/></template>
+          <template #icon><SyncOutlined /></template>
         </a-button>
         <!-- 过滤工具栏 -->
         <a-dropdown>
@@ -42,10 +43,17 @@
           </a-button>
           <template #overlay>
             <a-menu class="filtration">
-              <a-checkbox-group v-model:value="filtrationColumnKeys" @change="filtration">
+              <a-checkbox-group
+                v-model:value="filtrationColumnKeys"
+                @change="filtration"
+              >
                 <a-row>
                   <!-- 遍历字段 -->
-                  <a-col :span="24" :key="index" v-for="(filtrationColumn, index) in filtrationColumns">
+                  <a-col
+                    :span="24"
+                    :key="index"
+                    v-for="(filtrationColumn, index) in filtrationColumns"
+                  >
                     <a-checkbox :value="filtrationColumn.value">
                       {{ filtrationColumn.label }}
                     </a-checkbox>
@@ -67,13 +75,13 @@
       :loading="loading"
       :pagination="pagination"
       :dataSource="datasource"
-      :row-selection="{ selectedRowKeys: selectedRowKeys, onChange: onSelectChange}"
+      :row-selection="{ selectedRowKeys: selectedRowKeys,  onChange: onSelectChange }"
     >
-      <slot></slot>
-      <!-- 行操作 -->
-      <template v-slot:action="{ record }">
-        <span>
-          <template :key="index" v-for="(item, index) in operate">
+      <!-- 列转换 -->
+      <template :key="index" v-for="(column,index) in columns" #[column.dataIndex] = "{  record }">
+        <!-- 行操作 -->
+        <span v-if="column.dataIndex == 'operate'">
+          <template :key="i" v-for="(item, i) in operate">
             <!-- 下拉操作 -->
             <a-dropdown v-if="item.children && item.children.length > 0">
               <a> {{ item.label }} </a>
@@ -91,6 +99,26 @@
             <a-divider type="vertical" />
           </template>
         </span>
+
+        <!-- Switch convert -->
+        <span v-else-if="column.switch">
+            <a-switch :checked="record[column.dataIndex] === column.switch.condition" />
+        </span>
+
+        <!-- Text convert -->
+        <span v-else-if="column.conver">
+             <template v-for="(data,index) in column.conver">
+               <span :key="index" v-if="data.value === record[column.dataIndex]">
+                  {{data.label}}
+               </span>
+             </template>
+        </span>
+
+        <!-- Text convert -->
+        <span v-else>
+          {{record[column.dataIndex]}}
+        </span>
+
       </template>
     </a-table>
   </div>
@@ -98,12 +126,8 @@
 <script>
 import "./index.less";
 import T from "ant-design-vue/es/table/Table";
-import {defineComponent, onMounted, reactive, toRefs, watch } from "vue";
-import {
-  AppstoreOutlined,
-  ExportOutlined,
-  SyncOutlined,
-} from "@ant-design/icons-vue";
+import { defineComponent, onMounted, reactive, toRefs, watch } from "vue";
+import { AppstoreOutlined, ExportOutlined, SyncOutlined } from "@ant-design/icons-vue";
 
 const TProps = T.props;
 export default defineComponent({
@@ -119,7 +143,7 @@ export default defineComponent({
   props: Object.assign({}, TProps, {
     /// 扩展参数
     param: {
-      type: Object
+      type: Object,
     },
     /// 数据来源
     fetch: {
@@ -140,8 +164,7 @@ export default defineComponent({
       type: Array,
     },
   }),
-  setup(props) {
-
+  setup(props, {slots}) {
     /// 状态共享
     const state = reactive({
       pagination: Object.assign({}, props.pagination), // 分页
@@ -154,8 +177,18 @@ export default defineComponent({
 
     /// 默认操作
     if (props.operate != false) {
-      state.columns.push({dataIndex: "action",key: "action",title: "操作",slots: { customRender: "action" },fixed: "right"});
+      state.columns.push({
+        dataIndex: "operate",
+        key: "operate",
+        title: "操作",
+        fixed: "right",
+      });
     }
+
+    /// 为所有 column 新增默认 customRender 属性
+    state.columns.forEach((column)=>{
+        column.slots = { customRender: column.dataIndex }
+    })
 
     /// 过滤字段
     const filtrationColumns = [];
@@ -180,7 +213,9 @@ export default defineComponent({
       /// 开启加载
       state.loading = true;
       /// 请求数据
-      const { total, data } = await props.fetch(Object.assign({}, props.pagination, props.param));
+      const { total, data } = await props.fetch(
+        Object.assign({}, props.pagination, props.param)
+      );
       /// 状态重置
       state.pagination.total = total;
       state.datasource = data;
@@ -198,11 +233,15 @@ export default defineComponent({
     });
 
     /// 监听扩展参数, 触发表格刷新
-    watch(() => props.param,() => {
+    watch(
+      () => props.param,
+      () => {
         fetchData();
-    },{deep: true});
+      },
+      { deep: true }
+    );
 
-    /// 
+    ///
     return {
       /// 数据信息
       ...toRefs(state),

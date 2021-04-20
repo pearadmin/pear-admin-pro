@@ -40,10 +40,9 @@ export default {
 
     /// 列配置
     const columns = [
-      { dataIndex: "title", key: "title", title: "标题" },
       { dataIndex: "name", key: "name", title: "组件" },
       { dataIndex: "path", key: "path", title: "路径" },
-      { dataIndex: "enable", key: "enable", title: "状态", slots: { customRender: "enable" }},
+      { dataIndex: "enable", key: "enable", title: "状态"},
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
 
