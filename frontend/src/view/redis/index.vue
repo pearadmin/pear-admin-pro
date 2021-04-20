@@ -23,15 +23,14 @@
   </page-layout>
 </template>
 <script>
-import { log, info } from "@/api/modules/ops/redis";
+import { info } from "@/api/modules/ops/redis";
 import { ref } from "vue";
 export default {
   setup() {
     const loading = ref(false);
 
     const loadData = async function () {
-      var response = await log();
-      var respons = await info();
+      var response = await info();
       loading.value = false;
     };
 

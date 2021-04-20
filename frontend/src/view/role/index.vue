@@ -82,7 +82,6 @@ export default {
     /// 查询参数
     const searchParam = [
       { key: "name", type: "input", label: "名称" },
-      { key: "code", type: "input", label: "描述" },
     ];
 
     /// 查询操作

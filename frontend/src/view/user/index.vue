@@ -81,7 +81,7 @@ export default {
     const pagination = { pageNum: 1, pageSize: 10}
 
     /// 外置参数
-    const state = reactive({ param: { name: "",  code: "" } })
+    const state = reactive({ param: { name: "",  code: "", enable: "" } })
 
     /// 查询参数
     const searchParam = [

@@ -10,7 +10,12 @@
     </select>
 
     <select id="selectList" resultType="SysRole">
-        select * from sys_role
+        select * from sys_role sr
+        <where>
+            <if test="request.name!=null and request.name!=''">
+                sr.name = #{request.name}
+            </if>
+        </where>
     </select>
 
 </mapper>

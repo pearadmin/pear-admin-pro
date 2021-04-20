@@ -21,11 +21,7 @@
               </a-menu>
             </template>
           </a-dropdown>
-          <a-button
-            v-else
-            :type="index == 0 ? 'primary' : 'default'"
-            @click="item.event(selectedRowKeys)"
-          >
+          <a-button v-else :type="index == 0 ? 'primary' : 'default'" @click="item.event(selectedRowKeys)">
             {{ item.label }}
           </a-button>
         </template>
@@ -49,11 +45,7 @@
               >
                 <a-row>
                   <!-- 遍历字段 -->
-                  <a-col
-                    :span="24"
-                    :key="index"
-                    v-for="(filtrationColumn, index) in filtrationColumns"
-                  >
+                  <a-col :span="24" :key="index" v-for="(filtrationColumn, index) in filtrationColumns">
                     <a-checkbox :value="filtrationColumn.value">
                       {{ filtrationColumn.label }}
                     </a-checkbox>
@@ -114,11 +106,19 @@
              </template>
         </span>
 
+        <!-- 下拉组件 暂未涉及 [待实现]-->
+    
+        <!-- 输入框 暂未涉及 [待实现]-->
+
+        <!-- 头像 暂未涉及 [待实现]-->
+
+        <!-- 预览 暂未涉及 [待实现]-->
+
         <!-- 原样输出 -->
         <span v-else>
           {{record[column.dataIndex]}}
         </span>
-
+        
       </template>
     </a-table>
   </div>
@@ -165,6 +165,7 @@ export default defineComponent({
     },
   }),
   setup(props) {
+
     /// 状态共享
     const state = reactive({
       pagination: Object.assign({}, props.pagination), // 分页

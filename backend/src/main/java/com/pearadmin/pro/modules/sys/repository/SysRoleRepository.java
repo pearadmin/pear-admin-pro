@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -26,5 +27,5 @@ public interface SysRoleRepository extends BaseMapper<SysRole> {
      *
      * @return {@link SysRole}
      * */
-    List<SysRole> selectList(SysRoleRequest request);
+    List<SysRole> selectList(@Param("request") SysRoleRequest request);
 }
