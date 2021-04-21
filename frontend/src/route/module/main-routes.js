@@ -24,5 +24,6 @@ export default {
   'redis': () => import('@/view/redis/index.vue'),
   'doc': () => import('@/view/doc/index.vue'),
   'mail': () => import('@/view/mail/index.vue'),
-  'file': () => import('@/view/file/index.vue')
+  'file': () => import('@/view/file/index.vue'),
+  'dept': () => import('@/view/dept/index.vue')
 }
