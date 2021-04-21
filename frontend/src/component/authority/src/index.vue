@@ -8,7 +8,7 @@ import { computed, defineComponent } from "vue";
 import { useStore } from 'vuex';
 
 export default defineComponent({
-	name: 'auth',
+	name: 'pro-authority',
 	props: {
 		value: {
 			type: String,

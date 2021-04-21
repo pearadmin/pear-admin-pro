@@ -3,6 +3,7 @@ import http from '../http'
 const Api = {
   page: '/sys/user/page',
   menu: '/sys/user/menu',
+  power: '/sys/user/power',
   login: '/login',
   logout: '/logout'
 }
@@ -30,6 +31,15 @@ export const menu = data => {
     method: 'get'
   })
 }
+
+export const power = data => {
+  return http.request({
+    url: Api.power,
+    data: data,
+    method: 'get'
+  })
+}
+
 
 export const page = data => {
   return http.request({

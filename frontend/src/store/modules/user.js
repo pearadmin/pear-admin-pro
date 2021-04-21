@@ -55,7 +55,7 @@ const actions = {
   async login( {commit} , data) {
       const { code, msg, tokenKey, tokenValue } = await login(data);
       if (code === 200) {
-        commit('SET_USER_TOKEN', {key:tokenKey, value:tokenValue});
+        commit('SET_USER_TOKEN', { key:tokenKey , value:tokenValue });
         message.success(msg);
         return Promise.resolve();
       } else {
