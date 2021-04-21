@@ -60,13 +60,13 @@ export default {
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
-    /// 文本转换
-    const converFormat = [{label:"男", value:0},{label:"女", value:1}]
+    /// 文本
+    const converFormat = [{label:"男", value:0},{label:"女", value:1}];
 
-    /// 开关转换
-    const switchFormat = { yes: true, no: false }
+    /// 开关
+    const switchFormat = { yes: true, no: false };
 
-    /// 列配置
+    /// 配置
     const columns = [
       { dataIndex: "nickname", key: "nickname", title: "名称" },
       { dataIndex: "username", key: "username", title: "账号" },
@@ -87,10 +87,10 @@ export default {
     const searchParam = [
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
-        { key: "state", type: "select", label: "状态", value: "0",
+        { key: "enable", type: "select", label: "状态", value: "",
           hidden: true ,
           options: [
-            { text: "全部", value: "0"},
+            { text: "全部", value: ""},
             { text: "开启", value: "1"},
             { text: "关闭", value: "2"}
           ]

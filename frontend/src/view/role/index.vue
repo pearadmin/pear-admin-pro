@@ -29,15 +29,12 @@
 </template>
 <script>
 import { page } from "@/api/modules/role";
-import { reactive, ref } from "vue";
+import { reactive } from "vue";
 
 export default {
   setup() {
 
-    const TableRef = ref();
-
     const switchFormat = { yes: true, no: false, event: function(value,record){
-      // TODO 刷新表格问题
       record.enable = !record.enable;
       return value;
     }}
@@ -60,7 +57,7 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys)); }},
+      { label: "新增", event: function (keys) { state.addVisible = true }},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys)); }},
     ];
 

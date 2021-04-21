@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * */
 @Api(tags = {"字典"})
 @RestController
-@RequestMapping(ControllerConstant.PREFIX_SYS + "dictType")
+@RequestMapping(ControllerConstant.PREFIX_SYS + "dict")
 public class SysDictController extends BaseController {
 
     @Resource

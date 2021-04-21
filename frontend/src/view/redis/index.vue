@@ -7,7 +7,9 @@
     <div>
       <a-row :gutter="[10, 10]">
         <a-col :span="24">
-          <a-card> </a-card>
+          <a-card>
+            <h2>Redis</h2>
+          </a-card>
         </a-col>
         <a-col :span="12">
           <a-card title="数量"></a-card>
@@ -27,14 +29,22 @@ import { info } from "@/api/modules/ops/redis";
 import { ref } from "vue";
 export default {
   setup() {
+
     const loading = ref(false);
+
+    const data = ref({});
 
     const loadData = async function () {
       var response = await info();
+      data.value = response.data;
       loading.value = false;
     };
 
     loadData();
+
+    return {
+      data
+    }
   },
 };
 </script>

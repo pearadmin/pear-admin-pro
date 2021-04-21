@@ -3,7 +3,12 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysDictDataRepository">
 
     <select id="selectList" resultType="SysDictData">
-        select * from sys_dict_data
+        select * from sys_dict_data sdd
+        <where>
+            <if test="request.code!=null and request.code!=''">
+                sdd.code = #{request.code}
+            </if>
+        </where>
     </select>
 
 </mapper>

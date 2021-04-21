@@ -13,4 +13,6 @@ import lombok.Data;
 public class SysDictDataRequest extends PageRequest {
 
     private String label;
+
+    private String code;
 }

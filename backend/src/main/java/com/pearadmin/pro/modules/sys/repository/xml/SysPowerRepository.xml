@@ -23,6 +23,7 @@
         where sur.user_id = #{userId}
         and sr.enable = 1
         and sp.enable = 1
+        order by sp.sort asc
     </select>
 
 </mapper>

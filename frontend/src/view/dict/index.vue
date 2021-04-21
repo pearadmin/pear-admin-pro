@@ -8,164 +8,86 @@
       <a-row :gutter="[10, 10]">
         <a-col :span="12">
           <a-card>
-            <div class="table-tool">
-              <div class="table-tool-prev">
-                <a-button type="primary"> 新增 </a-button>
-              </div>
-              <div class="table-tool-next"></div>
-            </div>
-            <a-table :dataSource="dataSource" :columns="columns">
-              <template v-slot:action="{ record }">
-                <span>
-                  <a>修改</a>
-                  <a-divider type="vertical" />
-                  <a @click="remove(record)">删除</a>
-                </span>
-              </template>
-            </a-table>
+                   <!-- 列表 -->
+          <pro-table
+            rowKey="id"
+            :fetch="fetch"
+            :columns="columns"
+            :toolbar="toolbar"
+            :operate="operate"
+            :param="state.param"
+            :pagination="pagination"
+          >
+          </pro-table>
           </a-card>
         </a-col>
         <a-col :span="12">
           <a-card>
-            <div class="table-tool">
-              <div class="table-tool-prev">
-                <a-button type="primary"> 新增 </a-button>
-              </div>
-              <div class="table-tool-next"></div>
-            </div>
-            <a-table :dataSource="dataSource" :columns="columnsData">
-              <template v-slot:action="{ record }">
-                <span>
-                  <a>修改</a>
-                  <a-divider type="vertical" />
-                  <a @click="remove(record)">删除</a>
-                </span>
-              </template>
-            </a-table>
+     
           </a-card>
         </a-col>
       </a-row>
     </page-layout>
   </div>
 </template>
-
 <script>
+import { page } from "@/api/modules/dict";
+import { reactive } from "vue";
+
 export default {
-  name: "dict-index",
   setup() {
-    const dataSource = [
-      {
-        key: "1",
-        name: "胡彦斌",
-        age: 32,
-        address: "西湖区湖底公园1号",
-      },
-      {
-        key: "2",
-        name: "胡彦祖",
-        age: 42,
-        address: "西湖区湖底公园1号",
-      },
-      {
-        key: "3",
-        name: "胡彦祖",
-        age: 42,
-        address: "西湖区湖底公园1号",
-      },
-      {
-        key: "4",
-        name: "胡彦祖",
-        age: 42,
-        address: "西湖区湖底公园1号",
-      },
-      {
-        key: "5",
-        name: "胡彦祖",
-        age: 42,
-        address: "西湖区湖底公园1号",
-      },
-      {
-        key: "6",
-        name: "胡彦祖",
-        age: 42,
-        address: "西湖区湖底公园1号",
-      },
-    ];
+
+    const switchFormat = { yes: true, no: false, event: function(value,record){
+      record.enable = !record.enable;
+      return value;
+    }}
 
     const columns = [
-      {
-        title: "名称",
-        dataIndex: "name",
-        key: "name",
-      },
-      {
-        title: "类型",
-        dataIndex: "age",
-        key: "age",
-      },
-      {
-        title: "描述",
-        dataIndex: "address",
-        key: "address",
-      },
-      {
-        dataIndex: "action",
-        key: "action",
-        title: "操作",
-        slots: { customRender: "action" },
-        fixed: "right",
-      },
+      { dataIndex: "name", key: "name", title: "名称" },
+      { dataIndex: "code", key: "code", title: "标识" },
+      { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat },
     ];
 
-    const columnsData = [
-      {
-        title: "名称",
-        dataIndex: "name",
-        key: "name",
-      },
-      {
-        title: "值",
-        dataIndex: "age",
-        key: "age",
-      },
-      {
-        title: "描述",
-        dataIndex: "address",
-        key: "address",
-      },
-      {
-        dataIndex: "action",
-        key: "action",
-        title: "操作",
-        slots: { customRender: "action" },
-        fixed: "right",
-      },
+    /// 数据来源 [模拟]
+    const fetch = async (param) => {
+      var response = await page(param);
+      return {
+        total: response.data.total,
+        data: response.data.record,
+      };
+    };
+
+    /// 工具栏
+    const toolbar = [
+      { label: "新增", event: function (keys) { state.addVisible = true }},
+      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys)); }},
     ];
 
+    /// 行操作
+    const operate = [
+      /// 子表赋值
+      { label: "查看", event: function (record) { state.dataParam = record.code }},
+      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record)); }},
+      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record)); }},
+    ];
+
+    /// 分页参数
+    const pagination = { pageNum: 1, pageSize: 10 };
+
+    /// 外置参数
+    const state = reactive({
+      param: { name: "", code: "" },
+    });
+
+    /// 声明抛出
     return {
-      columnsData,
-      dataSource,
-      columns,
+      state: state, // 状态共享
+      fetch: fetch, // 数据回调
+      toolbar: toolbar, // 工具栏
+      columns: columns, // 列配置
+      operate: operate, // 行操作
+      pagination: pagination, // 分页配置
     };
   },
 };
 </script>
-
-<style lang="scss">
-.table-tool {
-  .table-tool-prev {
-    > * {
-      margin: 3px;
-      margin-bottom: 8px;
-    }
-    float: left;
-  }
-  .table-tool-next {
-    > * {
-      margin: 3px;
-      margin-bottom: 8px;
-    }
-    float: right;
-  }
-}
-</style>

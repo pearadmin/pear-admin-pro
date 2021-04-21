@@ -13,7 +13,7 @@
         select * from sys_role sr
         <where>
             <if test="request.name!=null and request.name!=''">
-                sr.name = #{request.name}
+                sr.name like concat('%', #{request.name}, '%')
             </if>
         </where>
     </select>

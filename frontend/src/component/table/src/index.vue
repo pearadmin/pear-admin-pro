@@ -115,10 +115,11 @@
         <!-- 预览 暂未涉及 [待实现]-->
 
         <!-- 原样输出 -->
+        
         <span v-else>
           {{record[column.dataIndex]}}
         </span>
-        
+
       </template>
     </a-table>
   </div>
