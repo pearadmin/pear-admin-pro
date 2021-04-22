@@ -12,5 +12,6 @@ import lombok.Data;
 @Data
 public class SysDictRequest extends PageRequest {
 
+    /** 字典名称 */
     private String name;
 }

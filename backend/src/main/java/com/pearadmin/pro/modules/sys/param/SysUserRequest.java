@@ -14,14 +14,10 @@ import org.apache.ibatis.type.Alias;
 @Alias("SysUserRequest")
 public class SysUserRequest extends PageRequest {
 
-    /**
-     * 用户名
-     * */
+    /** 账户 */
     private String username;
 
-    /**
-     * 邮箱
-     * */
-    private String email;
+    /** 昵称 */
+    private String nickname;
 
 }

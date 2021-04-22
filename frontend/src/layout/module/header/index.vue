@@ -218,6 +218,7 @@ export default {
 
     const logOut = async (e) => {
       await dispatch("user/logout");
+      
       window.location.reload();
     };
 

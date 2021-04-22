@@ -4,6 +4,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pearadmin.pro.modules.sys.domain.SysDict;
 import com.pearadmin.pro.modules.sys.param.SysDictRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
+
 import java.util.List;
 
 @Mapper
@@ -16,5 +18,5 @@ public interface SysDictRepository extends BaseMapper<SysDict> {
      *
      * @return {@link SysDict}
      * */
-    List<SysDict> selectList(SysDictRequest request);
+    List<SysDict> selectList(@Param("request") SysDictRequest request);
 }

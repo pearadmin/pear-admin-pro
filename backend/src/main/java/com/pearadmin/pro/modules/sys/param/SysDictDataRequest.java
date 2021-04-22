@@ -12,7 +12,9 @@ import lombok.Data;
 @Data
 public class SysDictDataRequest extends PageRequest {
 
+    /** 标签 */
     private String label;
 
+    /** 类型 */
     private String code;
 }

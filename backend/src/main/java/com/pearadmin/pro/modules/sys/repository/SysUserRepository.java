@@ -17,5 +17,5 @@ public interface SysUserRepository extends BaseMapper<SysUser>{
      *
      * @return {@link SysUser}
      * */
-    List<SysUser> selectList(@Param("param") SysUserRequest request);
+    List<SysUser> selectList(@Param("request") SysUserRequest request);
 }

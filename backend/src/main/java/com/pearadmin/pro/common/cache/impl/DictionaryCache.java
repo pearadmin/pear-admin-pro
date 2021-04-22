@@ -24,18 +24,15 @@ public class DictionaryCache extends BaseCache<List<SysDictData>> {
     private SysDictDataService sysDictDataService;
 
     @Resource
-    private SysDictService sysDictTypeService;
+    private SysDictService sysDictService;
 
-    /**
-     * 字典信息
-     */
     @Override
     public Map<String, List<SysDictData>> load()
     {
         Map<String,List<SysDictData>> map = new HashMap<>();
-        List<SysDict> dictTypes = sysDictTypeService.list();
+        List<SysDict> dictTypes = sysDictService.list();
         dictTypes.forEach(dictType -> {
-            map.put(dictType.getCode(),sysDictDataService.lambdaQuery().eq(SysDictData::getCode,dictType.getCode()).list());
+            map.put(dictType.getCode(),sysDictDataService.list());
         });
         return map;
     }

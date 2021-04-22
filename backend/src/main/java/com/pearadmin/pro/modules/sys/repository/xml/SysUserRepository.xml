@@ -4,6 +4,14 @@
 
     <select id="selectList" parameterType="SysUserRequest" resultType="SysUser">
         select * from sys_user
+        <where>
+            <if test="request.username!=null and request.username!=''">
+                sr.username like concat('%', #{request.username}, '%')
+            </if>
+            <if test="request.nickname!=null and request.nickname!=''">
+                sr.nickname like concat('%', #{request.nickname}, '%')
+            </if>
+        </where>
     </select>
 
 </mapper>

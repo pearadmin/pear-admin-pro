@@ -12,8 +12,10 @@ import lombok.Data;
 @Data
 public class SysConfigRequest extends PageRequest {
 
-    /**
-     * 配置名
-     * */
+    /** 名称 */
     private String name;
+
+    /** 键 */
+    private String code;
+
 }
