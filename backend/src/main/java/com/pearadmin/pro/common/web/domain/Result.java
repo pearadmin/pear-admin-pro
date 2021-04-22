@@ -1,8 +1,13 @@
 package com.pearadmin.pro.common.web.domain;
 
+import lombok.Cleanup;
 import lombok.Data;
+import lombok.SneakyThrows;
 import lombok.experimental.Accessors;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,14 +48,11 @@ public class Result<T> {
     private long timeStamp = System.currentTimeMillis();
 
     /**
-     * 权鉴相关
-     *
-     * @tokenKey
-     * @tokenValue
+     * 权鉴
      * */
     private String tokenKey;
 
-    private String tokenValue;
+    private String token;
 
     /**
      * 成 功 操 作
@@ -90,10 +92,10 @@ public class Result<T> {
     /**
      * 成 功 操 作, 携 带 自 定 义 状 态 码 和 消 息
      * */
-    public static<T> Result<T> success(ResultCode resultCode,String tokenKey,String tokenValue){
+    public static<T> Result<T> success(ResultCode resultCode,String tokenKey,String token){
         Result result = success(resultCode.code(),resultCode.message());
         result.setTokenKey(tokenKey);
-        result.setTokenValue(tokenValue);
+        result.setToken(token);
         return result;
     }
 

@@ -6,12 +6,11 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.service.SysPowerService;
-import com.pearadmin.pro.modules.sys.validation.SysPowerValid;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 权限控制器
@@ -28,7 +27,7 @@ public class SysPowerController extends BaseController {
     private SysPowerService sysPowerService;
 
     /**
-     * 查询权限树
+     * 查询权限
      */
     @GetMapping("tree")
     @SysLog(title = "查询权限")
@@ -38,9 +37,8 @@ public class SysPowerController extends BaseController {
     }
 
     /**
-     * 新增角色
+     * 新增权限
      *
-     * @param sysPowerValid 参数验证
      * @param sysPower 权限实体
      *
      * @return {@link Boolean}
@@ -48,15 +46,13 @@ public class SysPowerController extends BaseController {
     @PostMapping("add")
     @SysLog(title = "新增权限")
     @ApiOperation(value = "新增权限")
-    public Result add(@RequestBody @Validated SysPowerValid sysPowerValid,
-                      @RequestBody SysPower sysPower){
+    public Result add(@RequestBody SysPower sysPower){
         return auto(sysPowerService.save(sysPower));
     }
 
     /**
-     * 修改角色
+     * 修改权限
      *
-     * @param sysPowerValid 参数验证
      * @param sysPower 权限实体
      *
      * @return {@link Boolean}
@@ -64,8 +60,22 @@ public class SysPowerController extends BaseController {
     @PutMapping("edit")
     @SysLog(title = "修改权限")
     @ApiOperation(value = "修改权限")
-    public Result edit(@RequestBody @Validated SysPowerValid sysPowerValid,
-                       @RequestBody SysPower sysPower){
+    public Result edit(@RequestBody SysPower sysPower){
         return auto(sysPowerService.updateById(sysPower));
     }
+
+    /**
+     * 删除权限
+     *
+     * @param powerId 权限编号
+     *
+     * @return {@link Boolean}
+     */
+    @DeleteMapping("remove")
+    @SysLog(title = "删除权限")
+    @ApiOperation(value = "删除权限")
+    public Result remove(List<String> powerId){
+        return auto(sysPowerService.removeByIds(powerId));
+    }
+
 }

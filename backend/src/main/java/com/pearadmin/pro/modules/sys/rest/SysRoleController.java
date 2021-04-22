@@ -9,8 +9,6 @@ import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
-import com.pearadmin.pro.modules.sys.validation.SysRoleValid;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -40,7 +38,6 @@ public class SysRoleController extends BaseController {
     /**
      * 新增角色
      *
-     * @param sysRoleValid 参数验证
      * @param sysRole 角色实体
      *
      * @return {@link Boolean}
@@ -48,15 +45,13 @@ public class SysRoleController extends BaseController {
     @PostMapping("add")
     @SysLog(title = "新增角色")
     @ApiOperation(value = "新增角色")
-    public Result add(@RequestBody @Validated SysRoleValid sysRoleValid,
-                      @RequestBody SysRole sysRole){
+    public Result add(@RequestBody SysRole sysRole){
         return auto(sysRoleService.save(sysRole));
     }
 
     /**
      * 修改角色
      *
-     * @param sysRoleValid 参数验证
      * @param sysRole 角色实体
      *
      * @return {@link Boolean}
@@ -64,8 +59,7 @@ public class SysRoleController extends BaseController {
     @PutMapping("edit")
     @SysLog(title = "修改角色")
     @ApiOperation(value = "修改角色")
-    public Result edit(@RequestBody @Validated SysRoleValid sysRoleValid,
-                       @RequestBody SysRole sysRole){
+    public Result edit(@RequestBody SysRole sysRole){
         return auto(sysRoleService.updateById(sysRole));
     }
 

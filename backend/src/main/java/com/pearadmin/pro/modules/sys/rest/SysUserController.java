@@ -5,13 +5,11 @@ import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.pearadmin.pro.common.context.UserContext;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
-import com.pearadmin.pro.modules.sys.validation.SysUserValid;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import com.pearadmin.pro.common.web.base.BaseController;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -36,26 +34,24 @@ public class SysUserController extends BaseController {
     /**
      * 新增用户信息
      *
-     * @param sysUserValid 参数验证
      * @param sysUser 用户实体
      */
     @PostMapping("add")
     @SysLog(title = "用户新增")
     @ApiOperation(value = "用户新增")
-    public Result add(@RequestBody @Validated SysUserValid sysUserValid, @RequestBody SysUser sysUser){
+    public Result add(@RequestBody SysUser sysUser){
         return auto(sysUserService.save(sysUser));
     }
 
     /**
      * 修改用户信息
      *
-     * @param sysUserValid 参数验证
      * @param sysUser 用户实体
      */
     @PutMapping("edit")
     @SysLog(title = "用户修改")
     @ApiOperation(value = "用户修改")
-    public Result edit(@RequestBody @Validated SysUserValid sysUserValid, @RequestBody SysUser sysUser){
+    public Result edit(@RequestBody SysUser sysUser){
         return auto(sysUserService.updateById(sysUser));
     }
 
