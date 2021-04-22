@@ -3,8 +3,8 @@ import { generateRoute } from "@/route/permission";
 import { message } from "ant-design-vue";
 
 const state = {
+  token: '',
   tokenKey: '',
-  tokenValue: '',
   userInfo: localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')) : null,
   userRoutes: []
 }
@@ -14,14 +14,14 @@ const mutations = {
   SET_USER_TOKEN(state, token) {
     if (token) {
       state.tokenKey = token.key;
-      state.tokenValue = token.value;
-      localStorage.setItem('pear_admin_ant_token_key',token.key)
-      localStorage.setItem('pear_admin_ant_token_value', token.value)
+      state.token = token.value;
+      localStorage.setItem('token_key',token.key)
+      localStorage.setItem('token', token.value)
     } else {
       state.tokenKey = '';
-      state.tokenValue = '';
-      localStorage.removeItem('pear_admin_ant_token_key')
-      localStorage.removeItem('pear_admin_ant_token_value')
+      state.token = '';
+      localStorage.removeItem('token_key')
+      localStorage.removeItem('token')
     }
   },
   /// 存储用户详情
@@ -40,6 +40,7 @@ const mutations = {
       localStorage.setItem('user_routes', JSON.stringify(finalMenu))
     }
   }
+  /// 存储用户权限
 }
 
 const actions = {
@@ -48,14 +49,13 @@ const actions = {
     await logout()
     commit('SET_USER_TOKEN')
     commit('SET_USER_MENU')
-    commit('layout/closeAllTab', [], { root: true })
     return Promise.resolve()
   },
   // 登录
   async login( {commit} , data) {
-      const { code, msg, tokenKey, tokenValue } = await login(data);
+      const { code, msg, token, tokenKey } = await login(data);
       if (code === 200) {
-        commit('SET_USER_TOKEN', { key:tokenKey , value:tokenValue });
+        commit('SET_USER_TOKEN', { key:tokenKey , value:token });
         message.success(msg);
         return Promise.resolve();
       } else {
@@ -69,6 +69,7 @@ const actions = {
     const routes = generateRoute(data)
     commit('SET_USER_MENU', routes)
   }
+
 }
 export default {
   namespaced: true,

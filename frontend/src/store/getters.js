@@ -25,8 +25,8 @@ const getters = {
   token: state =>
     state.user.token
       ? state.user.token
-      : localStorage.getItem("pear_admin_ant_token")
-      ? localStorage.getItem("pear_admin_ant_token")
+      : localStorage.getItem("token")
+      ? localStorage.getItem("token")
       : "",
   menu: state =>
     state.user.userRoutes.length !== 0

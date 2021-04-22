@@ -15,14 +15,13 @@ class Http {
   }
 
   interceptors(instance) {
-    /**
-     * 请求拦截器
-     */
+    
+    /// 请求拦截
     instance.interceptors.request.use(
       config => {
-        const tokenKey = localStorage.getItem("pear_admin_ant_token_key");
-        const tokenValue = localStorage.getItem("pear_admin_ant_token_value")
-        if(tokenValue) config.headers["Authorization"] = tokenValue;
+        const tokenKey = localStorage.getItem("token_key");
+        const token = localStorage.getItem("token")
+        if(token) config.headers["Authorization"] = token;
         if(tokenKey) config.headers["Authorization-key"] = tokenKey;
         config.cancelToken = new axios.CancelToken(async cancel => {
           await store.dispatch("app/execCancelToken", { cancelToken: cancel });
@@ -34,9 +33,7 @@ class Http {
       }
     );
 
-    /**
-     * 响应拦截器 
-     */
+    /// 响应拦截
     instance.interceptors.response.use(
       response => {
         if (response.data.code !== 200) {
