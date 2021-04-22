@@ -32,7 +32,7 @@ public class SysUserController extends BaseController {
     private UserContext userContext;
 
     /**
-     * 新增用户信息
+     * 新增用户
      *
      * @param sysUser 用户实体
      */
@@ -44,7 +44,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 修改用户信息
+     * 修改用户
      *
      * @param sysUser 用户实体
      */
@@ -56,7 +56,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 查询用户列表
+     * 查询用户
      *
      * @param request 查询参数
      */
@@ -68,7 +68,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 查询用户列表
+     * 查询用户
      *
      * @param request 查询参数
      */
@@ -78,7 +78,19 @@ public class SysUserController extends BaseController {
     public Result list(SysUserRequest request){ return success(sysUserService.list(request)); }
 
     /**
-     * 删除用户列表
+     * 分配角色
+     *
+     * @param roleId 角色编号
+     * */
+    @PostMapping("give")
+    @SysLog(title = "分配角色")
+    @ApiOperation(value = "分配角色")
+    public Result give(List<String> roleId){
+        return success();
+    }
+
+    /**
+     * 删除用户
      *
      * @param userId 用户编号
      */
@@ -90,7 +102,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 获取当前用户
+     * 个人资料
      */
     @GetMapping("profile")
     @SysLog(title = "个人资料")
@@ -100,7 +112,7 @@ public class SysUserController extends BaseController {
     }
 
     /**
-     * 查询用户信息
+     * 用户详情
      *
      * @param userId 用户编号
      * */

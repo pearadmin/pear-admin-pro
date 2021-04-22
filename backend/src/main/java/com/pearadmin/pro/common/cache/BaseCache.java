@@ -44,7 +44,7 @@ public abstract class BaseCache<T> {
     /**
      * 刷新
      * */
-    @Scheduled(fixedDelay = 10000)
+/*    @Scheduled(fixedDelay = 10000)*/
     public void time()
     {
         /// System Log

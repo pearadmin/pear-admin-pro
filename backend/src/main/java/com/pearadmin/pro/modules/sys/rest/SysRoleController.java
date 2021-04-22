@@ -77,4 +77,16 @@ public class SysRoleController extends BaseController {
         return auto(sysRoleService.removeByIds(roleId));
     }
 
+    /**
+     * 权限分配
+     *
+     * @param powerId 权限编号
+     * */
+    @PostMapping("give")
+    @SysLog(title = "分配权限")
+    @ApiOperation(value = "分配权限")
+    public Result give(List<String> powerId){
+        return success();
+    }
+
 }

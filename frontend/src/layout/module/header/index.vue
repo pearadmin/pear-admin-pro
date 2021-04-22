@@ -206,7 +206,7 @@ export default {
       }
       return path;
     };
-    // const routes = ref(useRouter().options.routes.filter((r) => !r.hidden));
+    
     const routes = computed(() => getters.menu).value.filter((r) => !r.hidden);
 
     const refresh = async () => {
