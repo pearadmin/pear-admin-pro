@@ -28,14 +28,22 @@
           </a-card>
         </a-col>
       </a-row>
+      <add :visible="state.addModal" @close="closeAdd"></add>
+      <edit :visible="state.editModal" @close="closeEdit"></edit>
     </page-layout>
 </template>
 
 <script>
+import add from './module/add';
+import edit from './module/edit';
 import { page } from "@/api/modules/user";
 import { reactive } from 'vue';
 
 export default {
+  components: {
+    add,
+    edit
+  },
   setup() {
 
     /// 数据来源 [模拟]
@@ -49,14 +57,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "新增", event: function (keys) { state.addModal = true }},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
+      { label: "修改", event: function (record) { state.editModal = true }},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
@@ -66,8 +74,12 @@ export default {
     /// 开关
     const switchFormat = { yes: true, no: false };
 
+    /// 头像
+    const avatarFormat = { size: 36, shape: "round" };
+
     /// 配置
     const columns = [
+      { dataIndex: "avatar", key: "avatar", title: "头像", avatar: avatarFormat },
       { dataIndex: "nickname", key: "nickname", title: "名称" },
       { dataIndex: "username", key: "username", title: "账号" },
       { dataIndex: "gender", key: "gender", title: "性别", conver: converFormat},
@@ -81,27 +93,30 @@ export default {
     const pagination = { pageNum: 1, pageSize: 10}
 
     /// 外置参数
-    const state = reactive({ param: { name: "",  code: "", enable: "" } })
+    const state = reactive({ 
+      param: { name: "",  code: "", enable: "" }, 
+      addModal: false,
+      editModal: false
+    })
 
     /// 查询参数
     const searchParam = [
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
-        { key: "enable", type: "select", label: "状态", value: "",
-          hidden: true ,
-          options: [
-            { text: "全部", value: ""},
-            { text: "开启", value: "1"},
-            { text: "关闭", value: "2"}
-          ]
-        }
     ]
 
     /// 查询操作
     const search = function(value) {
-      
-      /// 通过动态修改入参, 触发表格刷新
+    
       state.param = value
+    }
+
+    const closeAdd = function(){
+      state.addModal = false;
+    }
+
+    const closeEdit = function(){
+      state.editModal = false;
     }
 
     /// 声明抛出
@@ -115,6 +130,9 @@ export default {
 
       search: search,
       searchParam: searchParam, // 查询参数
+
+      closeAdd,
+      closeEdit
     };
   },
 };

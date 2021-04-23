@@ -110,7 +110,15 @@
     
         <!-- 输入框 暂未涉及 [待实现]-->
 
-        <!-- 头像 暂未涉及 [待实现]-->
+        <!-- 头像 -->
+        <span v-else-if="column.avatar">
+            <!-- 空头像 -->
+            <a-avatar v-if="record[column.dataIndex] == null" :size="column.avatar.size" :shape="column.avatar.shape">
+              <template #icon><UserOutlined /></template>
+            </a-avatar>
+            <!-- 非头像 -->
+            <a-avatar v-else :src="record[column.dataIndex]" :size="column.avatar.size" :shape="column.avatar.shape"/>
+        </span>
 
         <!-- 预览 暂未涉及 [待实现]-->
 
@@ -128,7 +136,7 @@
 import "./index.less";
 import T from "ant-design-vue/es/table/Table";
 import { defineComponent, onMounted, reactive, toRefs, watch } from "vue";
-import { AppstoreOutlined, ExportOutlined, SyncOutlined } from "@ant-design/icons-vue";
+import { AppstoreOutlined, ExportOutlined, SyncOutlined, UserOutlined } from "@ant-design/icons-vue";
 
 const TProps = T.props;
 export default defineComponent({
@@ -139,6 +147,7 @@ export default defineComponent({
     AppstoreOutlined,
     ExportOutlined,
     SyncOutlined,
+    UserOutlined
   },
   /// 数据来源
   props: Object.assign({}, TProps, {

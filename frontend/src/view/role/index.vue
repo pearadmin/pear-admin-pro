@@ -25,13 +25,21 @@
         </a-card>
       </a-col>
     </a-row>
+    <add :visible="state.addModal" @close="closeAdd"></add>
+    <edit :visible="state.editModal" @close="closeEdit"></edit>
   </page-layout>
 </template>
 <script>
+import add from './module/add';
+import edit from './module/edit';
 import { page } from "@/api/modules/role";
 import { reactive } from "vue";
 
 export default {
+  components: {
+    add,
+    edit
+  },
   setup() {
 
     const switchFormat = { yes: true, no: false, event: function(value,record){
@@ -57,14 +65,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { state.addVisible = true }},
+      { label: "新增", event: function (keys) { state.addModal = true }},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys)); }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record)); }},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record)); }},
+      { label: "修改", event: function (record) { state.editModal = true }},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record)); }},
     ];
 
@@ -74,6 +82,8 @@ export default {
     /// 外置参数
     const state = reactive({
       param: { name: "", code: "" },
+      addModal: false,
+      editModal: false
     });
 
     /// 查询参数
@@ -87,6 +97,14 @@ export default {
       state.param = value;
     };
 
+    const closeAdd = function(){
+        state.addModal = false;
+    }
+
+    const closeEdit = function(){
+        state.editModal = false;
+    }
+
     /// 声明抛出
     return {
       state: state, // 状态共享
@@ -98,6 +116,9 @@ export default {
 
       search: search,
       searchParam: searchParam, // 查询参数
+
+      closeAdd,
+      closeEdit
     };
   },
 };
