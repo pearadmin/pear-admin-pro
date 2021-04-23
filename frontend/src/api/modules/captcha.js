@@ -1,11 +1,12 @@
 import http from '../http'
 
+// 接口
 const Api = {
   create: '/captcha/create',
   verify: '/captcha/verify'
 }
 
-// 创建 验证码
+// 创建
 export const create = () =>{
   return http.request({
     url: Api.create,
@@ -13,7 +14,7 @@ export const create = () =>{
   })
 }
 
-// 异步验证
+// 验证
 export const verify = () =>{
   return http.request({
     url: Api.verify,

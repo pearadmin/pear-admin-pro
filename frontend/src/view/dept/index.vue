@@ -1,122 +1,123 @@
 <template>
-  <div>
     <page-layout>
       <a-row :gutter="[10, 10]">
+        <!-- 顶部区域 -->
         <a-col :span="24">
           <a-card>
-            <a-form layout="inline" :model="param" @submit="reload">
-              <a-form-item label="权限名称">
-                <a-input
-                  v-model:value="param.name"
-                  type="text"
-                  placeholder="权限标识"
-                >
-                </a-input>
-              </a-form-item>
-              <a-form-item label="标识">
-                <a-input
-                  v-model:value="param.code"
-                  type="text"
-                  placeholder="标识"
-                >
-                </a-input>
-              </a-form-item>
-              <a-form-item>
-                <button-container>
-                  <a-button type="primary" html-type="submit"> 查询 </a-button>
-                  <a-button> 默认 </a-button>
-                </button-container>
-              </a-form-item>
-            </a-form>
+            <!-- 查询参数 -->
+            <pro-query
+              :searchParam="searchParam"
+              @on-search ="search"
+            ></pro-query>
           </a-card>
         </a-col>
+        <!-- 中心区域 -->
         <a-col :span="24">
           <a-card>
-            <button-container class="tool-left">
-              <a-button type="primary" @click="add">新增</a-button>
-              <a-button @click="batchRemove">删除</a-button>
-            </button-container>
-            <button-container class="tool-right">
-              <a-button @click="reload">刷新</a-button>
-              <a-button>导出</a-button>
-            </button-container>
-            <a-table
-              :loading="loading"
-              :pagination="false"
+            <!-- 列表 -->
+            <pro-table
+              :fetch="fetch"
               :columns="columns"
-              :data-source="data"
+              :toolbar="toolbar"
+              :operate="operate"
+              :param="state.param"
+              :pagination="pagination"
             >
-              <template #enable="{ enable }">
-                <a-switch :checked="enable" />
-              </template>
-              <template v-slot:action="{ record }">
-                <span>
-                  <a @click="info(record)">查看</a>
-                  <a-divider type="vertical" />
-                  <a>修改</a>
-                  <a-divider type="vertical" />
-                  <a @click="remove">删除</a>
-                </span>
-              </template>
-            </a-table>
+              <!-- 继承至 a-table 的默认插槽 -->
+            </pro-table>
           </a-card>
         </a-col>
       </a-row>
     </page-layout>
-  </div>
 </template>
+
 <script>
-import { tree } from "@/api/modules/power";
-import { reactive, ref } from "vue";
+import { tree } from "@/api/modules/dept";
+import { reactive } from 'vue';
 
 export default {
   setup() {
+
+    const switchFormat = { yes: true, no: false, event: function(value,record){
+      record.enable = !record.enable;
+      return value;
+    }}
+
+    /// 列配置
     const columns = [
-      { dataIndex: "title", key: "title", title: "标题" },
       { dataIndex: "name", key: "name", title: "组件" },
       { dataIndex: "path", key: "path", title: "路径" },
-      {
-        dataIndex: "enable",
-        key: "enable",
-        title: "状态",
-        slots: { customRender: "enable" },
-      },
+      { dataIndex: "i18n", key: "i18n", title: "国际化"},
+      { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "sort", key: "sort", title: "排序" },
-      {
-        title: "操作",
-        key: "action",
-        slots: { customRender: "action" },
-        fixed: "right",
-      },
     ];
 
-    const data = ref();
-    const loading = ref(true);
-    const param = reactive({ current: 1, size: 10 });
-
-    const loadData = async function (param) {
-      loading.value = true;
-      const response = await tree(param);
-      data.value = response.data;
-      loading.value = false;
+    /// 数据来源 [模拟]
+    const fetch = async (param) => {
+      var response = await tree(param);
+      return {
+        data: response.data,
+      };
     };
 
-    loadData(param);
+    /// 工具栏
+    const toolbar = [
+      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+    ];
 
+    /// 行操作
+    const operate = [
+      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
+    ];
+
+    /// 分页参数
+    const pagination = false;
+    
+    /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
+    const state = reactive({
+      param: {
+        name: "", // 名称
+        code: ""  // 标识
+      }
+    })
+
+    /// 查询参数
+    const searchParam = [
+        { key: "name", type: "input", label: "名称"},
+        { key: "code", type: "input", label: "描述"},
+        { key: "state", type: "select", label: "状态", value: "0",
+          hidden: true ,
+          options: [
+            { text: "全部", value: "0"},
+            { text: "开启", value: "1"},
+            { text: "关闭", value: "2"}
+          ]
+        }
+    ]
+
+    /// 查询操作
+    const search = function(value) {
+      
+      /// 通过动态修改入参, 触发表格刷新
+      state.param = value
+    }
+
+    /// 声明抛出
     return {
-      loading,
-      columns,
-      param,
-      data,
+      state: state, // 状态共享
+      fetch: fetch, // 数据回调
+      toolbar: toolbar, // 工具栏
+      columns: columns, // 列配置
+      operate: operate, // 行操作
+      pagination: pagination, // 分页配置
+
+      /// 
+      search: search,
+      searchParam: searchParam, // 查询参数
     };
   },
 };
 </script>
-<style lang="less">
-.tool-left {
-  display: inline-block;
-}
-.tool-right {
-  float: right;
-}
-</style>

@@ -40,7 +40,6 @@ export const power = data => {
   })
 }
 
-
 export const page = data => {
   return http.request({
     url: Api.page,

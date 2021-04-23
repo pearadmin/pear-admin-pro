@@ -38,11 +38,17 @@ import { reactive } from 'vue';
 export default {
   setup() {
 
+    const switchFormat = { yes: true, no: false, event: function(value,record){
+      record.enable = !record.enable;
+      return value;
+    }}
+
     /// 列配置
     const columns = [
       { dataIndex: "name", key: "name", title: "组件" },
       { dataIndex: "path", key: "path", title: "路径" },
-      { dataIndex: "enable", key: "enable", title: "状态"},
+      { dataIndex: "i18n", key: "i18n", title: "国际化"},
+      { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
 
@@ -50,8 +56,7 @@ export default {
     const fetch = async (param) => {
       var response = await tree(param);
       return {
-        total: response.data.total,
-        data: response.data.record,
+        data: response.data,
       };
     };
 

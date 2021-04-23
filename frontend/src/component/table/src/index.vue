@@ -171,7 +171,8 @@ export default defineComponent({
     },
     /// 行工具栏
     operate: {
-      type: Array,
+      type: Array || Boolean,
+      default: false
     },
   }),
   setup(props) {

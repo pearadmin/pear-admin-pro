@@ -19,7 +19,7 @@
               :fetch="fetch"
               :columns="columns"
               :toolbar="toolbar"
-              :operate="operate"
+               operate=false
               :param="state.param"
               :pagination="pagination"
             >
@@ -38,6 +38,9 @@ import { reactive } from 'vue';
 export default {
   setup() {
 
+        /// 文本
+    const converFormat = [{label:"成功", value:true},{label:"失败", value:false}];
+
     /// 列配置
     const columns = [
       { dataIndex: "describe", key: "describe", title: "描述" },
@@ -48,6 +51,7 @@ export default {
       { dataIndex: "address", key: "address", title: "操作地" },
       { dataIndex: "operator", key: "operator", title: "操作人" }, 
       { dataIndex: "createTime", key: "createTime", title: "操作时间" },
+      { dataIndex: "state", key: "state", title: "状态", conver: converFormat },
     ];
 
     /// 数据来源 [模拟]
@@ -63,13 +67,6 @@ export default {
     const toolbar = [
       { label: "备份", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
-    ];
-
-    /// 行操作
-    const operate = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
-      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
     /// 分页参数
@@ -113,7 +110,6 @@ export default {
       fetch: fetch, // 数据回调
       toolbar: toolbar, // 工具栏
       columns: columns, // 列配置
-      operate: operate, // 行操作
       pagination: pagination, // 分页配置
 
       /// 搜索组件
