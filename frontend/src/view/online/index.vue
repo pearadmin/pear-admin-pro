@@ -69,7 +69,7 @@
 </template>
 <script>
 
-import { list } from "@/api/modules/ops/online";
+import { list } from "@/api/modules/online";
 import { ref } from 'vue';
 
 export default {

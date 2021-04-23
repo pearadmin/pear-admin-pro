@@ -1,4 +1,4 @@
-import http from '../../http'
+import http from '../http'
 
 const Api = {
     list: '/sys/online/list',

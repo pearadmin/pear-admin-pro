@@ -200,7 +200,7 @@
   </div>
 </template>
 <script>
-import { info } from "@/api/modules/ops/server";
+import { info } from "@/api/modules/server";
 import { ref } from "vue";
 export default {
   setup() {

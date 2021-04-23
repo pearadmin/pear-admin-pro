@@ -56,11 +56,10 @@ class Http {
             message = "连接异常"
           }
           if (message.includes("timeout")) {
-            message = "请求超时,稍后重试";
+            message = "请求超时";
           }
           if (message.includes("Request failed with status code")) {
-            const code = message.substr(message.length - 3);
-            message = "接口" + code + "异常";
+            message = "接口异常";
           }
           Msg.error(message);
         }

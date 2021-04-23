@@ -1,4 +1,4 @@
-import http from '../../http'
+import http from '../http'
 
 const Api = {
     info: '/sys/redis/info',

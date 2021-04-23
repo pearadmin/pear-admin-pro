@@ -25,7 +25,7 @@
   </page-layout>
 </template>
 <script>
-import { info } from "@/api/modules/ops/redis";
+import { info } from "@/api/modules/redis";
 import { ref } from "vue";
 export default {
   setup() {
