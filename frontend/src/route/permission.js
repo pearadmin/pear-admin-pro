@@ -83,7 +83,7 @@ export const permissionController = async (to, from, next) => {
   await store.dispatch('app/execCancelToken')
 
   // 是否登录
-  if (!to.fullPath.includes('login') && !localStorage.getItem('pear_admin_ant_token_value') && !localStorage.getItem('pear_admin_ant_token_key')) {
+  if (!to.fullPath.includes('login') && !localStorage.getItem('token') && !localStorage.getItem('token_key')) {
     // 重定向 登录
     next({path: '/login'})
   } else {

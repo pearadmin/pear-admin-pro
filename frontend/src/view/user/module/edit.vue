@@ -1,5 +1,5 @@
 <template>
-    <a-modal :visible="visible" title="Basic Modal" @ok="submit" @cancel="cancel">
+    <a-modal :visible="visible" title="修改用户" cancelText="取消" okText="保存" @ok="submit" @cancel="cancel">
       <p>Some contents...</p>
       <p>Some contents...</p>
       <p>Some contents...</p>
