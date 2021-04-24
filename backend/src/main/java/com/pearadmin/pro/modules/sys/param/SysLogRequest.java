@@ -16,4 +16,9 @@ public class SysLogRequest extends PageRequest {
      * 标题
      * */
     private String title;
+
+    /**
+     * 类型
+     * */
+    private Boolean isAuth;
 }

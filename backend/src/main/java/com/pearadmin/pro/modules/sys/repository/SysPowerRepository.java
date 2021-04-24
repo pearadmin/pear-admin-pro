@@ -22,7 +22,7 @@ public interface SysPowerRepository extends BaseMapper<SysPower> {
      * @param userId 用户编号
      * @return {@link SysPower}
      * */
-    List<SysPower> selectListByUserId(@Param("userId") String userId);
+    List<SysPower> selectPower(@Param("userId") String userId);
 
     /**
      * 根据 userId 获取菜单

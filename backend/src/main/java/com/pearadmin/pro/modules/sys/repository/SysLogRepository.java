@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.modules.sys.param.SysLogRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,5 +18,6 @@ public interface SysLogRepository extends BaseMapper<SysLog> {
      *
      * @return {@link SysLog}
      * */
-    List<SysLog> selectList(SysLogRequest request);
+    List<SysLog> selectList(@Param("request") SysLogRequest request);
+
 }

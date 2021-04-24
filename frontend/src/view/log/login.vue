@@ -79,7 +79,8 @@ export default {
     const state = reactive({
       param: {
         name: "", // 名称
-        code: ""  // 标识
+        code: "", // 标识
+        isAuth: true
       }
     })
 

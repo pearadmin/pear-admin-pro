@@ -4,6 +4,17 @@
 
     <select id="selectList" resultType="SysLog">
         select * from sys_log
+        <where>
+            <if test="request.title!=null and request.title!=''">
+                and title like concat('%', #{request.title}, '%')
+            </if>
+            <if test="request.isAuth">
+                and `action` = 'AUTH'
+            </if>
+            <if test="!request.isAuth">
+                and `action` != 'AUTH'
+            </if>
+        </where>
     </select>
 
 </mapper>

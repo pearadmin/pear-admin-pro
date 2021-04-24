@@ -40,4 +40,9 @@ public class SysDept extends TreeDomain<SysDept> {
     @TableField("enable")
     private boolean enable;
 
+    /**
+     * 地址
+     * */
+    @TableField("address")
+    private String address;
 }

@@ -6,12 +6,15 @@
         select * from sys_power
     </select>
 
-    <select id="selectListByUserId" parameterType="string" resultType="SysPower">
+    <select id="selectPower" parameterType="string" resultType="SysPower">
         select * from sys_power sp
         left join sys_role_power srp on srp.power_id = sp.id
         left join sys_role sr on sr.id = srp.role_id
         left join sys_user_role sur on sur.role_id = sr.id
         where sur.user_id = #{userId}
+        and sr.enable = 1
+        and sp.enable = 1
+        and sp.type = 2
     </select>
 
     <!-- 根据 userId 查询菜单 -->
@@ -23,6 +26,7 @@
         where sur.user_id = #{userId}
         and sr.enable = 1
         and sp.enable = 1
+        and sp.type != 2
         order by sp.sort asc
     </select>
 

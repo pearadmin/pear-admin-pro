@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysDeptRepository">
 
+    <select id="selectList" resultType="SysDept">
+        select * from sys_dept
+    </select>
+
     <select id="selectDeptByRoleId" resultType="SysDept">
         select * from sys_dept sd
         left join sys_role_dept srd on srd = sd

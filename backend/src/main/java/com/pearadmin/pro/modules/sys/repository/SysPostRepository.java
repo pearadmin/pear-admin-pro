@@ -9,5 +9,10 @@ import java.util.List;
 @Mapper
 public interface SysPostRepository extends BaseMapper<SysPost> {
 
+    /**
+     * 获取岗位列表
+     *
+     * @return {@link SysPost}
+     * */
     List<SysPost> selectList(SysPostRequest request);
 }

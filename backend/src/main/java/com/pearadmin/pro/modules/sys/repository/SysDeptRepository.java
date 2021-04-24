@@ -25,4 +25,10 @@ public interface SysDeptRepository extends BaseMapper<SysDept> {
      * */
     List<SysDept> selectDeptByParentId(String parentId);
 
+    /**
+     * 获取部门列表
+     *
+     * @return {@link SysDept}
+     * */
+    List<SysDept> selectList();
 }

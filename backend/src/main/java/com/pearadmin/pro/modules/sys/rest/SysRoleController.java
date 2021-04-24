@@ -22,7 +22,7 @@ public class SysRoleController extends BaseController {
     private SysRoleService sysRoleService;
 
     /**
-     * 查询角色列表
+     * 查询角色列表 (分页)
      *
      * @param request 查询参数
      *
@@ -33,6 +33,20 @@ public class SysRoleController extends BaseController {
     @ApiOperation(value = "查询角色")
     public Result page(SysRoleRequest request){
         return success(sysRoleService.page(request));
+    }
+
+    /**
+     * 查询角色列表
+     *
+     * @param request 查询参数
+     *
+     * @return {@link SysRole}
+     */
+    @GetMapping("list")
+    @SysLog(title = "查询角色")
+    @ApiOperation(value = "查询角色")
+    public Result list(SysRoleRequest request) {
+        return success(sysRoleService.list(request));
     }
 
     /**

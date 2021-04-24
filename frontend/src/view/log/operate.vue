@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { login } from "@/api/module/log";
+import { operate } from "@/api/module/log";
 import { reactive } from 'vue';
 
 export default {
@@ -56,7 +56,7 @@ export default {
 
     /// 数据来源 [模拟]
     const fetch = async (param) => {
-      var response = await login(param);
+      var response = await operate(param);
       return {
         total: response.data.total,
         data: response.data.record,
@@ -79,7 +79,8 @@ export default {
     const state = reactive({
       param: {
         name: "", // 名称
-        code: ""  // 标识
+        code: "", // 标识
+        isAuth: false
       }
     })
 
