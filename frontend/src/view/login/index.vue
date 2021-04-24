@@ -54,7 +54,7 @@ import { reactive, ref } from "vue";
 import { useForm } from "@ant-design-vue/use";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { create } from "@/api/modules/captcha";
+import { create } from "@/api/module/captcha";
 export default {
   setup() {
     const router = useRouter();

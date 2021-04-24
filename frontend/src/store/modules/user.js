@@ -1,12 +1,13 @@
-import { menu, login, logout } from "@/api/modules/user";
-import { generateRoute } from "@/route/permission";
+import { menu, power, login, logout } from "@/api/module/user";
+import { generateRoute, generatePower } from "@/route/permission";
 import { message } from "ant-design-vue";
 
 const state = {
   token: '',
   tokenKey: '',
   userInfo: localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')) : null,
-  userRoutes: []
+  userRoutes: [],
+  userPowers: []
 }
 
 const mutations = {
@@ -39,35 +40,51 @@ const mutations = {
       state.userRoutes = finalMenu
       localStorage.setItem('user_routes', JSON.stringify(finalMenu))
     }
-  }
+  },
   /// 存储用户权限
+  SET_USER_POWER(state, powerList){
+    if(powerList && powerList.length === 0) {
+      state.userPowers = []
+      localStorage.removeItem("user_powers")
+    } else {
+      const finalPower = powerList;
+      state.userPowers = finalPower;
+      localStorage.setItem('user_powers', JSON.stringify(finalPower))
+    }
+  }
 }
 
 const actions = {
-  /// 注销
-  async logout({ commit }) {
+
+  // 登录
+  async login( {commit} ,data) {
+    const { code, msg, token, tokenKey } = await login(data);
+    if (code === 200) {
+      commit('SET_USER_TOKEN', { key:tokenKey , value:token });
+      message.success(msg);
+      return Promise.resolve();
+    } else {
+      return Promise.reject(msg);
+    }
+  },
+
+  // 注销
+  async logout( {commit} ) {
     await logout()
     commit('SET_USER_TOKEN')
     commit('SET_USER_MENU')
     return Promise.resolve()
   },
-  // 登录
-  async login( {commit} , data) {
-      const { code, msg, token, tokenKey } = await login(data);
-      if (code === 200) {
-        commit('SET_USER_TOKEN', { key:tokenKey , value:token });
-        message.success(msg);
-        return Promise.resolve();
-      } else {
-        return Promise.reject(msg);
-      }
-  },
 
   // 路由
   async addRoute( {commit} ) {
     const { data } = await menu()
-    const routes = generateRoute(data)
-    commit('SET_USER_MENU', routes)
+    commit('SET_USER_MENU', generateRoute(data))
+  },
+
+  async addPower( {commit} ) {
+    const { data } = await power()
+    commit('SET_USER_POWER', generatePower(data))
   }
 
 }

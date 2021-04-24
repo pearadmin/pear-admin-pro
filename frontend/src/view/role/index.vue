@@ -32,7 +32,7 @@
 <script>
 import add from './module/add';
 import edit from './module/edit';
-import { page } from "@/api/modules/role";
+import { page } from "@/api/module/role";
 import { reactive } from "vue";
 
 export default {

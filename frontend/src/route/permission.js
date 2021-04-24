@@ -3,26 +3,25 @@ import NProgress from "nprogress";
 import store from "@/store";
 import router from "@/route/index";
 
-/**
- * 路由信息
- * @param menus
- * @returns {*}
- */
+/** 路由信息 */
 export const generateRoute = (menus) => {
   const userRoutes = menus.map(menu => {
-    const {parent, icon, name, children = [], path, hidden = false, title, i18n, id} = menu
-    // todo: 如果后端返回的父级菜单的路径为不带'/'号，则需要拼上 '/', 子菜单不需要，因为vue-router会自动跟据路径拼
-    const currentMenu = {
-      path, name, hidden, parent,
-      meta: { key: id, title, i18n, icon },
-      children: children.length === 0 ? [] : generateRoute(children)
-    }
+    const { parent, icon, name, children = [], path, hidden = false, title, i18n, id } = menu
+    const currentMenu = { path, name, hidden, parent, meta: { key: id, title, i18n, icon }, children: children.length === 0 ? [] : generateRoute(children) }
     if (children.length <= 0) {
       delete currentMenu.children
     }
     return currentMenu
   })
   return userRoutes
+}
+
+/** 权限信息 */
+export const generatePower = (powers) => {
+  const userPowers = powers.map(power => {
+     return power.code
+  })
+  return userPowers;
 }
 
 export const setUserRouteComponent = routes => {

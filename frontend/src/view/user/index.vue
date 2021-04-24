@@ -36,7 +36,7 @@
 <script>
 import add from './module/add';
 import edit from './module/edit';
-import { page } from "@/api/modules/user";
+import { page } from "@/api/module/user";
 import { reactive } from 'vue';
 
 export default {

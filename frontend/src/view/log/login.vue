@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import { login } from "@/api/modules/log";
+import { login } from "@/api/module/log";
 import { reactive } from 'vue';
 
 export default {

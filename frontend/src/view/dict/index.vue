@@ -31,7 +31,7 @@
   </div>
 </template>
 <script>
-import { page } from "@/api/modules/dict";
+import { page } from "@/api/module/dict";
 import { reactive } from "vue";
 
 export default {

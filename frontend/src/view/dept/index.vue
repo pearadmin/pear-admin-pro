@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { tree } from "@/api/modules/dept";
+import { tree } from "@/api/module/dept";
 import { reactive } from 'vue';
 
 export default {
@@ -45,9 +45,8 @@ export default {
 
     /// 列配置
     const columns = [
-      { dataIndex: "name", key: "name", title: "组件" },
-      { dataIndex: "path", key: "path", title: "路径" },
-      { dataIndex: "i18n", key: "i18n", title: "国际化"},
+      { dataIndex: "name", key: "name", title: "部门" },
+      { dataIndex: "address", key: "address", title: "地址" },
       { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];

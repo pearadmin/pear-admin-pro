@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { page } from "@/api/modules/post";
+import { page } from "@/api/module/post";
 import { reactive } from 'vue';
 
 export default {

@@ -32,7 +32,7 @@
 </template>
 
 <script>
-import { tree } from "@/api/modules/power";
+import { tree } from "@/api/module/power";
 import { reactive } from 'vue';
 
 export default {
