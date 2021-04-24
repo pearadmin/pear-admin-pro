@@ -1,15 +1,17 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import io.swagger.annotations.Api;
 import com.pearadmin.pro.common.web.domain.Result;
-import org.springframework.web.bind.annotation.GetMapping;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.*;
 import com.pearadmin.pro.modules.sys.param.SysConfigRequest;
 import com.pearadmin.pro.modules.sys.service.SysConfigService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 配置控制器
@@ -32,7 +34,45 @@ public class SysConfigController extends BaseController {
      * @return {@link Result}
      */
     @GetMapping("page")
+    @SysLog(title = "配置列表")
+    @ApiOperation(value = "配置列表")
     public Result page(SysConfigRequest request){
         return success(sysConfigService.page(request));
+    }
+
+    /**
+     * 新增配置
+     *
+     * @param sysConfig 配置实体
+     */
+    @PostMapping("add")
+    @SysLog(title = "新增配置")
+    @ApiOperation(value = "新增配置")
+    public Result add(SysConfig sysConfig) {
+        return auto(sysConfigService.save(sysConfig));
+    }
+
+    /**
+     * 修改配置
+     *
+     * @param sysConfig 配置实体
+     */
+    @PutMapping("edit")
+    @SysLog(title = "修改配置")
+    @ApiOperation(value = "修改配置")
+    public Result edit(SysConfig sysConfig) {
+        return auto(sysConfigService.updateById(sysConfig));
+    }
+
+    /**
+     * 删除配置
+     *
+     * @param configIds 配置编号
+     */
+    @DeleteMapping("remove")
+    @SysLog(title = "删除配置")
+    @ApiOperation(value = "删除配置")
+    public Result remove(List<String> configIds){
+        return auto(sysConfigService.removeByIds(configIds));
     }
 }
