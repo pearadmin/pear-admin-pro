@@ -6,12 +6,17 @@ import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
+import com.pearadmin.pro.modules.sys.domain.SysUserRole;
 import com.pearadmin.pro.modules.sys.repository.SysPowerRepository;
 import com.pearadmin.pro.modules.sys.repository.SysRoleRepository;
 import com.pearadmin.pro.modules.sys.repository.SysUserRepository;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
+import com.pearadmin.pro.modules.sys.repository.SysUserRoleRepository;
+import com.pearadmin.pro.modules.sys.service.SysUserRoleService;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.annotation.Resource;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +32,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
 
     @Resource
     private SysPowerRepository sysPowerRepository;
+
+    @Resource
+    private SysUserRoleService sysUserRoleService;
 
     @Override
     public List<SysRole> role(String userId) {
@@ -53,7 +61,23 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
         return toTree(sysPowerRepository.selectMenu(userId),"0");
     }
 
-    public List<SysPower> toTree(List<SysPower> sysMenus,String parent) {
+    @Override
+    @Transactional
+    public Boolean give(String userId, List<String> roleIds) {
+
+        sysUserRoleService.lambdaUpdate().eq(SysUserRole::getUserId, userId).remove();
+
+        List<SysUserRole> userRoles = new ArrayList<>();
+        roleIds.forEach(roleId -> {
+            SysUserRole userRole = new SysUserRole();
+            userRole.setUserId(userId);
+            userRole.setRoleId(roleId);
+            userRoles.add(userRole);
+        });
+        return sysUserRoleService.saveBatch(userRoles);
+    }
+
+    public List<SysPower> toTree(List<SysPower> sysMenus, String parent) {
         List<SysPower> list = new ArrayList<>();
         for (SysPower menu : sysMenus) {
             if (parent.equals(menu.getParent())) {

@@ -30,19 +30,22 @@
       </a-row>
       <add :visible="state.addModal" @close="closeAdd"></add>
       <edit :visible="state.editModal" @close="closeEdit"></edit>
+      <give :visible="state.giveModal" @close="closeGive"></give>
     </page-layout>
 </template>
 
 <script>
 import add from './module/add';
 import edit from './module/edit';
+import give from './module/give';
 import { page } from "@/api/module/user";
 import { reactive } from 'vue';
 
 export default {
   components: {
     add,
-    edit
+    edit,
+    give
   },
   setup() {
 
@@ -65,6 +68,7 @@ export default {
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
       { label: "修改", event: function (record) { state.editModal = true }},
+      { label: "分配", event: function (record) { state.giveModal = true }},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
@@ -96,7 +100,8 @@ export default {
     const state = reactive({ 
       param: { name: "",  code: "", enable: "" }, 
       addModal: false,
-      editModal: false
+      editModal: false,
+      giveModal: false,
     })
 
     /// 查询参数
@@ -107,7 +112,6 @@ export default {
 
     /// 查询操作
     const search = function(value) {
-    
       state.param = value
     }
 
@@ -117,6 +121,10 @@ export default {
 
     const closeEdit = function(){
       state.editModal = false;
+    }
+
+    const closeGive = function(){
+      state.giveModal = false;
     }
 
     /// 声明抛出
@@ -132,7 +140,8 @@ export default {
       searchParam: searchParam, // 查询参数
 
       closeAdd,
-      closeEdit
+      closeEdit,
+      closeGive,
     };
   },
 };

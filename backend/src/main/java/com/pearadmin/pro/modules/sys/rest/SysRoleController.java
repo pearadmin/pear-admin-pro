@@ -94,13 +94,14 @@ public class SysRoleController extends BaseController {
     /**
      * 权限分配
      *
-     * @param powerId 权限编号
+     * @param roleId 角色编号
+     * @param powerIds 权限编号
      * */
     @PostMapping("give")
     @SysLog(title = "分配权限")
     @ApiOperation(value = "分配权限")
-    public Result give(List<String> powerId){
-        return success();
+    public Result give(String roleId ,List<String> powerIds){
+        return success(sysRoleService.give(roleId, powerIds));
     }
 
 }

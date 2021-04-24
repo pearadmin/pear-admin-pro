@@ -26,7 +26,7 @@ public class BaseContext {
     private SysLogService sysLogService;
 
     /**
-     * 用 户 上 下 文
+     * 用 户 服 务
      * */
     @Resource
     private UserContext userContext;

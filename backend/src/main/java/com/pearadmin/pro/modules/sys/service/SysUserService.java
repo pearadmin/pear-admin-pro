@@ -60,4 +60,14 @@ public interface SysUserService extends IService<SysUser> {
      * @return {@link SysPower}
      */
     List<SysPower> power(String userId);
+
+    /**
+     * 分配用户角色
+     *
+     * @param userId 用户编号
+     * @param roleIds 角色编号
+     *
+     * @return {@link Boolean}
+     * */
+    Boolean give(String userId, List<String> roleIds);
 }

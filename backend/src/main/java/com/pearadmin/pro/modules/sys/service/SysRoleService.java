@@ -36,5 +36,15 @@ public interface SysRoleService extends IService<SysRole> {
      * @return {@link SysRole}
      * */
     PageResponse<SysRole> page(SysRoleRequest request);
+
+    /**
+     * 分配权限
+     *
+     * @param roleId 角色编号
+     * @param powerIds 权限编号
+     *
+     * @return {@link Boolean}
+     * */
+    Boolean give(String roleId, List<String> powerIds);
     
 }

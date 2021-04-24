@@ -80,13 +80,14 @@ public class SysUserController extends BaseController {
     /**
      * 分配角色
      *
-     * @param roleId 角色编号
+     * @param roleIds 角色编号
+     * @param userId 用户编号
      * */
     @PostMapping("give")
     @SysLog(title = "分配角色")
     @ApiOperation(value = "分配角色")
-    public Result give(List<String> roleId){
-        return success();
+    public Result give(List<String> roleIds, String userId){
+        return success(sysUserService.give(userId,roleIds));
     }
 
     /**

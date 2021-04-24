@@ -43,10 +43,17 @@ export default {
       return value;
     }}
 
+    const converFormat = [
+      {label:'目录',value:'0'},
+      {label:'菜单',value:'1'},
+      {label:'按钮',value:'2'}
+    ]
+
     /// 列配置
     const columns = [
       { dataIndex: "title", key: "title", title: "权限名" },
       { dataIndex: "name", key: "name", title: "组件" },
+      { dataIndex: "type", key: "type", title: "类型", conver: converFormat},
       { dataIndex: "path", key: "path", title: "路径" },
       { dataIndex: "i18n", key: "i18n", title: "国际化"},
       { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
