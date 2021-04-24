@@ -3,8 +3,8 @@ import Layout from "@/layout";
 export default {
    Layout,
   'profile': () => import('@/view/profile/index.vue'),
-  'dashboard-console': () => import('@/view/dashboard/console.vue'),
-  'dashboard-workspace': () => import('@/view/dashboard/workspace.vue'),
+  'dashboard-console': () => import('@/view/console/index.vue'),
+  'dashboard-workspace': () => import('@/view/space/index.vue'),
   'result-success': () => import('@/view/result/success.vue'),
   'result-failure': () => import('@/view/result/failure.vue'),
   'error-403': () => import('@/view/error/403.vue'),
