@@ -42,6 +42,7 @@ export default {
 
     /// 列配置
     const columns = [
+      { dataIndex: "title", key: "title", title: "标题" },
       { dataIndex: "describe", key: "describe", title: "描述" },
       { dataIndex: "action", key: "action", title: "动作"},
       { dataIndex: "type", key: "type", title: "方式"},
