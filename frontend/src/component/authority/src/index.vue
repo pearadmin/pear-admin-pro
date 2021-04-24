@@ -3,6 +3,7 @@
         <slot></slot>
     </template>
 </template>
+
 <script>
 import { computed, defineComponent } from "vue";
 import { useStore } from 'vuex';
@@ -15,13 +16,13 @@ export default defineComponent({
 			default: () => '',
 		},
 	},
-	setup() {
+	setup(props) {
 		const store = useStore();
 
-        /// 根据权限判定是否渲染组件
 		const hasAuthority = computed(() => {
-			return true;
+			return store.getters.power.indexOf(props.value)
 		});
+
 		return {
 			hasAuthority,
 		};

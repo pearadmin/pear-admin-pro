@@ -33,6 +33,11 @@ const getters = {
       ? state.user.userRoutes
       : localStorage.getItem("user_routes")
       ? JSON.parse(localStorage.getItem("user_routes"))
+      : "",
+  power: state => state.user.userPowers.length !== 0
+      ? state.user.userPowers
+      : localStorage.getItem("user_powers")
+      ? JSON.parse(localStorage.getItem("user_powers"))
       : ""
 };
 export default getters;

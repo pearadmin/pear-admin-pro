@@ -38,12 +38,14 @@ import { reactive } from 'vue';
 export default {
   setup() {
 
+    /// 开关
+    const switchFormat = { yes: true, no: false };
+
     /// 列配置
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "账号" },
-      {dataIndex: "enable", key: "enable", title: "状态", slots: { customRender: "enable" }},
-      { dataIndex: "remark", key: "remark", title: "描述" },
+      { dataIndex: "code", key: "code", title: "标识" },
+      {dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
 

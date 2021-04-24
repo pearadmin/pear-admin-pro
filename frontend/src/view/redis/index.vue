@@ -1,10 +1,10 @@
 <template>
-  <page-header
+  <div>
+      <page-header
     title="缓 存 监 控"
     describe="提 供 Redis 的 可 视 化 监 控 与 键 值 操 作."
   ></page-header>
   <page-layout>
-    <div>
       <a-row :gutter="[10, 10]">
         <a-col :span="24">
           <a-card>
@@ -21,8 +21,8 @@
           <a-card title="运行日志"> </a-card>
         </a-col>
       </a-row>
-    </div>
   </page-layout>
+  </div>
 </template>
 <script>
 import { info } from "@/api/module/redis";
