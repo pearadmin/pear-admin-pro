@@ -76,8 +76,7 @@ export default {
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record)); }},
       { label: "修改", event: function (record) { state.editModal = true }},
-      { label: "菜单权限", event: function (record) { state.giveModal = true }},
-      { label: "数据权限", event: function (record) { state.giveModal = true }},
+      { label: "分配", event: function (record) { state.giveModal = true }},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record)); }},
     ];
 

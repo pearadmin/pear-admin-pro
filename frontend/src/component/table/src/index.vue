@@ -172,13 +172,17 @@ export default defineComponent({
     operate: {
       type: Array || Boolean,
       default: false
+    },
+    pagination: {
+      type: Object || false,
+      default: false
     }
   }),
   setup(props) {
 
     /// 状态共享
     const state = reactive({
-      pagination: Object.assign({}, props.pagination), // 分页
+      pagination: props.pagination == false ? false: props.pagination, // 分页
       datasource: [], // 数据源
       loading: true, // 加载
       columns: props.columns, // 字段
@@ -223,7 +227,9 @@ export default defineComponent({
         Object.assign({}, props.pagination, props.param)
       );
       /// 状态重置
-      state.pagination.total = total;
+      if(state.pagination !=false){
+        state.pagination.total = total;
+      }
       state.datasource = data;
       state.loading = false;
     };
