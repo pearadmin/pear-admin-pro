@@ -67,7 +67,7 @@
       :loading="loading"
       :pagination="pagination"
       :dataSource="datasource"
-      :row-selection="{ selectedRowKeys: selectedRowKeys,  onChange: onSelectChange }"
+      :row-selection="rowSelection"
     >
       <!-- 列转换 -->
       <template :key="index" v-for="(column,index) in columns" #[column.dataIndex] = "{  record }">
@@ -173,9 +173,14 @@ export default defineComponent({
       type: Array || Boolean,
       default: false
     },
+    /// 分页参数
     pagination: {
       type: Object || false,
       default: false
+    }
+    ,
+    rowSelection: {
+      type: Object
     }
   }),
   setup(props) {

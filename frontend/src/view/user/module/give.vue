@@ -1,9 +1,11 @@
 <template>
     <a-modal :visible="visible" title="分配角色" cancelText="取消" okText="提交" @ok="submit" @cancel="cancel">
         <pro-table 
-              :fetch="fetch"
-              :columns ="columns">
-              </pro-table>
+            :fetch="fetch"
+            :columns ="columns"
+            :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
+        >
+        </pro-table>
     </a-modal>
 </template>
 <script>
@@ -18,6 +20,12 @@ export default defineComponent({
   },
   emit: ['close'],
   setup(props, context) {
+
+    const state = reactive({
+      selectedRowKeys: [],
+      // Check here to configure the default column
+      loading: false,
+    });
 
     /// 数据来源 [模拟]
     const fetch = async (param) => {
@@ -40,11 +48,17 @@ export default defineComponent({
       context.emit('close', false);  
     }
 
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
+
     return {
+      state,
       fetch, 
       submit,
       cancel,
       columns,
+      onSelectChange
     };
   },
 });
