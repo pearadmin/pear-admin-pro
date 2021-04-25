@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.repository.SysDeptRepository;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class SysDeptServiceImpl implements SysDeptService {
+public class SysDeptServiceImpl extends ServiceImpl<SysDeptRepository, SysDept> implements SysDeptService {
 
     @Resource
     private SysDeptRepository sysDeptRepository;

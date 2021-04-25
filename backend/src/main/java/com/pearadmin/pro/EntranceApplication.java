@@ -5,10 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 /**
- * Spring Boot Application 启 动 类
- *
- * Author: 就 眠 仪 式
- * CreateTime: 2021/04/01
+ * Spring Boot Application 启动类
  * */
 @SpringBootApplication(exclude = DataSourceAutoConfiguration.class)
 public class EntranceApplication {

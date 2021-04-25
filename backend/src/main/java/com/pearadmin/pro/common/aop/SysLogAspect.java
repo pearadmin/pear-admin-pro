@@ -43,14 +43,14 @@ public class SysLogAspect {
     {
         Object result = null;
 
-        // 注 解 解 析
+        // 注解解析
         SysLog annotation = getAnnotation(joinPoint);
         String title = annotation.title();
         Action action = annotation.action();
         String describe = annotation.describe();
 
         try {
-            // 执 行 方 法
+            // 执行方法
             result = joinPoint.proceed();
             // 记 录 日 志
             context.record(title, describe, action, true, null,null);
