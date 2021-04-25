@@ -1,12 +1,15 @@
 <template>
     <a-modal :visible="visible" title="分配角色" cancelText="取消" okText="提交" @ok="submit" @cancel="cancel">
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+        <pro-table 
+              :fetch="fetch"
+              :columns ="columns">
+              </pro-table>
     </a-modal>
 </template>
 <script>
-import { defineComponent } from 'vue';
+import { list } from "@/api/module/role";
+import { role } from "@/api/module/user"; 
+import { defineComponent, reactive } from 'vue';
 export default defineComponent({
   props: {
       visible: {
@@ -15,6 +18,19 @@ export default defineComponent({
   },
   emit: ['close'],
   setup(props, context) {
+
+    /// 数据来源 [模拟]
+    const fetch = async (param) => {
+      var response = await list(param);
+      return {
+        data: response.data,
+      };
+    };
+
+    const columns = [
+      { dataIndex: "name", key: "name", title: "名称" },
+      { dataIndex: "remark", key: "remark", title: "描述" }
+    ];
 
     const submit = e => {
       context.emit('close', false);
@@ -25,8 +41,10 @@ export default defineComponent({
     }
 
     return {
+      fetch, 
       submit,
-      cancel
+      cancel,
+      columns,
     };
   },
 });

@@ -172,7 +172,7 @@ export default defineComponent({
     operate: {
       type: Array || Boolean,
       default: false
-    },
+    }
   }),
   setup(props) {
 

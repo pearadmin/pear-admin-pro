@@ -139,9 +139,9 @@ export default {
       search: search,
       searchParam: searchParam, // 查询参数
 
-      closeAdd,
-      closeEdit,
-      closeGive,
+      closeAdd,  // 新增关闭回调
+      closeEdit, // 修改关闭回调
+      closeGive,// 分配关闭回调
     };
   },
 };
