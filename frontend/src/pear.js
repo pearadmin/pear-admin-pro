@@ -58,12 +58,12 @@
    * 参数: 侧边菜单栏宽度
    * 单位: px
    * */
-  sideWidth: 240,
+  sideWidth: 250,
   /**
    * 参数: 侧边菜单栏宽度(折叠)
    * 单位: px
    * */
-  collapsedWidth: 70,
+  collapsedWidth: 68,
 
   /**
    * 参数: 是否固定侧边

@@ -40,6 +40,18 @@ public class SysPostController extends BaseController {
     }
 
     /**
+     * 查询岗位列表
+     *
+     * @param request 查询参数
+     */
+    @GetMapping("list")
+    @SysLog(title = "查询岗位")
+    @ApiOperation(value = "查询岗位")
+    public Result list(SysPostRequest request) {
+        return success(sysPostService.list(request));
+    }
+
+    /**
      * 新增岗位
      *
      * @param sysPost 角色实体

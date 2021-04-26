@@ -80,7 +80,7 @@ export default {
     const switchFormat = { yes: true, no: false };
 
     /// 头像
-    const avatarFormat = { size: 36, shape: "round" };
+    const avatarFormat = { size: 36, shape: "square" };
 
     /// 配置
     const columns = [

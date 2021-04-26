@@ -225,17 +225,18 @@ export default defineComponent({
     };
 
     /// 数据请求
-    const fetchData = async () => {
+    const fetchData = async (pagination) => {
+      
       /// 开启加载
       state.loading = true;
       /// 请求数据
       const { total, data } = await props.fetch(
-        Object.assign({}, props.pagination, props.param)
+        Object.assign({}, pagination, props.param)
       );
       /// 状态重置
-      if(state.pagination !=false){
+      if(state.pagination != false){
         state.pagination.total = total;
-      }
+      } 
       state.datasource = data;
       state.loading = false;
     };

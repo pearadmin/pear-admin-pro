@@ -141,6 +141,10 @@ export default {
     line-height: @ant-menu-hieht !important;
   }
 
+  .ant-menu-submenu-title>span{
+    font-size: 13.8px!important;
+  }
+
   .ant-menu-inline-collapsed > .ant-menu-item {
     padding: 0px !important;
     text-align: center;

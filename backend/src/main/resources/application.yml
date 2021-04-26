@@ -1,7 +1,7 @@
 ## tomcat 配置
 server:
   ## 监听端口
-  port: 9191
+  port: 9292
 
 ## spring 配置
 spring:
