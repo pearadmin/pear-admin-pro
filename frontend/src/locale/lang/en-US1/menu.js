@@ -1,5 +1,6 @@
 export default {
   "account": "account",
+  "CaseSensitivePathsPlugin": "CaseSensitivePathsPlugin",
   "account-center": "account-center",
   "dashboard": "dashboard",
   "dashboard-console": "dashboard-console",

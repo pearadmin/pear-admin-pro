@@ -3,6 +3,7 @@ import config from '@/pear'
 
 const DEFAULT_LANG = localStorage.getItem('pear_lang') ? localStorage.getItem('pear_lang') : config.defaultLanguage
 
+console.log(DEFAULT_LANG);
 const i18n = setupI18n({
   globalInjection: true,
   legacy: false,
