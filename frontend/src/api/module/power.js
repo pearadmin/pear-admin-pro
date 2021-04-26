@@ -1,7 +1,7 @@
 import http from '../http'
 
 const Api = {
-    tree: '/sys/power/tree',
+    tree: '/api/sys/power/tree',
 }
 
 export const tree = data => {

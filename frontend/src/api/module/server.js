@@ -1,7 +1,7 @@
 import http from '../http'
 
 const Api = {
-    info: '/sys/server/info',
+    info: '/api/sys/server/info',
 }
 
 export const info = data => {

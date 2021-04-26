@@ -1,7 +1,7 @@
 import http from '../http'
 
 const Api = {
-    page: '/sys/config/page',
+    page: '/api/sys/config/page',
 }
 
 export const page = data => {

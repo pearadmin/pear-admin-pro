@@ -1,7 +1,7 @@
 import http from '../http'
 
 const Api = {
-    list: '/sys/online/list',
+    list: '/api/sys/online/list',
 }
 
 export const list = data => {

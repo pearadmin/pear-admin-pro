@@ -2,8 +2,8 @@ import http from '../http'
 
 /** 接口管理 */
 const Api = {
-    page: '/sys/role/page',
-    list: '/sys/role/list'
+    page: '/api/sys/role/page',
+    list: '/api/sys/role/list'
 }
 
 /** 角色列表 (分页) */

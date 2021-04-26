@@ -2,12 +2,12 @@ import http from '../http'
 
 /** 接口 */
 const Api = {
-  page: '/sys/user/page',
-  menu: '/sys/user/menu',
-  power: '/sys/user/power',
-  role: '/sys/user/role',
-  login: '/login',
-  logout: '/logout',
+  page: '/api/sys/user/page',
+  menu: '/api/sys/user/menu',
+  power: '/api/sys/user/power',
+  role: '/api/sys/user/role',
+  login: '/api/login',
+  logout: '/api/logout',
 }
 
 /** 登录 */

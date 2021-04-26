@@ -22,6 +22,7 @@
               :operate="operate"
               :param="state.param"
               :pagination="pagination"
+              :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
               <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
@@ -60,8 +61,8 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { state.addModal = true }},
-      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+      { label: "新增", event: function () { state.addModal = true }},
+      { label: "删除", event: function () { }},
     ];
 
     /// 行操作
@@ -98,6 +99,7 @@ export default {
 
     /// 外置参数
     const state = reactive({ 
+      selectedRowKeys: [],
       param: { name: "",  code: "", enable: "" }, 
       addModal: false,
       editModal: false,
@@ -109,6 +111,10 @@ export default {
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
     ]
+
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
 
     /// 查询操作
     const search = function(value) {
@@ -135,6 +141,7 @@ export default {
       columns: columns, // 列配置
       operate: operate, // 行操作
       pagination: pagination, // 分页配置
+      onSelectChange: onSelectChange,
 
       search: search,
       searchParam: searchParam, // 查询参数

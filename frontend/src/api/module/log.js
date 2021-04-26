@@ -1,8 +1,8 @@
 import http from '../http'
 
 const Api = {
-    operate: '/sys/log/operate',
-    login: '/sys/log/login'
+    operate: '/api/sys/log/operate',
+    login: '/api/sys/log/login'
 }
 
 export const operate = data => {

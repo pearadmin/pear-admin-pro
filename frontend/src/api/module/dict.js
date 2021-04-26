@@ -1,7 +1,7 @@
 import http from '../http'
 
 const Api = {
-    page: '/sys/dict/page',
+    page: '/api/sys/dict/page',
 }
 
 export const page = data => {

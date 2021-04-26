@@ -1,7 +1,7 @@
 import http from '../http'
 
 const Api = {
-    tree: '/sys/dept/tree',
+    tree: '/api/sys/dept/tree',
 }
 
 export const tree = data => {

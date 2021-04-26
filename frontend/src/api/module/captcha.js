@@ -2,8 +2,8 @@ import http from '../http'
 
 // 接口
 const Api = {
-  create: '/captcha/create',
-  verify: '/captcha/verify'
+  create: '/api/captcha/create',
+  verify: '/api/captcha/verify'
 }
 
 // 创建

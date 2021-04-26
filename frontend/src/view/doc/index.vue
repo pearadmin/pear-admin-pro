@@ -16,6 +16,7 @@ export default {
       const oIframe = document.getElementById("show-iframe");
       const deviceHeight = document.documentElement.clientHeight - 140;
       oIframe.style.height = deviceHeight  + "px";
+      oIframe.src =  process.env.VUE_APP_API_BASE_URL + "/swagger-ui.html";
     });
   },
 };
