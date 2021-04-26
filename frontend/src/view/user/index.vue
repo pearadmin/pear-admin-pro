@@ -40,7 +40,7 @@ import add from './module/add';
 import edit from './module/edit';
 import give from './module/give';
 import { page } from "@/api/module/user";
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 export default {
   components: {
@@ -101,7 +101,7 @@ export default {
     const state = reactive({ 
       selectedRowKeys: [],
       param: { name: "",  code: "", enable: "" }, 
-      addModal: false,
+      addModal:  false,
       editModal: false,
       giveModal: false,
     })
@@ -121,30 +121,33 @@ export default {
       state.param = value
     }
 
+    /// 关闭新增
     const closeAdd = function(){
       state.addModal = false;
     }
 
+    /// 关闭修改
     const closeEdit = function(){
       state.editModal = false;
     }
 
+    /// 关闭分配
     const closeGive = function(){
       state.giveModal = false;
     }
 
     /// 声明抛出
     return {
-      state: state, // 状态共享
-      fetch: fetch, // 数据回调
-      toolbar: toolbar, // 工具栏
-      columns: columns, // 列配置
-      operate: operate, // 行操作
-      pagination: pagination, // 分页配置
-      onSelectChange: onSelectChange,
+      state, // 状态共享
+      fetch, // 数据回调
+      toolbar, // 工具栏
+      columns, // 列配置
+      operate, // 行操作
+      pagination, // 分页配置
+      onSelectChange,
 
-      search: search,
-      searchParam: searchParam, // 查询参数
+      search,
+      searchParam, // 查询参数
 
       closeAdd,  // 新增关闭回调
       closeEdit, // 修改关闭回调

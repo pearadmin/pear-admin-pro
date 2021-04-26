@@ -1,32 +1,47 @@
 <template>
-    <a-modal :visible="visible" title="修改角色" cancelText="取消" okText="保存" @ok="submit" @cancel="cancel">
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-    </a-modal>
+  <a-modal :visible="visible" title="分配权限" cancelText="取消" okText="保存" @ok="submit" @cancel="cancel">
+    <a-tree
+      checkable
+      :tree-data="state.treeData"
+      :replace-fields="state.replaceFields"
+    />
+  </a-modal>
 </template>
 <script>
-import { defineComponent } from 'vue';
+import { tree } from "@/api/module/power";
+import { defineComponent, reactive } from "vue";
 export default defineComponent({
   props: {
-      visible: {
-          type: Boolean
-      }
+    visible: {
+      type: Boolean,
+    },
   },
-  emit: ['close'],
+  emit: ["close"],
   setup(props, context) {
+    const state = reactive({
+      treeData: [],
+      replaceFields: { key: "id" },
+    });
 
-    const submit = e => {
-      context.emit('close', false);
+    const loadData = async () => {
+      var response = await tree();
+      state.treeData = response.data;
     };
 
-    const cancel = e => {
-      context.emit('close', false);  
-    }
+    loadData();
+
+    const submit = (e) => {
+      context.emit("close", false);
+    };
+
+    const cancel = (e) => {
+      context.emit("close", false);
+    };
 
     return {
       submit,
-      cancel
+      cancel,
+      state,
     };
   },
 });

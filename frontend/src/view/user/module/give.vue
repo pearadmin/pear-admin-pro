@@ -11,20 +11,18 @@
 <script>
 import { list } from "@/api/module/role";
 import { role } from "@/api/module/user"; 
-import { defineComponent, reactive } from 'vue';
+import { defineComponent, reactive, watch } from 'vue';
 export default defineComponent({
   props: {
       visible: {
-          type: Boolean
+        type: Boolean
       }
   },
   emit: ['close'],
   setup(props, context) {
 
     const state = reactive({
-      selectedRowKeys: [],
-      // Check here to configure the default column
-      loading: false,
+      selectedRowKeys: ["1","2"]
     });
 
     /// 数据来源 [模拟]
