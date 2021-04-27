@@ -98,9 +98,19 @@ public class SysUserController extends BaseController {
     @DeleteMapping("remove")
     @SysLog(title = "用户删除")
     @ApiOperation(value = "用户删除")
-    public Result remove(List<String> userId){
-        return auto(sysUserService.removeByIds(userId));
+    public Result remove(String userId){
+        return auto(sysUserService.removeById(userId));
     }
+
+    /**
+     * 批量删除
+     *
+     * @param userIds 用户编号
+     */
+    @DeleteMapping("removeBatch")
+    @SysLog(title = "批量删除")
+    @ApiOperation(value = "批量删除")
+    public Result removeBatch(List<String> userIds) { return auto(sysUserService.removeByIds(userIds)); }
 
     /**
      * 个人资料

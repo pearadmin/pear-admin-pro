@@ -38,22 +38,10 @@ public class SysRedisController extends BaseController {
     @ApiOperation(value = "缓存详情")
     public Result info(){
         Properties info = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info());
-        Properties commandStats = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info("commandstats"));
         Object dbSize = redisTemplate.execute((RedisCallback<Object>) connection -> connection.dbSize());
-
-        List<Map<String, String>> pieList = new ArrayList<>();
-        commandStats.stringPropertyNames().forEach(key -> {
-            Map<String, String> data = new HashMap<>(2);
-            String property = commandStats.getProperty(key);
-            data.put("name", StringUtils.removeStart(key, "cmdstat_"));
-            data.put("value", StringUtils.substringBetween(property, "calls=", ",usec"));
-            pieList.add(data);
-        });
-
-        Map<String, Object> result = new HashMap<>(3);
+        Map<String, Object> result = new HashMap<>(2);
         result.put("info", info);
-        result.put("dbSize", dbSize);
-        result.put("commandStats", pieList);
+        result.put("size", dbSize);
         return success(result);
     }
 
