@@ -21,6 +21,7 @@
               :toolbar="toolbar"
               :param="state.param"
               :pagination="pagination"
+              :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
               <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
@@ -77,11 +78,8 @@ export default {
 
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
-      param: {
-        name: "", // 名称
-        code: "", // 标识
-        isAuth: true
-      }
+      selectedRowKeys: [],
+      param: { name: "", code: "", isAuth: true }
     })
 
     /// 查询参数
@@ -104,6 +102,10 @@ export default {
       /// 通过动态修改入参, 触发表格刷新
       state.param = value
     }
+    
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
 
     /// 声明抛出
     return {
@@ -116,6 +118,8 @@ export default {
       /// 搜索组件
       search: search,
       searchParam: searchParam, // 查询参数
+
+      onSelectChange,
     };
   },
 };

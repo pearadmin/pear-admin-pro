@@ -23,3 +23,12 @@ export const list = data => {
     })
 }
 
+/** 新增岗位 */
+export const add = data => {
+    return http.request({
+        url: Api.add,
+        data: data,
+        method: 'POST'
+    })
+}
+
