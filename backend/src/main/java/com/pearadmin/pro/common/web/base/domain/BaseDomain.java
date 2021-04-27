@@ -1,5 +1,6 @@
 package com.pearadmin.pro.common.web.base.domain;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -18,35 +19,35 @@ public class BaseDomain implements Serializable {
     /**
      * 创建人
      * */
-    @TableField("create_by")
+    @TableField(value = "create_by", fill = FieldFill.INSERT)
     @ApiModelProperty("创建人")
     private String createBy;
 
     /**
      * 创建时间
      * */
-    @TableField("create_time")
+    @TableField(value = "create_time", fill = FieldFill.INSERT)
     @ApiModelProperty("创建时间")
     private LocalDateTime createTime;
 
     /**
      * 修改人
      * */
-    @TableField("update_by")
+    @TableField(value = "update_by", fill = FieldFill.UPDATE)
     @ApiModelProperty("修改人")
     private String updateBy;
 
     /**
      * 修改时间
      * */
-    @TableField("update_time")
+    @TableField(value = "update_time", fill = FieldFill.UPDATE)
     @ApiModelProperty("修改时间")
     private LocalDateTime updateTime;
 
     /**
      * 删除
      * */
-    @TableField("deleted")
+    @TableField(value = "deleted", fill = FieldFill.INSERT)
     @ApiModelProperty("逻辑删除")
     private boolean deleted;
 

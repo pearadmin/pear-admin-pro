@@ -52,4 +52,10 @@ public class SysUser extends SecureUser {
     @TableField("dept_id")
     private String deptId;
 
+    /**
+     * 岗位
+     * */
+    @TableField("post_id")
+    private String postId;
+
 }

@@ -60,51 +60,6 @@ public class DataScopeInterceptor implements Interceptor {
 
             if(scope.equals(Scope.AUTO)){
 
-                // 根 据 用 户 定 义 权 限 填 充 SQL
-                List<SysRole> roles = userContext.getRole();
-
-                Set<String> set = new HashSet<>();
-
-                for (SysRole role : roles) {
-
-                    Scope roleScope = role.getScope();
-                    String roleId = role.getId();
-
-                    // 根 据 用 户 定 义 权 限 填 充 SQL
-                    if(roleScope.equals(Scope.ALL)){
-                        break;
-                    }
-
-                    if(roleScope.equals(Scope.CUSTOM)){
-
-                        // 查 询 自 定 义
-                        List<SysDept> deptIds = roleService.dept(roleId);
-
-                        //
-                    }
-
-                    if(roleScope.equals(Scope.DEPT)){
-
-                        // 所 属 部 门
-                        String deptId = userContext.getDeptId();
-
-                        set.add(deptId);
-                    }
-
-                    if(roleScope.equals(Scope.DEPT_CHILD)){
-
-                        // 所 属 下 级 部 门
-
-                    }
-
-                    if(roleScope.equals(Scope.SELF)){
-
-                        // 用 户 编 号
-                        String userId = userContext.getUserId();
-
-                        //
-                    }
-                }
             }
 
             // 回填 SQL 语句

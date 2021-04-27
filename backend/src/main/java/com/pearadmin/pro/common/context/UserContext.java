@@ -19,11 +19,6 @@ import java.util.List;
 @Component
 public class UserContext {
 
-    /**
-     * User Service 用户服务
-     * */
-    @Resource
-    private SysUserService sysUserService;
 
     /**
      * Authentication 认证对象
@@ -51,11 +46,6 @@ public class UserContext {
      * UserId 用户编号
      * */
     public String getUserId(){ return getPrincipal().getId(); }
-
-    /**
-     * Role 当前用户角色集合
-     * */
-    public List<SysRole> getRole(){ return sysUserService.role(getUserId()); }
 
     /**
      * deptId 当前用户所属部门

@@ -56,11 +56,11 @@ export default defineComponent({
     });
 
     const formRules = {
-      username: [
+      name: [
         { required: true, message: '请输入用户名', trigger: 'blur'},
         { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
       ],
-      nickname: [
+      code: [
         { required: true, message: '请输入用户名', trigger: 'blur'},
         { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
       ]

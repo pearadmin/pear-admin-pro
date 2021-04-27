@@ -2,6 +2,7 @@ import http from '../http'
 
 /** 接口 */
 const Api = {
+  add: '/api/sys/user/add',
   page: '/api/sys/user/page',
   menu: '/api/sys/user/menu',
   power: '/api/sys/user/power',

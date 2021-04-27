@@ -20,6 +20,7 @@
             :operate="operate"
             :param="state.param"
             :pagination="pagination"
+            :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
           >
           </pro-table>
         </a-card>
@@ -52,6 +53,7 @@ export default {
 
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
+      { dataIndex: "code", key: "code", title: "标识" },
       { dataIndex: "remark", key: "remark", title: "描述" },
       { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat },
       { dataIndex: "sort", key: "sort", title: "排序" },
@@ -85,6 +87,7 @@ export default {
 
     /// 外置参数
     const state = reactive({
+      selectedRowKeys: [],
       param: { name: "", code: "" },
       addModal: false,
       editModal: false,
@@ -114,21 +117,27 @@ export default {
         state.giveModal = false;
     }
 
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
+
     /// 声明抛出
     return {
-      state: state, // 状态共享
-      fetch: fetch, // 数据回调
-      toolbar: toolbar, // 工具栏
-      columns: columns, // 列配置
-      operate: operate, // 行操作
-      pagination: pagination, // 分页配置
+      state, // 状态共享
+      fetch, // 数据回调
+      toolbar, // 工具栏
+      columns, // 列配置
+      operate, // 行操作
+      pagination, // 分页配置
 
-      search: search,
-      searchParam: searchParam, // 查询参数
+      search,
+      searchParam, // 查询参数
 
       closeAdd,
       closeEdit,
       closeGive,
+
+      onSelectChange
     };
   },
 };
