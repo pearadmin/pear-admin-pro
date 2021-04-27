@@ -31,7 +31,7 @@ const mutations = {
     localStorage.setItem('user_info', JSON.stringify(userInfo))
   },
   /// 存储用户菜单
-  SET_USER_MENU(state, menuList) {
+  SET_USER_ROUTE(state, menuList) {
     if (menuList && menuList.length === 0) {
       state.userRoutes = []
       localStorage.removeItem('user_routes')
@@ -70,16 +70,19 @@ const actions = {
 
   // 注销
   async logout( {commit} ) {
-    await logout()
-    commit('SET_USER_TOKEN')
-    commit('SET_USER_MENU')
+    const { msg } = await logout();
+    message.success(msg).then(function(){
+      commit('SET_USER_TOKEN');
+      commit('SET_USER_ROUTE');
+      window.location.reload();
+    });
     return Promise.resolve()
   },
 
   // 路由
   async addRoute( {commit} ) {
     const { data } = await menu()
-    commit('SET_USER_MENU', generateRoute(data))
+    commit('SET_USER_ROUTE', generateRoute(data))
   },
 
   async addPower( {commit} ) {

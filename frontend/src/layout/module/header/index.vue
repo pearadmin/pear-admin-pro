@@ -97,7 +97,7 @@
             </a-menu-item>
             <a-menu-divider />
             <a-menu-item key="3">
-              <a-menu-item @click="logOut"> 注销登录 </a-menu-item>
+              <a-menu-item @click="logout"> 注销登录 </a-menu-item>
             </a-menu-item>
           </a-menu>
         </template>
@@ -114,7 +114,7 @@ import { computed, watch, ref, unref } from "vue";
 import { useStore } from "vuex";
 import Menu from "../menu/index.vue";
 import Logo from "../logo/index.vue";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 import _path from "path";
 import i18n from "@/locale";
 import {
@@ -216,10 +216,8 @@ export default {
       }, 500);
     };
 
-    const logOut = async (e) => {
+    const logout = async (e) => {
       await dispatch("user/logout");
-      
-      window.location.reload();
     };
 
     const store = useStore();
@@ -246,7 +244,7 @@ export default {
       routes,
       active,
       toPath,
-      logOut,
+      logout,
       toggleLang,
       selectedKeys,
     };
