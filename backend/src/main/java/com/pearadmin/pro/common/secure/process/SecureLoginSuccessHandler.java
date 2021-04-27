@@ -39,7 +39,7 @@ public class SecureLoginSuccessHandler implements AuthenticationSuccessHandler {
             String tokenValue = userToken.getToken();
 
             // 登 录 日 志
-            context.record("登录","登录成功", Action.AUTH, false, "","");
+            context.record("登录","登录成功", Action.AUTH, true, "","");
 
             ServletUtil.writeJson(Result.success(ResultCode.LOGIN_SUCCESS,tokenKey,tokenValue));
     }

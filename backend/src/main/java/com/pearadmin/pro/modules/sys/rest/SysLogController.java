@@ -33,12 +33,9 @@ public class SysLogController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("operate")
+    @SysLog(title = "操作日志")
     @ApiOperation(value = "操作日志")
-    @SysLog(title = "查询日志", describe = "获取操作日志")
     public Result operate(SysLogRequest request){
-        // TODO 操作日志
-        System.out.println("操作参数:" + request.toString());
-
         return success(sysLogService.page(request));
     }
 
@@ -48,12 +45,9 @@ public class SysLogController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("login")
+    @SysLog(title = "登录日志")
     @ApiOperation(value = "登录日志")
-    @SysLog(title = "查询日志", describe = "获取登录日志")
     public Result login(SysLogRequest request){
-        // TODO 登录日志
-        System.out.println("登录参数:" + request.toString());
-
         return success(sysLogService.page(request));
     }
 }

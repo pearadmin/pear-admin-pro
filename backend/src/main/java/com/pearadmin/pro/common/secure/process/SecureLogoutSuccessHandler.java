@@ -35,10 +35,6 @@ public class SecureLogoutSuccessHandler implements LogoutSuccessHandler {
     public void onLogoutSuccess(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Authentication authentication) throws IOException {
         String token = httpServletRequest.getHeader(TokenConstant.TOKEN_HEADER).replaceFirst(TokenConstant.TOKEN_PREFIX, "");
         customUserDetailsTokenService.destroyToken(token);
-
-        // 注 销 日 志
-        context.record("注销","注销失败", Action.AUTH, false, "","");
-
         ServletUtil.writeJson(Result.success(ResultCode.LOGOUT_SUCCESS));
     }
 }

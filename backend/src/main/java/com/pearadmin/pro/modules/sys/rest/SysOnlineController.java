@@ -1,5 +1,7 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.aop.annotation.SysLog;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.pearadmin.pro.common.constant.CacheNameConstant;
@@ -35,6 +37,8 @@ public class SysOnlineController extends BaseController {
      * return: Result
      * */
     @GetMapping("list")
+    @SysLog(title = "在线列表")
+    @ApiOperation(value = "在线列表")
     public Result list(){
         Set<String> keys = redisTemplate.keys(CacheNameConstant.TOKEN_NAME_PREFIX + "*");
         Set<SecureUserToken> online = new HashSet<>();

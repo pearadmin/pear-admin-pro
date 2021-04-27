@@ -53,9 +53,6 @@ public class BaseContext {
        sysLog.setAddress(ServletUtil.getRemoteHost());
        sysLog.setOperator(userContext.getNickName());
        sysLog.setResult(JSON.toJSONString(result));
-       sysLog.setUpdateBy(userContext.getUserId());
-       sysLog.setCreateTime(LocalDateTime.now());
-       sysLog.setUpdateTime(LocalDateTime.now());
        sysLog.setSystem(ServletUtil.getSystem());
        sysLog.setState(state);
        sysLog.setError(error);

@@ -155,14 +155,14 @@ public class Result<T> {
     /**
      * Boolean 返 回 操 作, 携 带 默 认 返 回 值
      * */
-    public static<T> Result<T> decide(boolean b){
-        return decide(b,ResultCode.SUCCESS.message(),ResultCode.FAILURE.message());
+    public static<T> Result<T> auto(boolean b){
+        return auto(b,ResultCode.SUCCESS.message(),ResultCode.FAILURE.message());
     }
 
     /**
      * Boolean 返 回 操 作, 携 带 自 定 义 消 息
      * */
-    public static<T> Result<T> decide(boolean b,String success,String failure){
+    public static<T> Result<T> auto(boolean b,String success,String failure){
         if(b){
             return success(success);
         }else{

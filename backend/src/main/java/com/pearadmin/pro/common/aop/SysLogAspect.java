@@ -58,7 +58,7 @@ public class SysLogAspect {
             // 堆 栈 信 息
             e.printStackTrace();
             // 异 常 记 录
-            context.record(title, describe, action, true, null, null);
+            context.record(title, describe, action, false, null, null);
         }
         return result;
     }

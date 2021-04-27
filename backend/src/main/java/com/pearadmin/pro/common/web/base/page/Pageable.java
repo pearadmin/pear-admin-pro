@@ -81,5 +81,4 @@ public class Pageable {
     public interface Record<T> {
         List<T> invoke();
     }
-
 }

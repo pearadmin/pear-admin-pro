@@ -67,12 +67,22 @@ public class SysConfigController extends BaseController {
     /**
      * 删除配置
      *
-     * @param configIds 配置编号
+     * @param configId 配置编号
      */
     @DeleteMapping("remove")
     @SysLog(title = "删除配置")
     @ApiOperation(value = "删除配置")
-    public Result remove(List<String> configIds){
-        return auto(sysConfigService.removeByIds(configIds));
+    public Result remove(String configId){
+        return auto(sysConfigService.removeById(configId));
     }
+
+    /**
+     * 删除配置
+     *
+     * @param configIds 配置编号
+     * */
+    @DeleteMapping("removeBatch")
+    @SysLog(title = "删除配置")
+    @ApiOperation(value = "删除配置")
+    public Result removeBatch(List<String> configIds) { return auto(sysConfigService.removeByIds(configIds)); }
 }

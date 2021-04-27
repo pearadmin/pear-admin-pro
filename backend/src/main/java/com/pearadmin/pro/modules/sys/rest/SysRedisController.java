@@ -38,11 +38,18 @@ public class SysRedisController extends BaseController {
     @ApiOperation(value = "缓存详情")
     public Result info(){
         Properties info = (Properties) redisTemplate.execute((RedisCallback<Object>) connection -> connection.info());
-        Object dbSize = redisTemplate.execute((RedisCallback<Object>) connection -> connection.dbSize());
-        Map<String, Object> result = new HashMap<>(2);
-        result.put("info", info);
-        result.put("size", dbSize);
-        return success(result);
+        return success(info);
+    }
+
+    /**
+     * Redis 缓存数量
+     * */
+    @GetMapping("size")
+    @SysLog(title = "缓存数量")
+    @ApiOperation(value = "缓存数量")
+    public Result size(){
+        Object size = redisTemplate.execute((RedisCallback<Object>) connection -> connection.dbSize());
+        return success(size);
     }
 
 }

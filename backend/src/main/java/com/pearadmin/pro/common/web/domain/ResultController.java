@@ -75,14 +75,14 @@ public class ResultController {
      * 选择返回
      * */
     public Result auto(Boolean b){
-        return Result.decide(b);
+        return Result.auto(b);
     }
 
     /**
      * 选择返回
      * */
     public Result auto(Boolean b,String success,String failure){
-        return Result.decide(b,success,failure);
+        return Result.auto(b,success,failure);
     }
 
 }
