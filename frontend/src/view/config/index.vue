@@ -28,14 +28,20 @@
           </a-card>
         </a-col>
       </a-row>
+      <add :visible="state.addModal" @close="closeAdd"></add>
     </page-layout>
 </template>
 
 <script>
-import { page } from "@/api/module/config";
+import add from './module/add';
+import { message } from 'ant-design-vue';
+import { page, remove } from "@/api/module/config";
 import { reactive } from 'vue';
 
 export default {
+  components: {
+    add
+  },
   setup() {
 
     /// 列配置
@@ -48,7 +54,7 @@ export default {
       { dataIndex: "updateTime", key: "updateTime", title: "修改时间" },
     ];
 
-    /// 数据来源 [模拟]
+    /// 数据来源
     const fetch = async (param) => {
       var response = await page(param);
       return {
@@ -57,9 +63,20 @@ export default {
       };
     };
 
+    /// 删除配置
+    const removeHandler = (record) => {
+      remove({"id":record.id}).then((response) => {
+          if(response.success){
+              message.success({ content: '删除成功', duration: 1 });
+          }else{
+              message.error({ content: '删除失败', duration: 1 });
+          }
+      })
+    }
+
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "新增", event: function (keys) { state.addModal = true }},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
     ];
 
@@ -67,7 +84,7 @@ export default {
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
       { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
-      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
     /// 分页参数
@@ -81,7 +98,9 @@ export default {
       param: {
         name: "", // 名称
         code: ""  // 标识
-      }
+      },
+      addModal: false,
+      editModal: false
     })
 
     /// 查询参数
@@ -105,18 +124,27 @@ export default {
       state.param = value
     }
 
-    /// 声明抛出
-    return {
-      state: state, // 状态共享
-      fetch: fetch, // 数据回调
-      toolbar: toolbar, // 工具栏
-      columns: columns, // 列配置
-      operate: operate, // 行操作
-      pagination: pagination, // 分页配置
+    const closeAdd = function(){
+        state.addModal = false;
+    }
 
-      /// 
-      search: search,
-      searchParam: searchParam, // 查询参数
+    const closeEdit = function(){
+        state.editModal = false;
+    }
+
+    return {
+      state, 
+      fetch, 
+      toolbar,
+      columns, 
+      operate, 
+      pagination,
+
+      search,
+      searchParam, 
+
+      closeAdd,
+      closeEdit
     };
   },
 };

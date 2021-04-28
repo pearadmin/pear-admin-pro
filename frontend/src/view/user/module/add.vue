@@ -75,19 +75,15 @@ export default defineComponent({
     const formRules = {
       username: [
         { required: true, message: '请输入账户', trigger: 'blur'},
-        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
       ],
       nickname: [
         { required: true, message: '请输入昵称', trigger: 'blur'},
-        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
       ],
       email: [
         { required: true, message: '请输入邮箱', trigger: 'blur'},
-        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
       ],
       phone: [
         { required: true, message: '请输入电话', trigger: 'blur'},
-        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
       ]
     };
 
@@ -98,33 +94,27 @@ export default defineComponent({
     }
 
     loadData();
-     
-    const modalKey = "add";
 
     const submit = (e) => {
-        message.loading({ content: '提交中...', modalKey });
         formRef.value.validate().then(() => {
           add(toRaw(formState)).then((response)=>{
             if(response.success){
-                message.success({ content: '保存成功', modalKey, duration: 1 }).then(()=>{
-                cancel();
+                message.success({ content: '保存成功', duration: 1 }).then(()=>{
+                  cancel();
                 });
             }else{
-                message.error({ content: '保存失败', modalKey, duration: 1 }).then(()=>{
+                message.error({ content: '保存失败', duration: 1 }).then(()=>{
                   cancel();
                 });
             }
           })
-
-          console.log('values', formState, toRaw(formState));
       }).catch(error => {
           console.log('error', error);
       });
-      context.emit("close", false);
     };
 
     const cancel = (e) => {
-            formRef.value.resetFields();
+      formRef.value.resetFields();
       context.emit("close", false);
     };
 

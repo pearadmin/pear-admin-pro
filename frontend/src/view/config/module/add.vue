@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增角色"
+    title="新增配置"
     cancelText="取消"
     okText="提交"
     @ok="submit"
@@ -17,13 +17,13 @@
       <a-form-item ref="name" label="名称" name="name">
         <a-input v-model:value="formState.name" />
       </a-form-item>
-      <a-form-item ref="code" label="标识" name="code">
-        <a-input v-model:value="formState.code" />
+      <a-form-item ref="key" label="键" name="key">
+        <a-input v-model:value="formState.key" />
       </a-form-item>
-      <a-form-item ref="sort" label="标识" name="sort">
-        <a-input-number v-model:value="formState.sort" />
+      <a-form-item ref="value" label="值" name="value">
+        <a-input v-model:value="formState.value" />
       </a-form-item>
-      <a-form-item label="状态" name="state">
+      <a-form-item label="状态" name="enable">
         <a-radio-group v-model:value="formState.enable">
           <a-radio value="true">启用</a-radio>
           <a-radio value="false">禁用</a-radio>
@@ -37,7 +37,7 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { add } from "@/api/module/role";
+import { add } from "@/api/module/config";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 export default defineComponent({
   props: {
@@ -51,30 +51,39 @@ export default defineComponent({
     const formRef = ref();
     
     const formState = reactive({
-      sort: 0,
       enable: "true",
     });
 
     const formRules = {
       name: [
-        { required: true, message: '请输入名称', trigger: 'blur'},
+        { required: true, message: '请输入用户名', trigger: 'blur'},
+        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
+      ],
+      key: [
+        { required: true, message: '请输入用户名', trigger: 'blur'},
       ],
       code: [
-        { required: true, message: '请输入标识', trigger: 'blur'},
+        { required: true, message: '请输入用户名', trigger: 'blur'},
+      ],
+      value: [
+        { required: true, message: '请输入用户名', trigger: 'blur'},
       ]
     };
 
+    const modalKey = "add";
+
     const submit = (e) => {
+      message.loading({ content: '提交中...', modalKey });
       formRef.value
         .validate()
         .then(() => {
           add(toRaw(formState)).then((response)=>{
               if(response.success){
-                message.success({ content: '保存成功', duration: 1 }).then(()=>{
+                message.success({ content: '保存成功', modalKey, duration: 1 }).then(()=>{
                   cancel();
                 });
               }else{
-                message.success({ content: '保存失败', duration: 1 }).then(()=>{
+                message.success({ content: '保存失败', modalKey, duration: 1 }).then(()=>{
                   cancel();
                 });
               }

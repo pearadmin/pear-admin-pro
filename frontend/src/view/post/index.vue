@@ -28,14 +28,20 @@
           </a-card>
         </a-col>
       </a-row>
+      <add :visible="state.addModal" @close="closeAdd"></add>
     </page-layout>
 </template>
 
 <script>
-import { page } from "@/api/module/post";
+import add from './module/add';
+import { message } from 'ant-design-vue';
+import { page, remove } from "@/api/module/post";
 import { reactive } from 'vue';
 
 export default {
+  components: {
+    add
+  },
   setup() {
 
     /// 开关
@@ -45,7 +51,7 @@ export default {
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "code", key: "code", title: "标识" },
-      {dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
+      { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
 
@@ -58,17 +64,28 @@ export default {
       };
     };
 
+          /// 删除用户
+    const removeHandler = (record) => {
+      remove({"id":record.id}).then((response) => {
+          if(response.success){
+              message.success({ content: '删除成功', duration: 1 });
+          }else{
+              message.error({ content: '删除失败', duration: 1 });
+          }
+      })
+    }
+
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
-      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+      { label: "新增", event: function () { state.addModal = true }},
+      { label: "删除", event: function () {  }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
       { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
-      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
     /// 分页参数
@@ -82,7 +99,8 @@ export default {
       param: {
         name: "", // 名称
         code: ""  // 标识
-      }
+      },
+      addModal: false
     })
 
     /// 查询参数
@@ -106,6 +124,10 @@ export default {
       state.param = value
     }
 
+    const closeAdd = function(){
+      state.addModal = false
+    }
+
     /// 声明抛出
     return {
       state: state, // 状态共享
@@ -118,6 +140,8 @@ export default {
       /// 
       search: search,
       searchParam: searchParam, // 查询参数
+    
+      closeAdd
     };
   },
 };

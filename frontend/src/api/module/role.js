@@ -4,7 +4,8 @@ import http from '../http'
 const Api = {
     page: '/api/sys/role/page',
     list: '/api/sys/role/list',
-    add: '/api/sys/role/add'
+    add: '/api/sys/role/add',
+    remove: '/api/sys/role/remove'
 }
 
 /** 角色列表 (分页) */
@@ -31,5 +32,14 @@ export const add = data => {
         url: Api.add,
         data: data,
         method: 'POST'
+    })
+}
+
+/** 删除角色 */
+export const remove = data => {
+    return http.request({
+        url: Api.remove,
+        params: data,
+        method: 'DELETE'
     })
 }

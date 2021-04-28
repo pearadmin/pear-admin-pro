@@ -35,7 +35,8 @@
 import add from './module/add';
 import edit from './module/edit';
 import give from './module/give';
-import { page } from "@/api/module/role";
+import { message } from 'ant-design-vue';
+import { page, remove } from "@/api/module/role";
 import { reactive } from "vue";
 
 export default {
@@ -59,7 +60,7 @@ export default {
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
 
-    /// 数据来源 [模拟]
+    /// 数据来源
     const fetch = async (param) => {
       var response = await page(param);
       return {
@@ -67,6 +68,17 @@ export default {
         data: response.data.record,
       };
     };
+
+      /// 删除用户
+    const removeHandler = (record) => {
+      remove({"id":record.id}).then((response) => {
+          if(response.success){
+              message.success({ content: '删除成功', duration: 1 });
+          }else{
+              message.error({ content: '删除失败', duration: 1 });
+          }
+      })
+    }
 
     /// 工具栏
     const toolbar = [
@@ -79,7 +91,7 @@ export default {
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record)); }},
       { label: "修改", event: function (record) { state.editModal = true }},
       { label: "分配", event: function (record) { state.giveModal = true }},
-      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record)); }},
+      { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
     /// 分页参数

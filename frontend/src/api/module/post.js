@@ -3,6 +3,8 @@ import http from '../http'
 const Api = {
     page: '/api/sys/post/page',
     list: '/api/sys/post/list',
+    remove: '/api/sys/post/remove',
+    add: '/api/sys/post/add'
 }
 
 /** 岗位列表 */
@@ -32,3 +34,11 @@ export const add = data => {
     })
 }
 
+/** 删除岗位 */
+export const remove = data => {
+    return http.request({
+        url: Api.remove,
+        params: data,
+        method: 'DELETE'
+    })
+}

@@ -6,6 +6,8 @@ const Api = {
   page: '/api/sys/user/page',
   menu: '/api/sys/user/menu',
   power: '/api/sys/user/power',
+  remove: '/api/sys/user/remove',
+  removeBatch: '/apu/sys/user/removeBatch',
   role: '/api/sys/user/role',
   login: '/api/login',
   logout: '/api/logout',
@@ -71,5 +73,23 @@ export const add = data => {
     url: Api.add,
     data: data,
     method: 'POST'
+  })
+}
+
+/** 用户删除 */
+export const remove = data => {
+  return http.request({
+    url: Api.remove,
+    params: data,
+    method: 'DELETE'
+  })
+}
+
+/** 批量删除 */
+export const removeBatch = data => {
+  return http.request({
+    url: Api.removeBatch,
+    params: data,
+    method: 'DELETE'
   })
 }

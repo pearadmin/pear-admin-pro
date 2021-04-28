@@ -45,5 +45,9 @@ export default {
   "error-500": "500",
   /// 开发工具
   "develop": "开发工具",
-  "develop-mail": "邮箱发送"
+  "develop-mail": "邮箱发送",
+  "develop-file": "文件管理",
+  /// 其他页面
+  "other": "其他页面",
+  "other-profile": "个人资料"
 }
