@@ -93,24 +93,24 @@ public class SysUserController extends BaseController {
     /**
      * 删除用户
      *
-     * @param userId 用户编号
+     * @param id 用户编号
      */
     @DeleteMapping("remove")
     @SysLog(title = "用户删除")
     @ApiOperation(value = "用户删除")
-    public Result remove(String userId){
-        return auto(sysUserService.removeById(userId));
+    public Result remove(String id){
+        return auto(sysUserService.removeById(id));
     }
 
     /**
      * 批量删除
      *
-     * @param userIds 用户编号
+     * @param ids 用户编号
      */
     @DeleteMapping("removeBatch")
     @SysLog(title = "批量删除")
     @ApiOperation(value = "批量删除")
-    public Result removeBatch(List<String> userIds) { return auto(sysUserService.removeByIds(userIds)); }
+    public Result removeBatch(List<String> ids) { return auto(sysUserService.removeByIds(ids)); }
 
     /**
      * 个人资料

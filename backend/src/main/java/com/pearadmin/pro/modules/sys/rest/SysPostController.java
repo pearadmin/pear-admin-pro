@@ -58,7 +58,7 @@ public class SysPostController extends BaseController {
      *
      * @return {@link Boolean}
      */
-    @GetMapping("add")
+    @PostMapping("add")
     @SysLog(title = "新增岗位")
     @ApiOperation(value = "新增岗位")
     public Result add(@RequestBody SysPost sysPost){
@@ -80,17 +80,33 @@ public class SysPostController extends BaseController {
     }
 
     /**
-     * 岗位角色
+     * 删除岗位
      *
-     * @param postId 岗位编号
+     * @param id 岗位编号
      *
      * @return {@link Boolean}
      */
     @DeleteMapping("remove")
     @SysLog(title = "删除岗位")
     @ApiOperation(value = "删除岗位")
-    public Result remove(List<String> postId){
-        return auto(sysPostService.removeByIds(postId));
+    public Result remove(String id){
+        return auto(sysPostService.removeById(id));
     }
+
+    /**
+     * 批量删除
+     *
+     * @param ids 岗位编号
+     *
+     * @return {@link Boolean}
+     */
+    @DeleteMapping("removeBatch")
+    @SysLog(title = "删除岗位")
+    @ApiOperation(value = "删除岗位")
+    public Result removeBatch(List<String> ids) {
+        return auto(sysPostService.removeByIds(ids));
+    }
+
+
 
 }

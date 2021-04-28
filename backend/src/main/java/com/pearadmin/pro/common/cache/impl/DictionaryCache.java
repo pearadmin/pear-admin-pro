@@ -3,6 +3,7 @@ package com.pearadmin.pro.common.cache.impl;
 import com.pearadmin.pro.common.cache.BaseCache;
 import com.pearadmin.pro.modules.sys.domain.SysDictData;
 import com.pearadmin.pro.modules.sys.domain.SysDict;
+import com.pearadmin.pro.modules.sys.param.SysDictDataRequest;
 import com.pearadmin.pro.modules.sys.service.SysDictDataService;
 import com.pearadmin.pro.modules.sys.service.SysDictService;
 import org.springframework.stereotype.Component;
@@ -32,7 +33,7 @@ public class DictionaryCache extends BaseCache<List<SysDictData>> {
         Map<String,List<SysDictData>> map = new HashMap<>();
         List<SysDict> dictTypes = sysDictService.list();
         dictTypes.forEach(dictType -> {
-            map.put(dictType.getCode(),sysDictDataService.list());
+            map.put(dictType.getCode(),sysDictDataService.list(new SysDictDataRequest()));
         });
         return map;
     }

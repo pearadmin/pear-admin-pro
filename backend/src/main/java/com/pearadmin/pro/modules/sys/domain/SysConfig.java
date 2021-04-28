@@ -40,4 +40,10 @@ public class SysConfig extends BaseDomain {
     @TableField("value")
     private String value;
 
+    /**
+     * 状态
+     * */
+    @TableField("enable")
+    private Boolean enable;
+
 }

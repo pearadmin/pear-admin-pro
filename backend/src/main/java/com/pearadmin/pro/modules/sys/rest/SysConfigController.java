@@ -48,7 +48,7 @@ public class SysConfigController extends BaseController {
     @PostMapping("add")
     @SysLog(title = "新增配置")
     @ApiOperation(value = "新增配置")
-    public Result add(SysConfig sysConfig) {
+    public Result add(@RequestBody SysConfig sysConfig) {
         return auto(sysConfigService.save(sysConfig));
     }
 
@@ -60,29 +60,29 @@ public class SysConfigController extends BaseController {
     @PutMapping("edit")
     @SysLog(title = "修改配置")
     @ApiOperation(value = "修改配置")
-    public Result edit(SysConfig sysConfig) {
+    public Result edit(@RequestBody SysConfig sysConfig) {
         return auto(sysConfigService.updateById(sysConfig));
     }
 
     /**
      * 删除配置
      *
-     * @param configId 配置编号
+     * @param id 配置编号
      */
     @DeleteMapping("remove")
     @SysLog(title = "删除配置")
     @ApiOperation(value = "删除配置")
-    public Result remove(String configId){
-        return auto(sysConfigService.removeById(configId));
+    public Result remove(String id){
+        return auto(sysConfigService.removeById(id));
     }
 
     /**
      * 删除配置
      *
-     * @param configIds 配置编号
+     * @param ids 配置编号
      * */
     @DeleteMapping("removeBatch")
     @SysLog(title = "删除配置")
     @ApiOperation(value = "删除配置")
-    public Result removeBatch(List<String> configIds) { return auto(sysConfigService.removeByIds(configIds)); }
+    public Result removeBatch(List<String> ids) { return auto(sysConfigService.removeByIds(ids)); }
 }
