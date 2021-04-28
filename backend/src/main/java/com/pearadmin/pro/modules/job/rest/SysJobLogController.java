@@ -27,6 +27,11 @@ public class SysJobLogController extends BaseController {
     @Resource
     private SysJobLogService sysJobLogService;
 
+    /**
+     * 查询任务日志列表 (分页)
+     *
+     * @param request 查询参数
+     */
     @GetMapping("page")
     @ApiOperation(value = "任务日志")
     @SysLog(title = "查询日志", describe = "获取任务日志")

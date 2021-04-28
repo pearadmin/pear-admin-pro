@@ -37,6 +37,6 @@ public class SysJobLog extends BaseDomain {
     /**
      * 运行时长
      * */
-    private String time;
+    private long time;
 
 }

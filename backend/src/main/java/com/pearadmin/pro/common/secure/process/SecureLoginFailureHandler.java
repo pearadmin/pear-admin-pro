@@ -41,7 +41,6 @@ public class SecureLoginFailureHandler implements AuthenticationFailureHandler {
         if(e instanceof AccountExpiredException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_EXPIRED)); return;}
         if(e instanceof DisabledException){ ServletUtil.writeJson(Result.failure(ResultCode.USER_NOT_ENABLE)); return;}
 
-        // 登 录 日 志
         context.record("登录","登录失败", Action.AUTH, false, "","");
 
         ServletUtil.writeJson(Result.failure(ResultCode.LOGIN_FAILURE));

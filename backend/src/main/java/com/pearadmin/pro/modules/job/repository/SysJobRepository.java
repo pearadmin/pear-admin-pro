@@ -15,5 +15,10 @@ import java.util.List;
 @Mapper
 public interface SysJobRepository extends BaseMapper<SysJob> {
 
+    /**
+     * 获取任务列表
+     *
+     * @return {@link SysJob}
+     * */
     List<SysJob> selectList(SysJobRequest request);
 }
