@@ -154,9 +154,7 @@ import { AppstoreOutlined, ExportOutlined, SyncOutlined, UserOutlined, ColumnHei
 
 const TProps = T.props;
 export default defineComponent({
-  /// 组件名称
   name: "pro-table",
-  /// 注册图标
   components: {
     ColumnHeightOutlined,
     AppstoreOutlined,

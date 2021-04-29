@@ -22,6 +22,7 @@
               :operate="operate"
               :param="state.param"
               :pagination="pagination"
+              :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
               <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
@@ -51,6 +52,7 @@ export default {
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "code", key: "code", title: "标识" },
+      { dataIndex: "remark", key: "remark", title: "备注" },
       { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "sort", key: "sort", title: "排序" },
     ];
@@ -96,6 +98,7 @@ export default {
 
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
+      selectedRowKeys: [],
       param: {
         name: "", // 名称
         code: ""  // 标识
@@ -128,6 +131,10 @@ export default {
       state.addModal = false
     }
 
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
+
     /// 声明抛出
     return {
       state: state, // 状态共享
@@ -137,11 +144,11 @@ export default {
       operate: operate, // 行操作
       pagination: pagination, // 分页配置
 
-      /// 
       search: search,
       searchParam: searchParam, // 查询参数
     
-      closeAdd
+      closeAdd,
+      onSelectChange
     };
   },
 };

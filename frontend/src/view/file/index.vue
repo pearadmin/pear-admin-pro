@@ -22,6 +22,7 @@
               :operate="operate"
               :param="state.param"
               :pagination="pagination"
+              :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
               <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
@@ -32,21 +33,21 @@
 </template>
 
 <script>
-import { page } from "@/api/module/post";
+import { page } from "@/api/module/file";
 import { reactive } from 'vue';
 
 export default {
   setup() {
 
-    /// 开关
-    const switchFormat = { yes: true, no: false };
-
     /// 列配置
     const columns = [
-      { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "标识" },
-      {dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
-      { dataIndex: "sort", key: "sort", title: "排序" },
+      { dataIndex: "name", key: "name", title: "文件名称" },
+      { dataIndex: "location", key: "code", title: "存储位置" },
+      { dataIndex: "bucket", key: "bucket", title: "文件仓库" },
+      { dataIndex: "suffix", key: "suffix", title: "文件类型"},
+      { dataIndex: "size", key: "size", title: "文件大小"},
+      { dataIndex: "id", key: "id", title: "文件标识"},
+      { dataIndex: "createTime", key: "createTime", title: "上传日期" },
     ];
 
     /// 数据来源 [模拟]
@@ -60,14 +61,13 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
-      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+      { label: "新增", event: function () { }},
+      { label: "删除", event: function () { }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
@@ -79,6 +79,7 @@ export default {
 
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
+      selectedRowKeys: [],
       param: {
         name: "", // 名称
         code: ""  // 标识
@@ -106,6 +107,10 @@ export default {
       state.param = value
     }
 
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
+
     /// 声明抛出
     return {
       state: state, // 状态共享
@@ -117,6 +122,8 @@ export default {
 
       search: search,
       searchParam: searchParam, // 查询参数
+
+      onSelectChange
     };
   },
 };
