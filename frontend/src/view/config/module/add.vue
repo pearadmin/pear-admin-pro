@@ -12,8 +12,7 @@
       :model="formState"
       :rules="formRules"
       :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-    >
+      :wrapper-col="wrapperCol">
       <a-form-item ref="name" label="名称" name="name">
         <a-input v-model:value="formState.name" />
       </a-form-item>
@@ -56,17 +55,13 @@ export default defineComponent({
 
     const formRules = {
       name: [
-        { required: true, message: '请输入用户名', trigger: 'blur'},
-        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
+        { required: true, message: '请输入配置名', trigger: 'blur'},
       ],
       key: [
-        { required: true, message: '请输入用户名', trigger: 'blur'},
-      ],
-      code: [
-        { required: true, message: '请输入用户名', trigger: 'blur'},
+        { required: true, message: '请输入配置键', trigger: 'blur'},
       ],
       value: [
-        { required: true, message: '请输入用户名', trigger: 'blur'},
+        { required: true, message: '请输入配置值', trigger: 'blur'},
       ]
     };
 

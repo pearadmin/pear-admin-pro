@@ -55,6 +55,19 @@
             </a-menu>
           </template>
         </a-dropdown>
+        <!-- 过滤工具栏 -->
+        <a-dropdown>
+          <a-button>
+            <template #icon><ColumnHeightOutlined /></template>
+          </a-button>
+          <template #overlay>
+            <a-menu>
+                <a-menu-item @click="changeSize()">默认尺寸</a-menu-item>
+                <a-menu-item @click="changeSize('middle')">中等尺寸</a-menu-item>
+                <a-menu-item @click="changeSize('small')">最小尺寸</a-menu-item>
+            </a-menu>
+          </template>
+        </a-dropdown>
         <a-button>
           <template #icon><ExportOutlined /></template>
         </a-button>
@@ -69,6 +82,7 @@
       :pagination="pagination"
       :dataSource="datasource"
       :row-selection="rowSelection"
+      :size="size"
     >
       <!-- 列转换 -->
       <template :key="index" v-for="(column,index) in columns" #[column.dataIndex] = "{  record }">
@@ -136,7 +150,7 @@
 import "./index.less";
 import T from "ant-design-vue/es/table/Table";
 import { defineComponent, onMounted, reactive, toRefs, watch } from "vue";
-import { AppstoreOutlined, ExportOutlined, SyncOutlined, UserOutlined } from "@ant-design/icons-vue";
+import { AppstoreOutlined, ExportOutlined, SyncOutlined, UserOutlined, ColumnHeightOutlined } from "@ant-design/icons-vue";
 
 const TProps = T.props;
 export default defineComponent({
@@ -144,6 +158,7 @@ export default defineComponent({
   name: "pro-table",
   /// 注册图标
   components: {
+    ColumnHeightOutlined,
     AppstoreOutlined,
     ExportOutlined,
     SyncOutlined,
@@ -194,6 +209,7 @@ export default defineComponent({
       columns: props.columns, // 字段
       filtrationColumnKeys: [], // 过滤
       selectedRowKeys: [], // 选中项
+      size: props.size // 表格大小
     });
 
     /// 默认操作
@@ -254,6 +270,11 @@ export default defineComponent({
     /// 监听扩展参数, 触发表格刷新
     watch(() => props.param,() => { fetchData();},{ deep: true });
 
+    /// 改变按钮尺寸
+    const changeSize = (target) => {
+      state.size = target;
+    }
+
     ///
     return {
       /// 数据信息
@@ -266,7 +287,9 @@ export default defineComponent({
       filtrationColumns,
       filtration,
       /// 选中字段
-      onSelectChange
+      onSelectChange,
+      /// 改变大小
+      changeSize
     };
   },
 });

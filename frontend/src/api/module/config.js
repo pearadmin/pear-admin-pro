@@ -4,7 +4,8 @@ const Api = {
     page: '/api/sys/config/page',
     add: '/api/sys/config/add',
     edit: '/api/sys/config/edit',
-    remove: '/api/sys/config/remove'
+    remove: '/api/sys/config/remove',
+    removeBatch: '/api/sys/config/removeBatch'
 }
 
 /** 配置列表 */
@@ -38,6 +39,15 @@ export const edit = data => {
 export const remove = data => {
     return http.request({
         url: Api.remove,
+        params: data,
+        method: 'DELETE'
+    })
+}
+
+/** 批量删除 */
+export const removeBatch = data => {
+    return http.request({
+        url: Api.removeBatch,
         params: data,
         method: 'DELETE'
     })

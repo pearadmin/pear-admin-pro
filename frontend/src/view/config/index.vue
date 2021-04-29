@@ -22,6 +22,7 @@
               :operate="operate"
               :param="state.param"
               :pagination="pagination"
+              :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
               <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
@@ -35,7 +36,7 @@
 <script>
 import add from './module/add';
 import { message } from 'ant-design-vue';
-import { page, remove } from "@/api/module/config";
+import { page, remove, removeBatch } from "@/api/module/config";
 import { reactive } from 'vue';
 
 export default {
@@ -74,10 +75,20 @@ export default {
       })
     }
 
+    const removeBatchHandler = (ids) => {
+      removeBatch({"ids":ids}).then((response) => {
+          if(response.success){
+              message.success({ content: '删除成功', duration: 1 });
+          }else{
+              message.error({ content: '删除失败', duration: 1 });
+          }
+      })
+    }
+
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { state.addModal = true }},
-      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+      { label: "新增", event: function () { state.addModal = true }},
+      { label: "删除", event: function () { removeBatchHandler(state.selectedRowKeys) }},
     ];
 
     /// 行操作
@@ -95,6 +106,7 @@ export default {
 
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
+      selectedRowKeys: [],
       param: {
         name: "", // 名称
         code: ""  // 标识
@@ -102,6 +114,10 @@ export default {
       addModal: false,
       editModal: false
     })
+
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
 
     /// 查询参数
     const searchParam = [
@@ -144,7 +160,9 @@ export default {
       searchParam, 
 
       closeAdd,
-      closeEdit
+      closeEdit,
+
+      onSelectChange
     };
   },
 };
