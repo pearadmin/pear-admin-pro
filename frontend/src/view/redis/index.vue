@@ -30,20 +30,23 @@
 </template>
 <script>
 import { Chart } from "@antv/g2";
-import { info } from "@/api/module/redis";
+import { info, size } from "@/api/module/redis";
 import { onMounted, ref, onUnmounted } from "vue";
 export default {
   setup() {
-    const loading = ref(false);
 
-    const info = ref({});
+    const infoData = ref({});
 
     /// 加载详情
     const loadInfo = async function () {
       var response = await info();
-      info.value = response.data;
-      loading.value = false;
+      infoData.value = response.data;
     };
+
+    const loadSize = async function () {
+      var response = await size();
+      // 推导
+    }
 
     loadInfo();
 
@@ -132,7 +135,7 @@ export default {
     /// 加载列表
 
     return {
-      info,
+      infoData,
     };
   },
 };

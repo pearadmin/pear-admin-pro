@@ -54,15 +54,9 @@ export default defineComponent({
     });
 
     const formRules = {
-      name: [
-        { required: true, message: '请输入配置名', trigger: 'blur'},
-      ],
-      key: [
-        { required: true, message: '请输入配置键', trigger: 'blur'},
-      ],
-      value: [
-        { required: true, message: '请输入配置值', trigger: 'blur'},
-      ]
+      name: [ { required: true, message: '请输入配置名', trigger: 'blur'} ],
+      key: [ { required: true, message: '请输入配置键', trigger: 'blur'} ],
+      value: [ { required: true, message: '请输入配置值', trigger: 'blur'} ]
     };
 
     const modalKey = "add";

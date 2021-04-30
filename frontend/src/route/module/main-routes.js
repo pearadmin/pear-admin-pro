@@ -25,5 +25,6 @@ export default {
   'doc': () => import('@/view/doc/index.vue'),
   'mail': () => import('@/view/mail/index.vue'),
   'file': () => import('@/view/file/index.vue'),
-  'dept': () => import('@/view/dept/index.vue')
+  'dept': () => import('@/view/dept/index.vue'),
+  'source': () => import('@/view/source/index.vue'),
 }

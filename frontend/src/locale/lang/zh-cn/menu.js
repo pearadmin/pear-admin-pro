@@ -47,6 +47,7 @@ export default {
   "develop": "开发工具",
   "develop-mail": "邮箱发送",
   "develop-file": "文件管理",
+  "develop-source": "多数据源",
   /// 其他页面
   "other": "其他页面",
   "other-profile": "个人资料"

@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.pearadmin.pro.modules.sys.param.SysLogRequest;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import com.pearadmin.pro.modules.sys.service.SysLogService;
 import com.pearadmin.pro.common.constant.ControllerConstant;
@@ -49,5 +50,16 @@ public class SysLogController extends BaseController {
     @ApiOperation(value = "登录日志")
     public Result login(SysLogRequest request){
         return success(sysLogService.page(request));
+    }
+
+    /**
+     * 清空日志
+     */
+    @DeleteMapping("clean")
+    @SysLog(title = "清空日志")
+    @ApiOperation(value = "清空日志")
+    public Result clean(){
+
+        return null;
     }
 }

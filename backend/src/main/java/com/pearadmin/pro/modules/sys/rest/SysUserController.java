@@ -144,4 +144,26 @@ public class SysUserController extends BaseController {
     public Result menu(){
         return success(sysUserService.menu(userContext.getUserId()));
     }
+
+    /**
+     * 获取用户角色
+     *
+     * @param userId 用户编号
+     * */
+    @GetMapping("role")
+    @ApiOperation(value = "用户角色")
+    public Result role(String userId){
+        return success(sysUserService.role(userId));
+    }
+
+    /**
+     * 获取用户权限
+     *
+     * @param userId 用户编号
+     * */
+    @GetMapping("power")
+    @ApiOperation(value = "用户权限")
+    public Result power(String userId){
+        return success(sysUserService.power(userId));
+    }
 }

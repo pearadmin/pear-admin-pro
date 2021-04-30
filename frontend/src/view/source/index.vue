@@ -18,8 +18,8 @@
             <pro-table
               :fetch="fetch"
               :columns="columns"
-              :operate="operater"
               :toolbar="toolbar"
+              :operate="operate"
               :param="state.param"
               :pagination="pagination"
               :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
@@ -33,36 +33,29 @@
 </template>
 
 <script>
-import { operate } from "@/api/module/log";
+import { page } from "@/api/module/file";
 import { reactive } from 'vue';
 
 export default {
   setup() {
 
         /// 文本
-    const converFormat = [{label:"成功", value:true},{label:"失败", value:false}];
+    const converFormat = [{label:"本地", value:"0"},{label:"阿里云", value:"1"}];
 
     /// 列配置
     const columns = [
-      { dataIndex: "title", key: "title", title: "标题" },
-      { dataIndex: "describe", key: "describe", title: "描述" },
-      { dataIndex: "action", key: "action", title: "动作"},
-      { dataIndex: "type", key: "type", title: "方式"},
-      { dataIndex: "browser", key: "browser", title: "浏览器" },
-      { dataIndex: "system", key: "system", title: "系统" },
-      { dataIndex: "address", key: "address", title: "操作地" },
-      { dataIndex: "operator", key: "operator", title: "操作人" }, 
-      { dataIndex: "createTime", key: "createTime", title: "操作时间" },
-      { dataIndex: "state", key: "state", title: "状态", conver: converFormat },
-    ];
-
-    const operater = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { dataIndex: "name", key: "name", title: "文件名称" },
+      { dataIndex: "location", key: "code", title: "存储位置", conver: converFormat},
+      { dataIndex: "bucket", key: "bucket", title: "文件仓库" },
+      { dataIndex: "suffix", key: "suffix", title: "文件类型"},
+      { dataIndex: "size", key: "size", title: "文件大小"},
+      { dataIndex: "id", key: "id", title: "文件标识"},
+      { dataIndex: "createTime", key: "createTime", title: "上传日期" },
     ];
 
     /// 数据来源 [模拟]
     const fetch = async (param) => {
-      var response = await operate(param);
+      var response = await page(param);
       return {
         total: response.data.total,
         data: response.data.record,
@@ -71,8 +64,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "备份", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
-      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+      { label: "新增", event: function () { }},
+      { label: "删除", event: function () { }},
+    ];
+
+    /// 行操作
+    const operate = [
+      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
     /// 分页参数
@@ -84,7 +83,10 @@ export default {
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       selectedRowKeys: [],
-      param: { name: "",  code: "",  isAuth: false }
+      param: {
+        name: "", // 名称
+        code: ""  // 标识
+      }
     })
 
     /// 查询参数
@@ -118,14 +120,13 @@ export default {
       fetch: fetch, // 数据回调
       toolbar: toolbar, // 工具栏
       columns: columns, // 列配置
-      operater: operater,
+      operate: operate, // 行操作
       pagination: pagination, // 分页配置
 
-      /// 搜索组件
       search: search,
       searchParam: searchParam, // 查询参数
 
-      onSelectChange,
+      onSelectChange
     };
   },
 };

@@ -50,7 +50,7 @@ export default {
       { dataIndex: "suffix", key: "suffix", title: "文件类型"},
       { dataIndex: "size", key: "size", title: "文件大小"},
       { dataIndex: "id", key: "id", title: "文件标识"},
-      { dataIndex: "createTime", key: "createTime", title: "上传日期" },
+      { dataIndex: "createTime", key: "createTime", title: "创建时间" },
     ];
 
     /// 数据来源 [模拟]

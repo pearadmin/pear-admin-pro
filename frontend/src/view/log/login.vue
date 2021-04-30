@@ -21,6 +21,7 @@
               :toolbar="toolbar"
               :param="state.param"
               :pagination="pagination"
+              :operate="operate"
               :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
               <!-- 继承至 a-table 的默认插槽 -->
@@ -53,6 +54,10 @@ export default {
       { dataIndex: "operator", key: "operator", title: "操作人" }, 
       { dataIndex: "createTime", key: "createTime", title: "操作时间" },
       { dataIndex: "state", key: "state", title: "状态", conver: converFormat },
+    ];
+
+    const operate = [
+      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
     ];
 
     /// 数据来源 [模拟]
@@ -113,6 +118,7 @@ export default {
       fetch: fetch, // 数据回调
       toolbar: toolbar, // 工具栏
       columns: columns, // 列配置
+      operate: operate,
       pagination: pagination, // 分页配置
 
       /// 搜索组件
