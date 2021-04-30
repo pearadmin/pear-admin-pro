@@ -32,4 +32,5 @@ public class SysFileController extends BaseController {
     public Result page(SysFileRequest request){
         return success(sysFileService.page(request));
     }
+
 }

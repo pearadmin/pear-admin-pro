@@ -24,23 +24,51 @@ public class SysDeptController extends BaseController {
     @Resource
     private SysDeptService sysDeptService;
 
+    /**
+     * 查询部门列表
+     *
+     * @return {@link Result}
+     */
     @GetMapping("tree")
     public Result tree(){
         return success(sysDeptService.tree());
     }
 
+    /**
+     * 新增部门
+     *
+     * @param sysDept 部门实体
+     */
     @PostMapping("add")
     public Result add(@RequestBody SysDept sysDept){
         return auto(sysDeptService.save(sysDept));
     }
 
+    /**
+     * 修改部门
+     *
+     * @param sysDept 部门实体
+     */
     @PutMapping("edit")
     public Result edit(@RequestBody SysDept sysDept){
         return auto(sysDeptService.updateById(sysDept));
     }
 
+    /**
+     * 删除部门
+     *
+     * @param id 部门编号
+     */
     @DeleteMapping("remove")
-    public Result remove(List<String> deptId){
-        return auto(sysDeptService.removeByIds(deptId));
+    public Result remove(String id){
+        return auto(sysDeptService.removeById(id));
     }
+
+    /**
+     * 删除部门
+     *
+     * @param ids 部门编号
+     */
+    @DeleteMapping("removeBatch")
+    public Result removeBatch(List<String> ids) { return auto(sysDeptService.removeByIds(ids)); }
 }

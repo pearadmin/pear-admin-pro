@@ -10,7 +10,7 @@
   >
     <div>
       <div class="pearone-color">
-        <div class="color-title">整体风格</div>
+        <div class="color-title">菜单风格</div>
         <div class="color-content">
           <ul>
             <li

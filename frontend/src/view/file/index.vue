@@ -39,10 +39,13 @@ import { reactive } from 'vue';
 export default {
   setup() {
 
+        /// 文本
+    const converFormat = [{label:"本地", value:"0"},{label:"阿里云", value:"1"}];
+
     /// 列配置
     const columns = [
       { dataIndex: "name", key: "name", title: "文件名称" },
-      { dataIndex: "location", key: "code", title: "存储位置" },
+      { dataIndex: "location", key: "code", title: "存储位置", conver: converFormat},
       { dataIndex: "bucket", key: "bucket", title: "文件仓库" },
       { dataIndex: "suffix", key: "suffix", title: "文件类型"},
       { dataIndex: "size", key: "size", title: "文件大小"},

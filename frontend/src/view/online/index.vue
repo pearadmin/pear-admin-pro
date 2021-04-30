@@ -45,7 +45,7 @@
           <template v-slot:renderItem="{ item }">
             <a-list-item>
               <template v-slot:actions>
-                <a>踢出</a>
+                <a>强制下线</a>
               </template>
               <a-list-item-meta
                 description="Ant Design, a design language for background applications, is refined by Ant UED Team"

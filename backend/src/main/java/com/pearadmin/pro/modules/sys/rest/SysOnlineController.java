@@ -41,11 +41,11 @@ public class SysOnlineController extends BaseController {
     @ApiOperation(value = "在线列表")
     public Result list(){
         Set<String> keys = redisTemplate.keys(CacheNameConstant.TOKEN_NAME_PREFIX + "*");
-        Set<SecureUserToken> online = new HashSet<>();
+        Set<SecureUserToken> onlineSet = new HashSet<>();
         keys.forEach(key -> {
             SecureUserToken userToken = redisTemplate.opsForValue().get(key);
-            online.add(userToken);
+            onlineSet.add(userToken);
         });
-        return success(online);
+        return success(onlineSet);
     }
 }

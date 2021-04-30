@@ -15,14 +15,14 @@
               :label-col="labelCol"
               :wrapper-col="wrapperCol"
             >
-              <a-form-item name="name" label="标题">
+              <a-form-item name="name" label="收件邮箱">
                 <a-input v-model:value="form.name" />
               </a-form-item>
-              <a-form-item name="desc" label="描述">
-                <a-textarea v-model:value="form.desc" />
+              <a-form-item name="desc" label="邮箱标题">
+                <a-input v-model:value="form.name" />
               </a-form-item>
-              <a-form-item name="content" label="富文本">
-                <Tinymce mini v-model:value="form.content" />
+              <a-form-item name="content" label="邮箱内容">
+                <a-textarea v-model:value="form.name" />
               </a-form-item>
               <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
                 <a-button type="primary" @click="onSubmit"> 发送 </a-button>
@@ -39,9 +39,7 @@
   </div>
 </template>
 <script>
-import Tinymce from "@/component/tinymce";
 export default {
-  components: { Tinymce },
   data() {
     return {
       labelCol: { xs: 4, sm: 3, md: 3, lg: 3, xl: 2, xxl: 3 },

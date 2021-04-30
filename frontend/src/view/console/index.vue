@@ -116,8 +116,7 @@
           <card-base
             color="rgb(255, 133, 192)"
             icon="TrophyFilled"
-            title="排名"
-          >
+            title="排名">
           </card-base>
         </a-col>
         <a-col :xs="12" :sm="6" :md="6" :lg="3" :xl="3">

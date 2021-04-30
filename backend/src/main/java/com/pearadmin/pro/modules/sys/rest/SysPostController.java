@@ -107,6 +107,4 @@ public class SysPostController extends BaseController {
         return auto(sysPostService.removeByIds(ids));
     }
 
-
-
 }

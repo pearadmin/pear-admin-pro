@@ -6,4 +6,8 @@ import lombok.Data;
 @Data
 public class SysJobRequest extends PageRequest {
 
+    /**
+     * 任务名称
+     * */
+    private String name;
 }

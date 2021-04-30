@@ -34,4 +34,6 @@ public class SysDictController extends BaseController {
     public Result page(SysDictRequest request){
        return success(sysDictTypeService.page(request));
     }
+
+
 }

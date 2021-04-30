@@ -72,7 +72,7 @@ public class SysConfigController extends BaseController {
     @DeleteMapping("remove")
     @SysLog(title = "删除配置")
     @ApiOperation(value = "删除配置")
-    public Result remove(String id){
+    public Result remove(@RequestParam String id){
         return auto(sysConfigService.removeById(id));
     }
 
@@ -84,5 +84,5 @@ public class SysConfigController extends BaseController {
     @DeleteMapping("removeBatch")
     @SysLog(title = "删除配置")
     @ApiOperation(value = "删除配置")
-    public Result removeBatch(List<String> ids) { return auto(sysConfigService.removeByIds(ids)); }
+    public Result removeBatch(@RequestParam List<String> ids) { return auto(sysConfigService.removeByIds(ids)); }
 }
