@@ -18,7 +18,7 @@
               <a-form-item name="name" label="收件邮箱">
                 <a-input v-model:value="form.name" />
               </a-form-item>
-              <a-form-item name="desc" label="邮箱标题">
+              <a-form-item name="title" label="邮箱标题">
                 <a-input v-model:value="form.name" />
               </a-form-item>
               <a-form-item name="content" label="邮箱内容">

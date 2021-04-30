@@ -16,6 +16,9 @@ export default defineComponent({
   props: {
       visible: {
         type: Boolean
+      },
+      record: {
+        type: Object
       }
   },
   emit: ['close'],
@@ -25,7 +28,11 @@ export default defineComponent({
       selectedRowKeys: ["1","2"]
     });
 
-    /// 数据来源 [模拟]
+    watch(props.record,(oldVal, newVal) => {
+        alert("旧值:" + oldVal);
+        alert("新值:" + newVal);
+    },{deep:true})
+
     const fetch = async (param) => {
       var response = await list(param);
       return {

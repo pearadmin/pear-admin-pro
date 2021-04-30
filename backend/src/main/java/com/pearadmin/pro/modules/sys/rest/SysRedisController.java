@@ -59,6 +59,8 @@ public class SysRedisController extends BaseController {
     @SysLog(title = "缓存列表")
     @ApiOperation(value = "缓存列表")
     public Result page(){
+        //
+
         return null;
     }
 }

@@ -26,22 +26,22 @@
         </a-card>
       </a-col>
     </a-row>
-    <add :visible="state.addModal" @close="closeAdd"></add>
-    <edit :visible="state.editModal" @close="closeEdit"></edit>
-    <give :visible="state.giveModal" @close="closeGive"></give>
+    <save :visible="state.visibleSave" @close="closeSave"></save>
+    <edit :visible="state.visibleEdit" @close="closeEdit"></edit>
+    <give :visible="state.visibleGive" @close="closeGive"></give>
   </page-layout>
 </template>
 <script>
-import add from './module/add';
-import edit from './module/edit';
-import give from './module/give';
+import save from './modal/save';
+import edit from './modal/edit';
+import give from './modal/give';
 import { message } from 'ant-design-vue';
 import { page, remove } from "@/api/module/role";
 import { reactive } from "vue";
 
 export default {
   components: {
-    add,
+    save,
     edit,
     give,
   },
@@ -82,15 +82,15 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { state.addModal = true }},
+      { label: "新增", event: function (keys) { state.visibleSave = true }},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys)); }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record)); }},
-      { label: "修改", event: function (record) { state.editModal = true }},
-      { label: "分配", event: function (record) { state.giveModal = true }},
+      { label: "修改", event: function (record) { state.visibleEdit = true }},
+      { label: "分配", event: function (record) { state.visibleGive = true }},
       { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
@@ -101,9 +101,9 @@ export default {
     const state = reactive({
       selectedRowKeys: [],
       param: { name: "", code: "" },
-      addModal: false,
-      editModal: false,
-      giveModal: false
+      visibleSave: false,
+      visibleEdit: false,
+      visibleGive: false
     });
 
     /// 查询参数
@@ -117,16 +117,16 @@ export default {
       state.param = value;
     };
 
-    const closeAdd = function(){
-        state.addModal = false;
+    const closeSave = function(){
+        state.visibleSave = false;
     }
 
     const closeEdit = function(){
-        state.editModal = false;
+        state.visibleEdit = false;
     }
 
     const closeGive = function(){
-        state.giveModal = false;
+        state.visibleGive = false;
     }
 
     const onSelectChange = selectedRowKeys => {
@@ -145,7 +145,7 @@ export default {
       search,
       searchParam, // 查询参数
 
-      closeAdd,
+      closeSave,
       closeEdit,
       closeGive,
 

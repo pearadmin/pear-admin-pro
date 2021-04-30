@@ -12,13 +12,15 @@
       :model="formState"
       :rules="formRules"
       :label-col="labelCol"
-      :wrapper-col="wrapperCol"
-    >
+      :wrapper-col="wrapperCol">
       <a-form-item ref="nickname" label="昵称" name="nickname">
         <a-input v-model:value="formState.nickname" />
       </a-form-item>
       <a-form-item ref="username" label="账户" name="username">
         <a-input v-model:value="formState.username" />
+      </a-form-item>
+      <a-form-item ref="password" label="密码" name="password">
+        <a-input v-model:value="formState.password" />
       </a-form-item>
       <a-form-item ref="email" label="邮箱" name="email">
         <a-input v-model:value="formState.email" />
@@ -62,29 +64,19 @@ export default defineComponent({
 
     const formRef = ref();
 
-    const state = reactive({
-      posts: []
-    })
+    const state = reactive({ posts: [] })
     
     const formState = reactive({
-      username: '',
       enable: true,
       gender:  "0",
     });
 
     const formRules = {
-      username: [
-        { required: true, message: '请输入账户', trigger: 'blur'},
-      ],
-      nickname: [
-        { required: true, message: '请输入昵称', trigger: 'blur'},
-      ],
-      email: [
-        { required: true, message: '请输入邮箱', trigger: 'blur'},
-      ],
-      phone: [
-        { required: true, message: '请输入电话', trigger: 'blur'},
-      ]
+      username: [ { required: true, message: '请输入账户', trigger: 'blur'} ],
+      nickname: [ { required: true, message: '请输入昵称', trigger: 'blur'} ],
+      password: [ { required: true, message: '请输入密码', trigger: 'blur'} ],
+      email: [ { required: true, message: '请输入邮箱', trigger: 'blur'} ],
+      phone: [ { required: true, message: '请输入电话', trigger: 'blur'} ],
     };
 
     const loadData = () => {
@@ -92,8 +84,6 @@ export default defineComponent({
         state.posts = response.data;
       }) 
     }
-
-    loadData();
 
     const submit = (e) => {
         formRef.value.validate().then(() => {
@@ -117,6 +107,9 @@ export default defineComponent({
       formRef.value.resetFields();
       context.emit("close", false);
     };
+
+    /// 初始化
+    loadData();
 
     return {
       state,

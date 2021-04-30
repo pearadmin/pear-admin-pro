@@ -1,20 +1,19 @@
 <template>
     <page-layout>
+      <!-- 列表页面 -->
       <a-row :gutter="[10, 10]">
-        <!-- 顶部区域 -->
+        <!-- 查询条件 -->
         <a-col :span="24">
           <a-card>
-            <!-- 查询参数 -->
             <pro-query
               :searchParam="searchParam"
               @on-search ="search"
             ></pro-query>
           </a-card>
         </a-col>
-        <!-- 中心区域 -->
+        <!-- 用户列表 -->
         <a-col :span="24">
           <a-card>
-            <!-- 列表 -->
             <pro-table
               :fetch="fetch"
               :columns="columns"
@@ -22,32 +21,33 @@
               :operate="operate"
               :param="state.param"
               :pagination="pagination"
-              :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
-            >
-              <!-- 继承至 a-table 的默认插槽 -->
+              :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }">
             </pro-table>
           </a-card>
         </a-col>
       </a-row>
-      <add :visible="state.addModal" @close="closeAdd"></add>
-      <edit :visible="state.editModal" @close="closeEdit"></edit>
-      <give :visible="state.giveModal" @close="closeGive"></give>
+      <!-- 新增页面 -->
+      <save :visible="state.visibleSave" @close="closeAdd" :record="state.record"></save>
+      <!-- 修改页面 -->
+      <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.record" ></edit>
+      <!-- 分配页面 -->
+      <give :visible="state.visibleGive" @close="closeGive" :record="state.record"></give>
     </page-layout>
 </template>
 
 <script>
-import add from './module/add';
-import edit from './module/edit';
-import give from './module/give';
+import save from './modal/save';
+import edit from './modal/edit';
+import give from './modal/give';
 import { message } from 'ant-design-vue';
 import { page, remove } from "@/api/module/user";
-import { reactive, ref } from 'vue';
+import { reactive } from 'vue';
 
 export default {
   components: {
-    add,
+    save,
     edit,
-    give
+    give,
   },
   setup() {
 
@@ -71,17 +71,19 @@ export default {
       })
     }
 
+    /// 批量删除
+
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function () { state.addModal = true }},
+      { label: "新增", event: function () { state.visibleSave = true }},
       { label: "删除", event: function () { }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function () { state.editModal = true }},
-      { label: "分配", event: function () { state.giveModal = true }},
+      { label: "修改", event: function (record) { state.visibleEdit = true }},
+      { label: "分配", event: function (record) { state.visibleGive = true , state.record = record }},
       { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
@@ -112,10 +114,11 @@ export default {
     /// 外置参数
     const state = reactive({ 
       selectedRowKeys: [],
-      param: { name: "",  code: "", enable: "" }, 
-      addModal:  false,
-      editModal: false,
-      giveModal: false,
+      param: {},
+      record: {},
+      visibleSave: false,
+      visibleEdit: false,
+      visibleGive: false,
     })
 
     /// 查询参数
@@ -124,6 +127,7 @@ export default {
         { key: "code", type: "input", label: "描述"},
     ]
 
+    /// 选择操作
     const onSelectChange = selectedRowKeys => {
       state.selectedRowKeys = selectedRowKeys;
     };
@@ -135,35 +139,34 @@ export default {
 
     /// 关闭新增
     const closeAdd = function(){
-      state.addModal = false;
+      state.visibleSave = false;
     }
 
     /// 关闭修改
     const closeEdit = function(){
-      state.editModal = false;
+      state.visibleEdit = false;
     }
 
     /// 关闭分配
     const closeGive = function(){
-      state.giveModal = false;
+      state.visibleGive = false;
     }
 
-    /// 声明抛出
     return {
-      state, // 状态共享
-      fetch, // 数据回调
+      state, // 共享数据
+      fetch, // 用户列表
       toolbar, // 工具栏
       columns, // 列配置
       operate, // 行操作
       pagination, // 分页配置
-      onSelectChange,
+      onSelectChange, // 行选择
 
-      search,
+      search, // 查询回调
       searchParam, // 查询参数
 
-      closeAdd,  // 新增关闭回调
-      closeEdit, // 修改关闭回调
-      closeGive,// 分配关闭回调
+      closeAdd,  // 新增关闭
+      closeEdit, // 修改关闭
+      closeGive,// 分配关闭
     };
   },
 };
