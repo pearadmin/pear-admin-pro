@@ -11,4 +11,24 @@ import lombok.Data;
 @Data
 public class SysMail {
 
+    /**
+     * 编号
+     * */
+    private String id;
+
+    /**
+     * 标题
+     * */
+    private String title;
+
+    /**
+     * 内容
+     * */
+    private String content;
+
+    /**
+     * 收件方
+     * */
+    private String addressee;
+
 }

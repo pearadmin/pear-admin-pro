@@ -1,7 +1,7 @@
 export default [
   {
     path: '/',
-    redirect: "/dashboard/console",
+    redirect: "/dashboard/workspace",
     hidden: true,
   },
   {

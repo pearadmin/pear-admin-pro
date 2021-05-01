@@ -16,20 +16,44 @@ import org.apache.ibatis.type.Alias;
 @TableName("sys_data_source")
 public class SysDataSource extends BaseDomain {
 
+    /**
+     * 编号
+     * */
     private String id;
 
+    /**
+     * 名称
+     * */
     private String name;
 
-    private String type;
+    /**
+     * 标识
+     * */
+    private String code;
 
+    /**
+     * 是否启用
+     * */
+    private Boolean enable;
+
+    /**
+     * 账户
+     * */
     private String username;
 
+    /**
+     * 密码
+     * */
     private String password;
 
+    /**
+     * 链接
+     */
     private String url;
 
+    /**
+     * 驱动
+     * */
     private String driver;
-
-    private String code;
 
 }

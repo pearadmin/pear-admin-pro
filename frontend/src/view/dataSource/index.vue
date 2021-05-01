@@ -29,28 +29,31 @@
           </a-card>
         </a-col>
       </a-row>
+      <save :visible="state.visibleSave" @close="closeSave"></save>
     </page-layout>
 </template>
 
 <script>
-import { page } from "@/api/module/file";
+import save from './modal/save';
+import { message } from 'ant-design-vue';
+import { page, remove } from "@/api/module/dataSource";
 import { reactive } from 'vue';
 
 export default {
+  components: {
+    save
+  },
   setup() {
-
-        /// 文本
-    const converFormat = [{label:"本地", value:"0"},{label:"阿里云", value:"1"}];
 
     /// 列配置
     const columns = [
-      { dataIndex: "name", key: "name", title: "文件名称" },
-      { dataIndex: "location", key: "code", title: "存储位置", conver: converFormat},
-      { dataIndex: "bucket", key: "bucket", title: "文件仓库" },
-      { dataIndex: "suffix", key: "suffix", title: "文件类型"},
-      { dataIndex: "size", key: "size", title: "文件大小"},
-      { dataIndex: "id", key: "id", title: "文件标识"},
-      { dataIndex: "createTime", key: "createTime", title: "上传日期" },
+      { dataIndex: "name", key: "name", title: "数据库名称" },
+      { dataIndex: "code", key: "code", title: "唯一标识"},
+      { dataIndex: "username", key: "username", title: "账户" },
+      { dataIndex: "password", key: "password", title: "密码"},
+      { dataIndex: "url", key: "url", title: "链接"},
+      { dataIndex: "driver", key: "driver", title: "驱动"},
+      { dataIndex: "createTime", key: "createTime", title: "创建日期" },
     ];
 
     /// 数据来源 [模拟]
@@ -62,16 +65,27 @@ export default {
       };
     };
 
+    /// 删除用户
+    const removeHandler = (record) => {
+      remove({"id":record.id}).then((response) => {
+          if(response.success){
+              message.success({ content: '删除成功', duration: 1 });
+          }else{
+              message.error({ content: '删除失败', duration: 1 });
+          }
+      })
+    }
+
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function () { }},
+      { label: "新增", event: function () { state.visibleSave = true }},
       { label: "删除", event: function () { }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
     /// 分页参数
@@ -86,7 +100,8 @@ export default {
       param: {
         name: "", // 名称
         code: ""  // 标识
-      }
+      },
+      visibleSave: false
     })
 
     /// 查询参数
@@ -114,6 +129,11 @@ export default {
       state.selectedRowKeys = selectedRowKeys;
     };
 
+
+    const closeSave = function(){
+      state.visibleSave = false
+    }
+
     /// 声明抛出
     return {
       state: state, // 状态共享
@@ -126,7 +146,9 @@ export default {
       search: search,
       searchParam: searchParam, // 查询参数
 
-      onSelectChange
+      onSelectChange,
+
+      closeSave
     };
   },
 };

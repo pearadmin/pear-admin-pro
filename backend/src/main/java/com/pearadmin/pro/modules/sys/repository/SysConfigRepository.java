@@ -18,4 +18,5 @@ public interface SysConfigRepository extends BaseMapper<SysConfig> {
      * @return {@link SysConfig}
      * */
     List<SysConfig> selectList(SysConfigRequest request);
+
 }

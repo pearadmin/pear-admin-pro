@@ -1,0 +1,110 @@
+<template>
+  <a-modal
+    :visible="visible"
+    title="新增角色"
+    cancelText="取消"
+    okText="提交"
+    @ok="submit"
+    @cancel="cancel"
+  >
+    <a-form
+       ref="formRef"
+      :model="formState"
+      :rules="formRules"
+      :label-col="labelCol"
+      :wrapper-col="wrapperCol"
+    >
+      <a-form-item ref="name" label="名称" name="name">
+        <a-input v-model:value="formState.name" />
+      </a-form-item>
+      <a-form-item ref="code" label="标识" name="code">
+        <a-input v-model:value="formState.code" />
+      </a-form-item>
+      <a-form-item ref="username" label="账户" name="username">
+        <a-input v-model:value="formState.username" />
+      </a-form-item>
+      <a-form-item ref="password" label="密码" name="password">
+        <a-input v-model:value="formState.password" />
+      </a-form-item>
+      <a-form-item ref="url" label="链接" name="url">
+        <a-input v-model:value="formState.url" />
+      </a-form-item>
+      <a-form-item ref="driver" label="驱动" name="driver">
+        <a-input v-model:value="formState.driver" />
+      </a-form-item>
+      <a-form-item label="状态" name="enable">
+        <a-switch v-model:checked="formState.enable" />
+      </a-form-item>
+      <a-form-item label="备注" name="remark">
+        <a-textarea v-model:value="formState.remark" />
+      </a-form-item>
+    </a-form>
+  </a-modal>
+</template>
+<script>
+import { message } from 'ant-design-vue';
+import { save } from "@/api/module/dataSource";
+import { defineComponent, reactive, ref, toRaw } from "vue";
+export default defineComponent({
+  props: {
+    visible: {
+      type: Boolean,
+    },
+  },
+  emit: ["close"],
+  setup(props, context) {
+
+    const formRef = ref();
+    
+    const formState = reactive({
+      enable: "true",
+    });
+
+    const formRules = {
+      name: [
+        { required: true, message: '请输入名称', trigger: 'blur'},
+      ],
+      code: [
+        { required: true, message: '请输入标识', trigger: 'blur'},
+      ]
+    };
+
+    const submit = (e) => {
+      formRef.value
+        .validate()
+        .then(() => {
+          save(toRaw(formState)).then((response)=>{
+              if(response.success){
+                message.success({ content: '保存成功', duration: 1 }).then(()=>{
+                  cancel();
+                });
+              }else{
+                message.success({ content: '保存失败', duration: 1 }).then(()=>{
+                  cancel();
+                });
+              }
+          });
+        })
+        .catch(error => {
+          console.log('error', error);
+        });
+    };
+
+    const cancel = (e) => {
+      formRef.value.resetFields();
+      context.emit("close", false);
+    };
+
+    return {
+      submit,
+      cancel,
+      formRef,
+      formState,
+      formRules,
+      
+      labelCol: { span: 6 },
+      wrapperCol: { span: 18 },
+    };
+  },
+});
+</script>
