@@ -1,6 +1,4 @@
-/**
- * Project default config.
- *
+/*
  * 项目默认配置信息
  *
  * store 初始化时决定使用 localstore 本地 / pear.config.js 默认配置
@@ -103,8 +101,7 @@
    * 参数: 可选的主题颜色列表
    * color - key
    */
-  colorList: ["#2d8cf0","#36b368","black","gray"
-  ],
+  colorList: ["#2d8cf0","#36b368","#f6ad55","#f56c6c","#3963bc","#13C2C2"],
 
   /**
    * 参数: 路由动画

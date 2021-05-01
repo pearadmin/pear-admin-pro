@@ -367,12 +367,7 @@
           <div class="setting-title-right">固定侧边</div>
           <br />
           <br />
-          <a-select
-            label-in-value
-            v-model:value="tabType"
-            style="width: 100px"
-            @change="handleChange"
-          >
+          <a-select label-in-value v-model:value="tabType" style="width: 100px" @change="onChangeTabType">
             <a-select-option value="pear-dot-tab"> 样式一 </a-select-option>
             <a-select-option value="pear-card-tab"> 样式二 </a-select-option>
             <a-select-option value="pear-label-tab"> 样式三 </a-select-option>
@@ -437,7 +432,7 @@ export default {
       alert(color);
       commit("layout/UPDATE_COLOR", color);
     };
-    const handleChange = function (value) {
+    const onChangeTabType = function (value) {
       commit("layout/UPDATE_TAB_TYPE", value.key);
     };
     return {
@@ -445,7 +440,7 @@ export default {
       toggleKeepAlive,
       routerAnimate,
       updateRouterAnimate,
-      handleChange,
+      onChangeTabType,
       updateLayout,
       updateTheme,
       updateColor,

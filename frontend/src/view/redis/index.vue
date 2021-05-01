@@ -89,7 +89,7 @@ export default {
 
       sizeChart.line().position("year*value").label("value");
       sizeChart.point().position("year*value");
-      sizeChart.theme({ "styleSheet": { "brandColor": "#58bf7e" } });
+      sizeChart.theme({ "styleSheet": { "brandColor": "rgb(45, 140, 240)" } });
       sizeChart.render();
 
       const memoData = [
@@ -127,7 +127,7 @@ export default {
 
       memoChart.line().position("year*value").label("value");
       memoChart.point().position("year*value");
-      memoChart.theme({ "styleSheet": { "brandColor": "#58bf7e" } });
+      memoChart.theme({ "styleSheet": { "brandColor": "rgb(45, 140, 240)" } });
       memoChart.render();
 
     });

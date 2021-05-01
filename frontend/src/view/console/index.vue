@@ -191,6 +191,7 @@ export default {
   setup() {
     const chartRef = ref(null);
     onMounted(() => {
+
       const datass = [
         { year: "1951 年", sales: 38 },
         { year: "1952 年", sales: 52 },
@@ -223,7 +224,7 @@ export default {
         .interval()
         .position("year*sales")
         .color("year*sales", function (year, sales) {
-          return "#36b368";
+          return "rgb(45, 140, 240)";
         });
 
       chart.interaction("active-region");
@@ -232,7 +233,9 @@ export default {
       const e = document.createEvent("Event");
       e.initEvent("resize", true, true);
       window.dispatchEvent(e);
+    
     });
+
     onUnmounted(() => {
       chartRef.value && chartRef.value.destroy();
     });
