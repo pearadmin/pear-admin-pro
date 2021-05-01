@@ -9,7 +9,6 @@
               <a-col :span="12">
                 <a-progress
                   type="circle"
-                  strokeColor="#36b368"
                   :width="80"
                   :percent="cpu.used"
                   class="float-right"
@@ -25,7 +24,6 @@
               <a-col :span="12">
                 <a-progress
                   type="circle"
-                  strokeColor="#36b368"
                   :width="80"
                   :percent="mem.usage"
                   class="float-right"
@@ -41,7 +39,6 @@
               <a-col :span="12">
                 <a-progress
                   type="circle"
-                  strokeColor="#36b368"
                   :width="80"
                   :percent="cpu.sys"
                   class="float-right"
@@ -57,7 +54,6 @@
               <a-col :span="12">
                 <a-progress
                   type="circle"
-                  strokeColor="#36b368"
                   :width="80"
                   :percent="jvm.usage"
                   class="float-right"
@@ -76,7 +72,6 @@
                     :value="cpu.cpuNum"
                     :precision="2"
                     suffix="个"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
@@ -89,7 +84,6 @@
                     :value="cpu.free"
                     :precision="2"
                     suffix="%"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
@@ -102,7 +96,6 @@
                     :value="cpu.wait"
                     :precision="2"
                     suffix="%"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
@@ -115,7 +108,6 @@
                     :value="cpu.used"
                     :precision="2"
                     suffix="%"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
@@ -134,7 +126,6 @@
                     :value="mem.total"
                     :precision="2"
                     suffix="GB"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
@@ -147,7 +138,6 @@
                     :value="mem.free"
                     :precision="2"
                     suffix="GB"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
@@ -160,7 +150,6 @@
                     :value="mem.used"
                     :precision="2"
                     suffix="GB"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
@@ -173,7 +162,6 @@
                     :value="mem.usage"
                     :precision="2"
                     suffix="%"
-                    :value-style="{ color: '#3f8600' }"
                     style="margin-right: 50px"
                   >
                   </a-statistic>
