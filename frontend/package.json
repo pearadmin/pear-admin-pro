@@ -4,10 +4,9 @@
   "private": true,
   "scripts": {
     "serve-dev": "vue-cli-service serve --mode development",
-    "serve": "vue-cli-service serve --mode development",
-    "serve-prod": "vue-cli-service serve --mode production",
+    "serve-pro": "vue-cli-service serve --mode production",
     "build-dev": "vue-cli-service build --mode development",
-    "build-prod": "vue-cli-service build --mode production",
+    "build-pro": "vue-cli-service build --mode production",
     "report": "vue-cli-service build --report"
   },
   "dependencies": {
@@ -15,6 +14,7 @@
     "@antv/g2": "^4.1.0",
     "@tinymce/tinymce-vue": "^4.0.0",
     "ant-design-vue": "^2.0.1",
+    "antd-theme-generator": "^1.2.8",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
     "lodash.get": "^4.4.2",

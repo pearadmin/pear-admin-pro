@@ -434,11 +434,7 @@ export default {
       commit("layout/TOGGLE_KEEP_ALIVE");
     };
     const updateColor = function (color) {
-      window.less.modifyVars({
-        "@primary-color": color,
-        "@link-color": color,
-        "@btn-primary-bg": color,
-      });
+      alert(color);
       commit("layout/UPDATE_COLOR", color);
     };
     const handleChange = function (value) {
