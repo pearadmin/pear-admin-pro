@@ -2,7 +2,7 @@ import http from '../http'
 
 const Api = {
     page: '/api/sys/config/page',
-    add: '/api/sys/config/add',
+    save: '/api/sys/config/add',
     edit: '/api/sys/config/edit',
     remove: '/api/sys/config/remove',
     removeBatch: '/api/sys/config/removeBatch'
@@ -18,9 +18,9 @@ export const page = data => {
 }
 
 /** 新增配置 */
-export const add = data => {
+export const save = data => {
     return http.request({
-        url: Api.add,
+        url: Api.save,
         data: data,
         method: 'POST'
     })

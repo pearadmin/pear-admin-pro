@@ -36,7 +36,7 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { add } from "@/api/module/config";
+import { save } from "@/api/module/config";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 export default defineComponent({
   props: {
@@ -59,20 +59,17 @@ export default defineComponent({
       value: [ { required: true, message: '请输入配置值', trigger: 'blur'} ]
     };
 
-    const modalKey = "add";
-
     const submit = (e) => {
-      message.loading({ content: '提交中...', modalKey });
       formRef.value
         .validate()
         .then(() => {
-          add(toRaw(formState)).then((response)=>{
+          save(toRaw(formState)).then((response)=>{
               if(response.success){
-                message.success({ content: '保存成功', modalKey, duration: 1 }).then(()=>{
+                message.success({ content: '保存成功', duration: 1 }).then(()=>{
                   cancel();
                 });
               }else{
-                message.success({ content: '保存失败', modalKey, duration: 1 }).then(()=>{
+                message.success({ content: '保存失败', duration: 1 }).then(()=>{
                   cancel();
                 });
               }

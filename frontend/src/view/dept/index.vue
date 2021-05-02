@@ -29,14 +29,19 @@
           </a-card>
         </a-col>
       </a-row>
+      <save :visible="state.visibleSave" @close="closeSave"></save>
     </page-layout>
 </template>
 
 <script>
+import save from "./modal/save";
 import { tree } from "@/api/module/dept";
 import { reactive } from 'vue';
 
 export default {
+  components: {
+    save,
+  },
   setup() {
 
     const switchFormat = { yes: true, no: false, event: function(value,record){
@@ -62,14 +67,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "新增", event: function (keys) { state.visibleSave = true }},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
+      { label: "修改", event: function (record) { state.visibleSave = true }},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
@@ -82,7 +87,8 @@ export default {
       param: {
         name: "", // 名称
         code: ""  // 标识
-      }
+      },
+      visibleSave: false,
     })
 
     /// 查询参数
@@ -110,6 +116,10 @@ export default {
       state.selectedRowKeys = selectedRowKeys;
     };
 
+    const closeSave = function() {
+      state.visibleSave = false
+    }
+
 
     /// 声明抛出
     return {
@@ -123,7 +133,9 @@ export default {
       search: search,
       searchParam: searchParam, // 查询参数
 
-      onSelectChange
+      onSelectChange,
+
+      closeSave
     };
   },
 };

@@ -29,23 +29,25 @@
           </a-card>
         </a-col>
       </a-row>
-      <add :visible="state.addModal" @close="closeAdd"></add>
+      <save :visible="state.visibleSave" @close="closeSave"></save>
+      <edit :visible="state.visibleEdit" @close="closeEdit"></edit>
     </page-layout>
 </template>
 
 <script>
-import add from './module/add';
+import save from './modal/save';
+import edit from './modal/edit';
 import { message } from 'ant-design-vue';
 import { page, remove, removeBatch } from "@/api/module/config";
 import { reactive } from 'vue';
 
 export default {
   components: {
-    add
+    save,
+    edit,
   },
   setup() {
 
-    /// 列配置
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "key", key: "key", title: "键" },
@@ -55,7 +57,7 @@ export default {
       { dataIndex: "updateTime", key: "updateTime", title: "修改时间" },
     ];
 
-    /// 数据来源
+    /// 查询配置
     const fetch = async (param) => {
       var response = await page(param);
       return {
@@ -87,14 +89,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function () { state.addModal = true }},
+      { label: "新增", event: function () { state.visibleSave = true }},
       { label: "删除", event: function () { removeBatchHandler(state.selectedRowKeys) }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
+      { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
@@ -111,8 +113,9 @@ export default {
         name: "", // 名称
         code: ""  // 标识
       },
-      addModal: false,
-      editModal: false
+      visibleSave: false,
+      visibleEdit: false,
+      recordEdit: {},
     })
 
     const onSelectChange = selectedRowKeys => {
@@ -135,17 +138,15 @@ export default {
 
     /// 查询操作
     const search = function(value) {
-      
-      /// 通过动态修改入参, 触发表格刷新
       state.param = value
     }
 
-    const closeAdd = function(){
-        state.addModal = false;
+    const closeSave = function(){
+        state.visibleSave = false;
     }
 
     const closeEdit = function(){
-        state.editModal = false;
+        state.visibleEdit = false;
     }
 
     return {
@@ -159,7 +160,7 @@ export default {
       search,
       searchParam, 
 
-      closeAdd,
+      closeSave,
       closeEdit,
 
       onSelectChange
