@@ -61,12 +61,12 @@ export default defineComponent({
     });
 
     const formRules = {
-      name: [
-        { required: true, message: '请输入名称', trigger: 'blur'},
-      ],
-      code: [
-        { required: true, message: '请输入标识', trigger: 'blur'},
-      ]
+      name: [{ required: true, message: '请输入名称', trigger: 'blur'}],
+      code: [{ required: true, message: '请输入标识', trigger: 'blur'}],
+      username: [{ required: true, message: '请输入账户', trigger: 'blur'}],
+      password: [{ required: true, message: '请输入密码', trigger: 'blur'}],
+      url: [{ required: true, message: '请输入链接', trigger: 'blur'}],
+      driver: [{ required: true, message: '请输入驱动', trigger: 'blur'}],
     };
 
     const submit = (e) => {

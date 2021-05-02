@@ -49,12 +49,12 @@ export default {
       return value;
     }}
 
-    /// 列配置
     const columns = [
       { dataIndex: "name", key: "name", title: "部门" },
       { dataIndex: "address", key: "address", title: "地址" },
       { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "sort", key: "sort", title: "排序" },
+      { dataIndex: "remark", key: "remark", title: "备注" },
     ];
 
     /// 数据来源 [模拟]

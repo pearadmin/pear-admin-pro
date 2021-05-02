@@ -53,6 +53,7 @@ export default {
       { dataIndex: "password", key: "password", title: "密码"},
       { dataIndex: "url", key: "url", title: "链接"},
       { dataIndex: "driver", key: "driver", title: "驱动"},
+      { dataIndex: "remark", key: "remark", title: "备注"},
       { dataIndex: "createTime", key: "createTime", title: "创建日期" },
     ];
 
