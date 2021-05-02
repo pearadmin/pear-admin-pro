@@ -30,16 +30,20 @@
         </a-col>
       </a-row>
       <save :visible="state.visibleSave" @close="closeSave"></save>
-      <edit :visible="state.visibleEdit" @close="closeEdit"></edit>
+      <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
     </page-layout>
 </template>
 
 <script>
 import save from './modal/save';
 import edit from './modal/edit';
-import { message } from 'ant-design-vue';
+import { message , modal} from 'ant-design-vue';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/config";
-import { reactive } from 'vue';
+import { reactive, createVNode } from 'vue';
+
+const removeKey = "remove";
+const removeBatchKey = "removeBatch";
 
 export default {
   components: {
@@ -48,10 +52,13 @@ export default {
   },
   setup() {
 
+    const switchFormat = { yes: true, no: false };
+
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "key", key: "key", title: "键" },
       { dataIndex: "value", key: "value", title: "值"},
+      { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
       { dataIndex: "remark", key: "remark", title: "描述" },
       { dataIndex: "createTime", key: "createTime", title: "创建时间" },
       { dataIndex: "updateTime", key: "updateTime", title: "修改时间" },
@@ -67,37 +74,57 @@ export default {
     };
 
     /// 删除配置
-    const removeHandler = (record) => {
-      remove({"id":record.id}).then((response) => {
-          if(response.success){
-              message.success({ content: '删除成功', duration: 1 });
-          }else{
-              message.error({ content: '删除失败', duration: 1 });
-          }
-      })
+    const removeMethod = (record) => {
+      modal.confirm({
+        title: '您是否确定要删除此配置?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '是的',
+        okType: 'danger',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeKey });
+          remove({"id":record.id}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeKey, duration: 1})
+            }
+          })
+        }
+      });
     }
 
-    const removeBatchHandler = (ids) => {
-      removeBatch({"ids":ids}).then((response) => {
-          if(response.success){
-              message.success({ content: '删除成功', duration: 1 });
-          }else{
-              message.error({ content: '删除失败', duration: 1 });
-          }
-      })
+    const removeBatchMethod = (ids) => {
+       modal.confirm({
+        title: '您是否确定要删除选择配置?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '是的',
+        okType: 'danger',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeBatchKey });
+          removeBatch({"ids":ids}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeBatchKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeBatchKey, duration: 1})
+            }
+          })
+        }
+      });
     }
 
     /// 工具栏
     const toolbar = [
       { label: "新增", event: function () { state.visibleSave = true }},
-      { label: "删除", event: function () { removeBatchHandler(state.selectedRowKeys) }},
+      { label: "删除", event: function () { removeBatchMethod(state.selectedRowKeys) }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
       { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
-      { label: "删除", event: function (record) { removeHandler(record) }},
+      { label: "删除", event: function (record) { removeMethod(record) }},
     ];
 
     /// 分页参数
@@ -109,10 +136,7 @@ export default {
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       selectedRowKeys: [],
-      param: {
-        name: "", // 名称
-        code: ""  // 标识
-      },
+      param: {},
       visibleSave: false,
       visibleEdit: false,
       recordEdit: {},
@@ -125,15 +149,7 @@ export default {
     /// 查询参数
     const searchParam = [
         { key: "name", type: "input", label: "名称"},
-        { key: "code", type: "input", label: "描述"},
-        { key: "state", type: "select", label: "状态", value: "0",
-          hidden: true ,
-          options: [
-            { text: "全部", value: "0"},
-            { text: "开启", value: "1"},
-            { text: "关闭", value: "2"}
-          ]
-        }
+        { key: "key", type: "input", label: "Key"},
     ]
 
     /// 查询操作

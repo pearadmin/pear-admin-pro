@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import com.pearadmin.pro.modules.sys.param.SysConfigRequest;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -17,6 +18,6 @@ public interface SysConfigRepository extends BaseMapper<SysConfig> {
      *
      * @return {@link SysConfig}
      * */
-    List<SysConfig> selectList(SysConfigRequest request);
+    List<SysConfig> selectList(@Param("request") SysConfigRequest request);
 
 }

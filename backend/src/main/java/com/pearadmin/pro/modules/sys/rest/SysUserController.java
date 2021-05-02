@@ -36,10 +36,10 @@ public class SysUserController extends BaseController {
      *
      * @param sysUser 用户实体
      */
-    @PostMapping("add")
+    @PostMapping("save")
     @SysLog(title = "用户新增")
     @ApiOperation(value = "用户新增")
-    public Result add(@RequestBody SysUser sysUser){
+    public Result save(@RequestBody SysUser sysUser){
         return auto(sysUserService.save(sysUser));
     }
 

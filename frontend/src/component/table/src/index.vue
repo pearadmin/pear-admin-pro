@@ -273,14 +273,13 @@ export default defineComponent({
       state.size = target;
     }
 
-    ///
     return {
       /// 数据信息
       ...toRefs(state),
       /// 数据加载
       fetch: fetchData,
       /// 刷新方法
-      reload: reload,
+      reload,
       /// 过滤字段
       filtrationColumns,
       filtration,

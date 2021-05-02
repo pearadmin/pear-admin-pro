@@ -2,7 +2,7 @@ import http from '../http'
 
 const Api = {
     page: '/api/sys/config/page',
-    save: '/api/sys/config/add',
+    save: '/api/sys/config/save',
     edit: '/api/sys/config/edit',
     remove: '/api/sys/config/remove',
     removeBatch: '/api/sys/config/removeBatch'

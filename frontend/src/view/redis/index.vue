@@ -42,23 +42,7 @@ export default {
   setup() {
     const infoData = ref({});
 
-    /// 加载详情
-    const loadInfo = async function () {
-      var response = await info();
-      infoData.value = response.data;
-    };
-
-    const loadSize = async function () {
-      var response = await size();
-      // 推导
-    };
-
-    loadInfo();
-
-    /// 加载报表
-    onMounted(() => {
-    
-      const sizeData = [
+    const memoData = ref([
         { year: "1991", value: 3 },
         { year: "1992", value: 4 },
         { year: "1993", value: 3.5 },
@@ -68,7 +52,29 @@ export default {
         { year: "1997", value: 7 },
         { year: "1998", value: 9 },
         { year: "1999", value: 13 },
-      ];
+    ]);
+
+    const sizeData = ref([
+        { year: "1991", value: 3 },
+    ]);
+
+    /// 加载详情
+    const loadInfo = async function () {
+      var response = await info();
+      infoData.value = response.data;
+    };
+
+    const loadSize = async function () {
+      var response = await size();
+      /// 推导
+      sizeData.value = sizeData.value.push({ year: "1992", value: 3 });
+    };
+
+    loadInfo();
+    loadSize();
+
+    /// 加载报表
+    onMounted(() => {
 
       const sizeChart = new Chart({
         container: "size",
@@ -76,7 +82,7 @@ export default {
         height: 320,
       });
 
-      sizeChart.data(sizeData);
+      sizeChart.data(sizeData.value);
       sizeChart.scale({
         year: {
           range: [0, 1],
@@ -96,25 +102,14 @@ export default {
       sizeChart.point().position("year*value");
       sizeChart.theme({ styleSheet: { brandColor: "rgb(45, 140, 240)" } });
       sizeChart.render();
-
-      const memoData = [
-        { year: "1991", value: 3 },
-        { year: "1992", value: 4 },
-        { year: "1993", value: 3.5 },
-        { year: "1994", value: 5 },
-        { year: "1995", value: 4.9 },
-        { year: "1996", value: 6 },
-        { year: "1997", value: 7 },
-        { year: "1998", value: 9 },
-        { year: "1999", value: 13 },
-      ];
+      
       const memoChart = new Chart({
         container: "memo",
         autoFit: true,
         height: 320,
       });
 
-      memoChart.data(memoData);
+      memoChart.data(memoData.value);
       memoChart.scale({
         year: {
           range: [0, 1],

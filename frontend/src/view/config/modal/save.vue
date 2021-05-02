@@ -8,11 +8,12 @@
     @cancel="cancel"
   >
     <a-form
-       ref="formRef"
+      ref="formRef"
       :model="formState"
       :rules="formRules"
       :label-col="labelCol"
-      :wrapper-col="wrapperCol">
+      :wrapper-col="wrapperCol"
+    >
       <a-form-item ref="name" label="名称" name="name">
         <a-input v-model:value="formState.name" />
       </a-form-item>
@@ -23,10 +24,7 @@
         <a-input v-model:value="formState.value" />
       </a-form-item>
       <a-form-item label="状态" name="enable">
-        <a-radio-group v-model:value="formState.enable">
-          <a-radio value="true">启用</a-radio>
-          <a-radio value="false">禁用</a-radio>
-        </a-radio-group>
+        <a-switch v-model:checked="formState.enable" />
       </a-form-item>
       <a-form-item label="备注" name="remark">
         <a-textarea v-model:value="formState.remark" />
@@ -35,9 +33,11 @@
   </a-modal>
 </template>
 <script>
-import { message } from 'ant-design-vue';
+import { message } from "ant-design-vue";
 import { save } from "@/api/module/config";
 import { defineComponent, reactive, ref, toRaw } from "vue";
+
+const key = "save";
 export default defineComponent({
   props: {
     visible: {
@@ -46,37 +46,48 @@ export default defineComponent({
   },
   emit: ["close"],
   setup(props, context) {
-
     const formRef = ref();
-    
+
     const formState = reactive({
-      enable: "true",
+      enable: true,
     });
 
     const formRules = {
-      name: [ { required: true, message: '请输入配置名', trigger: 'blur'} ],
-      key: [ { required: true, message: '请输入配置键', trigger: 'blur'} ],
-      value: [ { required: true, message: '请输入配置值', trigger: 'blur'} ]
+      name: [{ required: true, message: "请输入配置名", trigger: "blur" }],
+      key: [{ required: true, message: "请输入配置键", trigger: "blur" }],
+      value: [{ required: true, message: "请输入配置值", trigger: "blur" }],
     };
 
     const submit = (e) => {
+      message.loading({
+        content: "提交中...",
+        key,
+      });
       formRef.value
         .validate()
         .then(() => {
-          save(toRaw(formState)).then((response)=>{
-              if(response.success){
-                message.success({ content: '保存成功', duration: 1 }).then(()=>{
-                  cancel();
-                });
-              }else{
-                message.success({ content: '保存失败', duration: 1 }).then(()=>{
-                  cancel();
-                });
-              }
+          save(toRaw(formState)).then((response) => {
+            if (response.success) {
+              message.success({
+                content: "保存成功",
+                key,
+                duration: 1,
+              }).then(()=>{
+                cancel();
+              });
+            } else {
+              message.error({
+                content: "保存失败",
+                key,
+                duration: 1,
+              }).then(()=>{
+                cancel();
+              });
+            }
           });
         })
-        .catch(error => {
-          console.log('error', error);
+        .catch((error) => {
+          console.log("error", error);
         });
     };
 
@@ -91,7 +102,7 @@ export default defineComponent({
       formRef,
       formState,
       formRules,
-      
+
       labelCol: { span: 6 },
       wrapperCol: { span: 18 },
     };

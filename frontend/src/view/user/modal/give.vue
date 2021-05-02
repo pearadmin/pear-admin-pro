@@ -3,8 +3,7 @@
         <pro-table 
             :fetch="fetch"
             :columns ="columns"
-            :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
-        >
+            :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }">
         </pro-table>
     </a-modal>
 </template>
@@ -25,13 +24,14 @@ export default defineComponent({
   setup(props, context) {
 
     const state = reactive({
-      selectedRowKeys: ["1","2"]
+      selectedRowKeys: []
     });
 
-    watch(props.record,(oldVal, newVal) => {
-        alert("旧值:" + oldVal);
-        alert("新值:" + newVal);
-    },{deep:true})
+    /// 加载用户角色
+    watch(props,async (value) => {
+      var response = await role({"userId":value.record.id})
+
+    })
 
     const fetch = async (param) => {
       var response = await list(param);

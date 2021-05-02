@@ -62,4 +62,12 @@ public class SysLogController extends BaseController {
 
         return null;
     }
+
+    @GetMapping("copy")
+    @SysLog(title = "备份日志")
+    @ApiOperation(value = "备份日志")
+    public Result copy(){
+
+        return null;
+    }
 }

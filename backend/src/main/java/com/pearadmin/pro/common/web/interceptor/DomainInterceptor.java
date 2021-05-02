@@ -21,13 +21,29 @@ public class DomainInterceptor implements MetaObjectHandler {
 
     @Override
     public void insertFill(MetaObject metaObject) {
-        this.strictInsertFill(metaObject,"createBy", String.class, userContext.getUserId());
-        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+        createField(metaObject);
+        updateField(metaObject);
     }
 
     @Override
     public void updateFill(MetaObject metaObject) {
+        updateField(metaObject);
+    }
+
+    /**
+     * 创建人 / 创建时间
+     * */
+    public void createField(MetaObject metaObject){
+        this.strictInsertFill(metaObject,"createBy", String.class, userContext.getUserId());
+        this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
+    }
+
+    /**
+     * 修改人 / 修改时间
+     * */
+    public void updateField(MetaObject metaObject){
         this.strictInsertFill(metaObject,"updateBy", String.class, userContext.getUserId());
         this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
     }
+
 }

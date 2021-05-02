@@ -3,13 +3,18 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysUserRepository">
 
     <select id="selectList" parameterType="SysUserRequest" resultType="SysUser">
-        select * from sys_user
+        select * ,
+        sp.name as postName,
+        sd.name as deptName
+        from sys_user su
+        left join sys_post sp on sp.id = su.post_id
+        left join sys_dept sd on sd.id = su.dept_id
         <where>
             <if test="request.username!=null and request.username!=''">
-                sr.username like concat('%', #{request.username}, '%')
+                and su.username like concat('%', #{request.username}, '%')
             </if>
             <if test="request.nickname!=null and request.nickname!=''">
-                sr.nickname like concat('%', #{request.nickname}, '%')
+                and su.nickname like concat('%', #{request.nickname}, '%')
             </if>
         </where>
     </select>

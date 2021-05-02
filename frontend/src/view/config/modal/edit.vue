@@ -1,14 +1,14 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增配置"
+    title="修改配置"
     cancelText="取消"
     okText="提交"
     @ok="submit"
     @cancel="cancel"
   >
     <a-form
-       ref="formRef"
+      ref="formRef"
       :model="formState"
       :rules="formRules"
       :label-col="labelCol"
@@ -23,10 +23,7 @@
         <a-input v-model:value="formState.value" />
       </a-form-item>
       <a-form-item label="状态" name="enable">
-        <a-radio-group v-model:value="formState.enable">
-          <a-radio value="true">启用</a-radio>
-          <a-radio value="false">禁用</a-radio>
-        </a-radio-group>
+        <a-switch v-model:checked="formState.enable" />
       </a-form-item>
       <a-form-item label="备注" name="remark">
         <a-textarea v-model:value="formState.remark" />
@@ -37,14 +34,16 @@
 <script>
 import { message } from 'ant-design-vue';
 import { edit } from "@/api/module/config";
-import { computed, defineComponent, reactive, ref, toRaw, watch } from "vue";
+import { defineComponent, reactive, ref, toRaw, watch } from "vue";
+
+const key = "edit";
 export default defineComponent({
   props: {
     visible: {
       type: Boolean,
     },
     record: {
-      type: Object
+      type: Object,
     }
   },
   emit: ["close"],
@@ -52,9 +51,7 @@ export default defineComponent({
 
     const formRef = ref();
     
-    const formState = reactive({
-      enable: "true",
-    });
+    let formState = reactive({});
 
     const formRules = {
       name: [{ required: true, message: '请输入配置名', trigger: 'blur'}],
@@ -62,24 +59,45 @@ export default defineComponent({
       value: [{ required: true, message: '请输入配置值', trigger: 'blur'}]
     };
 
+    watch(props,(props) => {
+        formState.id = props.record.id
+        formState.name = props.record.name
+        formState.key = props.record.key
+        formState.value = props.record.value
+        formState.remark = props.record.remark
+        formState.enable = props.record.enable
+    })
+
     const submit = (e) => {
+      message.loading({
+        content: "提交中...",
+        key,
+      });
       formRef.value
         .validate()
         .then(() => {
-          edit(toRaw(formState)).then((response)=>{
-              if(response.success){
-                message.success({ content: '修改成功', duration: 1 }).then(()=>{
-                  cancel();
-                });
-              }else{
-                message.success({ content: '修改失败', duration: 1 }).then(()=>{
-                  cancel();
-                });
-              }
+          edit(toRaw(formState)).then((response) => {
+            if (response.success) {
+              message.success({
+                content: "保存成功",
+                key,
+                duration: 1,
+              }).then(()=>{
+                cancel();
+              });
+            } else {
+              message.error({
+                content: "保存失败",
+                key,
+                duration: 1,
+              }).then(()=>{
+                cancel();
+              });
+            }
           });
         })
-        .catch(error => {
-          console.log('error', error);
+        .catch((error) => {
+          console.log("error", error);
         });
     };
 

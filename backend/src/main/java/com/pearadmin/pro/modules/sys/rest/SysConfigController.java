@@ -37,6 +37,8 @@ public class SysConfigController extends BaseController {
     @SysLog(title = "配置列表")
     @ApiOperation(value = "配置列表")
     public Result page(SysConfigRequest request){
+
+        System.out.println("请求参数:"+request.toString());
         return success(sysConfigService.page(request));
     }
 
@@ -45,10 +47,10 @@ public class SysConfigController extends BaseController {
      *
      * @param sysConfig 配置实体
      */
-    @PostMapping("add")
+    @PostMapping("save")
     @SysLog(title = "新增配置")
     @ApiOperation(value = "新增配置")
-    public Result add(@RequestBody SysConfig sysConfig) {
+    public Result save(@RequestBody SysConfig sysConfig) {
         return auto(sysConfigService.save(sysConfig));
     }
 
@@ -85,4 +87,5 @@ public class SysConfigController extends BaseController {
     @SysLog(title = "删除配置")
     @ApiOperation(value = "删除配置")
     public Result removeBatch(@RequestParam List<String> ids) { return auto(sysConfigService.removeByIds(ids)); }
+
 }

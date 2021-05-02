@@ -16,6 +16,6 @@ public class SysConfigRequest extends PageRequest {
     private String name;
 
     /** 键 */
-    private String code;
+    private String key;
 
 }

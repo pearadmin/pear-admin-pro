@@ -6,12 +6,10 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysDataSource;
 import com.pearadmin.pro.modules.sys.param.SysDataSourceRequest;
-import com.pearadmin.pro.modules.sys.repository.SysDataSourceRepository;
 import com.pearadmin.pro.modules.sys.service.SysDataSourceService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
-
 import javax.annotation.Resource;
 
 @Api(tags = {"多库"})
@@ -45,6 +43,18 @@ public class SysDataSourceController extends BaseController {
     @ApiOperation(value = "新增多库")
     public Result save(@RequestBody SysDataSource sysDataSource){
         return auto(sysDataSourceService.save(sysDataSource));
+    }
+
+    /**
+     * 修改多库
+     *
+     * @param sysDataSource 多库实体
+     */
+    @PutMapping("edit")
+    @SysLog(title = "修改多库")
+    @ApiOperation(value = "修改多库")
+    public Result edit(@RequestBody SysDataSource sysDataSource){
+        return auto(sysDataSourceService.updateById(sysDataSource));
     }
 
     /**

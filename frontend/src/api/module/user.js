@@ -2,7 +2,7 @@ import http from '../http'
 
 /** 接口 */
 const Api = {
-  add: '/api/sys/user/add',
+  save: '/api/sys/user/save',
   page: '/api/sys/user/page',
   menu: '/api/sys/user/menu',
   power: '/api/sys/user/power',
@@ -68,9 +68,9 @@ export const page = data => {
 }
 
 /** 用户新增 */
-export const add = data => {
+export const save = data => {
   return http.request({
-    url: Api.add,
+    url: Api.save,
     data: data,
     method: 'POST'
   })

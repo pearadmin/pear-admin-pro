@@ -33,14 +33,14 @@ public class BaseDomain implements Serializable {
     /**
      * 修改人
      * */
-    @TableField(value = "update_by", fill = FieldFill.UPDATE)
+    @TableField(value = "update_by", fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty("修改人")
     private String updateBy;
 
     /**
      * 修改时间
      * */
-    @TableField(value = "update_time", fill = FieldFill.UPDATE)
+    @TableField(value = "update_time", fill = FieldFill.INSERT_UPDATE)
     @ApiModelProperty("修改时间")
     private LocalDateTime updateTime;
 

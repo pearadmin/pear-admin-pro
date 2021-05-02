@@ -42,6 +42,18 @@
             <a-select-option :value="post.id" v-bind:key="index" v-for="(post,index) in state.posts">{{post.name}}</a-select-option>
           </a-select>
       </a-form-item>
+      <a-form-item label="部门" name="deptId">
+          <a-tree-select
+            v-model:value="formState.deptId"
+            style="width: 100%"
+            :tree-data="state.depts"
+            placeholder="所属部门"
+            replace
+            tree-default-expand-all
+            :replaceFields="replaceFields"
+          >
+          </a-tree-select>
+      </a-form-item>
       <a-form-item label="备注" name="remark">
         <a-textarea v-model:value="formState.remark" />
       </a-form-item>
@@ -51,7 +63,8 @@
 <script>
 import { message } from 'ant-design-vue';
 import { list } from "@/api/module/post";
-import { add } from "@/api/module/user";
+import { save } from "@/api/module/user";
+import { tree } from "@/api/module/dept";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 export default defineComponent({
   props: {
@@ -64,7 +77,10 @@ export default defineComponent({
 
     const formRef = ref();
 
-    const state = reactive({ posts: [] })
+    const state = reactive({ 
+      posts: [],
+      depts: [], 
+    })
     
     const formState = reactive({
       enable: true,
@@ -77,17 +93,25 @@ export default defineComponent({
       password: [ { required: true, message: '请输入密码', trigger: 'blur'} ],
       email: [ { required: true, message: '请输入邮箱', trigger: 'blur'} ],
       phone: [ { required: true, message: '请输入电话', trigger: 'blur'} ],
+      postId: [ { required: true, message: '请选择岗位', trigger: 'blur'} ],
+      deptId: [ { required: true, message: '请选择部门', trigger: 'blur'} ],
     };
 
-    const loadData = () => {
+    const loadPost = () => {
       list({}).then((response)=>{
         state.posts = response.data;
       }) 
     }
 
+    const loadTree = () => {
+      tree({}).then((response)=>{
+        state.depts = response.data;
+      })
+    }
+
     const submit = (e) => {
         formRef.value.validate().then(() => {
-          add(toRaw(formState)).then((response)=>{
+          save(toRaw(formState)).then((response)=>{
             if(response.success){
                 message.success({ content: '保存成功', duration: 1 }).then(()=>{
                   cancel();
@@ -108,8 +132,10 @@ export default defineComponent({
       context.emit("close", false);
     };
 
-    /// 初始化
-    loadData();
+    /// 加载岗位
+    loadPost();
+    /// 加载部门
+    loadTree();
 
     return {
       state,
@@ -121,6 +147,8 @@ export default defineComponent({
 
       labelCol: { span: 6 },
       wrapperCol: { span: 18 },
+
+      replaceFields: {children:'children', title:'name', key:'id', value: 'id' }
     };
   },
 });

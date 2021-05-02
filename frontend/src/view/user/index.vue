@@ -29,9 +29,9 @@
       <!-- 新增页面 -->
       <save :visible="state.visibleSave" @close="closeAdd" :record="state.record"></save>
       <!-- 修改页面 -->
-      <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.record" ></edit>
+      <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit" ></edit>
       <!-- 分配页面 -->
-      <give :visible="state.visibleGive" @close="closeGive" :record="state.record"></give>
+      <give :visible="state.visibleGive" @close="closeGive" :record="state.recordGive"></give>
     </page-layout>
 </template>
 
@@ -82,8 +82,8 @@ export default {
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { state.visibleEdit = true }},
-      { label: "分配", event: function (record) { state.visibleGive = true , state.record = record }},
+      { label: "修改", event: function (record) { state.visibleEdit = true , state.recordEdit = record }},
+      { label: "分配", event: function (record) { state.visibleGive = true , state.recordGive = record }},
       { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
@@ -98,6 +98,7 @@ export default {
 
     /// 配置
     const columns = [
+      { dataIndex: "deptName", key: "deptName", title: "部门" },
       { dataIndex: "avatar", key: "avatar", title: "头像", avatar: avatarFormat },
       { dataIndex: "nickname", key: "nickname", title: "名称" },
       { dataIndex: "username", key: "username", title: "账号" },
@@ -119,6 +120,8 @@ export default {
       visibleSave: false,
       visibleEdit: false,
       visibleGive: false,
+      recordEdit: {},
+      recordGive: {},
     })
 
     /// 查询参数

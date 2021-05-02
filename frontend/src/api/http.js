@@ -1,6 +1,7 @@
 import axios from "axios";
 import { message as Msg, message } from "ant-design-vue";
 import store from "../store";
+import qs from 'qs';
 
 class Http {
   constructor(config) {
@@ -19,6 +20,8 @@ class Http {
     /// 请求拦截
     instance.interceptors.request.use(
       config => {
+        
+        /// 权鉴相关
         const tokenKey = localStorage.getItem("token_key");
         const token = localStorage.getItem("token")
         if(token) config.headers["Authorization"] = token;
@@ -26,6 +29,13 @@ class Http {
         config.cancelToken = new axios.CancelToken(async cancel => {
           await store.dispatch("app/execCancelToken", { cancelToken: cancel });
         });
+        
+        /// 格式化 []
+        if (config.method === 'delete') {
+          config.paramsSerializer = (params) => {
+            return qs.stringify(params, {arrayFormat: 'repeat'})
+          }
+        }
         return config;
       },
       error => {
@@ -36,12 +46,7 @@ class Http {
     /// 响应拦截
     instance.interceptors.response.use(
       response => {
-        if (response.data.code !== 200) {
-          message.error(response.data.msg);
-          return response.data;
-        } else {
-          return response.data;
-        }
+        return response.data;
       },
       error => {
         if (error.response) {

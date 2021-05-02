@@ -1,7 +1,9 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import com.pearadmin.pro.modules.sys.service.SysDeptService;
 import com.pearadmin.pro.common.constant.ControllerConstant;
@@ -30,6 +32,8 @@ public class SysDeptController extends BaseController {
      * @return {@link Result}
      */
     @GetMapping("tree")
+    @SysLog(title = "查询部门")
+    @ApiOperation(value = "查询部门")
     public Result tree(){
         return success(sysDeptService.tree());
     }
@@ -40,6 +44,8 @@ public class SysDeptController extends BaseController {
      * @param sysDept 部门实体
      */
     @PostMapping("add")
+    @SysLog(title = "新增部门")
+    @ApiOperation(value = "新增部门")
     public Result add(@RequestBody SysDept sysDept){
         return auto(sysDeptService.save(sysDept));
     }
@@ -50,6 +56,8 @@ public class SysDeptController extends BaseController {
      * @param sysDept 部门实体
      */
     @PutMapping("edit")
+    @SysLog(title = "修改部门")
+    @ApiOperation(value = "修改部门")
     public Result edit(@RequestBody SysDept sysDept){
         return auto(sysDeptService.updateById(sysDept));
     }
@@ -60,6 +68,8 @@ public class SysDeptController extends BaseController {
      * @param id 部门编号
      */
     @DeleteMapping("remove")
+    @SysLog(title = "删除部门")
+    @ApiOperation(value = "删除部门")
     public Result remove(String id){
         return auto(sysDeptService.removeById(id));
     }

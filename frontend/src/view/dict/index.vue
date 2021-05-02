@@ -8,7 +8,7 @@
       <a-row :gutter="[10, 10]">
         <a-col :span="12">
           <a-card>
-                   <!-- 列表 -->
+          <!-- 列表 -->
           <pro-table
             rowKey="id"
             :fetch="fetch"
