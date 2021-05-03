@@ -5,9 +5,19 @@ server:
 
 ## spring 配置
 spring:
+  ## 动态配置
   profiles:
-    ## 激活配置
     active: dev
+  ## 邮件配置
+  mail:
+    protocol: smtp
+    host: smtp.qq.com
+    port: 587
+    username: 854085467@qq.com
+    password: ndbkhgbzftqbbbaa
+    default-encoding: UTF-8
+    test-connection: true
+    from: 854085467@qq.com
 
 ## mybatis 配置
 mybatis-plus:
@@ -15,9 +25,6 @@ mybatis-plus:
   mapper-locations: classpath*:com/pearadmin/pro/modules/**/xml/**.xml
   ## domain 实体别名
   type-aliases-package: com.pearadmin
-  configuration:
-    ## SQL 执行日志
-    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 ## 分页工具
 pagehelper:

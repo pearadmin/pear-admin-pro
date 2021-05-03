@@ -1,5 +1,7 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
@@ -7,10 +9,9 @@ import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysDataSource;
 import com.pearadmin.pro.modules.sys.param.SysDataSourceRequest;
 import com.pearadmin.pro.modules.sys.service.SysDataSourceService;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.util.List;
 
 @Api(tags = {"多库"})
 @RestController
@@ -60,12 +61,24 @@ public class SysDataSourceController extends BaseController {
     /**
      * 删除多库
      *
-     * @param id 配置多库
+     * @param id 多库编号
      */
     @DeleteMapping("remove")
     @SysLog(title = "删除多库")
     @ApiOperation(value = "删除多库")
     public Result remove(String id){
         return auto(sysDataSourceService.removeById(id));
+    }
+
+    /**
+     * 删除多库
+     *
+     * @param ids 多库编号
+     */
+    @DeleteMapping("removeBatch")
+    @SysLog(title = "批量删除")
+    @ApiOperation(value = "批量删除")
+    public Result removeBatch(@RequestParam List<String> ids) {
+        return auto(sysDataSourceService.removeByIds(ids));
     }
 }

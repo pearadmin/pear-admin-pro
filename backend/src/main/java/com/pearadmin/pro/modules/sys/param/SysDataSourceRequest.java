@@ -7,7 +7,12 @@ import lombok.Data;
 public class SysDataSourceRequest extends PageRequest {
 
     /**
-     * 数据源名称
+     * 多库名称
      * */
     private String name;
+
+    /**
+     * 切换标识
+     * */
+    private String code;
 }

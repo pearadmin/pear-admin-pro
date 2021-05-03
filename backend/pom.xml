@@ -177,6 +177,11 @@
             <artifactId>pagehelper-spring-boot-starter</artifactId>
             <version>${page.version}</version>
         </dependency>
+        <!-- 邮 件 支 持 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

@@ -1,20 +1,18 @@
 <template>
     <page-layout>
       <a-row :gutter="[10, 10]">
-        <!-- 顶部区域 -->
+        <!-- 查询表单 -->
         <a-col :span="24">
           <a-card>
-            <!-- 查询参数 -->
             <pro-query
               :searchParam="searchParam"
               @on-search ="search"
             ></pro-query>
           </a-card>
         </a-col>
-        <!-- 中心区域 -->
+        <!-- 多库列表 -->
         <a-col :span="24">
           <a-card>
-            <!-- 列表 -->
             <pro-table
               :fetch="fetch"
               :columns="columns"
@@ -24,24 +22,32 @@
               :pagination="pagination"
               :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
-              <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
           </a-card>
         </a-col>
       </a-row>
+      <!-- 新增页面 -->
       <save :visible="state.visibleSave" @close="closeSave"></save>
+      <!-- 修改页面 -->
+      <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
     </page-layout>
 </template>
 
 <script>
 import save from './modal/save';
-import { message } from 'ant-design-vue';
-import { page, remove } from "@/api/module/dataSource";
-import { reactive } from 'vue';
+import edit from './modal/edit';
+import { message , modal} from 'ant-design-vue';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { page, remove, removeBatch } from "@/api/module/dataSource";
+import { reactive, createVNode } from 'vue';
+
+const removeKey = "remove";
+const removeBatchKey = "removeBatch";
 
 export default {
   components: {
-    save
+    save,
+    edit,
   },
   setup() {
 
@@ -66,27 +72,56 @@ export default {
       };
     };
 
-    /// 删除用户
-    const removeHandler = (record) => {
-      remove({"id":record.id}).then((response) => {
-          if(response.success){
-              message.success({ content: '删除成功', duration: 1 });
-          }else{
-              message.error({ content: '删除失败', duration: 1 });
-          }
-      })
+     /// 删除配置
+    const removeMethod = (record) => {
+      modal.confirm({
+        title: '您是否确定要删除此配置?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeKey });
+          remove({"id":record.id}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeKey, duration: 1})
+            }
+          })
+        }
+      });
+    }
+
+    const removeBatchMethod = (ids) => {
+       modal.confirm({
+        title: '您是否确定要删除选择配置?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeBatchKey });
+          removeBatch({"ids":ids}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeBatchKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeBatchKey, duration: 1})
+            }
+          })
+        }
+      });
     }
 
     /// 工具栏
     const toolbar = [
       { label: "新增", event: function () { state.visibleSave = true }},
-      { label: "删除", event: function () { }},
+      { label: "删除", event: function () { removeBatchMethod(state.selectedRowKeys) }},
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "删除", event: function (record) { removeHandler(record) }},
+      { label: "修改", event: function (record) { state.recordEdit = record, state.visibleEdit = true }},
+      { label: "删除", event: function (record) { removeMethod(record) }},
     ];
 
     /// 分页参数
@@ -98,25 +133,16 @@ export default {
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       selectedRowKeys: [],
-      param: {
-        name: "", // 名称
-        code: ""  // 标识
-      },
-      visibleSave: false
+      param: {},
+      visibleSave: false,
+      visibleEdit: false,
+      recordEdit: {},
     })
 
     /// 查询参数
     const searchParam = [
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
-        { key: "state", type: "select", label: "状态", value: "0",
-          hidden: true ,
-          options: [
-            { text: "全部", value: "0"},
-            { text: "开启", value: "1"},
-            { text: "关闭", value: "2"}
-          ]
-        }
     ]
 
     /// 查询操作
@@ -135,21 +161,25 @@ export default {
       state.visibleSave = false
     }
 
-    /// 声明抛出
-    return {
-      state: state, // 状态共享
-      fetch: fetch, // 数据回调
-      toolbar: toolbar, // 工具栏
-      columns: columns, // 列配置
-      operate: operate, // 行操作
-      pagination: pagination, // 分页配置
+    const closeEdit = function(){
+      state.visibleEdit = false
+    }
 
-      search: search,
-      searchParam: searchParam, // 查询参数
+    return {
+      state,
+      fetch,
+      toolbar,
+      columns,
+      operate,
+      pagination,
+
+      search,
+      searchParam,
 
       onSelectChange,
 
-      closeSave
+      closeSave,
+      closeEdit,
     };
   },
 };

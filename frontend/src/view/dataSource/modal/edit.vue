@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增多库"
+    title="修改多库"
     cancelText="取消"
     okText="提交"
     @ok="submit"
@@ -43,8 +43,8 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { save } from "@/api/module/dataSource";
-import { defineComponent, reactive, ref, toRaw } from "vue";
+import { edit } from "@/api/module/dataSource";
+import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 
 const key = "save"
 
@@ -53,15 +53,29 @@ export default defineComponent({
     visible: {
       type: Boolean,
     },
+    record: {
+      type: Object,
+    }
   },
   emit: ["close"],
   setup(props, context) {
 
     const formRef = ref();
     
-    const formState = reactive({
-      enable: "true",
-    });
+    const formState = reactive({});
+
+    watch(props,(props) => {
+        formState.id = props.record.id
+        formState.name = props.record.name
+        formState.code = props.record.code
+        formState.username = props.record.username
+        formState.password = props.record.password
+        formState.url = props.record.url
+        formState.driver = props.record.driver
+        formState.remark = props.record.remark
+        formState.enable = props.record.enable
+    })
+
 
     const formRules = {
       name: [{ required: true, message: '请输入名称', trigger: 'blur'}],
@@ -80,7 +94,7 @@ export default defineComponent({
       formRef.value
         .validate()
         .then(() => {
-          save(toRaw(formState)).then((response) => {
+          edit(toRaw(formState)).then((response) => {
             if (response.success) {
               message.success({
                 content: "保存成功",

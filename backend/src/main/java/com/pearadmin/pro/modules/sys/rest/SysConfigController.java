@@ -37,8 +37,6 @@ public class SysConfigController extends BaseController {
     @SysLog(title = "配置列表")
     @ApiOperation(value = "配置列表")
     public Result page(SysConfigRequest request){
-
-        System.out.println("请求参数:"+request.toString());
         return success(sysConfigService.page(request));
     }
 

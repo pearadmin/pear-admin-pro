@@ -19,7 +19,7 @@ public class SysMail {
     /**
      * 标题
      * */
-    private String title;
+    private String subject;
 
     /**
      * 内容
@@ -29,6 +29,11 @@ public class SysMail {
     /**
      * 收件方
      * */
-    private String addressee;
+    private String to;
+
+    /**
+     * 收件方
+     * */
+    private String from;
 
 }

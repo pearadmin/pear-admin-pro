@@ -78,8 +78,7 @@ export default {
       modal.confirm({
         title: '您是否确定要删除此配置?',
         icon: createVNode(ExclamationCircleOutlined),
-        okText: '是的',
-        okType: 'danger',
+        okText: '确定',
         cancelText: '取消',
         onOk() {
           message.loading({ content: "提交中...", key: removeKey });
@@ -98,8 +97,7 @@ export default {
        modal.confirm({
         title: '您是否确定要删除选择配置?',
         icon: createVNode(ExclamationCircleOutlined),
-        okText: '是的',
-        okType: 'danger',
+        okText: '确定',
         cancelText: '取消',
         onOk() {
           message.loading({ content: "提交中...", key: removeBatchKey });

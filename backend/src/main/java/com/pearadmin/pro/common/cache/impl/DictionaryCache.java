@@ -6,6 +6,7 @@ import com.pearadmin.pro.modules.sys.domain.SysDict;
 import com.pearadmin.pro.modules.sys.param.SysDictDataRequest;
 import com.pearadmin.pro.modules.sys.service.SysDictDataService;
 import com.pearadmin.pro.modules.sys.service.SysDictService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import javax.annotation.Resource;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ import java.util.Map;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/21
  * */
+@Slf4j
 @Component
 public class DictionaryCache extends BaseCache<List<SysDictData>> {
 
@@ -30,11 +32,11 @@ public class DictionaryCache extends BaseCache<List<SysDictData>> {
     @Override
     public Map<String, List<SysDictData>> load()
     {
+        log.info("Refresh Cache - 数据字典");
         Map<String,List<SysDictData>> map = new HashMap<>();
-        List<SysDict> dictTypes = sysDictService.list();
-        dictTypes.forEach(dictType -> {
-            map.put(dictType.getCode(),sysDictDataService.list(new SysDictDataRequest()));
-        });
+
+        /// 字典信息
+
         return map;
     }
 }
