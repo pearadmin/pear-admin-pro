@@ -21,10 +21,13 @@ spring:
 
 ## mybatis 配置
 mybatis-plus:
-  ## mapper 文件位置
+  ## 文件位置
   mapper-locations: classpath*:com/pearadmin/pro/modules/**/xml/**.xml
-  ## domain 实体别名
+  ## 实体别名
   type-aliases-package: com.pearadmin
+  ## 日志打印
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 ## 分页工具
 pagehelper:

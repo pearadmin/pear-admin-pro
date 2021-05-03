@@ -4,7 +4,9 @@ const Api = {
     page: '/api/sys/post/page',
     list: '/api/sys/post/list',
     remove: '/api/sys/post/remove',
-    add: '/api/sys/post/add'
+    removeBatch: '/api/sys/post/removeBatch',
+    save: '/api/sys/post/save',
+    edit: '/api/sys/post/edit',
 }
 
 /** 岗位列表 */
@@ -26,11 +28,20 @@ export const list = data => {
 }
 
 /** 新增岗位 */
-export const add = data => {
+export const save = data => {
     return http.request({
-        url: Api.add,
+        url: Api.save,
         data: data,
         method: 'POST'
+    })
+}
+
+/** 修改岗位 */
+export const edit = data => {
+    return http.request({
+        url: Api.edit,
+        data: data,
+        method: 'PUT'
     })
 }
 
@@ -38,6 +49,15 @@ export const add = data => {
 export const remove = data => {
     return http.request({
         url: Api.remove,
+        params: data,
+        method: 'DELETE'
+    })
+}
+
+/** 批量删除 */
+export const removeBatch = data => {
+    return http.request({
+        url: Api.removeBatch,
         params: data,
         method: 'DELETE'
     })

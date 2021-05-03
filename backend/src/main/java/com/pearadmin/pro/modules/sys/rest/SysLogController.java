@@ -54,20 +54,25 @@ public class SysLogController extends BaseController {
 
     /**
      * 清空日志
+     *
+     * @param isAuth 日志类型
      */
     @DeleteMapping("clean")
     @SysLog(title = "清空日志")
     @ApiOperation(value = "清空日志")
-    public Result clean(){
+    public Result clean(Boolean isAuth){
 
-        return null;
-    }
+        if(isAuth) {
 
-    @GetMapping("copy")
-    @SysLog(title = "备份日志")
-    @ApiOperation(value = "备份日志")
-    public Result copy(){
+            /// 清理登录日志
 
-        return null;
+
+        } else {
+
+            /// 清理操作日志
+
+        }
+
+        return success();
     }
 }

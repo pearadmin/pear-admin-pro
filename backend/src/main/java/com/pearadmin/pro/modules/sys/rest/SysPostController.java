@@ -58,10 +58,10 @@ public class SysPostController extends BaseController {
      *
      * @return {@link Boolean}
      */
-    @PostMapping("add")
+    @PostMapping("save")
     @SysLog(title = "新增岗位")
     @ApiOperation(value = "新增岗位")
-    public Result add(@RequestBody SysPost sysPost){
+    public Result save(@RequestBody SysPost sysPost){
         return auto(sysPostService.save(sysPost));
     }
 
@@ -72,7 +72,7 @@ public class SysPostController extends BaseController {
      *
      * @return {@link Boolean}
      */
-    @GetMapping("edit")
+    @PutMapping("edit")
     @SysLog(title = "修改岗位")
     @ApiOperation(value = "修改岗位")
     public Result edit( @RequestBody SysPost sysPost){
@@ -89,7 +89,7 @@ public class SysPostController extends BaseController {
     @DeleteMapping("remove")
     @SysLog(title = "删除岗位")
     @ApiOperation(value = "删除岗位")
-    public Result remove(String id){
+    public Result remove(@RequestParam String id){
         return auto(sysPostService.removeById(id));
     }
 
@@ -103,7 +103,7 @@ public class SysPostController extends BaseController {
     @DeleteMapping("removeBatch")
     @SysLog(title = "删除岗位")
     @ApiOperation(value = "删除岗位")
-    public Result removeBatch(List<String> ids) {
+    public Result removeBatch(@RequestParam List<String> ids) {
         return auto(sysPostService.removeByIds(ids));
     }
 

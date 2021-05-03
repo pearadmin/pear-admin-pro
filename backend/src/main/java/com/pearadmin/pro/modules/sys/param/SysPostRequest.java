@@ -18,4 +18,9 @@ public class SysPostRequest extends PageRequest {
      * 岗位名称
      * */
     private String name;
+
+    /**
+     * 岗位编号
+     * */
+    private String code;
 }

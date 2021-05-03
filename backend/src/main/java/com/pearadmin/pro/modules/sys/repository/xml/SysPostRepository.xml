@@ -3,7 +3,15 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysPostRepository">
 
     <select id="selectList" resultType="SysPost">
-        select * from sys_post
+        select * from sys_post sp
+        <where>
+            <if test="request.name!=null and request.name!=''">
+               and sp.name like concat('%', #{request.name}, '%')
+            </if>
+            <if test="request.code!=null and request.code!=''">
+                and sp.code like concat('%', #{request.code}, '%')
+            </if>
+        </where>
     </select>
     
 </mapper>
