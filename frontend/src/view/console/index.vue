@@ -229,17 +229,9 @@ export default {
 
       chart.interaction("active-region");
       chart.render();
-
-      const e = document.createEvent("Event");
-      e.initEvent("resize", true, true);
-      window.dispatchEvent(e);
     
     });
-
-    onUnmounted(() => {
-      chartRef.value && chartRef.value.destroy();
-    });
-
+    
     const data = [
       {
         title: "Ant Design Title 1",

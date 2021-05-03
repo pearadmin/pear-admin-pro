@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.aop.enums.Action;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
@@ -29,26 +30,14 @@ public class SysLogController extends BaseController {
     private SysLogService sysLogService;
 
     /**
-     * 查询操作日志
+     * 查询日志列表
      *
      * @param request 查询参数
      */
-    @GetMapping("operate")
-    @SysLog(title = "操作日志")
-    @ApiOperation(value = "操作日志")
-    public Result operate(SysLogRequest request){
-        return success(sysLogService.page(request));
-    }
-
-    /**
-     * 查询登录日志
-     *
-     * @param request 查询参数
-     */
-    @GetMapping("login")
-    @SysLog(title = "登录日志")
-    @ApiOperation(value = "登录日志")
-    public Result login(SysLogRequest request){
+    @GetMapping("page")
+    @SysLog(title = "查询日志")
+    @ApiOperation(value = "查询日志")
+    public Result page(SysLogRequest request){
         return success(sysLogService.page(request));
     }
 
@@ -61,18 +50,14 @@ public class SysLogController extends BaseController {
     @SysLog(title = "清空日志")
     @ApiOperation(value = "清空日志")
     public Result clean(Boolean isAuth){
-
         if(isAuth) {
-
-            /// 清理登录日志
-
-
+            return auto(sysLogService.lambdaUpdate()
+                    .eq(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH)
+                    .remove());
         } else {
-
-            /// 清理操作日志
-
+            return auto(sysLogService.lambdaUpdate()
+                    .ne(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH)
+                    .remove());
         }
-
-        return success();
     }
 }

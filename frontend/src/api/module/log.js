@@ -1,22 +1,24 @@
 import http from '../http'
 
 const Api = {
-    operate: '/api/sys/log/operate',
-    login: '/api/sys/log/login'
+    page: '/api/sys/log/page',
+    clean: '/api/sys/log/clean',
 }
 
-export const operate = data => {
+/** 查询日志 */
+export const page = data => {
     return http.request({
-        url: Api.operate,
+        url: Api.page,
         params: data,
-        method: 'get'
+        method: 'GET'
     })
 }
 
-export const login = data => {
+/** 清空日志 */
+export const clean = data => {
     return http.request({
-        url: Api.login,
+        url: Api.clean,
         params: data,
-        method: 'get'
+        method: 'DELETE'
     })
 }

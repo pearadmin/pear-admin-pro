@@ -12,19 +12,13 @@
               <a-col :span="12">
                 <h2>Redis</h2>
               </a-col>
-              <a-col :span="12">
-              </a-col>
+              <a-col :span="12"> </a-col>
             </a-row>
           </a-card>
         </a-col>
-        <a-col :span="12">
+        <a-col :span="24">
           <a-card title="数量">
             <div id="size" style="width: 100%"></div>
-          </a-card>
-        </a-col>
-        <a-col :span="12">
-          <a-card title="内存">
-            <div id="memo" style="width: 100%"></div>
           </a-card>
         </a-col>
         <a-col :span="24">
@@ -35,28 +29,15 @@
   </div>
 </template>
 <script>
-import { Chart, registerShape } from "@antv/g2";
-import { info, size } from "@/api/module/redis";
-import { onMounted, ref, onUnmounted } from "vue";
+import { Chart } from "@antv/g2";
+import { info, size, comd } from "@/api/module/redis";
+import { onMounted, ref } from "vue";
 export default {
   setup() {
+
     const infoData = ref({});
 
-    const memoData = ref([
-        { year: "1991", value: 3 },
-        { year: "1992", value: 4 },
-        { year: "1993", value: 3.5 },
-        { year: "1994", value: 5 },
-        { year: "1995", value: 4.9 },
-        { year: "1996", value: 6 },
-        { year: "1997", value: 7 },
-        { year: "1998", value: 9 },
-        { year: "1999", value: 13 },
-    ]);
-
-    const sizeData = ref([
-        { year: "1991", value: 3 },
-    ]);
+    const sizeData = [];
 
     /// 加载详情
     const loadInfo = async function () {
@@ -64,17 +45,10 @@ export default {
       infoData.value = response.data;
     };
 
-    const loadSize = async function () {
-      var response = await size();
-      /// 推导
-      sizeData.value = sizeData.value.push({ year: "1992", value: 3 });
-    };
-
     loadInfo();
-    loadSize();
 
     /// 加载报表
-    onMounted(() => {
+    onMounted(async () =>  {
 
       const sizeChart = new Chart({
         container: "size",
@@ -82,7 +56,7 @@ export default {
         height: 320,
       });
 
-      sizeChart.data(sizeData.value);
+      sizeChart.data(sizeData);
       sizeChart.scale({
         year: {
           range: [0, 1],
@@ -93,45 +67,24 @@ export default {
         },
       });
 
-      sizeChart.tooltip({
-        showCrosshairs: true,
-        shared: true,
-      });
+      sizeChart.tooltip({ showCrosshairs: true, shared: true });
 
-      sizeChart.line().position("year*value").label("value");
-      sizeChart.point().position("year*value");
+      sizeChart.line().position("date*value").label("value");
+      sizeChart.point().position("date*value");
       sizeChart.theme({ styleSheet: { brandColor: "rgb(45, 140, 240)" } });
       sizeChart.render();
+
+      setInterval(()=>{
+        size().then((response)=>{
+          if(sizeData.length >= 8) {sizeData.shift();}
+          sizeData.push({ date: new Date(), value: response.data });
+          sizeChart.changeData(sizeData);
+        });
+      }, 3000);
       
-      const memoChart = new Chart({
-        container: "memo",
-        autoFit: true,
-        height: 320,
-      });
-
-      memoChart.data(memoData.value);
-      memoChart.scale({
-        year: {
-          range: [0, 1],
-        },
-        value: {
-          min: 0,
-          nice: true,
-        },
-      });
-
-      memoChart.tooltip({
-        showCrosshairs: true, // 展示 Tooltip 辅助线
-        shared: true,
-      });
-
-      memoChart.line().position("year*value").label("value");
-      memoChart.point().position("year*value");
-      memoChart.theme({ styleSheet: { brandColor: "rgb(45, 140, 240)" } });
-      memoChart.render();
     });
 
-    /// 加载列表
+    /// 定时刷新
 
     return {
       infoData,

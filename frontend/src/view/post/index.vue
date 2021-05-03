@@ -139,17 +139,13 @@ export default {
       visibleEdit: false,
       recordEdit: {},
     })
-
-    /// 查询参数
+    
     const searchParam = [
         { key: "name", type: "input", label: "岗位名称"},
         { key: "code", type: "input", label: "岗位编码"},
     ]
 
-    /// 查询操作
     const search = function(value) {
-      
-      /// 通过动态修改入参, 触发表格刷新
       state.param = value
     }
 

@@ -36,8 +36,8 @@ export default {
   "monitor-online": "在线用户",
   "monitor-doc": "接口文档",
   "monitor-redis": "缓存监控",
-  "monitor-log-operate": "操作日志",
-  "monitor-log-login": "登录日志",
+  "monitor-log-oper": "操作日志",
+  "monitor-log-auth": "登录日志",
   /// 错误
   "error": "错误页面",
   "error-403": "403",

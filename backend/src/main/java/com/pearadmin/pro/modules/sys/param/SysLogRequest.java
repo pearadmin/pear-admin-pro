@@ -21,4 +21,9 @@ public class SysLogRequest extends PageRequest {
      * 类型
      * */
     private Boolean isAuth;
+
+    /**
+     * 状态
+     * */
+    private Boolean state;
 }
