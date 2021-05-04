@@ -27,8 +27,8 @@
       </a-col>
     </a-row>
     <save :visible="state.visibleSave" @close="closeSave"></save>
-    <edit :visible="state.visibleEdit" @close="closeEdit"></edit>
-    <give :visible="state.visibleGive" @close="closeGive"></give>
+    <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
+    <give :visible="state.visibleGive" @close="closeGive" :record="state.recordGive"></give>
   </page-layout>
 </template>
 <script>
@@ -89,8 +89,8 @@ export default {
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record)); }},
-      { label: "修改", event: function (record) { state.visibleEdit = true }},
-      { label: "分配", event: function (record) { state.visibleGive = true }},
+      { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
+      { label: "分配", event: function (record) { state.visibleGive = true, state.recordGive = record }},
       { label: "删除", event: function (record) { removeHandler(record) }},
     ];
 
@@ -103,7 +103,9 @@ export default {
       param: { name: "", code: "" },
       visibleSave: false,
       visibleEdit: false,
-      visibleGive: false
+      visibleGive: false,
+      recordEdit: {},
+      recordGive: {},
     });
 
     /// 查询参数

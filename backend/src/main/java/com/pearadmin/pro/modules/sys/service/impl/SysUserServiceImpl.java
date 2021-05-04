@@ -53,7 +53,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
 
     @Override
     public List<SysPower> power(String userId) {
-        return sysPowerRepository.selectPower(userId);
+        return sysPowerRepository.selectPowerByUserId(userId);
     }
 
     @Override

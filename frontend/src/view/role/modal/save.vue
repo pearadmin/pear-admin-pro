@@ -23,11 +23,8 @@
       <a-form-item ref="sort" label="标识" name="sort">
         <a-input-number v-model:value="formState.sort" />
       </a-form-item>
-      <a-form-item label="状态" name="state">
-        <a-radio-group v-model:value="formState.enable">
-          <a-radio value="true">启用</a-radio>
-          <a-radio value="false">禁用</a-radio>
-        </a-radio-group>
+      <a-form-item label="状态" name="enable">
+        <a-switch v-model:checked="formState.enable" />
       </a-form-item>
       <a-form-item label="备注" name="remark">
         <a-textarea v-model:value="formState.remark" />
@@ -37,7 +34,7 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { add } from "@/api/module/role";
+import { save } from "@/api/module/role";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 export default defineComponent({
   props: {
@@ -68,7 +65,7 @@ export default defineComponent({
       formRef.value
         .validate()
         .then(() => {
-          add(toRaw(formState)).then((response)=>{
+          save(toRaw(formState)).then((response)=>{
               if(response.success){
                 message.success({ content: '保存成功', duration: 1 }).then(()=>{
                   cancel();

@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.modules.sys.param.SysRolePowerRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
@@ -56,10 +57,10 @@ public class SysRoleController extends BaseController {
      *
      * @return {@link Boolean}
      */
-    @PostMapping("add")
+    @PostMapping("save")
     @SysLog(title = "新增角色")
     @ApiOperation(value = "新增角色")
-    public Result add(@RequestBody SysRole sysRole){
+    public Result save(@RequestBody SysRole sysRole){
         return auto(sysRoleService.save(sysRole));
     }
 
@@ -106,14 +107,26 @@ public class SysRoleController extends BaseController {
     /**
      * 权限分配
      *
-     * @param roleId 角色编号
-     * @param powerIds 权限编号
+     * @param request 参数实体
      * */
     @PostMapping("give")
     @SysLog(title = "分配权限")
     @ApiOperation(value = "分配权限")
-    public Result give(String roleId ,List<String> powerIds){
-        return success(sysRoleService.give(roleId, powerIds));
+    public Result give(@RequestBody SysRolePowerRequest request){
+        return success(sysRoleService.give(request.getRoleId(), request.getPowerIds()));
     }
+
+    /**
+     * 角色权限
+     *
+     * @param roleId 角色编号
+     * */
+    @GetMapping("power")
+    @SysLog(title = "角色权限")
+    @ApiOperation(value = "角色权限")
+    public Result power(@RequestParam String roleId){
+        return success(sysRoleService.power(roleId));
+    }
+
 
 }

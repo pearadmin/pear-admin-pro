@@ -4,8 +4,10 @@ import http from '../http'
 const Api = {
     page: '/api/sys/role/page',
     list: '/api/sys/role/list',
-    add: '/api/sys/role/add',
-    remove: '/api/sys/role/remove'
+    save: '/api/sys/role/save',
+    edit: '/api/sys/role/edit',
+    remove: '/api/sys/role/remove',
+    power: '/api/sys/role/power',
 }
 
 /** 角色列表 (分页) */
@@ -27,11 +29,20 @@ export const list = data => {
 }
 
 /** 新增角色 */
-export const add = data => {
+export const save = data => {
     return http.request({
-        url: Api.add,
+        url: Api.save,
         data: data,
         method: 'POST'
+    })
+}
+
+/** 修改角色 */
+export const edit = data => {
+    return http.request({
+        url: Api.edit,
+        data: data,
+        method: 'PUT'
     })
 }
 
@@ -41,5 +52,14 @@ export const remove = data => {
         url: Api.remove,
         params: data,
         method: 'DELETE'
+    })
+}
+
+/** 角色权限 */
+export const power = data => {
+    return http.request({
+        url: Api.power,
+        params: data,
+        method: 'GET'
     })
 }

@@ -3,6 +3,7 @@ package com.pearadmin.pro.modules.sys.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
+import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 
@@ -46,5 +47,12 @@ public interface SysRoleService extends IService<SysRole> {
      * @return {@link Boolean}
      * */
     Boolean give(String roleId, List<String> powerIds);
+
+    /**
+     * 角色权限
+     *
+     * @param roleId 角色编号
+     * */
+    List<SysPower> power(String roleId);
     
 }

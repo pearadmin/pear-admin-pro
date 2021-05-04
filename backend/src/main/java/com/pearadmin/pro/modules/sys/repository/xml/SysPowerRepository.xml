@@ -6,7 +6,8 @@
         select * from sys_power
     </select>
 
-    <select id="selectPower" parameterType="string" resultType="SysPower">
+    <!-- 根据 userId 查询权限 enable 可用 type = 2 操作权限 -->
+    <select id="selectPowerByUserId" parameterType="string" resultType="SysPower">
         select * from sys_power sp
         left join sys_role_power srp on srp.power_id = sp.id
         left join sys_role sr on sr.id = srp.role_id
@@ -17,7 +18,13 @@
         and sp.type = 2
     </select>
 
-    <!-- 根据 userId 查询菜单 -->
+    <select id="selectPowerByRoleId" parameterType="string" resultType="SysPower">
+        select * from sys_power sp
+        left join sys_role_power srp on srp.power_id = sp.id
+        where srp.role_id = #{roleId}
+    </select>
+
+    <!-- 根据 userId 查询菜单 enable 权限可用 type !=2 菜单结构 -->
     <select id="selectMenu" resultType="SysPower">
         select * from sys_power sp
         left join sys_role_power srp on srp.power_id = sp.id

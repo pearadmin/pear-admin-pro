@@ -4,9 +4,11 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.common.web.base.page.Pageable;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
+import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysRolePower;
 import com.pearadmin.pro.modules.sys.repository.SysDeptRepository;
+import com.pearadmin.pro.modules.sys.repository.SysPowerRepository;
 import com.pearadmin.pro.modules.sys.repository.SysRolePowerRepository;
 import com.pearadmin.pro.modules.sys.repository.SysRoleRepository;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
@@ -30,6 +32,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
 
     @Resource
     private SysRolePowerService sysRolePowerService;
+
+    @Resource
+    private SysPowerRepository sysPowerRepository;
 
     @Override
     public List<SysDept> dept(String roleId) {
@@ -58,5 +63,10 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
             rolePowers.add(rolePower);
         });
         return sysRolePowerService.saveBatch(rolePowers);
+    }
+
+    @Override
+    public List<SysPower> power(String roleId) {
+        return sysPowerRepository.selectPowerByRoleId(roleId);
     }
 }
