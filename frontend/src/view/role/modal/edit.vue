@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增角色"
+    title="修改角色"
     cancelText="取消"
     okText="提交"
     @ok="submit"
