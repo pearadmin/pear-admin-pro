@@ -27,11 +27,6 @@ public class SysDataSource extends BaseDomain {
     private String name;
 
     /**
-     * 标识
-     * */
-    private String code;
-
-    /**
      * 是否启用
      * */
     private Boolean enable;

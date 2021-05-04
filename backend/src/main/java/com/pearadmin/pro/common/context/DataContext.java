@@ -69,7 +69,7 @@ public class DataContext {
        List<SysDataSource> sysDataSources = sysDataSourceService.list(new SysDataSourceRequest());
        sysDataSources.forEach(sysDataSource -> {
            createDataSource(
-                   sysDataSource.getCode(),
+                   sysDataSource.getName(),
                    sysDataSource.getUsername(),
                    sysDataSource.getPassword(),
                    sysDataSource.getUrl(),

@@ -11,8 +11,4 @@ public class SysDataSourceRequest extends PageRequest {
      * */
     private String name;
 
-    /**
-     * 切换标识
-     * */
-    private String code;
 }

@@ -17,9 +17,6 @@
       <a-form-item ref="name" label="名称" name="name">
         <a-input v-model:value="formState.name" />
       </a-form-item>
-      <a-form-item ref="code" label="标识" name="code">
-        <a-input v-model:value="formState.code" />
-      </a-form-item>
       <a-form-item ref="username" label="账户" name="username">
         <a-input v-model:value="formState.username" />
       </a-form-item>
@@ -65,7 +62,6 @@ export default defineComponent({
 
     const formRules = {
       name: [{ required: true, message: '请输入名称', trigger: 'blur'}],
-      code: [{ required: true, message: '请输入标识', trigger: 'blur'}],
       username: [{ required: true, message: '请输入账户', trigger: 'blur'}],
       password: [{ required: true, message: '请输入密码', trigger: 'blur'}],
       url: [{ required: true, message: '请输入链接', trigger: 'blur'}],

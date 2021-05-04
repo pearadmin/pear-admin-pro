@@ -53,8 +53,7 @@ export default {
 
     /// 列配置
     const columns = [
-      { dataIndex: "name", key: "name", title: "数据库名称" },
-      { dataIndex: "code", key: "code", title: "唯一标识"},
+      { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "username", key: "username", title: "账户" },
       { dataIndex: "password", key: "password", title: "密码"},
       { dataIndex: "url", key: "url", title: "链接"},

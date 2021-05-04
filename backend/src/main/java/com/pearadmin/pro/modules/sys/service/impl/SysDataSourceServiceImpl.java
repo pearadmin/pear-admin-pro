@@ -38,7 +38,7 @@ implements SysDataSourceService {
     @Override
     @Transactional
     public boolean save(SysDataSource entity) {
-        dataContext.createDataSource(entity.getCode(), entity.getUsername(), entity.getPassword(), entity.getUrl(), entity.getDriver());
+        dataContext.createDataSource(entity.getName(), entity.getUsername(), entity.getPassword(), entity.getUrl(), entity.getDriver());
         sysDataSourceRepository.insert(entity);
         return true;
     }
@@ -48,7 +48,7 @@ implements SysDataSourceService {
     public boolean updateById(SysDataSource entity) {
         SysDataSource dataSource = sysDataSourceRepository.selectById(entity.getId());
         sysDataSourceRepository.updateById(entity);
-        dataContext.updateDataSource(dataSource.getCode(), dataSource.getUsername(), dataSource.getPassword(), dataSource.getUrl(), dataSource.getDriver());
+        dataContext.updateDataSource(dataSource.getName(), dataSource.getUsername(), dataSource.getPassword(), dataSource.getUrl(), dataSource.getDriver());
         return true;
     }
 
@@ -57,7 +57,7 @@ implements SysDataSourceService {
     public boolean removeById(Serializable id) {
         SysDataSource dataSource = sysDataSourceRepository.selectById(id);
         sysDataSourceRepository.deleteById(id);
-        dataContext.removeDataSource(dataSource.getCode());
+        dataContext.removeDataSource(dataSource.getName());
         return true;
     }
 
@@ -67,7 +67,7 @@ implements SysDataSourceService {
         idList.forEach(id -> {
            SysDataSource dataSource = sysDataSourceRepository.selectById(id);
            sysDataSourceRepository.deleteById(id);
-           dataContext.removeDataSource(dataSource.getCode());
+           dataContext.removeDataSource(dataSource.getName());
         });
         return true;
     }

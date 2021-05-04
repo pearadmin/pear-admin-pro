@@ -8,9 +8,6 @@
             <if test="request.name !=null and request.name !=''">
                 and sds.name like concat('%', #{request.name}, '%')
             </if>
-            <if test="request.code !=null and request.code !=''">
-                and sds.code like concat('%', #{request.code}, '%')
-            </if>
         </where>
     </select>
 
