@@ -4,6 +4,7 @@ import http from '../http'
 const Api = {
   save: '/api/sys/user/save',
   page: '/api/sys/user/page',
+  give: '/api/sys/user/give',
   menu: '/api/sys/user/menu',
   power: '/api/sys/user/power',
   remove: '/api/sys/user/remove',
@@ -71,6 +72,14 @@ export const page = data => {
 export const save = data => {
   return http.request({
     url: Api.save,
+    data: data,
+    method: 'POST'
+  })
+}
+
+export const give = data => {
+  return http.request({
+    url: Api.give,
     data: data,
     method: 'POST'
   })

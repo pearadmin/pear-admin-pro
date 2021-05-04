@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.rest;
 
 import com.pearadmin.pro.common.context.DataContext;
+import com.pearadmin.pro.modules.sys.param.SysUserRoleRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
@@ -31,7 +32,6 @@ public class SysUserController extends BaseController {
 
     @Resource
     private UserContext userContext;
-
 
     /**
      * 新增用户
@@ -82,14 +82,13 @@ public class SysUserController extends BaseController {
     /**
      * 分配角色
      *
-     * @param roleIds 角色编号
-     * @param userId 用户编号
+     * @param request 参数实体
      * */
     @PostMapping("give")
     @SysLog(title = "分配角色")
     @ApiOperation(value = "分配角色")
-    public Result give(List<String> roleIds, String userId){
-        return success(sysUserService.give(userId,roleIds));
+    public Result give(@RequestBody SysUserRoleRequest request){
+        return success(sysUserService.give(request.getUserId(),request.getRoleIds()));
     }
 
     /**

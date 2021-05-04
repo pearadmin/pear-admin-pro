@@ -8,9 +8,10 @@
     </a-modal>
 </template>
 <script>
+import { message } from 'ant-design-vue';
 import { list } from "@/api/module/role";
-import { role } from "@/api/module/user"; 
-import { defineComponent, reactive, watch } from 'vue';
+import { role, give } from "@/api/module/user"; 
+import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 export default defineComponent({
   props: {
       visible: {
@@ -29,10 +30,14 @@ export default defineComponent({
 
     /// 加载用户角色
     watch(props,async (value) => {
+      state.selectedRowKeys = [];
       var response = await role({"userId":value.record.id})
-
+      response.data.forEach(element => {
+        state.selectedRowKeys.push(element.id);
+      });
     })
 
+    /// 加载角色列表
     const fetch = async (param) => {
       var response = await list(param);
       return {
@@ -46,7 +51,17 @@ export default defineComponent({
     ];
 
     const submit = e => {
-      context.emit('close', false);
+          give({"userId":props.record.id,"roleIds":state.selectedRowKeys}).then((response)=>{
+            if(response.success){
+                message.success({ content: '保存成功', duration: 1 }).then(()=>{
+                  cancel();
+                });
+            }else{
+                message.error({ content: '保存失败', duration: 1 }).then(()=>{
+                  cancel();
+                });
+            }
+          })
     };
 
     const cancel = e => {

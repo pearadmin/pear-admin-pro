@@ -12,7 +12,7 @@ import org.apache.ibatis.type.Alias;
  * */
 @Data
 @Alias("SysUserRole")
-public class SysUserRole extends BaseDomain {
+public class SysUserRole {
 
     /**
      * 编号

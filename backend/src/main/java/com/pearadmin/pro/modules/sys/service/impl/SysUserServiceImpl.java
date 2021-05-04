@@ -64,9 +64,7 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
     @Override
     @Transactional
     public Boolean give(String userId, List<String> roleIds) {
-
         sysUserRoleService.lambdaUpdate().eq(SysUserRole::getUserId, userId).remove();
-
         List<SysUserRole> userRoles = new ArrayList<>();
         roleIds.forEach(roleId -> {
             SysUserRole userRole = new SysUserRole();

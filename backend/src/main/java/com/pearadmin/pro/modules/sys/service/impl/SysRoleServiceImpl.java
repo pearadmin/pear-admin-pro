@@ -49,9 +49,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
     @Override
     @Transactional
     public Boolean give(String roleId, List<String> powerIds) {
-
         sysRolePowerService.lambdaUpdate().eq(SysRolePower::getRoleId, roleId).remove();
-
         List<SysRolePower> rolePowers = new ArrayList<>();
         powerIds.forEach(powerId -> {
             SysRolePower rolePower = new SysRolePower();
