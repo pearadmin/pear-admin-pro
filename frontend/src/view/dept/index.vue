@@ -30,17 +30,20 @@
         </a-col>
       </a-row>
       <save :visible="state.visibleSave" @close="closeSave"></save>
+      <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
     </page-layout>
 </template>
 
 <script>
 import save from "./modal/save";
+import edit from "./modal/edit";
 import { tree } from "@/api/module/dept";
 import { reactive } from 'vue';
 
 export default {
   components: {
     save,
+    edit,
   },
   setup() {
 
@@ -74,41 +77,26 @@ export default {
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { state.visibleSave = true }},
+      { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
-    /// 分页参数
     const pagination = false;
     
-    /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       selectedRowKeys: [],
-      param: {
-        name: "", // 名称
-        code: ""  // 标识
-      },
+      param: {},
       visibleSave: false,
+      visibleEdit: false,
+      recordEdit: {}
     })
 
-    /// 查询参数
     const searchParam = [
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
-        { key: "state", type: "select", label: "状态", value: "0",
-          hidden: true ,
-          options: [
-            { text: "全部", value: "0"},
-            { text: "开启", value: "1"},
-            { text: "关闭", value: "2"}
-          ]
-        }
     ]
 
-    /// 查询操作
     const search = function(value) {
-      
-      /// 通过动态修改入参, 触发表格刷新
       state.param = value
     }
 
@@ -120,8 +108,10 @@ export default {
       state.visibleSave = false
     }
 
+    const closeEdit = function() {
+      state.visibleEdit = false
+    }
 
-    /// 声明抛出
     return {
       state: state, // 状态共享
       fetch: fetch, // 数据回调
@@ -135,7 +125,8 @@ export default {
 
       onSelectChange,
 
-      closeSave
+      closeSave,
+      closeEdit,
     };
   },
 };

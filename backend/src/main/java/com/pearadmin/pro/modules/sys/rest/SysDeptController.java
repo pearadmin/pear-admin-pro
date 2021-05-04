@@ -43,10 +43,10 @@ public class SysDeptController extends BaseController {
      *
      * @param sysDept 部门实体
      */
-    @PostMapping("add")
+    @PostMapping("save")
     @SysLog(title = "新增部门")
     @ApiOperation(value = "新增部门")
-    public Result add(@RequestBody SysDept sysDept){
+    public Result save(@RequestBody SysDept sysDept){
         return auto(sysDeptService.save(sysDept));
     }
 

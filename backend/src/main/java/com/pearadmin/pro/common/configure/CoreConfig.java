@@ -60,13 +60,6 @@ import java.util.Map;
 @Configuration
 public class CoreConfig implements WebMvcConfigurer {
 
-    @Resource
-    private SysDataSourceService sysDataSourceService;
-
-    @Resource
-    protected DataSourceCreator dataSourceCreator;
-
-
     // TODO 时间格式
     private static final String DEFAULT_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
     private static final String DEFAULT_DATE_PATTERN = "yyyy-MM-dd";

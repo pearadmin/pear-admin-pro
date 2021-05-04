@@ -132,18 +132,16 @@ export default {
       state.selectedRowKeys = selectedRowKeys;
     };
 
-    /// 声明抛出
     return {
-      state, // 状态共享
-      fetch, // 数据回调
-      toolbar, // 工具栏
-      columns, // 列配置
+      state,
+      fetch,
+      toolbar,
+      columns,
       operate,
-      pagination, // 分页配置
+      pagination,
 
-      /// 搜索组件
       search,
-      searchParam, // 查询参数
+      searchParam,
 
       onSelectChange,
     };

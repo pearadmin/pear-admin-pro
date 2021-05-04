@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pearadmin.pro.common.context.DataContext;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.common.web.base.page.Pageable;
 import com.pearadmin.pro.modules.sys.domain.SysDataSource;
@@ -8,8 +9,10 @@ import com.pearadmin.pro.modules.sys.param.SysDataSourceRequest;
 import com.pearadmin.pro.modules.sys.repository.SysDataSourceRepository;
 import com.pearadmin.pro.modules.sys.service.SysDataSourceService;
 import org.springframework.stereotype.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
+import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -19,6 +22,9 @@ implements SysDataSourceService {
     @Resource
     private SysDataSourceRepository sysDataSourceRepository;
 
+    @Resource
+    private DataContext dataContext;
+
     @Override
     public List<SysDataSource> list(SysDataSourceRequest request) {
         return sysDataSourceRepository.selectList(request);
@@ -27,5 +33,42 @@ implements SysDataSourceService {
     @Override
     public PageResponse<SysDataSource> page(SysDataSourceRequest request) {
         return Pageable.of(request, () -> sysDataSourceRepository.selectList(request));
+    }
+
+    @Override
+    @Transactional
+    public boolean save(SysDataSource entity) {
+        dataContext.createDataSource(entity.getCode(), entity.getUsername(), entity.getPassword(), entity.getUrl(), entity.getDriver());
+        sysDataSourceRepository.insert(entity);
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean updateById(SysDataSource entity) {
+        SysDataSource dataSource = sysDataSourceRepository.selectById(entity.getId());
+        sysDataSourceRepository.updateById(entity);
+        dataContext.updateDataSource(dataSource.getCode(), dataSource.getUsername(), dataSource.getPassword(), dataSource.getUrl(), dataSource.getDriver());
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean removeById(Serializable id) {
+        SysDataSource dataSource = sysDataSourceRepository.selectById(id);
+        sysDataSourceRepository.deleteById(id);
+        dataContext.removeDataSource(dataSource.getCode());
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        idList.forEach(id -> {
+           SysDataSource dataSource = sysDataSourceRepository.selectById(id);
+           sysDataSourceRepository.deleteById(id);
+           dataContext.removeDataSource(dataSource.getCode());
+        });
+        return true;
     }
 }

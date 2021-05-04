@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增岗位"
+    title="修改岗位"
     cancelText="取消"
     okText="提交"
     @ok="submit"
@@ -46,13 +46,16 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { save, tree } from "@/api/module/dept";
-import { defineComponent, reactive, ref, toRaw } from "vue";
+import { edit, tree } from "@/api/module/dept";
+import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 export default defineComponent({
   props: {
     visible: {
       type: Boolean,
     },
+    record: {
+      type: Object,
+    }
   },
   emit: ["close"],
   setup(props, context) {
@@ -68,6 +71,16 @@ export default defineComponent({
       enable: true,
     });
 
+    watch(props,(props) => {
+        formState.id = props.record.id
+        formState.name = props.record.name
+        formState.sort = props.record.sort
+        formState.parent = props.record.parent
+        formState.remark = props.record.remark
+        formState.enable = props.record.enable
+        formState.address = props.record.address
+    })
+
     const formRules = {
       name: [ { required: true, message: '请输入部门名称', trigger: 'blur'} ],
       address: [ { required: true, message: '请输入详细地址', trigger: 'blur'} ],
@@ -78,7 +91,7 @@ export default defineComponent({
       formRef.value
         .validate()
         .then(() => {
-          save(toRaw(formState)).then((response)=>{
+          edit(toRaw(formState)).then((response)=>{
               if(response.success){
                 message.success({ content: '保存成功', duration: 1 }).then(()=>{
                   cancel();

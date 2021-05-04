@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.context.DataContext;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.SysLog;
@@ -30,6 +31,7 @@ public class SysUserController extends BaseController {
 
     @Resource
     private UserContext userContext;
+
 
     /**
      * 新增用户

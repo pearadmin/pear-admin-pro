@@ -23,20 +23,11 @@ import java.util.Map;
 @Component
 public class DictionaryCache extends BaseCache<List<SysDictData>> {
 
-    @Resource
-    private SysDictDataService sysDictDataService;
-
-    @Resource
-    private SysDictService sysDictService;
-
     @Override
     public Map<String, List<SysDictData>> load()
     {
         log.info("Refresh Cache - 数据字典");
-        Map<String,List<SysDictData>> map = new HashMap<>();
 
-        /// 字典信息
-
-        return map;
+        return new HashMap<>();
     }
 }
