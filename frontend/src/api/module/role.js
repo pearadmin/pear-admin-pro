@@ -6,6 +6,7 @@ const Api = {
     list: '/api/sys/role/list',
     save: '/api/sys/role/save',
     edit: '/api/sys/role/edit',
+    give: '/api/sys/role/give',
     remove: '/api/sys/role/remove',
     removeBatch: '/api/sys/role/removeBatch',
     power: '/api/sys/role/power',
@@ -71,5 +72,14 @@ export const power = data => {
         url: Api.power,
         params: data,
         method: 'GET'
+    })
+}
+
+/** 分配权限 */
+export const give = data => {
+    return http.request({
+        url: Api.give,
+        data: data,
+        method: 'POST'
     })
 }

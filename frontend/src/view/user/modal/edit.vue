@@ -19,9 +19,6 @@
       <a-form-item ref="username" label="账户" name="username">
         <a-input v-model:value="formState.username" />
       </a-form-item>
-      <a-form-item ref="password" label="密码" name="password">
-        <a-input v-model:value="formState.password" />
-      </a-form-item>
       <a-form-item ref="email" label="邮箱" name="email">
         <a-input v-model:value="formState.email" />
       </a-form-item>
@@ -63,7 +60,7 @@
 <script>
 import { message } from 'ant-design-vue';
 import { list } from "@/api/module/post";
-import { save } from "@/api/module/user";
+import { edit } from "@/api/module/user";
 import { tree } from "@/api/module/dept";
 import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 export default defineComponent({
@@ -85,7 +82,7 @@ export default defineComponent({
       depts: [], 
     })
     
-    const formState = ref({
+    const formState = reactive({
       enable: true,
       gender:  "0",
     });
@@ -114,7 +111,7 @@ export default defineComponent({
 
     const submit = (e) => {
         formRef.value.validate().then(() => {
-          save(toRaw(formState)).then((response)=>{
+          edit(toRaw(formState)).then((response)=>{
             if(response.success){
                 message.success({ content: '保存成功', duration: 1 }).then(()=>{
                   cancel();
@@ -140,8 +137,17 @@ export default defineComponent({
     /// 加载部门
     loadTree();
 
-    watch(props,(value) => {
-      formState.value = value.record;
+    watch(props,(props) => {
+      formState.id = props.record.id;
+      formState.username = props.record.username;
+      formState.nickname = props.record.nickname;
+      formState.password = props.record.password;
+      formState.email = props.record.email;
+      formState.phone = props.record.phone;
+      formState.postId = props.record.postId;
+      formState.deptId = props.record.deptId;
+      formState.enable = props.record.enable;
+      formState.remark = props.record.remark;
     })
 
     return {

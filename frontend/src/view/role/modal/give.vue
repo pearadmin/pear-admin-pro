@@ -9,8 +9,9 @@
   </a-modal>
 </template>
 <script>
+import { message } from 'ant-design-vue';
 import { tree } from "@/api/module/power";
-import { power } from "@/api/module/role";
+import { power, give } from "@/api/module/role";
 import { defineComponent, reactive, watch } from "vue";
 export default defineComponent({
   props: {
@@ -34,20 +35,32 @@ export default defineComponent({
       state.powers = response.data;
     };
 
+    /// 监听数据
     watch(props,(props) => {
-        state.checkedKeys = [];
+        let powerIds = [];
         power({"roleId":props.record.id}).then((response)=>{
           response.data.forEach(element => {
-            state.checkedKeys.push(element.id);
+            powerIds.push(element.id);
           });
+          state.checkedKeys = powerIds;  
         })
     })
 
     /// 加载权限
     loadData();
 
-    const submit = (e) => {
-      context.emit("close", false);
+    const submit = e => {
+        give({"roleId":props.record.id,"powerIds":state.checkedKeys}).then((response)=>{
+            if(response.success){
+                message.success({ content: '保存成功', duration: 1 }).then(()=>{
+                  cancel();
+                });
+            }else{
+                message.error({ content: '保存失败', duration: 1 }).then(()=>{
+                  cancel();
+                });
+            }
+          })
     };
 
     const cancel = (e) => {

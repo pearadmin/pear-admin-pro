@@ -103,7 +103,7 @@ export default {
       { dataIndex: "nickname", key: "nickname", title: "名称" },
       { dataIndex: "username", key: "username", title: "账号" },
       { dataIndex: "gender", key: "gender", title: "性别", conver: converFormat},
-      { dataIndex: "locked", key: "locked", title: "锁定", switch: switchFormat},
+      { dataIndex: "enable", key: "enable", title: "锁定", switch: switchFormat},
       { dataIndex: "email", key: "email", title: "邮箱" },
       { dataIndex: "phone", key: "phone", title: "电话" },
       { dataIndex: "createTime", key: "createTime", title: "注册时间" }

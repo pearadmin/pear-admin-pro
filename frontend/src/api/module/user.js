@@ -5,6 +5,7 @@ const Api = {
   save: '/api/sys/user/save',
   page: '/api/sys/user/page',
   give: '/api/sys/user/give',
+  edit: '/api/sys/user/edit',
   menu: '/api/sys/user/menu',
   power: '/api/sys/user/power',
   remove: '/api/sys/user/remove',
@@ -77,11 +78,21 @@ export const save = data => {
   })
 }
 
+/** 新增用户 */
 export const give = data => {
   return http.request({
     url: Api.give,
     data: data,
     method: 'POST'
+  })
+}
+
+/** 修改用户 */
+export const edit = data => {
+  return http.request({
+    url: Api.edit,
+    data: data,
+    method: 'PUT'
   })
 }
 

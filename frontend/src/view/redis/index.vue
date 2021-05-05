@@ -30,7 +30,7 @@
 </template>
 <script>
 import { Chart } from "@antv/g2";
-import { info, size, comd } from "@/api/module/redis";
+import { info, size } from "@/api/module/redis";
 import { computed, onMounted, ref } from "vue";
 import { useStore } from 'vuex';
 export default {
@@ -88,7 +88,6 @@ export default {
     });
 
     return {
-      color,
       infoData,
     };
   },
