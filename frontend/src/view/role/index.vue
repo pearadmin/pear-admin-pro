@@ -36,7 +36,7 @@ import save from './modal/save';
 import edit from './modal/edit';
 import give from './modal/give';
 import { message } from 'ant-design-vue';
-import { page, remove } from "@/api/module/role";
+import { page, remove, removeMethod } from "@/api/module/role";
 import { reactive } from "vue";
 
 export default {

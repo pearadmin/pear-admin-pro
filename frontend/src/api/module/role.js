@@ -7,6 +7,7 @@ const Api = {
     save: '/api/sys/role/save',
     edit: '/api/sys/role/edit',
     remove: '/api/sys/role/remove',
+    removeBatch: '/api/sys/role/removeBatch',
     power: '/api/sys/role/power',
 }
 
@@ -50,6 +51,15 @@ export const edit = data => {
 export const remove = data => {
     return http.request({
         url: Api.remove,
+        params: data,
+        method: 'DELETE'
+    })
+}
+
+/** 批量删除 */
+export const removeBatch = data => {
+    return http.request({
+        url: Api.removeBatch,
         params: data,
         method: 'DELETE'
     })
