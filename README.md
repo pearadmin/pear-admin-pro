@@ -152,7 +152,7 @@ Pear Admin Pro
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/223904_247d798f_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/223918_b58717cb_4835367.png "屏幕截图.png")   |
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224003_19a6bcd9_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224025_9e476d59_4835367.png "屏幕截图.png")  |
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224050_98eda3a7_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224107_af6484ee_4835367.png "屏幕截图.png")  |
-| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224152_74aaa927_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224232_066aa8d7_4835367.png "屏幕截图.png")  |
+| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224152_74aaa927_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0506/060337_444d9fcf_4835367.png "屏幕截图.png")  |
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0506/060218_aa430b85_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0505/224232_066aa8d7_4835367.png "屏幕截图.png")  |
 
 ### 🎯 近期计划
