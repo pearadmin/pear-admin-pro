@@ -148,6 +148,7 @@ const mutations = {
     state.routerAnimate = routerAnimate;
   },
   UPDATE_COLOR(state, color) {
+    localStorage.setItem("color", color);
     state.color = color;
   },
   UPDATE_ROUTES(state, routes) {

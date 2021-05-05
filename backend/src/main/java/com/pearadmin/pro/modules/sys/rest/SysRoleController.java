@@ -88,7 +88,7 @@ public class SysRoleController extends BaseController {
     @DeleteMapping("remove")
     @SysLog(title = "删除角色")
     @ApiOperation(value = "删除角色")
-    public Result remove(String id){
+    public Result remove(@RequestParam String id){
         return auto(sysRoleService.removeById(id));
     }
 
@@ -102,7 +102,7 @@ public class SysRoleController extends BaseController {
     @DeleteMapping("removeBatch")
     @SysLog(title = "删除角色")
     @ApiOperation(value = "删除角色")
-    public Result removeBatch(List<String> ids) { return auto(sysRoleService.removeByIds(ids)); }
+    public Result removeBatch(@RequestParam List<String> ids) { return auto(sysRoleService.removeByIds(ids)); }
 
     /**
      * 权限分配

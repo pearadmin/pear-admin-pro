@@ -18,7 +18,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -68,5 +70,22 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
     @Override
     public List<SysPower> power(String roleId) {
         return sysPowerRepository.selectPowerByRoleId(roleId);
+    }
+
+    @Override
+    @Transactional
+    public boolean removeById(Serializable id) {
+        sysRoleRepository.deleteById(id);
+        sysRolePowerService.lambdaUpdate().eq(SysRolePower::getRoleId,id).remove();
+        return true;
+    }
+
+    @Override
+    @Transactional
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        idList.forEach(id -> {
+            removeById(id);
+        });
+        return true;
     }
 }

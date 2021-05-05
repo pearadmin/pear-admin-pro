@@ -22,6 +22,9 @@ export default defineComponent({
         return locale
       })
     )
+
+    /// 开局检测
+    
     return {
       antdLocal
     }
