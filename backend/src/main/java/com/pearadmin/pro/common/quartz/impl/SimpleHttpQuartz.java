@@ -13,5 +13,6 @@ public class SimpleHttpQuartz implements BaseQuartz {
     @Override
     public void run() {
 
+        // Simple Http
     }
 }

@@ -99,7 +99,7 @@ public class SysUserController extends BaseController {
     @DeleteMapping("remove")
     @SysLog(title = "用户删除")
     @ApiOperation(value = "用户删除")
-    public Result remove(String id){
+    public Result remove(@RequestParam String id){
         return auto(sysUserService.removeById(id));
     }
 
@@ -111,7 +111,7 @@ public class SysUserController extends BaseController {
     @DeleteMapping("removeBatch")
     @SysLog(title = "批量删除")
     @ApiOperation(value = "批量删除")
-    public Result removeBatch(List<String> ids) { return auto(sysUserService.removeByIds(ids)); }
+    public Result removeBatch(@RequestParam List<String> ids) { return auto(sysUserService.removeByIds(ids)); }
 
     /**
      * 个人资料

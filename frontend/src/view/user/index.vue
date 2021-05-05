@@ -39,9 +39,13 @@
 import save from './modal/save';
 import edit from './modal/edit';
 import give from './modal/give';
-import { message } from 'ant-design-vue';
-import { page, remove } from "@/api/module/user";
-import { reactive } from 'vue';
+import { message , modal} from 'ant-design-vue';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { page, remove, removeBatch } from "@/api/module/user";
+import { reactive, createVNode } from 'vue';
+
+const removeKey = "remove";
+const removeBatchKey = "removeBatch";
 
 export default {
   components: {
@@ -60,15 +64,43 @@ export default {
       };
     };
 
-    /// 删除用户
-    const removeHandler = (record) => {
-      remove({"id":record.id}).then((response) => {
-          if(response.success){
-              message.success({ content: '删除成功', duration: 1 });
-          }else{
-              message.error({ content: '删除失败', duration: 1 });
-          }
-      })
+    /// 删除配置
+    const removeMethod = (record) => {
+      modal.confirm({
+        title: '您是否确定要删除此配置?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeKey });
+          remove({"id":record.id}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeKey, duration: 1})
+            }
+          })
+        }
+      });
+    }
+
+    const removeBatchMethod = (ids) => {
+       modal.confirm({
+        title: '您是否确定要删除选择配置?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeBatchKey });
+          removeBatch({"ids":ids}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeBatchKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeBatchKey, duration: 1})
+            }
+          })
+        }
+      });
     }
 
     /// 批量删除
@@ -76,7 +108,7 @@ export default {
     /// 工具栏
     const toolbar = [
       { label: "新增", event: function () { state.visibleSave = true }},
-      { label: "删除", event: function () { }},
+      { label: "删除", event: function () { removeBatchMethod(state.selectedRowKeys) }},
     ];
 
     /// 行操作
@@ -84,7 +116,7 @@ export default {
       { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
       { label: "修改", event: function (record) { state.visibleEdit = true , state.recordEdit = record }},
       { label: "分配", event: function (record) { state.visibleGive = true , state.recordGive = record }},
-      { label: "删除", event: function (record) { removeHandler(record) }},
+      { label: "删除", event: function (record) { removeMethod(record) }},
     ];
 
     /// 文本
