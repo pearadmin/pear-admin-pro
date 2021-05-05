@@ -35,6 +35,11 @@ public class SysDict extends BaseDomain {
     private String code;
 
     /**
+     * 排序
+     * */
+    private String sort;
+
+    /**
      * 启用
      * */
     private boolean enable;

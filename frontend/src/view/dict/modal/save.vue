@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增角色"
+    title="新增字典"
     cancelText="取消"
     okText="提交"
     @ok="submit"
@@ -34,7 +34,7 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { save } from "@/api/module/role";
+import { save } from "@/api/module/dict";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 export default defineComponent({
   props: {

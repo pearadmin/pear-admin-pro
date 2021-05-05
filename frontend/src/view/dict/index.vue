@@ -17,6 +17,7 @@
             :operate="operate"
             :param="state.param"
             :pagination="pagination"
+            :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
           >
           </pro-table>
           </a-card>
@@ -28,13 +29,26 @@
         </a-col>
       </a-row>
     </page-layout>
+    <save :visible="state.visibleSave" @close="closeSave"></save>
+    <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
   </div>
 </template>
 <script>
-import { page } from "@/api/module/dict";
-import { reactive } from "vue";
+import save from "./modal/save";
+import edit from "./modal/edit";
+import { message , modal} from 'ant-design-vue';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { page, remove, removeBatch } from "@/api/module/dict";
+import { reactive, createVNode } from 'vue';
+
+const removeKey = "remove";
+const removeBatchKey = "removeBatch";
 
 export default {
+  components: {
+    save,
+    edit,
+  },
   setup() {
 
     const switchFormat = { yes: true, no: false, event: function(value,record){
@@ -57,36 +71,94 @@ export default {
       };
     };
 
+    /// 删除角色
+    const removeMethod = (record) => {
+      modal.confirm({
+        title: '您是否确定要删除此字典?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeKey });
+          remove({"id":record.id}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeKey, duration: 1})
+            }
+          })
+        }
+      });
+    }
+
+    /// 批量删除
+    const removeBatchMethod = (ids) => {
+       modal.confirm({
+        title: '您是否确定要删除选择字典?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeBatchKey });
+          removeBatch({"ids":ids}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeBatchKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeBatchKey, duration: 1})
+            }
+          })
+        }
+      });
+    }
+
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { state.addVisible = true }},
-      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys)); }},
+      { label: "新增", event: function () { state.visibleSave = true }},
+      { label: "删除", event: function () { removeBatchMethod(state.selectedRowKeys) }},
     ];
 
     /// 行操作
     const operate = [
-      /// 子表赋值
       { label: "查看", event: function (record) { state.dataParam = record.code }},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record)); }},
-      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record)); }},
+      { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
+      { label: "删除", event: function (record) { removeMethod(record) }},
     ];
 
-    /// 分页参数
     const pagination = { pageNum: 1, pageSize: 10 };
 
-    /// 外置参数
     const state = reactive({
+      selectedRowKeys: [],
       param: { name: "", code: "" },
+      visibleEdit: false,
+      visibleSave: false,
+      recordEdit: {},
     });
+
+    const onSelectChange = selectedRowKeys => {
+      state.selectedRowKeys = selectedRowKeys;
+    };
+
+    const closeSave = function(){
+      state.visibleSave = false
+    }
+
+    const closeEdit = function(){
+      state.visibleEdit = false
+    }
 
     /// 声明抛出
     return {
-      state: state, // 状态共享
-      fetch: fetch, // 数据回调
-      toolbar: toolbar, // 工具栏
-      columns: columns, // 列配置
-      operate: operate, // 行操作
-      pagination: pagination, // 分页配置
+      state, // 状态共享
+      fetch, // 数据回调
+      toolbar, // 工具栏
+      columns, // 列配置
+      operate, // 行操作
+      pagination, // 分页配置
+
+      onSelectChange,
+
+      closeSave,
+      closeEdit,
     };
   },
 };

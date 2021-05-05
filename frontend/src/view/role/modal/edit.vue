@@ -20,7 +20,7 @@
       <a-form-item ref="code" label="标识" name="code">
         <a-input v-model:value="formState.code" />
       </a-form-item>
-      <a-form-item ref="sort" label="标识" name="sort">
+      <a-form-item ref="sort" label="排序" name="sort">
         <a-input-number v-model:value="formState.sort" />
       </a-form-item>
       <a-form-item label="状态" name="enable">

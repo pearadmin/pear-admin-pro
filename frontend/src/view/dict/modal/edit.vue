@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增角色"
+    title="修改字典"
     cancelText="取消"
     okText="提交"
     @ok="submit"
@@ -34,23 +34,23 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { save } from "@/api/module/role";
-import { defineComponent, reactive, ref, toRaw } from "vue";
+import { edit } from "@/api/module/dict";
+import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 export default defineComponent({
   props: {
     visible: {
       type: Boolean,
     },
+    record: {
+      type: Object,
+    }
   },
   emit: ["close"],
   setup(props, context) {
 
     const formRef = ref();
     
-    const formState = reactive({
-      sort: 0,
-      enable: "true",
-    });
+    const formState = reactive({});
 
     const formRules = {
       name: [
@@ -61,11 +61,20 @@ export default defineComponent({
       ]
     };
 
+    watch(props,(props)=>{
+      formState.id = props.record.id;
+      formState.name = props.record.name;
+      formState.code = props.record.code;
+      formState.sort = props.record.sort;
+      formState.enable = props.record.enable;
+      formState.remark = props.record.remark;
+    })
+
     const submit = (e) => {
       formRef.value
         .validate()
         .then(() => {
-          save(toRaw(formState)).then((response)=>{
+          edit(toRaw(formState)).then((response)=>{
               if(response.success){
                 message.success({ content: '保存成功', duration: 1 }).then(()=>{
                   cancel();
