@@ -101,9 +101,9 @@ Pear Admin Pro
 
 ```
 
-### 界面预览
+### 预览界面
 
-| 界面              |                预览  |  
+| 预览              |                界面  |  
 |---------------------|---------------------|
 | ![](readmes/1.jpg)  | ![](readmes/2.jpg)  |
 | ![](readmes/3.jpg)|  ![](readmes/4.jpg)   |
@@ -111,3 +111,6 @@ Pear Admin Pro
 | ![](readmes/7.jpg)|  ![](readmes/8.jpg)   |
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0328/214153_4163d808_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0328/224345_45580e1a_4835367.png "屏幕截图.png")    |
 
+### 近期计划
+
+### 特别鸣谢
