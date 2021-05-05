@@ -7,7 +7,7 @@
   </h1>
   
   <h4 align="center">
-     开 箱 即 用 的 Spring 企 业 级 开 发 平 台
+     开 箱 即 用 的 Spring Boot 企 业 级 开 发 平 台
   </h4> 
   
   [预 览](http://ant.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
@@ -21,8 +21,11 @@
     <a href="#">
         <img src="https://img.shields.io/badge/Vue-3.0.0+-green.svg" alt="Vue Version">
     </a>
-      <a href="#">
-        <img src="https://img.shields.io/badge/Spring Boot-2.4.0-green.svg" alt="Spring Boot Version">
+    <a href="#">
+        <img src="https://img.shields.io/badge/Ant Design Vue-2.0.0-green.svg" alt="Ant Design Vue Version">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/Spring Boot-2.4.5-green.svg" alt="Spring Boot Version">
     </a>
 </p>
 
@@ -30,13 +33,17 @@
   <img  width="92%" style="border-radius:10px;margin-top:20px;margin-bottom:20px;box-shadow: 2px 0 6px gray;" src="https://images.gitee.com/uploads/images/2021/0322/013718_9c359d6a_4835367.png" />
 </div>
 
-### 项目概述
+### 🌈 项目概述
 
 * 基于 Spring 实现的通用权限管理平台（RBAC模式）。整合最新技术高效快速开发，前后端分离模式，开箱即用。
 * 核心模块包括：用户、角色、职位、组织机构、菜单、字典、日志、多应用管理、文件管理、定时任务等功能。
 * 代码量少、学习简单、功能强大、轻量级、易扩展，轻松开发从现在开始！
 
-### 功能概览
+### ☘ 更新日志
+
+
+
+### 🍚 功能概览
 
 - [x] 用户管理:  用户是系统操作者，该功能主要完成系统用户配置。
 - [ ] 角色管理:  角色菜单权限分配、设置角色按机构进行数据范围权限划分。
@@ -44,7 +51,7 @@
 - [x] 岗位管理：配置系统用户所属担任职务。
 - [ ] 部门管理：配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
 - [ ] 数据字典:  对系统中经常使用的一些较为固定的数据进行维护。
-- [ ] 配置中心:  对系统动态配置常用参数。
+- [x] 配置中心:  对系统动态配置常用参数。
 - [x] 运行环境:  监视当前系统CPU、内存、磁盘、堆栈等相关信息。
 - [ ] 缓存监控：对系统的缓存查询，删除、清空等操作。
 - [x] 在线用户:  用户在线列表，用于系统在线用户监控。
@@ -55,10 +62,10 @@
 - [x] 操作日志:  系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 - [x] 邮件发送:  系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 - [x] 多数据源:  系统正常操作日志记录和查询；系统异常信息日志记录和查询。
-- [ ] 主题切换:  系统正常操作日志记录和查询；系统异常信息日志记录和查询。
+- [x] 主题切换:  系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 
 
-### 项目结构
+### 🔨 项目结构
 
 ```
 Pear Admin Pro
@@ -100,10 +107,13 @@ Pear Admin Pro
 └─pom.xml  Maven 配置
 
 ```
+### 📖 帮助文档
 
-### 界面预览
 
-| 界面              |                预览  |  
+
+### 🍎 预览界面
+
+| 预览              |                界面  |  
 |---------------------|---------------------|
 | ![](readmes/1.jpg)  | ![](readmes/2.jpg)  |
 | ![](readmes/3.jpg)|  ![](readmes/4.jpg)   |
@@ -111,3 +121,11 @@ Pear Admin Pro
 | ![](readmes/7.jpg)|  ![](readmes/8.jpg)   |
 | ![输入图片说明](https://images.gitee.com/uploads/images/2021/0328/214153_4163d808_4835367.png "屏幕截图.png")| ![输入图片说明](https://images.gitee.com/uploads/images/2021/0328/224345_45580e1a_4835367.png "屏幕截图.png")    |
 
+### 🎯 近期计划
+
+- [ ] 对象存储:  系统正常操作日志记录和查询；系统异常信息日志记录和查询。
+- [ ] 短信发送:  系统正常操作日志记录和查询；系统异常信息日志记录和查询。
+
+### 💐 特别鸣谢
+
+### 🍻 贡献代码
