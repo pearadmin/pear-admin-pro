@@ -1,6 +1,5 @@
 package com.pearadmin.pro.modules.sys.rest;
 
-import com.pearadmin.pro.common.context.DataContext;
 import com.pearadmin.pro.modules.sys.param.SysUserRoleRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
