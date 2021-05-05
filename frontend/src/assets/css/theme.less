@@ -1,9 +1,11 @@
+@primary-color: #2d8cf0;
+
 .pear-dot-tab {
   height: 45.5px;
   line-height: 45.5px;
 }
 .pear-dot-tab .ant-tabs-tab-active::before{
-  background-color: #1890ff!important;
+  background-color: @primary-color!important;
 }
 .pear-dot-tab .tab {
   width: calc(~"(100% - 40px)");
@@ -74,7 +76,6 @@
   color: #808695;
 }
 
-
 .pear-card-tab {
   height: 40.5px;
   line-height: 40.5px;
@@ -84,7 +85,7 @@
   border-bottom: 1px solid whitesmoke;
 }
 .pear-card-tab .ant-tabs-tab-active::before{
-  background-color: #1890ff!important;
+  background-color: @primary-color!important;
 }
 .pear-card-tab .tab {
   width: calc(~"(100% - 40px)");
@@ -169,7 +170,7 @@
   text-align: center;
 }
 .pear-label-tab .ant-tabs-tab-active{
-  background-color: #1890ff!important;
+  background-color: @primary-color!important;
 }
 .pear-label-tab .ant-tabs-tab-active *{
   color:white!important;
