@@ -73,7 +73,7 @@ export default {
       };
     };
 
-    /// 删除用户
+    /// 删除角色
     const removeMethod = (record) => {
       modal.confirm({
         title: '您是否确定要删除此角色?',

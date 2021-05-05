@@ -12,6 +12,7 @@
                   :width="80"
                   :percent="cpu.used"
                   class="float-right"
+                  :stroke-color="{ '0%': color,'100%': color}"
                 />
               </a-col>
             </a-row>
@@ -27,6 +28,7 @@
                   :width="80"
                   :percent="mem.usage"
                   class="float-right"
+                  :stroke-color="{ '0%': color,'100%': color}"
                 />
               </a-col>
             </a-row>
@@ -42,6 +44,7 @@
                   :width="80"
                   :percent="cpu.sys"
                   class="float-right"
+                  :stroke-color="{ '0%': color,'100%': color}"
                 />
               </a-col>
             </a-row>
@@ -57,6 +60,7 @@
                   :width="80"
                   :percent="jvm.usage"
                   class="float-right"
+                  :stroke-color="{ '0%': color,'100%': color}"
                 />
               </a-col>
             </a-row>
@@ -178,7 +182,7 @@
               :loading="loading"
             >
               <template #usage="{ text }">
-                <a-progress size="small" :show-info="false" :percent="text" />
+                <a-progress size="small" :show-info="false" :percent="text" :stroke-color="{ '0%': color,'100%': color}"/>
               </template>
             </a-table>
           </a-card>
@@ -189,9 +193,13 @@
 </template>
 <script>
 import { info } from "@/api/module/server";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { useStore } from 'vuex';
 export default {
   setup() {
+    const store = useStore()
+    const color = computed(() => store.getters.color);
+
     const datasource = ref();
     const loading = ref(true);
     const cpu = ref({});
@@ -222,6 +230,7 @@ export default {
       columns,
       datasource,
       loading,
+      color,
       cpu,
       mem,
       jvm,

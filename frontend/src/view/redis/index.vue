@@ -31,9 +31,12 @@
 <script>
 import { Chart } from "@antv/g2";
 import { info, size, comd } from "@/api/module/redis";
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref } from "vue";
+import { useStore } from 'vuex';
 export default {
   setup() {
+    const store = useStore()
+    const color = computed(() => store.getters.color);
 
     const infoData = ref({});
 
@@ -71,7 +74,7 @@ export default {
 
       sizeChart.line().position("date*value").label("value");
       sizeChart.point().position("date*value");
-      sizeChart.theme({ styleSheet: { brandColor: "rgb(45, 140, 240)" } });
+      sizeChart.theme({ styleSheet: { brandColor: color } });
       sizeChart.render();
 
       setInterval(()=>{
@@ -84,9 +87,8 @@ export default {
       
     });
 
-    /// 定时刷新
-
     return {
+      color,
       infoData,
     };
   },

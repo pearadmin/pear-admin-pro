@@ -15,6 +15,7 @@
               style="margin-top: 16px"
               :percent="30"
               size="small"
+              :stroke-color="{ '0%': color,'100%': color}"
             />
             <a-divider />
             <div class="card-left">访问量</div>
@@ -35,6 +36,7 @@
               size="small"
               status="active"
               :show-info="false"
+              :stroke-color="{ '0%': color,'100%': color}"
             />
             <a-divider />
             <div class="card-left">销售量</div>
@@ -54,6 +56,7 @@
               style="margin-top: 16px"
               :percent="30"
               size="small"
+              :stroke-color="{ '0%': color,'100%': color}"
             />
             <a-divider />
             <div class="card-left">转化率</div>
@@ -74,6 +77,7 @@
               size="small"
               status="active"
               :show-info="false"
+              :stroke-color="{ '0%': color,'100%': color}"
             />
             <a-divider />
             <div class="card-left">用户量</div>
@@ -186,10 +190,14 @@
 </template>
 <script>
 import { Chart } from "@antv/g2";
-import { onMounted, ref, onUnmounted } from "vue";
+import { onMounted, ref, onUnmounted, computed } from "vue";
+import { useStore } from 'vuex';
 export default {
   setup() {
     const chartRef = ref(null);
+    const store = useStore()
+    const color = computed(() => store.getters.color);
+    
     onMounted(() => {
 
       const datass = [
@@ -220,18 +228,15 @@ export default {
 
       chart.axis("sales", false);
 
-      chart
-        .interval()
-        .position("year*sales")
-        .color("year*sales", function (year, sales) {
-          return "rgb(45, 140, 240)";
-        });
+      chart.interval().position("year*sales").color("year*sales", function (year, sales) {
+         return color.value;
+      });
 
       chart.interaction("active-region");
       chart.render();
     
     });
-    
+
     const data = [
       {
         title: "Ant Design Title 1",
@@ -248,7 +253,8 @@ export default {
     ];
 
     return {
-      data
+      data,
+      color,
     };
   },
 };

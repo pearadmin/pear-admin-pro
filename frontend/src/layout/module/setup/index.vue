@@ -438,12 +438,7 @@ export default {
     const onChangeTabType = function (value) {
       commit("layout/UPDATE_TAB_TYPE", value.key);
     };
-    /// 检测初始主题色
-    window.less.modifyVars({
-          "primary-color": color.value,
-          "btn-primary-bg": color.value,
-    })
-
+    
     return {
       tabType,
       toggleKeepAlive,

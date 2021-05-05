@@ -14,6 +14,7 @@ export default defineComponent({
   setup() {
     const store = useStore()
     const defaultLang = computed(() => store.getters['app/language'])
+    const color = computed(() => store.getters.color);
 
     const antdLocal = ref(
       computed(() => {
@@ -24,6 +25,9 @@ export default defineComponent({
     )
 
     /// 开局检测
+    window.less.modifyVars({
+      "primary-color": color.value,
+    })
     
     return {
       antdLocal
