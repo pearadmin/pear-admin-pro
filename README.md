@@ -21,8 +21,11 @@
     <a href="#">
         <img src="https://img.shields.io/badge/Vue-3.0.0+-green.svg" alt="Vue Version">
     </a>
-      <a href="#">
-        <img src="https://img.shields.io/badge/Spring Boot-2.4.0-green.svg" alt="Spring Boot Version">
+    <a href="#">
+        <img src="https://img.shields.io/badge/Ant Design Vue-2.0.0-green.svg" alt="Ant Design Vue Version">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/Spring Boot-2.4.5-green.svg" alt="Spring Boot Version">
     </a>
 </p>
 
