@@ -1,57 +1,53 @@
 <template>
   <div>
-    <page-header
-      title="数 据 字 典"
-      describe="用 户 Online 列 表，用 于 系 统 在 线 用 户 监 控."
-    ></page-header>
-    <page-layout>
-      <a-row :gutter="[10, 10]">
-        <a-col :span="12">
-          <a-card>
-          <!-- 列表 -->
-          <pro-table
-            rowKey="id"
-            :fetch="fetch"
-            :columns="columns"
-            :toolbar="toolbar"
-            :operate="operate"
-            :param="state.param"
-            :pagination="pagination"
-            :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
-          >
-          </pro-table>
-          </a-card>
-        </a-col>
-        <a-col :span="12">
-          <a-card>
-            <dictData :visible="state.visibleData" :record="state.recordData"></dictData>
-          </a-card>
-        </a-col>
-      </a-row>
-    </page-layout>
+    <pro-table v-if="visible"
+        rowKey="id"
+        :fetch="fetch"
+        :columns="columns"
+        :toolbar="toolbar"
+        :operate="operate"
+        :param="state.param"
+        :pagination="pagination"
+        :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
+    >
+    </pro-table>
+    <a-empty v-else />
     <save :visible="state.visibleSave" @close="closeSave"></save>
     <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
   </div>
 </template>
 <script>
-import save from "./modal/save";
-import edit from "./modal/edit";
-import data from "./modal/data";
+import save from "./data/save";
+import edit from "./data/edit";
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { page, remove, removeBatch } from "@/api/module/dict";
-import { reactive, createVNode } from 'vue';
+import { page, remove, removeBatch } from "@/api/module/dictData";
+import { reactive, createVNode, watch} from 'vue';
 
 const removeKey = "remove";
 const removeBatchKey = "removeBatch";
 
 export default {
+  props: {
+      visible: {
+          type: Boolean,
+          default: false
+      },
+      record: {
+          type: Object
+      }
+  },
   components: {
     save,
     edit,
-    dictData: data,
   },
-  setup() {
+  setup(props) {
+
+    /// 监听
+
+    watch(props,(props) => {
+        state.param.code = props.record.code;
+    })
 
     const switchFormat = { yes: true, no: false, event: function(value,record){
       record.enable = !record.enable;
@@ -59,8 +55,8 @@ export default {
     }}
 
     const columns = [
-      { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "标识" },
+      { dataIndex: "label", key: "label", title: "名称" },
+      { dataIndex: "value", key: "value", title: "标识" },
       { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat },
     ];
 
@@ -121,7 +117,7 @@ export default {
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { state.visibleData = true, state.recordData = record }},
+      { label: "查看", event: function (record) { state.dataParam = record.code }},
       { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
     ];
@@ -133,8 +129,6 @@ export default {
       param: { name: "", code: "" },
       visibleEdit: false,
       visibleSave: false,
-      visibleData: false,
-      recordData: {},
       recordEdit: {},
     });
 
