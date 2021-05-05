@@ -10,7 +10,7 @@
      开 箱 即 用 的 Spring Boot 企 业 级 开 发 平 台
   </h4> 
   
-  [预 览](http://ant.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)
+  [预 览](http://ant.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [群聊](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)  
 
 </div>
 
@@ -46,10 +46,10 @@
 ### 🍚 功能概览
 
 - [x] 用户管理: 用户是系统操作者，该功能主要完成系统用户配置。
-- [ ] 角色管理: 角色菜单权限分配、设置角色按机构进行数据范围权限划分。
+- [x] 角色管理: 角色菜单权限分配、设置角色按机构进行数据范围权限划分。
 - [ ] 权限管理: 配置系统菜单，操作权限，按钮权限标识等。
 - [x] 岗位管理: 配置系统用户所属担任职务。
-- [ ] 部门管理: 配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
+- [x] 部门管理: 配置系统组织机构（公司、部门、小组），树结构展现支持数据权限。
 - [x] 数据字典: 对系统中经常使用的一些较为固定的数据进行维护。
 - [x] 配置中心: 对系统动态配置常用参数。
 - [x] 运行环境: 监视当前系统CPU、内存、磁盘、堆栈等相关信息。
@@ -61,7 +61,7 @@
 - [x] 登录日志: 系统登录日志记录查询包含登录异常。
 - [x] 操作日志: 系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 - [x] 邮件发送: 发送邮件功能。
-- [x] 多数据源: 系统正常操作日志记录和查询；系统异常信息日志记录和查询。
+- [x] 多数据源: 适用于多种场景 纯粹多库 读写分离 一主多从 混合模式。
 - [x] 主题切换: 系统正常操作日志记录和查询；系统异常信息日志记录和查询。
 
 
@@ -126,7 +126,9 @@ Pear Admin Pro
 
 ### 📖 帮助文档
 
+👉前端文档：编写中
 
+👉后台文档：编写中
 
 ### 🍻 贡献代码
 
@@ -164,4 +166,3 @@ Pear Admin Pro
 - 👉 Ant Design Vue：[https://gitee.com/ant-design-vue/ant-design-vue](https://gitee.com/ant-design-vue/ant-design-vue)
 - 👉 Spring Boot：[https://github.com/spring-projects/spring-boot](https://github.com/spring-projects/spring-boot)
 - 👉 MyBatis Plus：[https://gitee.com/baomidou/mybatis-plus](https://gitee.com/baomidou/mybatis-plus)
-
