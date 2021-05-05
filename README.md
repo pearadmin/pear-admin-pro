@@ -5,6 +5,10 @@
   <h1 align="center">
     Pear Admin Pro
   </h1>
+
+  <p align="center">
+    state : develop
+  </p>
   
   <h4 align="center">
      开 箱 即 用 的 Spring Boot 企 业 级 开 发 平 台
