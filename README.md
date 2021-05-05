@@ -82,13 +82,17 @@ Pear Admin Pro
 │      │   │   │
 │      │   │   ├─aop 切面逻辑
 │      │   │   │
-│      │   │   ├─config 集成配置
+│      │   │   ├─cache 缓存服务
+│      │   │   │
+│      │   │   ├─configure 集成配置
 │      │   │   │
 │      │   │   ├─constant 静态常量
 │      │   │   │
-│      │   │   ├─interceptor 拦截器
+│      │   │   ├─context 核心服务
 │      │   │   │
-│      │   │   ├─secure 安全
+│      │   │   ├─quartz 定时任务
+│      │   │   │
+│      │   │   ├─secure 安全实现
 │      │   │   │
 │      │   │   ├─tools 工具包
 │      │   │   │
@@ -97,6 +101,17 @@ Pear Admin Pro
 │      │   ├─modules 业务代码
 │      │   │   │
 │      │   │   ├─job 定时任务
+│      │   │   │      │
+│      │   │   │      ├─domain 实体
+│      │   │   │      │
+│      │   │   │      ├─params 参数
+│      │   │   │      │
+│      │   │   │      ├─repository ORM 操作
+│      │   │   │      │
+│      │   │   │      ├─rest 接口
+│      │   │   │      │
+│      │   │   │      └─service 服务
+│      │   │   │        
 │      │   │   │
 │      │   │   └─sys 基础功能
 │      │   │   
