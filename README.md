@@ -143,8 +143,8 @@ Pear Admin Pro
 
 ### 💐 特别鸣谢
 
-- 👉 Vue：[https://gitee.com/baomidou/mybatis-plus](https://gitee.com/baomidou/mybatis-plus)
+- 👉 Vue Next：[https://github.com/vuejs/vue-next](https://github.com/vuejs/vue-next)
 - 👉 Ant Design Vue：[https://gitee.com/ant-design-vue/ant-design-vue](https://gitee.com/ant-design-vue/ant-design-vue)
-- 👉 Spring Boot：[https://gitee.com/baomidou/mybatis-plus](https://gitee.com/baomidou/mybatis-plus)
+- 👉 Spring Boot：[https://github.com/spring-projects/spring-boot](https://github.com/spring-projects/spring-boot)
 - 👉 MyBatis Plus：[https://gitee.com/baomidou/mybatis-plus](https://gitee.com/baomidou/mybatis-plus)
 
