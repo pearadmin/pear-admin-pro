@@ -136,3 +136,11 @@ Pear Admin Pro
 
 
 ### 🍻 贡献代码
+
+<p style="padding:10px;"  width="90%">
+
+1. 欢迎提交 [pull request](https://gitee.com/pear-admin/pear-admin-pro/pulls)，注意对应提交对应 `develop` 分支
+
+2. 欢迎提交 [issue](https://gitee.com/pear-admin/pear-admin-pro/issues)，请写清楚遇到问题的原因、开发环境、复显步骤。
+
+</p>
