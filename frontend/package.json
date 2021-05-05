@@ -3,10 +3,10 @@
   "version": "1.0.0-RELEASE",
   "private": true,
   "scripts": {
-    "serve-dev": "vue-cli-service serve --mode development",
-    "serve-pro": "vue-cli-service serve --mode production",
-    "build-dev": "vue-cli-service build --mode development",
-    "build-pro": "vue-cli-service build --mode production",
+    "serve-dev": "node generate && vue-cli-service serve --mode development",
+    "serve-pro": "node generate && vue-cli-service serve --mode production",
+    "build-dev": "node generate && vue-cli-service build --mode development",
+    "build-pro": "node generate && vue-cli-service build --mode production",
     "report": "vue-cli-service build --report"
   },
   "dependencies": {

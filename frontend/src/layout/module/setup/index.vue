@@ -429,11 +429,21 @@ export default {
       commit("layout/TOGGLE_KEEP_ALIVE");
     };
     const updateColor = function (color) {
+      window.less.modifyVars({
+          "primary-color": color,
+          "btn-primary-bg": color,
+      })
       commit("layout/UPDATE_COLOR", color);
     };
     const onChangeTabType = function (value) {
       commit("layout/UPDATE_TAB_TYPE", value.key);
     };
+    /// 检测初始主题色
+    window.less.modifyVars({
+          "primary-color": color.value,
+          "btn-primary-bg": color.value,
+    })
+
     return {
       tabType,
       toggleKeepAlive,
