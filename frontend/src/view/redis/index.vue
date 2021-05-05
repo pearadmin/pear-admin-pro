@@ -38,7 +38,7 @@ export default {
 
     const infoData = ref({});
 
-    const sizeData = [];
+    const sizeData = [{date: 'Start',value: 0}];
 
     /// 加载详情
     const loadInfo = async function () {

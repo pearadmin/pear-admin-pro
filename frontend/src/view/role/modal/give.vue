@@ -1,11 +1,11 @@
 <template>
   <a-modal :visible="visible" title="分配权限" cancelText="取消" okText="保存" @ok="submit" @cancel="cancel">
-    <a-tree
-       checkable
-      :tree-data="state.powers"
-      :replace-fields="state.replaceFields"
-       v-model:checkedKeys="state.checkedKeys"
-    />
+        <a-tree
+          checkable
+          :tree-data="state.powers"
+          :replace-fields="state.replaceFields"
+          v-model:checkedKeys="state.checkedKeys"
+        />
   </a-modal>
 </template>
 <script>
