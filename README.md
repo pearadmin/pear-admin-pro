@@ -41,7 +41,7 @@
 
 ### ☘ 更新日志
 
-[查看日志](https://gitee.com/pear-admin/pear-admin-pro/releases)
+更新日志 [查看日志](https://gitee.com/pear-admin/pear-admin-pro/releases)
 
 ### 🍚 功能概览
 
