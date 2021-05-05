@@ -3,7 +3,8 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysPowerRepository">
 
     <select id="selectList" resultType="SysPower">
-        select * from sys_power
+        select * from sys_power sp
+        order by sp.sort asc
     </select>
 
     <!-- 根据 userId 查询权限 enable 可用 type = 2 操作权限 -->

@@ -37,13 +37,16 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { save } from "@/api/module/dict";
-import { defineComponent, reactive, ref, toRaw } from "vue";
+import { save } from "@/api/module/dictData";
+import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 export default defineComponent({
   props: {
     visible: {
       type: Boolean,
     },
+    record: {
+      type: Object,
+    }
   },
   emit: ["close"],
   setup(props, context) {
@@ -51,9 +54,13 @@ export default defineComponent({
     const formRef = ref();
     
     const formState = reactive({
-      sort: 0,
-      enable: "true",
+        sort: 0,
+        enable: "true",
     });
+
+    watch(props,(props)=>{
+        formState.code = props.record.code
+    })
 
     const formRules = {
       name: [

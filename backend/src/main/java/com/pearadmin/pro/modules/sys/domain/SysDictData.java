@@ -39,4 +39,9 @@ public class SysDictData extends BaseDomain {
      * */
     private String code;
 
+    /**
+     * 排序
+     * */
+    private String sort;
+
 }

@@ -12,7 +12,7 @@
     >
     </pro-table>
     <a-empty v-else />
-    <save :visible="state.visibleSave" @close="closeSave"></save>
+    <save :visible="state.visibleSave" @close="closeSave" :record="state.recordSave"></save>
     <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
   </div>
 </template>
@@ -111,13 +111,13 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function () { state.visibleSave = true }},
+      { label: "新增", event: function () { state.visibleSave = true, state.recordSave = props.record }},
       { label: "删除", event: function () { removeBatchMethod(state.selectedRowKeys) }},
     ];
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { state.dataParam = record.code }},
+      { label: "查看", event: function (record) {  }},
       { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
     ];
@@ -130,6 +130,7 @@ export default {
       visibleEdit: false,
       visibleSave: false,
       recordEdit: {},
+      recordSave: {},
     });
 
     const onSelectChange = selectedRowKeys => {

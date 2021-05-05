@@ -37,7 +37,7 @@
 </template>
 <script>
 import { message } from 'ant-design-vue';
-import { edit } from "@/api/module/dict";
+import { edit } from "@/api/module/dictData";
 import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 export default defineComponent({
   props: {

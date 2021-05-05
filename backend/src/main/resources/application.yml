@@ -10,13 +10,21 @@ spring:
     active: dev
   ## 邮件配置
   mail:
+    ## 协议
     protocol: smtp
+    ## 地址
     host: smtp.qq.com
+    ## 端口
     port: 587
+    ## 账户
     username: 854085467@qq.com
+    ## 密钥
     password: ndbkhgbzftqbbbaa
+    ## 字符集
     default-encoding: UTF-8
+    ## 测试
     test-connection: true
+    ## 来源
     from: 854085467@qq.com
 
 ## mybatis 配置
