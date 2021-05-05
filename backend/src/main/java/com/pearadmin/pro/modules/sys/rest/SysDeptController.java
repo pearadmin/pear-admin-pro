@@ -71,6 +71,10 @@ public class SysDeptController extends BaseController {
     @SysLog(title = "删除部门")
     @ApiOperation(value = "删除部门")
     public Result remove(String id){
+
+        /// 检 测 是 否 存 在 子 部 门
+        if(sysDeptService.lambdaQuery().eq(SysDept::getParent,id).count() > 0) return failure();
+
         return auto(sysDeptService.removeById(id));
     }
 

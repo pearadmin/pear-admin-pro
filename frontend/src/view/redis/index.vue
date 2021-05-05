@@ -35,8 +35,6 @@ import { computed, onMounted, ref } from "vue";
 import { useStore } from 'vuex';
 export default {
   setup() {
-    const store = useStore()
-    const color = computed(() => store.getters.color);
 
     const infoData = ref({});
 
@@ -52,6 +50,9 @@ export default {
 
     /// 加载报表
     onMounted(async () =>  {
+
+      const store = useStore()
+      const color = computed(() => store.getters.color);
 
       const sizeChart = new Chart({
         container: "size",
@@ -74,7 +75,7 @@ export default {
 
       sizeChart.line().position("date*value").label("value");
       sizeChart.point().position("date*value");
-      sizeChart.theme({ styleSheet: { brandColor: color } });
+      sizeChart.theme({ styleSheet: { brandColor: color.value } });
       sizeChart.render();
 
       setInterval(()=>{

@@ -34,3 +34,21 @@ export const edit = data => {
         method: 'PUT'
     })
 }
+
+/** 删除部门 */
+export const remove = data => {
+    return http.request({
+        url: Api.remove,
+        params: data,
+        method: 'DELETE'
+    })
+}
+
+/** 批量删除 */
+export const removeBatch = data => {
+    return http.request({
+        url: Api.removeBatch,
+        params: data,
+        method: 'DELETE'
+    })
+}

@@ -14,7 +14,8 @@
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
     >
-      <a-form-item label="上级" name="parent">
+      <!-- 当前部门为根部门, 则不提供上级部门选择 -->
+      <a-form-item label="上级" name="parent" v-if="formState.parent != 0 ">
           <a-tree-select
             v-model:value="formState.parent"
             style="width: 100%"

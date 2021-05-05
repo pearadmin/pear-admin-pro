@@ -3,10 +3,7 @@ package com.pearadmin.pro.modules.sys.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.common.web.base.page.Pageable;
-import com.pearadmin.pro.modules.sys.domain.SysDept;
-import com.pearadmin.pro.modules.sys.domain.SysPower;
-import com.pearadmin.pro.modules.sys.domain.SysRole;
-import com.pearadmin.pro.modules.sys.domain.SysRolePower;
+import com.pearadmin.pro.modules.sys.domain.*;
 import com.pearadmin.pro.modules.sys.repository.SysDeptRepository;
 import com.pearadmin.pro.modules.sys.repository.SysPowerRepository;
 import com.pearadmin.pro.modules.sys.repository.SysRolePowerRepository;
@@ -14,6 +11,7 @@ import com.pearadmin.pro.modules.sys.repository.SysRoleRepository;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 import com.pearadmin.pro.modules.sys.service.SysRolePowerService;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
+import com.pearadmin.pro.modules.sys.service.SysUserRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,6 +35,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
 
     @Resource
     private SysPowerRepository sysPowerRepository;
+
+    @Resource
+    private SysUserRoleService sysUserRoleService;
 
     @Override
     public List<SysDept> dept(String roleId) {
@@ -77,6 +78,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
     public boolean removeById(Serializable id) {
         sysRoleRepository.deleteById(id);
         sysRolePowerService.lambdaUpdate().eq(SysRolePower::getRoleId,id).remove();
+        sysUserRoleService.lambdaUpdate().eq(SysUserRole::getRoleId,id).remove();
         return true;
     }
 
