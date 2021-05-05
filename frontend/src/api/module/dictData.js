@@ -1,11 +1,11 @@
 import http from '../http'
 
 const Api = {
-    page: '/api/sys/dict/page',
-    save: '/api/sys/dict/save',
-    edit: '/api/sys/dict/edit',
-    remove: '/api/sys/dict/remove',
-    removeBatch: '/api/sys/dict/removeBatch',
+    page: '/api/sys/dict/data/page',
+    save: '/api/sys/dict/data/save',
+    edit: '/api/sys/dict/data/edit',
+    remove: '/api/sys/dict/data/remove',
+    removeBatch: '/api/sys/dict/data/removeBatch',
 }
 
 export const page = data => {
