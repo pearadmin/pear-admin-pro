@@ -1,16 +1,16 @@
 spring:
-  ## Mysql 数据库
   datasource:
     dynamic:
-      ## 默认启用
+      ## 默认数据源
       primary: master
       strict: false
       datasource:
         ## 主库配置
         master:
-          url: jdbc:mysql://mysql.pearadmin.com/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
+          url: jdbc:mysql://localhost:3306/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
           username: root
-          password: pear-mysql
+          password: root
+      ## 连接池配置
       hikari:
         max-lifetime: 30000
         min-idle: 3
@@ -21,18 +21,40 @@ spring:
   redis:
     ## 默认数据库
     database: 2
-    ## 链接信息
+    ## 配置信息
     host: 127.0.0.1
     port: 6379
     password:
     ## 超时时间
     timeout: 3000
-    ## lettuce 配置
+    ## 连接池配置
     lettuce:
-      ## 连接池配置
       pool:
-        ## 优化配置
         max-active: 8
         max-wait: -1
         max-idle: 6
         min-idle: 0
+
+  ## 定时任务配置
+  quartz:
+    job-store-type: jdbc
+    overwrite-existing-jobs: true
+    auto-startup: true
+    properties:
+      org:
+        quartz:
+          scheduler:
+            instanceName: PearScheduler
+            instanceId: AUTO
+          jobStore:
+            class: org.quartz.impl.jdbcjobstore.JobStoreTX
+            driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate #跟数据库初始化脚本中配置保持一致
+            tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
+            useProperties: false
+          threadPool:
+            class: org.quartz.simpl.SimpleThreadPool
+            threadCount: 20
+            threadPriority: 5
+            threadsInheritContextClassLoaderOfInitializingThread: true

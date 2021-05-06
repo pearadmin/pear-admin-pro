@@ -169,8 +169,8 @@ export default {
       operate, // 行操作
       pagination, // 分页配置
 
-      search: search,
-      searchParam: searchParam, // 查询参数
+      search,
+      searchParam, // 查询参数
     
       closeSave,
       closeEdit,

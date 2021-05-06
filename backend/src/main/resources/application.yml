@@ -19,7 +19,7 @@ spring:
     ## 账户
     username: 854085467@qq.com
     ## 密钥
-    password: ndbkhgbzftqbbbaa
+    password:
     ## 字符集
     default-encoding: UTF-8
     ## 测试
