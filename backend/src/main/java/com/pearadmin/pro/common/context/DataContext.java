@@ -3,6 +3,7 @@ package com.pearadmin.pro.common.context;
 import com.baomidou.dynamic.datasource.DynamicRoutingDataSource;
 import com.baomidou.dynamic.datasource.creator.DataSourceCreator;
 import com.baomidou.dynamic.datasource.spring.boot.autoconfigure.DataSourceProperty;
+import com.baomidou.dynamic.datasource.toolkit.DynamicDataSourceContextHolder;
 import com.pearadmin.pro.modules.sys.domain.SysDataSource;
 import com.pearadmin.pro.modules.sys.param.SysDataSourceRequest;
 import com.pearadmin.pro.modules.sys.service.SysDataSourceService;
@@ -45,6 +46,20 @@ public class DataContext {
 
         DataSource dataSource = dataSourceCreator.createDataSource(dsp);
         dynamicRoutingDataSource.addDataSource(name, dataSource);
+    }
+
+    /**
+     * 切换数据源
+     * */
+    public void changeDataSource(String name){
+        DynamicDataSourceContextHolder.push(name);
+    }
+
+    /**
+     * 清空数据源
+     * */
+    public void cleanDataSource(String name) {
+        DynamicDataSourceContextHolder.poll();
     }
 
     /**

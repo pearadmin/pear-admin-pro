@@ -19,7 +19,6 @@ import java.util.List;
 @Component
 public class UserContext {
 
-
     /**
      * Authentication 认证对象
      * */

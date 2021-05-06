@@ -41,9 +41,10 @@ public class BeanContext  implements ApplicationContextAware {
         return applicationContext.getBean(name, clazz);
     }
 
-    public static<T> T getBean( Class<T> clazz){
-        return applicationContext.getBean(clazz);
-    }
+    /**
+     * 获取 Bean 实例
+     * */
+    public static<T> T getBean( Class<T> clazz){ return applicationContext.getBean(clazz); }
 
     /**
      * Bean 是否存在
