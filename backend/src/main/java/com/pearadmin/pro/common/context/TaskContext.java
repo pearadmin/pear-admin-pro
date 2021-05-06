@@ -1,6 +1,9 @@
 package com.pearadmin.pro.common.context;
 
+import org.quartz.Scheduler;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * Task Context
@@ -10,6 +13,9 @@ import org.springframework.stereotype.Component;
  * */
 @Component
 public class TaskContext {
+
+    @Resource
+    private Scheduler scheduler;
 
     /**
      * 保存定时任务

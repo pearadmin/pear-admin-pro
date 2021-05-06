@@ -35,26 +35,33 @@ spring:
         max-idle: 6
         min-idle: 0
 
-  ## 定时任务配置
   quartz:
+    # 将任务等保存化到数据库
     job-store-type: jdbc
+    # 程序结束时会等待quartz相关的内容结束
+    wait-for-jobs-to-complete-on-shutdown: true
+    # QuartzScheduler 启动时更新己存在的Job
     overwrite-existing-jobs: true
-    auto-startup: true
+    # 详细配置
     properties:
       org:
         quartz:
+          # scheduler相关
           scheduler:
-            instanceName: PearScheduler
+            # scheduler的实例名
+            instanceName: scheduler
             instanceId: AUTO
+          # 持久化相关
           jobStore:
             class: org.quartz.impl.jdbcjobstore.JobStoreTX
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
             tablePrefix: QRTZ_
-            isClustered: true
-            clusterCheckinInterval: 10000
             useProperties: false
+          # 线程池相关
           threadPool:
             class: org.quartz.simpl.SimpleThreadPool
-            threadCount: 20
+            # 线程数
+            threadCount: 10
+            # 线程优先级
             threadPriority: 5
             threadsInheritContextClassLoaderOfInitializingThread: true
