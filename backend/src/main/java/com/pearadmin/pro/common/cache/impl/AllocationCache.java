@@ -29,6 +29,6 @@ public class AllocationCache extends BaseCache<String> {
     {
         log.info("Refresh Cache - 全局配置");
         List<SysConfig> list = sysConfigService.list(new SysConfigRequest());
-        return list.stream().collect(Collectors.toMap(e -> e.getKey(), SysConfig::getValue));
+        return list.stream().collect(Collectors.toMap(SysConfig::getKey, SysConfig::getValue));
     }
 }
