@@ -240,12 +240,15 @@ export default defineComponent({
 
     /// 数据请求
     const fetchData = async (pagination) => {
-      
+      /// 分页处理
+      if(pagination!=undefined){
+        state.pagination.pageNum = pagination.current;
+      }
       /// 开启加载
       state.loading = true;
       /// 请求数据
       const { total, data } = await props.fetch(
-        Object.assign({}, pagination, props.param)
+        Object.assign({}, state.pagination, props.param)
       );
       /// 状态重置
       if(state.pagination != false){
