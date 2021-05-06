@@ -18,6 +18,6 @@ public interface SysLogRepository extends BaseMapper<SysLog> {
      *
      * @return {@link SysLog}
      * */
-    List<SysLog> selectList(@Param("request") SysLogRequest request);
+    List<SysLog> selectLog(@Param("request") SysLogRequest request);
 
 }

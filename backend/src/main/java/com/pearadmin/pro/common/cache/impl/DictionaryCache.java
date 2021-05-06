@@ -23,11 +23,24 @@ import java.util.Map;
 @Component
 public class DictionaryCache extends BaseCache<List<SysDictData>> {
 
+    @Resource
+    private SysDictService sysDictService;
+
+    @Resource
+    private SysDictDataService sysDictDataService;
+
     @Override
     public Map<String, List<SysDictData>> load()
     {
         log.info("Refresh Cache - 数据字典");
-
+        Map<String, List<SysDictData>> map = new HashMap<>();
+        List<SysDict> dictList = sysDictService.lambdaQuery().eq(SysDict::isEnable,true).list();
+        dictList.forEach(dict -> {
+            List<SysDictData> dictData = sysDictDataService.lambdaQuery()
+                    .eq(SysDictData::getCode, dict.getCode())
+                    .eq(SysDictData::isEnable,true).list();
+            map.put(dict.getCode(),dictData);
+        });
         return new HashMap<>();
     }
 }

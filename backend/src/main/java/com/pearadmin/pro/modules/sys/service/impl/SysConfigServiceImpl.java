@@ -20,11 +20,11 @@ public class SysConfigServiceImpl extends ServiceImpl<SysConfigRepository, SysCo
 
     @Override
     public List<SysConfig> list(SysConfigRequest request) {
-        return sysConfigRepository.selectList(request);
+        return sysConfigRepository.selectConfig(request);
     }
 
     @Override
     public PageResponse<SysConfig> page(SysConfigRequest request) {
-        return Pageable.of(request,(()-> sysConfigRepository.selectList(request)));
+        return Pageable.of(request,(()-> sysConfigRepository.selectConfig(request)));
     }
 }

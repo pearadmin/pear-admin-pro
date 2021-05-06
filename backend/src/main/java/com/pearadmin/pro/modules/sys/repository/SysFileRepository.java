@@ -16,5 +16,5 @@ public interface SysFileRepository extends BaseMapper<SysFile> {
      *
      * @return {@link SysFile}
      * */
-    List<SysFile> selectList(SysFileRequest request);
+    List<SysFile> selectFile(SysFileRequest request);
 }

@@ -19,11 +19,11 @@ public class SysFileServiceImpl extends ServiceImpl<SysFileRepository, SysFile> 
 
     @Override
     public List<SysFile> list(SysFileRequest request) {
-        return sysFileRepository.selectList(request);
+        return sysFileRepository.selectFile(request);
     }
 
     @Override
     public PageResponse<SysFile> page(SysFileRequest request) {
-        return Pageable.of(request,(()-> sysFileRepository.selectList(request)));
+        return Pageable.of(request,(()-> sysFileRepository.selectFile(request)));
     }
 }

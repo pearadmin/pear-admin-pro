@@ -45,4 +45,5 @@ public class SysDept extends TreeDomain<SysDept> {
      * */
     @TableField("address")
     private String address;
+
 }

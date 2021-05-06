@@ -19,7 +19,7 @@ public class SysPowerServiceImpl extends ServiceImpl<SysPowerRepository, SysPowe
     @Override
     public List<SysPower> tree() {
         // List to Tree
-        return toTree(sysPowerRepository.selectList(),"0");
+        return toTree(sysPowerRepository.selectPower(),"0");
     }
 
     public List<SysPower> toTree(List<SysPower> sysMenus,String parent) {

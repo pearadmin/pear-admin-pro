@@ -18,5 +18,5 @@ public interface SysDictRepository extends BaseMapper<SysDict> {
      *
      * @return {@link SysDict}
      * */
-    List<SysDict> selectList(@Param("request") SysDictRequest request);
+    List<SysDict> selectDict(@Param("request") SysDictRequest request);
 }

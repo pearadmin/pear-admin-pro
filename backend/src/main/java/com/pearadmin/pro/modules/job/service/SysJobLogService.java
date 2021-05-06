@@ -21,4 +21,5 @@ public interface SysJobLogService extends IService<SysJobLog> {
      * @param request 查询参数
      * */
     PageResponse<SysJobLog> page(SysJobLogRequest request);
+
 }

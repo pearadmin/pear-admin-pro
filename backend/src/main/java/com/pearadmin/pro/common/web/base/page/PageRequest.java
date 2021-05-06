@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * 分页参数
+ * 分 页 参 数
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01

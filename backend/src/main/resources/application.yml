@@ -7,6 +7,7 @@ server:
 spring:
   ## 动态配置
   profiles:
+    ## 状态
     active: dev
   ## 邮件配置
   mail:
@@ -19,7 +20,7 @@ spring:
     ## 账户
     username: 854085467@qq.com
     ## 密钥
-    password:
+    password: ndbkhgbzftqbbbaa
     ## 字符集
     default-encoding: UTF-8
     ## 测试
@@ -35,6 +36,7 @@ mybatis-plus:
   type-aliases-package: com.pearadmin
   ## 日志打印
   configuration:
+    ## 日志实现
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 ## 分页工具

@@ -20,11 +20,11 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogRepository, SysLog> imp
 
     @Override
     public List<SysLog> list(SysLogRequest request) {
-        return sysLogRepository.selectList(request);
+        return sysLogRepository.selectLog(request);
     }
 
     @Override
     public PageResponse<SysLog> page(SysLogRequest request) {
-        return Pageable.of(request,(()-> sysLogRepository.selectList(request)));
+        return Pageable.of(request,(()-> sysLogRepository.selectLog(request)));
     }
 }

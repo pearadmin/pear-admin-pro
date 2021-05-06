@@ -27,12 +27,12 @@ implements SysDataSourceService {
 
     @Override
     public List<SysDataSource> list(SysDataSourceRequest request) {
-        return sysDataSourceRepository.selectList(request);
+        return sysDataSourceRepository.selectDataSource(request);
     }
 
     @Override
     public PageResponse<SysDataSource> page(SysDataSourceRequest request) {
-        return Pageable.of(request, () -> sysDataSourceRepository.selectList(request));
+        return Pageable.of(request, () -> sysDataSourceRepository.selectDataSource(request));
     }
 
     @Override

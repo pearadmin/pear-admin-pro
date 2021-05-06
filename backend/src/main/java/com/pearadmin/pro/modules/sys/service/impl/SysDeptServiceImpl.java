@@ -19,7 +19,7 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptRepository, SysDept> 
 
     @Override
     public List<SysDept> tree() {
-        return toTree(sysDeptRepository.selectList(),"0");
+        return toTree(sysDeptRepository.selectDept(),"0");
     }
 
     public List<SysDept> toTree(List<SysDept> sysDept, String parent) {

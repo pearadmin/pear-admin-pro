@@ -19,11 +19,11 @@ public class SysDictDataServiceImpl extends ServiceImpl<SysDictDataRepository, S
 
     @Override
     public List<SysDictData> list(SysDictDataRequest request) {
-        return sysDictDataRepository.selectList(request);
+        return sysDictDataRepository.selectDictData(request);
     }
 
     @Override
     public PageResponse<SysDictData> page(SysDictDataRequest request) {
-        return Pageable.of(request,(()-> sysDictDataRepository.selectList(request)));
+        return Pageable.of(request,(()-> sysDictDataRepository.selectDictData(request)));
     }
 }

@@ -53,14 +53,8 @@ export default defineComponent({
     });
 
     const formRules = {
-      name: [
-        { required: true, message: '请输入用户名', trigger: 'blur'},
-        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
-      ],
-      code: [
-        { required: true, message: '请输入用户名', trigger: 'blur'},
-        { min: 3, max: 5, message: '长度应为 3 到 5', trigger: 'blur'},
-      ]
+      name: [ { required: true, message: '请输入岗位名称', trigger: 'blur'} ],
+      code: [ { required: true, message: '请输入岗位编号', trigger: 'blur'} ]
     };
 
     const saveKey = "save";

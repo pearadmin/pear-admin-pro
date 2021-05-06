@@ -1,5 +1,7 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -16,15 +18,18 @@ public class SysRolePower {
     /**
      * 编号
      * */
+    @TableId("id")
     private String id;
 
     /**
      * 角色编号
      * */
+    @TableField("role_id")
     private String roleId;
 
     /**
      * 权限编号
      * */
+    @TableField("power_id")
     private String powerId;
 }

@@ -14,7 +14,7 @@ public interface SysPowerRepository extends BaseMapper<SysPower> {
      *
      * @return {@link SysPower}
      * */
-    List<SysPower> selectList();
+    List<SysPower> selectPower();
 
     /**
      * 根据 userId 获取权限列表

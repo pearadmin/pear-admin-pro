@@ -18,6 +18,6 @@ public interface SysConfigRepository extends BaseMapper<SysConfig> {
      *
      * @return {@link SysConfig}
      * */
-    List<SysConfig> selectList(@Param("request") SysConfigRequest request);
+    List<SysConfig> selectConfig(@Param("request") SysConfigRequest request);
 
 }

@@ -45,12 +45,12 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
 
     @Override
     public List<SysUser> list(SysUserRequest request) {
-        return sysUserRepository.selectList(request);
+        return sysUserRepository.selectUser(request);
     }
 
     @Override
     public PageResponse<SysUser> page(SysUserRequest request) {
-        return Pageable.of(request, (()-> sysUserRepository.selectList(request)));
+        return Pageable.of(request, (()-> sysUserRepository.selectUser(request)));
     }
 
     @Override

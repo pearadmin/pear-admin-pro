@@ -9,7 +9,7 @@
         where su.id = #{userId} and sr.enable = 1
     </select>
 
-    <select id="selectList" resultType="SysRole">
+    <select id="selectRole" resultType="SysRole">
         select * from sys_role sr
         <where>
             <if test="request.name!=null and request.name!=''">

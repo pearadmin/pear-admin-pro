@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.List;
 
 /**
- * Page Response 分页结果集
+ * 分 页 结 果
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01

@@ -29,12 +29,12 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictRepository, SysDict> 
 
     @Override
     public List<SysDict> list(SysDictRequest request) {
-        return sysDictRepository.selectList(request);
+        return sysDictRepository.selectDict(request);
     }
 
     @Override
     public PageResponse<SysDict> page(SysDictRequest request) {
-        return Pageable.of(request,(()-> sysDictRepository.selectList(request)));
+        return Pageable.of(request,(()-> sysDictRepository.selectDict(request)));
     }
 
     @Override

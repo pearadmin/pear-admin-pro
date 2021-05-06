@@ -27,5 +27,5 @@ public interface SysRoleRepository extends BaseMapper<SysRole> {
      *
      * @return {@link SysRole}
      * */
-    List<SysRole> selectList(@Param("request") SysRoleRequest request);
+    List<SysRole> selectRole(@Param("request") SysRoleRequest request);
 }

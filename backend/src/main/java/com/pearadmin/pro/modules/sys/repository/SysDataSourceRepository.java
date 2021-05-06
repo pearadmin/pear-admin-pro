@@ -10,5 +10,5 @@ import java.util.List;
 @Mapper
 public interface SysDataSourceRepository extends BaseMapper<SysDataSource> {
 
-    List<SysDataSource> selectList(@Param("request") SysDataSourceRequest request);
+    List<SysDataSource> selectDataSource(@Param("request") SysDataSourceRequest request);
 }

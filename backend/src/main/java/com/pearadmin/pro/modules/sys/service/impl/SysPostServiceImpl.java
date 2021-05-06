@@ -20,11 +20,11 @@ public class SysPostServiceImpl extends ServiceImpl<SysPostRepository, SysPost> 
 
     @Override
     public List<SysPost> list(SysPostRequest request) {
-        return sysPostRepository.selectList(request);
+        return sysPostRepository.selectPost(request);
     }
 
     @Override
     public PageResponse<SysPost> page(SysPostRequest request) {
-        return Pageable.of(request,(()-> sysPostRepository.selectList(request)));
+        return Pageable.of(request,(()-> sysPostRepository.selectPost(request)));
     }
 }

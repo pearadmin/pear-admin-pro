@@ -10,6 +10,7 @@ import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;

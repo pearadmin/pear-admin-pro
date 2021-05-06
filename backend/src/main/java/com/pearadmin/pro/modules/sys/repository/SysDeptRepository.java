@@ -30,5 +30,5 @@ public interface SysDeptRepository extends BaseMapper<SysDept> {
      *
      * @return {@link SysDept}
      * */
-    List<SysDept> selectList();
+    List<SysDept> selectDept();
 }

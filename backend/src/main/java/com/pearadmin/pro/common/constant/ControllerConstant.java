@@ -28,5 +28,4 @@ public class ControllerConstant {
      * */
     public static final String PREFIX_OSS = PREFIX + "/oss/";
 
-
 }

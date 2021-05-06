@@ -16,5 +16,5 @@ public interface SysPostRepository extends BaseMapper<SysPost> {
      *
      * @return {@link SysPost}
      * */
-    List<SysPost> selectList(@Param("request") SysPostRequest request);
+    List<SysPost> selectPost(@Param("request") SysPostRequest request);
 }

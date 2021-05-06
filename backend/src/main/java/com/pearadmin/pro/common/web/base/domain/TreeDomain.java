@@ -1,7 +1,6 @@
 package com.pearadmin.pro.common.web.base.domain;
 
 import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 import com.baomidou.mybatisplus.annotation.TableField;

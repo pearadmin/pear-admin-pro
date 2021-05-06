@@ -13,5 +13,9 @@ import org.apache.ibatis.type.Alias;
 @Alias("SysPowerRequest")
 public class SysPowerRequest {
 
+    /**
+     * 权 限 名 称
+     * */
     private String name;
+
 }

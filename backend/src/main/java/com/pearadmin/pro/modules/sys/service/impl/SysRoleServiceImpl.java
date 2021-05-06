@@ -46,12 +46,12 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
 
     @Override
     public List<SysRole> list(SysRoleRequest request) {
-        return sysRoleRepository.selectList(request);
+        return sysRoleRepository.selectRole(request);
     }
 
     @Override
     public PageResponse<SysRole> page(SysRoleRequest request) {
-        return Pageable.of(request,() -> sysRoleRepository.selectList(request));
+        return Pageable.of(request,() -> sysRoleRepository.selectRole(request));
     }
 
     @Override

@@ -12,7 +12,6 @@ public class SimpleShellQuartz implements BaseQuartz {
 
     @Override
     public void run() {
-
         // TODO Simple Shell
     }
 }
