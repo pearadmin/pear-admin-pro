@@ -18,8 +18,8 @@ import java.util.Set;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/10/23
  */
-@EqualsAndHashCode(callSuper = true)
 @Data
+@EqualsAndHashCode(callSuper = true)
 public class SecureUser extends BaseDomain implements UserDetails, CredentialsContainer {
 
     /**
