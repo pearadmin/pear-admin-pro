@@ -1,16 +1,16 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.modules.sys.param.SysRolePowerRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -31,7 +31,7 @@ public class SysRoleController extends BaseController {
      * @return {@link SysRole}
      */
     @GetMapping("page")
-    @SysLog(title = "查询角色")
+    @Log(title = "查询角色")
     @ApiOperation(value = "查询角色")
     public Result page(SysRoleRequest request){
         return success(sysRoleService.page(request));
@@ -45,7 +45,7 @@ public class SysRoleController extends BaseController {
      * @return {@link SysRole}
      */
     @GetMapping("list")
-    @SysLog(title = "查询角色")
+    @Log(title = "查询角色")
     @ApiOperation(value = "查询角色")
     public Result list(SysRoleRequest request) {
         return success(sysRoleService.list(request));
@@ -59,7 +59,7 @@ public class SysRoleController extends BaseController {
      * @return {@link Boolean}
      */
     @PostMapping("save")
-    @SysLog(title = "新增角色")
+    @Log(title = "新增角色")
     @ApiOperation(value = "新增角色")
     public Result save(@RequestBody SysRole sysRole){
         return auto(sysRoleService.save(sysRole));
@@ -73,7 +73,7 @@ public class SysRoleController extends BaseController {
      * @return {@link Boolean}
      */
     @PutMapping("edit")
-    @SysLog(title = "修改角色")
+    @Log(title = "修改角色")
     @ApiOperation(value = "修改角色")
     public Result edit(@RequestBody SysRole sysRole){
         return auto(sysRoleService.updateById(sysRole));
@@ -87,7 +87,7 @@ public class SysRoleController extends BaseController {
      * @return {@link Boolean}
      */
     @DeleteMapping("remove")
-    @SysLog(title = "删除角色")
+    @Log(title = "删除角色")
     @ApiOperation(value = "删除角色")
     public Result remove(@RequestParam String id){
         return auto(sysRoleService.removeById(id));
@@ -101,7 +101,7 @@ public class SysRoleController extends BaseController {
      * @return {@link Boolean}
      * */
     @DeleteMapping("removeBatch")
-    @SysLog(title = "删除角色")
+    @Log(title = "删除角色")
     @ApiOperation(value = "删除角色")
     public Result removeBatch(@RequestParam List<String> ids) { return auto(sysRoleService.removeByIds(ids)); }
 
@@ -111,7 +111,7 @@ public class SysRoleController extends BaseController {
      * @param request 参数实体
      * */
     @PostMapping("give")
-    @SysLog(title = "分配权限")
+    @Log(title = "分配权限")
     @ApiOperation(value = "分配权限")
     public Result give(@RequestBody SysRolePowerRequest request){
         return success(sysRoleService.give(request.getRoleId(), request.getPowerIds()));
@@ -123,11 +123,10 @@ public class SysRoleController extends BaseController {
      * @param roleId 角色编号
      * */
     @GetMapping("power")
-    @SysLog(title = "角色权限")
+    @Log(title = "角色权限")
     @ApiOperation(value = "角色权限")
     public Result power(@RequestParam String roleId){
         return success(sysRoleService.power(roleId));
     }
-
 
 }

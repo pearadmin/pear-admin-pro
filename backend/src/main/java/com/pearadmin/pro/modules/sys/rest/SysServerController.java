@@ -1,6 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.tools.support.server.Server;
 import com.pearadmin.pro.common.web.base.BaseController;
@@ -25,7 +25,7 @@ public class SysServerController extends BaseController {
      * @return {@link Server}
      * */
     @GetMapping("info")
-    @SysLog(title = "服务详情")
+    @Log(title = "服务详情")
     @ApiOperation(value = "服务详情")
     public Result server() throws Exception{
         Server server = new Server();

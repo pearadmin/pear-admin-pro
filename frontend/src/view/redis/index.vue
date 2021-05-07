@@ -9,20 +9,17 @@
         <a-col :span="24">
           <a-card>
             <a-row>
-              <a-col :span="12">
+              <a-col :span="6">
                 <h2>Redis</h2>
               </a-col>
-              <a-col :span="12"> </a-col>
+              <a-col :span="12"></a-col>
             </a-row>
           </a-card>
         </a-col>
         <a-col :span="24">
-          <a-card title="数量">
+          <a-card title="数量监控">
             <div id="size" style="width: 100%"></div>
           </a-card>
-        </a-col>
-        <a-col :span="24">
-          <a-card title="缓存列表"> </a-card>
         </a-col>
       </a-row>
     </page-layout>

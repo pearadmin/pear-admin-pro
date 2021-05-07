@@ -41,6 +41,10 @@ public enum Action {
     /**
      * 导出
      * */
-    REPORT
+    REPORT,
 
+    /**
+     * 上传
+     * */
+    UPLOAD,
 }

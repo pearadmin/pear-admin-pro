@@ -3,7 +3,7 @@ package com.pearadmin.pro.modules.sys.rest;
 import com.pearadmin.pro.common.aop.enums.Action;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.modules.sys.param.SysLogRequest;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -35,7 +35,7 @@ public class SysLogController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("page")
-    @SysLog(title = "查询日志")
+    @Log(title = "查询日志")
     @ApiOperation(value = "查询日志")
     public Result page(SysLogRequest request){
         return success(sysLogService.page(request));
@@ -47,7 +47,7 @@ public class SysLogController extends BaseController {
      * @param isAuth 日志类型
      */
     @DeleteMapping("clean")
-    @SysLog(title = "清空日志")
+    @Log(title = "清空日志")
     @ApiOperation(value = "清空日志")
     public Result clean(Boolean isAuth){
         if(isAuth) {

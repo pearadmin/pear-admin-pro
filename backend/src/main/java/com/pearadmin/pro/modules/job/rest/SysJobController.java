@@ -2,7 +2,7 @@ package com.pearadmin.pro.modules.job.rest;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -33,7 +33,7 @@ public class SysJobController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("page")
-    @SysLog(title = "查询任务")
+    @Log(title = "查询任务")
     @ApiOperation(value = "查询任务")
     public Result page(SysJobRequest request){
         return success(sysJobService.page(request));

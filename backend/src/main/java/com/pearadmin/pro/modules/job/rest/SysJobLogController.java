@@ -1,6 +1,6 @@
 package com.pearadmin.pro.modules.job.rest;
 
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -34,7 +34,7 @@ public class SysJobLogController extends BaseController {
      */
     @GetMapping("page")
     @ApiOperation(value = "任务日志")
-    @SysLog(title = "查询日志", describe = "获取任务日志")
+    @Log(title = "查询日志", describe = "获取任务日志")
     public Result page(SysJobLogRequest request){
         return success(sysJobLogService.page(request));
     }

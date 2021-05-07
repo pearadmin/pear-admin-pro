@@ -2,6 +2,7 @@ import http from '../http'
 
 const Api = {
     page: '/api/sys/file/page',
+    upload: '/api/sys/file/upload',
 }
 
 /** 文件列表 */
@@ -11,4 +12,9 @@ export const page = data => {
         params: data,
         method: 'get'
     })
+}
+
+/** 文件上传 */
+export const upload = data => {
+    
 }

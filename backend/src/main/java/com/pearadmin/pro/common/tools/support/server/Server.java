@@ -1,7 +1,6 @@
 package com.pearadmin.pro.common.tools.support.server;
 
 import com.pearadmin.pro.common.tools.core.MathUtil;
-import com.pearadmin.pro.common.tools.core.IpUtils;
 import com.pearadmin.pro.common.tools.support.server.server.*;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
@@ -13,6 +12,7 @@ import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 import oshi.util.Util;
 
+import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;
 import java.util.LinkedList;
@@ -155,11 +155,16 @@ public class Server
     /**
      * 设置服务器信息
      */
-    private void setSysInfo()
+    private void setSysInfo() throws UnknownHostException
     {
+        InetAddress ia = InetAddress.getLocalHost();
+
+        String computerIp = ia.getHostAddress();
+        String computerName = ia.getHostName();
+
         Properties props = System.getProperties();
-        sys.setComputerName(IpUtils.getHostName());
-        sys.setComputerIp(IpUtils.getHostIp());
+        sys.setComputerName(computerName);
+        sys.setComputerIp(computerIp);
         sys.setOsName(props.getProperty("os.name"));
         sys.setOsArch(props.getProperty("os.arch"));
         sys.setUserDir(props.getProperty("user.dir"));

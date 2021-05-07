@@ -3,7 +3,7 @@ package com.pearadmin.pro.modules.sys.rest;
 import com.pearadmin.pro.modules.sys.param.SysUserRoleRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.context.UserContext;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -38,7 +38,7 @@ public class SysUserController extends BaseController {
      * @param sysUser 用户实体
      */
     @PostMapping("save")
-    @SysLog(title = "用户新增")
+    @Log(title = "用户新增")
     @ApiOperation(value = "用户新增")
     public Result save(@RequestBody SysUser sysUser){
         return auto(sysUserService.save(sysUser));
@@ -50,7 +50,7 @@ public class SysUserController extends BaseController {
      * @param sysUser 用户实体
      */
     @PutMapping("edit")
-    @SysLog(title = "用户修改")
+    @Log(title = "用户修改")
     @ApiOperation(value = "用户修改")
     public Result edit(@RequestBody SysUser sysUser){
         return auto(sysUserService.updateById(sysUser));
@@ -62,7 +62,7 @@ public class SysUserController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("page")
-    @SysLog(title = "用户列表")
+    @Log(title = "用户列表")
     @ApiOperation(value = "用户列表")
     public Result page(SysUserRequest request){
         return success(sysUserService.page(request));
@@ -74,7 +74,7 @@ public class SysUserController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("list")
-    @SysLog(title = "用户列表")
+    @Log(title = "用户列表")
     @ApiOperation(value = "用户列表")
     public Result list(SysUserRequest request){ return success(sysUserService.list(request)); }
 
@@ -84,7 +84,7 @@ public class SysUserController extends BaseController {
      * @param request 参数实体
      * */
     @PostMapping("give")
-    @SysLog(title = "分配角色")
+    @Log(title = "分配角色")
     @ApiOperation(value = "分配角色")
     public Result give(@RequestBody SysUserRoleRequest request){
         return success(sysUserService.give(request.getUserId(),request.getRoleIds()));
@@ -96,7 +96,7 @@ public class SysUserController extends BaseController {
      * @param id 用户编号
      */
     @DeleteMapping("remove")
-    @SysLog(title = "用户删除")
+    @Log(title = "用户删除")
     @ApiOperation(value = "用户删除")
     public Result remove(@RequestParam String id){
         return auto(sysUserService.removeById(id));
@@ -108,7 +108,7 @@ public class SysUserController extends BaseController {
      * @param ids 用户编号
      */
     @DeleteMapping("removeBatch")
-    @SysLog(title = "批量删除")
+    @Log(title = "批量删除")
     @ApiOperation(value = "批量删除")
     public Result removeBatch(@RequestParam List<String> ids) { return auto(sysUserService.removeByIds(ids)); }
 
@@ -116,7 +116,7 @@ public class SysUserController extends BaseController {
      * 个人资料
      */
     @GetMapping("profile")
-    @SysLog(title = "个人资料")
+    @Log(title = "个人资料")
     @ApiOperation(value = "个人资料")
     public Result profile(){
         return success(userContext.getPrincipal());
@@ -128,7 +128,7 @@ public class SysUserController extends BaseController {
      * @param userId 用户编号
      * */
     @GetMapping("info")
-    @SysLog(title = "用户详情")
+    @Log(title = "用户详情")
     @ApiOperation(value = "用户详情")
     public Result info(String userId){
         return success(sysUserService.getById(userId));

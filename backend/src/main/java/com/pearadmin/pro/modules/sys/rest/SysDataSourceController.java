@@ -2,7 +2,7 @@ package com.pearadmin.pro.modules.sys.rest;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -28,7 +28,7 @@ public class SysDataSourceController extends BaseController {
      * @return {@link Result}
      */
     @GetMapping("page")
-    @SysLog(title = "查询多库")
+    @Log(title = "查询多库")
     @ApiOperation(value = "查询多库")
     public Result page(SysDataSourceRequest request){
        return success(sysDataSourceService.page(request));
@@ -40,7 +40,7 @@ public class SysDataSourceController extends BaseController {
      * @param sysDataSource 多库实体
      */
     @PostMapping("save")
-    @SysLog(title = "新增多库")
+    @Log(title = "新增多库")
     @ApiOperation(value = "新增多库")
     public Result save(@RequestBody SysDataSource sysDataSource){
         return auto(sysDataSourceService.save(sysDataSource));
@@ -52,7 +52,7 @@ public class SysDataSourceController extends BaseController {
      * @param sysDataSource 多库实体
      */
     @PutMapping("edit")
-    @SysLog(title = "修改多库")
+    @Log(title = "修改多库")
     @ApiOperation(value = "修改多库")
     public Result edit(@RequestBody SysDataSource sysDataSource){
         return auto(sysDataSourceService.updateById(sysDataSource));
@@ -64,7 +64,7 @@ public class SysDataSourceController extends BaseController {
      * @param id 多库编号
      */
     @DeleteMapping("remove")
-    @SysLog(title = "删除多库")
+    @Log(title = "删除多库")
     @ApiOperation(value = "删除多库")
     public Result remove(String id){
         return auto(sysDataSourceService.removeById(id));
@@ -76,7 +76,7 @@ public class SysDataSourceController extends BaseController {
      * @param ids 多库编号
      */
     @DeleteMapping("removeBatch")
-    @SysLog(title = "批量删除")
+    @Log(title = "批量删除")
     @ApiOperation(value = "批量删除")
     public Result removeBatch(@RequestParam List<String> ids) {
         return auto(sysDataSourceService.removeByIds(ids));

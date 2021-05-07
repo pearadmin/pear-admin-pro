@@ -28,12 +28,14 @@
       </a-row>
       <save :visible="state.visibleSave" @close="closeSave"></save>
       <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
+      <info :visible="state.visibleInfo" @close="closeInfo" :record="state.recordInfo"></info>
     </page-layout>
 </template>
 
 <script>
 import save from './module/save';
 import edit from './module/edit';
+import info from './module/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/post";
@@ -46,6 +48,7 @@ export default {
   components: {
     save,
     edit,
+    info,
   },
   setup() {
 
@@ -117,7 +120,7 @@ export default {
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
       { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
     ];
@@ -131,13 +134,12 @@ export default {
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       selectedRowKeys: [],
-      param: {
-        name: "", // 名称
-        code: ""  // 标识
-      },
+      param: {},
       visibleSave: false,
       visibleEdit: false,
+      visibleInfo: false,
       recordEdit: {},
+      recordInfo: {},
     })
     
     const searchParam = [
@@ -157,6 +159,10 @@ export default {
       state.visibleEdit = false
     }
 
+    const closeInfo = function(){
+      state.visibleInfo = false
+    }
+
     const onSelectChange = selectedRowKeys => {
       state.selectedRowKeys = selectedRowKeys;
     };
@@ -174,6 +180,7 @@ export default {
     
       closeSave,
       closeEdit,
+      closeInfo,
       
       onSelectChange
     };

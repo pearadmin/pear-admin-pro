@@ -29,12 +29,14 @@
     <save :visible="state.visibleSave" @close="closeSave"></save>
     <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
     <give :visible="state.visibleGive" @close="closeGive" :record="state.recordGive"></give>
+    <info :visible="state.visibleInfo" @close="closeInfo" :record="state.recordInfo"></info>
   </page-layout>
 </template>
 <script>
 import save from './modal/save';
 import edit from './modal/edit';
 import give from './modal/give';
+import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/role";
@@ -48,6 +50,7 @@ export default {
     save,
     edit,
     give,
+    info,
   },
   setup() {
 
@@ -121,7 +124,7 @@ export default {
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record)); }},
+      { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
       { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "分配", event: function (record) { state.visibleGive = true, state.recordGive = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
@@ -137,8 +140,10 @@ export default {
       visibleSave: false,
       visibleEdit: false,
       visibleGive: false,
+      visibleInfo: false,
       recordEdit: {},
       recordGive: {},
+      recordInfo: {},
     });
 
     /// 查询参数
@@ -164,6 +169,10 @@ export default {
         state.visibleGive = false;
     }
 
+    const closeInfo = function(){
+        state.visibleInfo = false;
+    }
+
     const onSelectChange = selectedRowKeys => {
       state.selectedRowKeys = selectedRowKeys;
     };
@@ -183,6 +192,7 @@ export default {
       closeSave,
       closeEdit,
       closeGive,
+      closeInfo,
 
       onSelectChange
     };

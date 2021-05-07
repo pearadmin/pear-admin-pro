@@ -32,6 +32,8 @@
       <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit" ></edit>
       <!-- 分配页面 -->
       <give :visible="state.visibleGive" @close="closeGive" :record="state.recordGive"></give>
+      <!-- 详情页面 -->
+      <info :visible="state.visibleInfo" @close="closeInfo" :record="state.recordInfo"></info>
     </page-layout>
 </template>
 
@@ -39,6 +41,7 @@
 import save from './modal/save';
 import edit from './modal/edit';
 import give from './modal/give';
+import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/user";
@@ -52,6 +55,7 @@ export default {
     save,
     edit,
     give,
+    info,
   },
   setup() {
 
@@ -113,7 +117,7 @@ export default {
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "查看", event: function (record) { state.visibleInfo = true , state.recordInfo = record }},
       { label: "修改", event: function (record) { state.visibleEdit = true , state.recordEdit = record }},
       { label: "分配", event: function (record) { state.visibleGive = true , state.recordGive = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
@@ -152,8 +156,10 @@ export default {
       visibleSave: false,
       visibleEdit: false,
       visibleGive: false,
+      visibleInfo: false,
       recordEdit: {},
       recordGive: {},
+      recordInfo: {},
     })
 
     /// 查询参数
@@ -187,6 +193,11 @@ export default {
       state.visibleGive = false;
     }
 
+    /// 关闭详情
+    const closeInfo = function(){
+      state.visibleInfo = false;
+    }
+
     return {
       state, // 共享数据
       fetch, // 用户列表
@@ -201,7 +212,8 @@ export default {
 
       closeAdd,  // 新增关闭
       closeEdit, // 修改关闭
-      closeGive,// 分配关闭
+      closeGive, // 分配关闭
+      closeInfo, // 详情关闭
     };
   },
 };

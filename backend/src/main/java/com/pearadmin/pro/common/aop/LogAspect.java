@@ -1,6 +1,6 @@
 package com.pearadmin.pro.common.aop;
 
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.aop.enums.Action;
 import com.pearadmin.pro.common.context.BaseContext;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -21,7 +21,7 @@ import java.lang.reflect.Method;
  * */
 @Aspect
 @Component
-public class SysLogAspect {
+public class LogAspect {
 
     /**
      * 基 础 上 下 文
@@ -32,7 +32,7 @@ public class SysLogAspect {
     /**
      * 切 面 编 程
      * */
-    @Pointcut("@annotation(com.pearadmin.pro.common.aop.annotation.SysLog) || @within(com.pearadmin.pro.common.aop.annotation.SysLog)")
+    @Pointcut("@annotation(com.pearadmin.pro.common.aop.annotation.Log) || @within(com.pearadmin.pro.common.aop.annotation.Log)")
     public void dsPointCut() { }
 
     /**
@@ -44,7 +44,7 @@ public class SysLogAspect {
         Object result = null;
 
         // 注解解析
-        SysLog annotation = getAnnotation(joinPoint);
+        Log annotation = getAnnotation(joinPoint);
         String title = annotation.title();
         Action action = annotation.action();
         String describe = annotation.describe();
@@ -69,16 +69,16 @@ public class SysLogAspect {
     /**
      * 获 取 注 解
      * */
-    public SysLog getAnnotation(ProceedingJoinPoint point) {
+    public Log getAnnotation(ProceedingJoinPoint point) {
         MethodSignature signature = (MethodSignature) point.getSignature();
         Class<? extends Object> targetClass = point.getTarget().getClass();
-        SysLog targetSysLog = targetClass.getAnnotation(SysLog.class);
-        if ( targetSysLog != null) {
-            return targetSysLog;
+        Log targetLog = targetClass.getAnnotation(Log.class);
+        if ( targetLog != null) {
+            return targetLog;
         } else {
             Method method = signature.getMethod();
-            SysLog sysLog = method.getAnnotation(SysLog.class);
-            return sysLog;
+            Log log = method.getAnnotation(Log.class);
+            return log;
         }
     }
 }

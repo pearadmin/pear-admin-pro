@@ -59,28 +59,4 @@ public class BaseContext {
        sysLogService.save(sysLog);
     }
 
-    /**
-     * 邮件发送
-     * */
-    public void sendEmail(){
-
-        //
-
-    }
-
-    /**
-     * 短信发送
-     * */
-    public void sendSms(){
-
-        
-    }
-
-    /**
-     * 文件存储
-     * */
-    public void upload(){
-
-    }
-
 }

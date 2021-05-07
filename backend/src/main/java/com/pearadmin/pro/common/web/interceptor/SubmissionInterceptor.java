@@ -1,7 +1,7 @@
 package com.pearadmin.pro.common.web.interceptor;
 
+import com.alibaba.fastjson.JSON;
 import com.pearadmin.pro.common.web.interceptor.annotation.Submission;
-import com.pearadmin.pro.common.tools.core.JsonUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.domain.ResultCode;
@@ -75,8 +75,7 @@ public class SubmissionInterceptor extends HandlerInterceptorAdapter {
     }
 
     public boolean isRepeatSubmit(HttpServletRequest request) throws Exception{
-
-        String nowParams = JsonUtil.marshal(request.getParameterMap());
+        String nowParams = JSON.toJSONString(request.getParameterMap());
         Map<String, Object> nowDataMap = new HashMap<String, Object>();
         nowDataMap.put(REPEAT_PARAMS, nowParams);
         nowDataMap.put(REPEAT_TIME, System.currentTimeMillis());

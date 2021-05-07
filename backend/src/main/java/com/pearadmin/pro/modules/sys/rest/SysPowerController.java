@@ -1,6 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -30,7 +30,7 @@ public class SysPowerController extends BaseController {
      * 查询权限
      */
     @GetMapping("tree")
-    @SysLog(title = "查询权限")
+    @Log(title = "查询权限")
     @ApiOperation(value = "查询权限")
     public Result tree(){
         return success(sysPowerService.tree());
@@ -44,7 +44,7 @@ public class SysPowerController extends BaseController {
      * @return {@link Boolean}
      */
     @PostMapping("add")
-    @SysLog(title = "新增权限")
+    @Log(title = "新增权限")
     @ApiOperation(value = "新增权限")
     public Result add(@RequestBody SysPower sysPower){
         return auto(sysPowerService.save(sysPower));
@@ -58,7 +58,7 @@ public class SysPowerController extends BaseController {
      * @return {@link Boolean}
      */
     @PutMapping("edit")
-    @SysLog(title = "修改权限")
+    @Log(title = "修改权限")
     @ApiOperation(value = "修改权限")
     public Result edit(@RequestBody SysPower sysPower){
         return auto(sysPowerService.updateById(sysPower));
@@ -72,7 +72,7 @@ public class SysPowerController extends BaseController {
      * @return {@link Boolean}
      */
     @DeleteMapping("remove")
-    @SysLog(title = "删除权限")
+    @Log(title = "删除权限")
     @ApiOperation(value = "删除权限")
     public Result remove(List<String> powerId){
         return auto(sysPowerService.removeByIds(powerId));

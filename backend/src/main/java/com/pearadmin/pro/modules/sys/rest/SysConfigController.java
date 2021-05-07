@@ -1,6 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import io.swagger.annotations.Api;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -34,7 +34,7 @@ public class SysConfigController extends BaseController {
      * @return {@link Result}
      */
     @GetMapping("page")
-    @SysLog(title = "配置列表")
+    @Log(title = "配置列表")
     @ApiOperation(value = "配置列表")
     public Result page(SysConfigRequest request){
         return success(sysConfigService.page(request));
@@ -46,7 +46,7 @@ public class SysConfigController extends BaseController {
      * @param sysConfig 配置实体
      */
     @PostMapping("save")
-    @SysLog(title = "新增配置")
+    @Log(title = "新增配置")
     @ApiOperation(value = "新增配置")
     public Result save(@RequestBody SysConfig sysConfig) {
         return auto(sysConfigService.save(sysConfig));
@@ -58,7 +58,7 @@ public class SysConfigController extends BaseController {
      * @param sysConfig 配置实体
      */
     @PutMapping("edit")
-    @SysLog(title = "修改配置")
+    @Log(title = "修改配置")
     @ApiOperation(value = "修改配置")
     public Result edit(@RequestBody SysConfig sysConfig) {
         return auto(sysConfigService.updateById(sysConfig));
@@ -70,7 +70,7 @@ public class SysConfigController extends BaseController {
      * @param id 配置编号
      */
     @DeleteMapping("remove")
-    @SysLog(title = "删除配置")
+    @Log(title = "删除配置")
     @ApiOperation(value = "删除配置")
     public Result remove(@RequestParam String id){
         return auto(sysConfigService.removeById(id));
@@ -82,7 +82,7 @@ public class SysConfigController extends BaseController {
      * @param ids 配置编号
      * */
     @DeleteMapping("removeBatch")
-    @SysLog(title = "删除配置")
+    @Log(title = "删除配置")
     @ApiOperation(value = "删除配置")
     public Result removeBatch(@RequestParam List<String> ids) { return auto(sysConfigService.removeByIds(ids)); }
 

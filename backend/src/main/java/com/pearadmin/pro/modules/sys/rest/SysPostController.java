@@ -1,6 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
-import com.pearadmin.pro.common.aop.annotation.SysLog;
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysPost;
 import com.pearadmin.pro.modules.sys.param.SysPostRequest;
@@ -33,7 +33,7 @@ public class SysPostController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("page")
-    @SysLog(title = "查询岗位")
+    @Log(title = "查询岗位")
     @ApiOperation(value = "查询岗位")
     public Result page(SysPostRequest request){
         return success(sysPostService.page(request));
@@ -45,7 +45,7 @@ public class SysPostController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("list")
-    @SysLog(title = "查询岗位")
+    @Log(title = "查询岗位")
     @ApiOperation(value = "查询岗位")
     public Result list(SysPostRequest request) {
         return success(sysPostService.list(request));
@@ -59,7 +59,7 @@ public class SysPostController extends BaseController {
      * @return {@link Boolean}
      */
     @PostMapping("save")
-    @SysLog(title = "新增岗位")
+    @Log(title = "新增岗位")
     @ApiOperation(value = "新增岗位")
     public Result save(@RequestBody SysPost sysPost){
         return auto(sysPostService.save(sysPost));
@@ -73,7 +73,7 @@ public class SysPostController extends BaseController {
      * @return {@link Boolean}
      */
     @PutMapping("edit")
-    @SysLog(title = "修改岗位")
+    @Log(title = "修改岗位")
     @ApiOperation(value = "修改岗位")
     public Result edit( @RequestBody SysPost sysPost){
         return auto(sysPostService.updateById(sysPost));
@@ -87,7 +87,7 @@ public class SysPostController extends BaseController {
      * @return {@link Boolean}
      */
     @DeleteMapping("remove")
-    @SysLog(title = "删除岗位")
+    @Log(title = "删除岗位")
     @ApiOperation(value = "删除岗位")
     public Result remove(@RequestParam String id){
         return auto(sysPostService.removeById(id));
@@ -101,7 +101,7 @@ public class SysPostController extends BaseController {
      * @return {@link Boolean}
      */
     @DeleteMapping("removeBatch")
-    @SysLog(title = "删除岗位")
+    @Log(title = "删除岗位")
     @ApiOperation(value = "删除岗位")
     public Result removeBatch(@RequestParam List<String> ids) {
         return auto(sysPostService.removeByIds(ids));
