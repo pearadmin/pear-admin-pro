@@ -28,8 +28,8 @@ public class SecureCaptchaService {
      * */
     public SecureCaptcha createCaptcha(){
         SpecCaptcha captcha = new SpecCaptcha(142,38);
-        var key = UUID.randomUUID().toString();
-        var code = captcha.text().toLowerCase();
+        String key = UUID.randomUUID().toString();
+        String code = captcha.text().toLowerCase();
         redisTemplate.opsForValue().set(CacheNameConstant.CAPTCHA_NAME_PREFIX + key, code, SecurityConstant.CAPTCHA_EXPIRATION, TimeUnit.SECONDS);
         return new SecureCaptcha(key,code,captcha.toBase64());
     }
@@ -38,7 +38,7 @@ public class SecureCaptchaService {
      * 验 证 Captcha
      * */
     public void verifyCaptcha(String key, String code) {
-        var redisCode = taskCaptcha(key);
+        String redisCode = taskCaptcha(key);
         if(redisCode == null) throw new CaptchaExpiredException("captcha expired");
         if(!redisCode.equals(code)) throw new CaptchaValidationException("captcha invalid");
     }
