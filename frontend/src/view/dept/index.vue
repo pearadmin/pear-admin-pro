@@ -24,7 +24,6 @@
               :pagination="pagination"
               :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
-              <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
           </a-card>
         </a-col>

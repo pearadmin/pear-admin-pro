@@ -24,23 +24,30 @@
               :pagination="pagination"
               :row-selection="{ selectedRowKeys: state.selectedRowKeys, onChange: onSelectChange }"
             >
-              <!-- 继承至 a-table 的默认插槽 -->
             </pro-table>
           </a-card>
         </a-col>
       </a-row>
+      <upload :visible="state.visibleUpload" @close="closeUpload"></upload>
     </page-layout>
 </template>
 
 <script>
+import upload from "./modal/upload";
 import { page } from "@/api/module/file";
 import { reactive } from 'vue';
 
 export default {
+  components: {
+    upload
+  },
   setup() {
 
-        /// 文本
-    const converFormat = [{label:"本地", value:"0"},{label:"阿里云", value:"1"}];
+    /// 文本
+    const converFormat = [{label:"本地", value:"local"},{label:"阿里云", value:"aliyun"}];
+
+    /// 预览
+    const imageFormat = {width: 34}
 
     /// 列配置
     const columns = [
@@ -49,6 +56,7 @@ export default {
       { dataIndex: "bucket", key: "bucket", title: "文件仓库" },
       { dataIndex: "suffix", key: "suffix", title: "文件类型"},
       { dataIndex: "size", key: "size", title: "文件大小"},
+      { dataIndex: "path", key: "path", title: "预览", image: imageFormat},
       { dataIndex: "id", key: "id", title: "文件标识"},
       { dataIndex: "createTime", key: "createTime", title: "创建时间" },
     ];
@@ -64,8 +72,8 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function () { }},
-      { label: "删除", event: function () { }},
+      { label: "上传" , event: function () { state.visibleUpload = true }},
+      { label: "删除" , event: function () { }},
     ];
 
     /// 行操作
@@ -82,11 +90,9 @@ export default {
 
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
+      param: {},
       selectedRowKeys: [],
-      param: {
-        name: "", // 名称
-        code: ""  // 标识
-      }
+      visibleUpload: false,
     })
 
     /// 查询参数
@@ -114,6 +120,10 @@ export default {
       state.selectedRowKeys = selectedRowKeys;
     };
 
+    const closeUpload = function(){
+        state.visibleUpload = false;
+    }
+
     /// 声明抛出
     return {
       state: state, // 状态共享
@@ -126,7 +136,8 @@ export default {
       search: search,
       searchParam: searchParam, // 查询参数
 
-      onSelectChange
+      onSelectChange,
+      closeUpload
     };
   },
 };

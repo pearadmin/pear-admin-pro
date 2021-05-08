@@ -45,7 +45,6 @@ public class SysRedisController extends BaseController {
      * Redis 缓存数量
      * */
     @GetMapping("size")
-    @Log(title = "缓存数量")
     @ApiOperation(value = "缓存数量")
     public Result size(){
         Object size = redisTemplate.execute((RedisCallback<Object>) connection -> connection.dbSize());

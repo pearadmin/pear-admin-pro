@@ -11,7 +11,7 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
  * 文件模型
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2020/10/23
  * */
 @Data
 @Alias("SysFile")
@@ -52,7 +52,7 @@ public class SysFile extends BaseDomain {
      * 文件大小
      */
     @TableField("size")
-    private Integer size;
+    private Long size;
 
     /**
      * 路径

@@ -3,7 +3,7 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysFileRepository">
 
     <select id="selectFile" resultType="SysFile">
-        select * from sys_file
+        select * from sys_file sf order by sf.create_time desc
     </select>
 
 </mapper>

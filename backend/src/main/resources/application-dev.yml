@@ -1,4 +1,5 @@
 spring:
+  ## 数据源
   datasource:
     dynamic:
       ## 默认数据源
@@ -35,6 +36,7 @@ spring:
         max-idle: 6
         min-idle: 0
 
+  ## 定时任务
   quartz:
     # 将任务等保存化到数据库
     job-store-type: jdbc

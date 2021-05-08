@@ -135,7 +135,10 @@
             <a-avatar v-else :src="record[column.dataIndex]" :size="column.avatar.size" :shape="column.avatar.shape"/>
         </span>
 
-        <!-- 预览 暂未涉及 [待实现]-->
+        <!-- 预览 -->
+        <span v-else-if="column.image">
+            <a-image :width="column.image.width" :src="record[column.dataIndex]" />
+        </span>
 
         <!-- 原样输出 -->
         <span v-else-if="record">

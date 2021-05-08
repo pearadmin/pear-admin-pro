@@ -184,6 +184,7 @@
         </dependency>
     </dependencies>
 
+    <!-- 构 建 配 置 -->
     <build>
         <plugins>
             <plugin>

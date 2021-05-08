@@ -39,17 +39,22 @@ mybatis-plus:
     ## 日志实现
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
-## 分页工具
+## Helper 配置
 pagehelper:
   helperDialect: mysql
   reasonable: true
   supportMethodsArguments: true
   params: count=countSql
 
+## 资源存储
+upload:
+  ## 存储位置 aliyun
+  location: aliyun
+
+## 阿里云 Oss 存储
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
     accessKeyId:
     accessKeySecret:
     bucketName: pear-admin
-    address: pear-admin.oss-cn-beijing.aliyuncs.com
