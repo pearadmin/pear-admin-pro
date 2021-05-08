@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.domain;
 
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -10,6 +11,7 @@ import org.apache.ibatis.type.Alias;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysDictData")
 public class SysDictData extends BaseDomain {

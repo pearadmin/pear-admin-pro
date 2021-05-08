@@ -5,6 +5,7 @@ import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -13,6 +14,7 @@ import org.apache.ibatis.type.Alias;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysLog")
 public class SysLog extends BaseDomain {

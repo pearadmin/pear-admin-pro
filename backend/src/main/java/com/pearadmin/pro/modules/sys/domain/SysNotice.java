@@ -3,10 +3,12 @@ package com.pearadmin.pro.modules.sys.domain;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysNotice")
 @TableName("sys_notice")
