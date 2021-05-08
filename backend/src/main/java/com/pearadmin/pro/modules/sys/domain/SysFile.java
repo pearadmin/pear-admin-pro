@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -13,6 +14,7 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
  * Author: 就 眠 仪 式
  * CreateTime: 2020/10/23
  * */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysFile")
 @TableName("sys_file")
