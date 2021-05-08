@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -12,6 +13,7 @@ import com.pearadmin.pro.common.web.base.domain.TreeDomain;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysDept")
 public class SysDept extends TreeDomain<SysDept> {

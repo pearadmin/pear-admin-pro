@@ -36,7 +36,7 @@ implements SysDataSourceService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean save(SysDataSource entity) {
         dataContext.createDataSource(entity.getName(), entity.getUsername(), entity.getPassword(), entity.getUrl(), entity.getDriver());
         sysDataSourceRepository.insert(entity);
@@ -44,7 +44,7 @@ implements SysDataSourceService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean updateById(SysDataSource entity) {
         SysDataSource dataSource = sysDataSourceRepository.selectById(entity.getId());
         sysDataSourceRepository.updateById(entity);
@@ -53,7 +53,7 @@ implements SysDataSourceService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean removeById(Serializable id) {
         SysDataSource dataSource = sysDataSourceRepository.selectById(id);
         sysDataSourceRepository.deleteById(id);
@@ -62,7 +62,7 @@ implements SysDataSourceService {
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean removeByIds(Collection<? extends Serializable> idList) {
         idList.forEach(id -> {
            SysDataSource dataSource = sysDataSourceRepository.selectById(id);

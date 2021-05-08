@@ -6,6 +6,9 @@ import com.pearadmin.pro.modules.job.domain.SysJobLog;
 import com.pearadmin.pro.modules.job.param.SysJobLogRequest;
 import java.util.List;
 
+/**
+ * @author 就眠仪式
+ */
 public interface SysJobLogService extends IService<SysJobLog> {
 
     /**

@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.domain;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.pearadmin.pro.common.secure.services.SecureUser;
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysUser")
 public class SysUser extends SecureUser {

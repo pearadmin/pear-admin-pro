@@ -6,9 +6,11 @@ import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
+import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysRole")
 @ApiModel("用户实体")
