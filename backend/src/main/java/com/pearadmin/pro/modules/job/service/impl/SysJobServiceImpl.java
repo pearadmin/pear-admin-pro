@@ -11,6 +11,9 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * @author 就眠仪式
+ */
 @Service
 public class SysJobServiceImpl extends ServiceImpl<SysJobRepository, SysJob> implements SysJobService {
 

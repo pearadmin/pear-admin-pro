@@ -38,7 +38,7 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictRepository, SysDict> 
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean removeById(Serializable id) {
         SysDict sysDict = sysDictRepository.selectById(id);
         sysDictRepository.deleteById(id);
@@ -47,11 +47,9 @@ public class SysDictServiceImpl extends ServiceImpl<SysDictRepository, SysDict> 
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean removeByIds(Collection<? extends Serializable> idList) {
-        idList.forEach(id -> {
-            removeById(id);
-        });
+        idList.forEach(this::removeById);
         return true;
     }
 }

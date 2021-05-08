@@ -6,6 +6,9 @@ import com.pearadmin.pro.modules.job.domain.SysJob;
 import com.pearadmin.pro.modules.job.param.SysJobRequest;
 import java.util.List;
 
+/**
+ * @author 就眠仪式
+ */
 public interface SysJobService extends IService<SysJob> {
 
     /**

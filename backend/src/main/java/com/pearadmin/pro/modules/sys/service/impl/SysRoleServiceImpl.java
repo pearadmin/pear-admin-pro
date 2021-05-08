@@ -74,7 +74,7 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean removeById(Serializable id) {
         sysRoleRepository.deleteById(id);
         sysRolePowerService.lambdaUpdate().eq(SysRolePower::getRoleId,id).remove();
@@ -83,11 +83,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
     }
 
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public boolean removeByIds(Collection<? extends Serializable> idList) {
-        idList.forEach(id -> {
-            removeById(id);
-        });
+        idList.forEach(this::removeById);
         return true;
     }
 }
