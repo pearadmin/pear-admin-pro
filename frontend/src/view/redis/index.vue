@@ -9,8 +9,27 @@
         <a-col :span="24">
           <a-card>
             <a-row>
-              <a-col :span="6">
-                <h2>Redis</h2>
+              <a-col :span="24">
+                <a-row :gutter='[30,30]'>
+                  <a-col :span="4">
+                    <span>版本 : {{infoData.redis_version}}</span>
+                  </a-col>
+                  <a-col :span="4">
+                    <span>系统 : {{infoData.os}}</span>
+                  </a-col>
+                  <a-col :span="4">
+                    <span>模式 : {{infoData.redis_mode}}</span>
+                  </a-col>
+                  <a-col :span="4">
+                    <span>架构 : {{infoData.arch_bits}}</span>
+                  </a-col>
+                  <a-col :span="4">
+                    <span>端口 : {{infoData.tcp_port}}</span>
+                  </a-col>
+                  <a-col :span="4">
+                    <span>内存 : {{infoData.used_memory_human}}</span>
+                  </a-col>
+                </a-row>
               </a-col>
               <a-col :span="12"></a-col>
             </a-row>

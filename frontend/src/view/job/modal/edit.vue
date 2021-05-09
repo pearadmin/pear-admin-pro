@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="新增任务"
+    title="修改任务"
     cancelText="取消"
     okText="提交"
     @ok="submit"
