@@ -50,5 +50,9 @@ export default {
   "develop-source": "多数据源",
   /// 其他页面
   "other": "其他页面",
-  "other-profile": "个人资料"
+  "other-profile": "个人资料",
+  /// 定时任务
+  "task": "定时任务",
+  "task-job": "任务列表",
+  "task-job-log": "任务日志"
 }

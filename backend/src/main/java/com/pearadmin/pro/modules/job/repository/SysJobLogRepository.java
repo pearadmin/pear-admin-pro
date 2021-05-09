@@ -20,5 +20,5 @@ public interface SysJobLogRepository extends BaseMapper<SysJobLog> {
      *
      * @return {@link SysJobLog}
      * */
-    List<SysJobLog> selectList(SysJobLogRequest request);
+    List<SysJobLog> selectJobLog(SysJobLogRequest request);
 }

@@ -1,9 +1,12 @@
 package com.pearadmin.pro.modules.job.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
+
+import java.time.LocalDateTime;
 
 /**
  * 任务日志模型
@@ -11,10 +14,9 @@ import org.apache.ibatis.type.Alias;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/23
  * */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysJobLog")
-public class SysJobLog extends BaseDomain {
+public class SysJobLog {
 
     /**
      * 编号
@@ -27,9 +29,21 @@ public class SysJobLog extends BaseDomain {
     private String jobId;
 
     /**
+     * 任务名称
+     * */
+    @TableField(exist = false)
+    private String jobName;
+
+    /**
+     * 运行目标
+     * */
+    @TableField(exist = false)
+    private String beanName;
+
+    /**
      * 状态
      * */
-    private String status;
+    private Boolean state;
 
     /**
      * 错误信息
@@ -41,4 +55,8 @@ public class SysJobLog extends BaseDomain {
      * */
     private long time;
 
+    /**
+     * 执行时间
+     * */
+    private LocalDateTime createTime;
 }

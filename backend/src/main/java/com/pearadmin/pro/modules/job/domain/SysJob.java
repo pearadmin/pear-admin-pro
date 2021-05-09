@@ -11,10 +11,15 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/23
  * */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysJob")
+@EqualsAndHashCode(callSuper = true)
 public class SysJob extends BaseDomain {
+
+    /**
+     * 任务调度 参数 KEY
+     */
+    public static final String JOB_PARAM_KEY = "JOB_PARAM_KEY";
 
     /**
      * 任务编号
@@ -34,7 +39,7 @@ public class SysJob extends BaseDomain {
     /**
      * 参数
      * */
-    private String params;
+    private String param;
 
     /**
      * 表达式
@@ -44,11 +49,6 @@ public class SysJob extends BaseDomain {
     /**
      * 状态
      * */
-    private String status;
-
-    /**
-     * 分组
-     * */
-    private String groupId;
+    private Boolean enable;
 
 }

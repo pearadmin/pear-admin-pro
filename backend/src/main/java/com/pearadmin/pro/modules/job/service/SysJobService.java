@@ -24,4 +24,25 @@ public interface SysJobService extends IService<SysJob> {
      * @param request 查询参数
      * */
     PageResponse<SysJob> page(SysJobRequest request);
+
+    /**
+     * 立即执行
+     *
+     * @param id 任务编号
+     * */
+    Boolean run(String id);
+
+    /**
+     * 恢复任务
+     *
+     * @param id 任务编号
+     * */
+    Boolean resume(String id);
+
+    /**
+     * 暂定任务
+     *
+     * @param id 任务编号
+     * */
+    Boolean pause(String id);
 }

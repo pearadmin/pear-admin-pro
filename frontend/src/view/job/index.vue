@@ -38,7 +38,7 @@ import edit from './modal/edit';
 import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { page, remove, removeBatch } from "@/api/module/post";
+import { page, remove, removeBatch } from "@/api/module/job";
 import { reactive, createVNode } from 'vue';
 
 const removeKey = "remove";
@@ -58,10 +58,10 @@ export default {
     /// 列配置
     const columns = [
       { dataIndex: "name", key: "name", title: "名称" },
-      { dataIndex: "code", key: "code", title: "标识" },
-      { dataIndex: "remark", key: "remark", title: "备注" },
+      { dataIndex: "beanName", key: "beanName", title: "运行类" },
+      { dataIndex: "cronExpression", key: "cronExpression", title: "任务表达式" },
       { dataIndex: "enable", key: "enable", title: "状态", switch: switchFormat},
-      { dataIndex: "sort", key: "sort", title: "排序" },
+      { dataIndex: "remark", key: "remark", title: "备注" },
     ];
 
     /// 数据来源 [模拟]
@@ -76,7 +76,7 @@ export default {
     /// 删除配置
     const removeMethod = (record) => {
       modal.confirm({
-        title: '您是否确定要删除此配置?',
+        title: '您是否确定要删除此任务?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',
@@ -95,7 +95,7 @@ export default {
 
     const removeBatchMethod = (ids) => {
        modal.confirm({
-        title: '您是否确定要删除选择配置?',
+        title: '您是否确定要删除选择任务?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',
@@ -143,8 +143,8 @@ export default {
     })
     
     const searchParam = [
-        { key: "name", type: "input", label: "岗位名称"},
-        { key: "code", type: "input", label: "岗位编码"},
+        { key: "name", type: "input", label: "任务名称"},
+        { key: "code", type: "input", label: "运行目标"},
     ]
 
     const search = function(value) {

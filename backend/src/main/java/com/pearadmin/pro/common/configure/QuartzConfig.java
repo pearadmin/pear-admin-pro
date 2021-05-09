@@ -1,7 +1,5 @@
 package com.pearadmin.pro.common.configure;
 
-import org.quartz.ee.servlet.QuartzInitializerListener;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
@@ -13,8 +11,5 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class QuartzConfig {
 
-    @Bean
-    public QuartzInitializerListener executorListener(){
-        return new QuartzInitializerListener();
-    }
+    /// AutoConfiguration ...
 }

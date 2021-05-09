@@ -20,5 +20,5 @@ public interface SysJobRepository extends BaseMapper<SysJob> {
      *
      * @return {@link SysJob}
      * */
-    List<SysJob> selectList(SysJobRequest request);
+    List<SysJob> selectJob(SysJobRequest request);
 }

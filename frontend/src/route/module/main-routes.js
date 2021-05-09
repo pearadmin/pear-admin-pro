@@ -27,4 +27,6 @@ export default {
   'file': () => import('@/view/file/index.vue'),
   'dept': () => import('@/view/dept/index.vue'),
   'dataSource': () => import('@/view/dataSource/index.vue'),
+  'job': () => import('@/view/job/index.vue'),
+  'jobLog': () => import('@/view/jobLog/index.vue'),
 }

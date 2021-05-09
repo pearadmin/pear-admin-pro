@@ -22,11 +22,11 @@ public class SysJobLogServiceImpl extends ServiceImpl<SysJobLogRepository, SysJo
 
     @Override
     public List<SysJobLog> list(SysJobLogRequest request) {
-        return sysJobLogRepository.selectList(request);
+        return sysJobLogRepository.selectJobLog(request);
     }
 
     @Override
     public PageResponse<SysJobLog> page(SysJobLogRequest request) {
-        return Pageable.of(request,(()-> sysJobLogRepository.selectList(request)));
+        return Pageable.of(request,(()-> sysJobLogRepository.selectJobLog(request)));
     }
 }

@@ -19,9 +19,9 @@ import javax.annotation.Resource;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/15
  * */
-@Api(tags = {"日志"})
+@Api(tags = {"任务"})
 @RestController
-@RequestMapping(ControllerConstant.PREFIX_JOB + "log")
+@RequestMapping(ControllerConstant.PREFIX_SYS + "job/log")
 public class SysJobLogController extends BaseController {
 
     @Resource
@@ -38,4 +38,5 @@ public class SysJobLogController extends BaseController {
     public Result page(SysJobLogRequest request){
         return success(sysJobLogService.page(request));
     }
+
 }
