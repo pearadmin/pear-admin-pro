@@ -38,7 +38,7 @@ import edit from './modal/edit';
 import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { page, remove, removeBatch } from "@/api/module/job";
+import { page, remove, removeBatch, resume, pause } from "@/api/module/job";
 import { reactive, createVNode } from 'vue';
 
 const removeKey = "remove";
@@ -53,7 +53,24 @@ export default {
   setup() {
 
     /// 开关
-    const switchFormat = { yes: true, no: false };
+    const switchFormat = { yes: true, no: false, event: function(value, record){
+
+        if(value) {
+
+           resume({"id": record.id}).then((response) => {
+               if(response.success){
+                   record.enable = value;
+               }
+           })
+        } else {
+           pause({"id": record.id}).then((response) => {
+               if(response.success){
+                   record.enable = value;
+               }
+           })
+        }
+
+    }};
 
     /// 列配置
     const columns = [

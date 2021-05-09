@@ -6,6 +6,8 @@ const Api = {
     removeBatch: '/api/sys/job/removeBatch',
     save: '/api/sys/job/save',
     edit: '/api/sys/job/edit',
+    resume: '/api/sys/job/resume',
+    pause: '/api/sys/job/pause',
 }
 
 /** 岗位列表 */
@@ -32,6 +34,22 @@ export const edit = data => {
     return http.request({
         url: Api.edit,
         data: data,
+        method: 'PUT'
+    })
+}
+
+export const resume = data => {
+    return http.request({
+        url: Api.resume,
+        params: data,
+        method: 'PUT'
+    })
+}
+
+export const pause = data => {
+    return http.request({
+        url: Api.pause,
+        params: data,
         method: 'PUT'
     })
 }
