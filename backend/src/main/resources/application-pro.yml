@@ -1,5 +1,4 @@
 spring:
-  ## 数据源
   datasource:
     dynamic:
       ## 默认数据源
@@ -8,9 +7,9 @@ spring:
       datasource:
         ## 主库配置
         master:
-          url: jdbc:mysql://127.0.0.1:3306/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
+          url: jdbc:mysql://mysql.pearadmin.com/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
           username: root
-          password: root
+          password: pear-mysql
       ## 连接池配置
       hikari:
         max-lifetime: 30000
@@ -36,34 +35,26 @@ spring:
         max-idle: 6
         min-idle: 0
 
-  ## 定时任务
+  ## 定时任务配置
   quartz:
-    # 将任务等保存化到数据库
     job-store-type: jdbc
-    # 程序结束时会等待quartz相关的内容结束
-    wait-for-jobs-to-complete-on-shutdown: true
-    # QuartzScheduler 启动时更新己存在的Job
     overwrite-existing-jobs: true
-    # 详细配置
+    auto-startup: true
     properties:
       org:
         quartz:
-          # scheduler相关
           scheduler:
-            # scheduler的实例名
-            instanceName: scheduler
+            instanceName: PearScheduler
             instanceId: AUTO
-          # 持久化相关
           jobStore:
             class: org.quartz.impl.jdbcjobstore.JobStoreTX
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
             tablePrefix: QRTZ_
+            isClustered: true
+            clusterCheckinInterval: 10000
             useProperties: false
-          # 线程池相关
           threadPool:
             class: org.quartz.simpl.SimpleThreadPool
-            # 线程数
-            threadCount: 10
-            # 线程优先级
+            threadCount: 20
             threadPriority: 5
             threadsInheritContextClassLoaderOfInitializingThread: true

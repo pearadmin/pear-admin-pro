@@ -20,7 +20,7 @@ spring:
     ## 账户
     username: 854085467@qq.com
     ## 密钥
-    password:
+    password: ndbkhgbzftqbbbaa
     ## 字符集
     default-encoding: UTF-8
     ## 测试
@@ -55,6 +55,6 @@ upload:
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    accessKeyId:
-    accessKeySecret:
+    accessKeyId: LTAI5t5ksAMYWZN9cozrVwNu
+    accessKeySecret: tjhBuNHyFpDSmJN3gi70KZ5TrImcwp
     bucketName: pear-admin
