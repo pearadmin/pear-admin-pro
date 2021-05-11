@@ -10,10 +10,10 @@ import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 import lombok.Data;
 
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysRole")
-@ApiModel("用户实体")
+@ApiModel("角色实体")
+@EqualsAndHashCode(callSuper = true)
 public class SysRole extends BaseDomain {
 
     /**

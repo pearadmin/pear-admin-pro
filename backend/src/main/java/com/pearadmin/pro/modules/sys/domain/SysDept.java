@@ -13,9 +13,9 @@ import com.pearadmin.pro.common.web.base.domain.TreeDomain;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
-@EqualsAndHashCode(callSuper = true)
 @Data
 @Alias("SysDept")
+@EqualsAndHashCode(callSuper = true)
 public class SysDept extends TreeDomain<SysDept> {
 
     /**

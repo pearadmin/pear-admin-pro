@@ -18,10 +18,6 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "aliyun.oss")
 public class CloudStorageConfig {
 
-    private volatile static OSS ossClient;
-
-    private volatile static OSSClientBuilder ossClientBuilder;
-
     private String endpoint;
 
     private String accessKeyId;
@@ -30,15 +26,8 @@ public class CloudStorageConfig {
 
     private String bucketName;
 
-    public String getBucketName() {
-        return bucketName;
-    }
-
-    public String getEndpoint() { return endpoint; }
-
     @Bean
     public OSS initOSSClient() {
-
         return new OSSClientBuilder().build(endpoint, accessKeyId, accessKeySecret);
     }
 }

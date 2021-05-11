@@ -13,9 +13,10 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
  * Author: 就眠仪式
  * CreateTime: 2021/03/27
  * */
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @Alias("SysPost")
+@EqualsAndHashCode(callSuper = true)
 public class SysPost extends BaseDomain {
 
     /**

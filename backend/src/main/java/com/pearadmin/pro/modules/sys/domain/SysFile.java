@@ -33,7 +33,9 @@ public class SysFile extends BaseDomain {
     private String name;
 
     /**
-     * 文件存储位置（1:本地，2:阿里云）
+     * 文件存储位置
+     *
+     * 1：阿里云
      */
     @TableField("location")
     private String location;

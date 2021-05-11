@@ -100,7 +100,7 @@ export default {
           sizeData.push({ date: new Date(), value: response.data });
           sizeChart.changeData(sizeData);
         });
-      }, 3000);
+      }, 10000);
       
     });
 

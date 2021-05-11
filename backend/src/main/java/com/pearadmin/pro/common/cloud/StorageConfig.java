@@ -9,6 +9,15 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "upload")
 public class StorageConfig {
 
+    /**
+     *
+     * Aliyun 阿里云
+     *
+     * Qiniu 七牛
+     *
+     * Tencent 腾讯
+     *
+     * */
     private String location;
 
 }

@@ -1,7 +1,7 @@
 const path = require('path');
 
-const { generateTheme, getLessVars } = require('antd-theme-generator');
-const options = {};
+const { generateTheme } = require('antd-theme-generator');
+
 generateTheme({
     antDir: path.join(__dirname, './node_modules/ant-design-vue'), //node_modules中antd的路径
     stylesDir: path.join(__dirname, './src/assets/css'), //styles对应的目录路径
@@ -20,8 +20,8 @@ generateTheme({
     customColorRegexArray: [/^color\(.*\)$/],
 })
 .then(res => {
-    console.log('配置主题成功');
+    console.log('generate theme success');
 })
 .catch(res => {
-    console.log('配置主题失败');
+    console.log('generate theme failure');
 });

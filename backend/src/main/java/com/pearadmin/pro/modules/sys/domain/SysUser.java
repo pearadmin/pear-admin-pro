@@ -13,9 +13,10 @@ import javax.validation.constraints.NotNull;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @Alias("SysUser")
+@EqualsAndHashCode(callSuper = true)
 public class SysUser extends SecureUser {
 
     /**

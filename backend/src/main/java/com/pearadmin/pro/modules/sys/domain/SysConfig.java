@@ -13,9 +13,10 @@ import org.apache.ibatis.type.Alias;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @Alias("SysConfig")
+@EqualsAndHashCode(callSuper = true)
 public class SysConfig extends BaseDomain {
 
     /**

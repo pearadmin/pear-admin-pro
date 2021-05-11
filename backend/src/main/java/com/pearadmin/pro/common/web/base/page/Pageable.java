@@ -49,11 +49,11 @@ public class Pageable {
     /**
      * 内存分页
      *
-     * @param records  待分页的数据
      * @param request  分页参数
+     * @param records  待分页的数据
      * @return 分页数据 {@link PageResponse}
      */
-    public static <T> PageResponse<T> of(List<T> records, PageRequest request) {
+    public static <T> PageResponse<T> of(PageRequest request, List<T> records) {
         return new PageResponse<T>(records.size(),
                 of(
                         records,
@@ -76,9 +76,10 @@ public class Pageable {
     /**
      * 内部类
      *
-     * 描述：常用于分页数据的来源实现
+     * 常用于分页数据的来源实现
      * */
     public interface Record<T> {
+
         List<T> invoke();
     }
 }

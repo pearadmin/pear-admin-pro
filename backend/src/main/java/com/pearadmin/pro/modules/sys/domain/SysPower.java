@@ -16,9 +16,10 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  * */
-@EqualsAndHashCode(callSuper = true)
+
 @Data
 @Alias("SysPower")
+@EqualsAndHashCode(callSuper = true)
 public class SysPower extends TreeDomain<SysPower> {
 
     /**

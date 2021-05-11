@@ -43,10 +43,19 @@ public class SysNotice extends BaseDomain {
     /**
      * 目标
      *
-     * 0.公告 - 目标：所有人
+     * 0.公告 - 目标：全部
      * 1.通知 - 目标：部门
-     * 2.私信 - 目标：私信
+     * 2.私信 - 目标: 个人
      * */
-    @TableField("target")
-    private String target;
+    @TableField("subject")
+    private String subject;
+
+    /**
+     * 状态
+     *
+     * true 发布
+     * false 未发布
+     * */
+    private Boolean state;
+
 }

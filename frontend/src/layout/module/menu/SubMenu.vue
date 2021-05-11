@@ -10,8 +10,7 @@
       @click="handleFoldSideBar"
     >
       <router-link :to="item.path + '/' + item.children[0].path">
-        <MenuIcon />
-        <!-- <span>{{ item.meta.title }}</span> -->
+          <component :is="$antIcons[item.meta.icon]" />
         <span>{{ t(item.meta.i18n) }}</span>
       </router-link>
     </a-menu-item>
@@ -24,9 +23,8 @@
     >
       <template v-slot:title>
         <span>
-          <MenuIcon v-if="level === 0" />
+          <component v-if="level === 0" :is="$antIcons[item.meta.icon]" />
           <span v-else><div class="indent"></div></span>
-          <!-- <span>{{ item.meta.title }}</span> -->
           <span>{{ t(item.meta.i18n) }}</span>
         </span>
       </template>
@@ -47,9 +45,8 @@
       v-else
     >
       <router-link :to="resolvePath(item.path, true)">
-        <MenuIcon v-if="level === 0" />
+          <component v-if="level === 0" :is="$antIcons[item.meta.icon]" />
         <span v-else><div class="indent"></div></span>
-        <!-- <span>{{ item.meta.title }} </span>-->
         <span>{{ t(item.meta.i18n) }}</span>
       </router-link>
     </a-menu-item>
@@ -96,6 +93,7 @@ export default {
         commit("layout/UPDATE_COLLAPSED", true);
       }
     };
+
     const MenuIcon = Icons[(props.item.meta || {}).icon] || {};
 
     // i18n
