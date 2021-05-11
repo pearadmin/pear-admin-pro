@@ -142,7 +142,7 @@ Pear Admin Pro
 
 </p>
 
-Admin.NET 遵循 Apache-2.0 开源协议，欢迎大家提交 PR 或 Issue。
+感谢每一位贡献代码的朋友。
 
 [![Giteye chart](https://chart.giteye.net/gitee/pear-admin/pear-admin-pro/3E4EEFDN.png)](https://giteye.net/chart/3E4EEFDN)
 
