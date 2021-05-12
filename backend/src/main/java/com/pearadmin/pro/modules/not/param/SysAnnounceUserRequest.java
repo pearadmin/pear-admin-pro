@@ -10,4 +10,5 @@ public class SysAnnounceUserRequest extends PageRequest {
      * 公告标题
      * */
     private String title;
+
 }
