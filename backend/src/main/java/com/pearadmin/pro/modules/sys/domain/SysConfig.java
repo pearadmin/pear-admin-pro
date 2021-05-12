@@ -13,7 +13,6 @@ import org.apache.ibatis.type.Alias;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/27
  * */
-
 @Data
 @Alias("SysConfig")
 @EqualsAndHashCode(callSuper = true)

@@ -29,4 +29,5 @@ export default {
   'dataSource': () => import('@/view/dataSource/index.vue'),
   'job': () => import('@/view/job/index.vue'),
   'jobLog': () => import('@/view/jobLog/index.vue'),
+  'announce': () => import('@/view/announce/index.vue'),
 }

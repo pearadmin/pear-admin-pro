@@ -3,7 +3,6 @@ package com.pearadmin.pro.common.cache.impl;
 import com.pearadmin.pro.common.cache.BaseCache;
 import com.pearadmin.pro.modules.sys.domain.SysDictData;
 import com.pearadmin.pro.modules.sys.domain.SysDict;
-import com.pearadmin.pro.modules.sys.param.SysDictDataRequest;
 import com.pearadmin.pro.modules.sys.service.SysDictDataService;
 import com.pearadmin.pro.modules.sys.service.SysDictService;
 import lombok.extern.slf4j.Slf4j;

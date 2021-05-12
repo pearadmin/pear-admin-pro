@@ -5,7 +5,7 @@ import CardBase from "./cardBase";
 import Count from "./count";
 import Table from './table';
 import Query from './query';
-import Authority from './authority';
+import Authority from './auth';
 
 const components = [
     Footer,Header,Layout, CardBase, Count,Table,Query,Authority

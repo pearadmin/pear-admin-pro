@@ -54,5 +54,8 @@ export default {
   /// 定时任务
   "task": "定时任务",
   "task-job": "任务列表",
-  "task-job-log": "任务日志"
+  "task-job-log": "任务日志",
+  /// 站内消息
+  "notice": "站内消息",
+  "notice-announce": "通知公告",
 }

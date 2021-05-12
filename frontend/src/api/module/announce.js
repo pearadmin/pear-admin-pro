@@ -1,16 +1,15 @@
 import http from '../http'
 
+/** 接口管理 */
 const Api = {
-    page: '/api/sys/job/page',
-    remove: '/api/sys/job/remove',
-    removeBatch: '/api/sys/job/removeBatch',
-    save: '/api/sys/job/save',
-    edit: '/api/sys/job/edit',
-    resume: '/api/sys/job/resume',
-    pause: '/api/sys/job/pause',
+    page: '/api/sys/announce/page',
+    save: '/api/sys/announce/save',
+    edit: '/api/sys/announce/edit',
+    remove: '/api/sys/announce/remove',
+    removeBatch: '/api/sys/announce/removeBatch'
 }
 
-/** 岗位列表 */
+/** 公告列表 (分页) */
 export const page = data => {
     return http.request({
         url: Api.page,
@@ -19,7 +18,6 @@ export const page = data => {
     })
 }
 
-/** 新增岗位 */
 export const save = data => {
     return http.request({
         url: Api.save,
@@ -28,7 +26,6 @@ export const save = data => {
     })
 }
 
-/** 修改岗位 */
 export const edit = data => {
     return http.request({
         url: Api.edit,
@@ -37,25 +34,6 @@ export const edit = data => {
     })
 }
 
-/** 恢复 */
-export const resume = data => {
-    return http.request({
-        url: Api.resume,
-        params: data,
-        method: 'PUT'
-    })
-}
-
-/** 暂停 */
-export const pause = data => {
-    return http.request({
-        url: Api.pause,
-        params: data,
-        method: 'PUT'
-    })
-}
-
-/** 删除岗位 */
 export const remove = data => {
     return http.request({
         url: Api.remove,
@@ -64,7 +42,6 @@ export const remove = data => {
     })
 }
 
-/** 批量删除 */
 export const removeBatch = data => {
     return http.request({
         url: Api.removeBatch,
