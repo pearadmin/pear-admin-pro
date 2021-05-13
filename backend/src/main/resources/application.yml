@@ -3,7 +3,7 @@ server:
   ## 监听端口
   port: 9292
 
-## spring 配置
+## Spring 配置
 spring:
   ## 动态配置
   profiles:

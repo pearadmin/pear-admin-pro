@@ -18,14 +18,4 @@ public class ControllerConstant {
      * */
     public static final String PREFIX_SYS = PREFIX + "/sys/";
 
-    /**
-     * 任务 API 根路径
-     * */
-    public static final String PREFIX_JOB = PREFIX + "/job/";
-
-    /**
-     * 资源 API 根路径
-     * */
-    public static final String PREFIX_OSS = PREFIX + "/oss/";
-
 }

@@ -14,11 +14,20 @@
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
     >
-      <a-form-item ref="title" label="标题" name="title">
-        <a-input v-model:value="formState.title" />
+      <a-form-item ref="name" label="名称" name="name">
+        <a-input v-model:value="formState.name" />
       </a-form-item>
-      <a-form-item ref="content" label="内容" name="content">
-        <a-input v-model:value="formState.content" />
+      <a-form-item ref="code" label="标识" name="code">
+        <a-input v-model:value="formState.code" />
+      </a-form-item>
+      <a-form-item ref="sort" label="标识" name="sort">
+        <a-input-number v-model:value="formState.sort" />
+      </a-form-item>
+      <a-form-item label="状态" name="enable">
+        <a-switch v-model:checked="formState.enable" />
+      </a-form-item>
+      <a-form-item label="备注" name="remark">
+        <a-textarea v-model:value="formState.remark" />
       </a-form-item>
     </a-form>
   </a-modal>
@@ -42,8 +51,12 @@ export default defineComponent({
     const formState = reactive({});
 
     watch(props, (props) => {
-        formState.title = props.record.title
-        formState.content = props.record.content
+        formState.id = props.record.id
+        formState.name = props.record.name
+        formState.code = props.record.code
+        formState.sort = props.record.sort
+        formState.remark = props.record.remark
+        formState.enable = props.record.enable
     })
 
     const formRules = {};
@@ -59,6 +72,7 @@ export default defineComponent({
     };
 
     return {
+
       submit,
       cancel,
       formRef,

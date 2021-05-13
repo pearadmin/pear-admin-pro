@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.not.rest;
 
+import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -7,6 +8,7 @@ import com.pearadmin.pro.modules.not.domain.SysAnnounce;
 import com.pearadmin.pro.modules.not.param.SysAnnounceRequest;
 import com.pearadmin.pro.modules.not.service.SysAnnounceService;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
@@ -26,25 +28,36 @@ public class SysAnnounceController extends BaseController {
     private SysAnnounceService sysAnnounceService;
 
     @GetMapping("page")
+    @Log(title = "公告列表")
+    @ApiOperation(value = "公告列表")
     public Result page(SysAnnounceRequest request){
         return success(sysAnnounceService.page(request));
     }
 
     @PostMapping("save")
+    @Log(title = "新增公告")
+    @ApiOperation(value = "新增公告")
     public Result save(@RequestBody SysAnnounce sysAnnounce){
         return auto(sysAnnounceService.save(sysAnnounce));
     }
 
     @PutMapping("edit")
+    @Log(title = "修改公告")
+    @ApiOperation(value = "修改公告")
     public Result edit(@RequestBody SysAnnounce sysAnnounce){ return auto(sysAnnounceService.updateById(sysAnnounce)); }
 
     @DeleteMapping("remove")
+    @Log(title = "删除公告")
+    @ApiOperation(value = "删除公告")
     public Result remove(@RequestParam String id){
         return auto(sysAnnounceService.removeById(id));
     }
 
     @DeleteMapping("removeBatch")
+    @Log(title = "批量删除")
+    @ApiOperation(value = "批量删除")
     public Result removeBatch(@RequestParam List<String> ids){
         return auto(sysAnnounceService.removeByIds(ids));
     }
+
 }

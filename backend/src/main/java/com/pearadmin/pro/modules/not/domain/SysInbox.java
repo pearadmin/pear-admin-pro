@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.not.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.apache.ibatis.type.Alias;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @Data
 @Alias("SysInbox")
 @TableName("sys_inbox")
-public class SysInbox {
+public class SysInbox extends BaseDomain {
 
     /**
      * 编号
@@ -29,12 +30,6 @@ public class SysInbox {
      * */
     @TableField("dialogue_id")
     private String dialogueId;
-
-    /**
-     * 发送者
-     * */
-    @TableField("sender_id")
-    private String senderId;
 
     /**
      * 接受者

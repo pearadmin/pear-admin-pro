@@ -38,7 +38,7 @@ import edit from './modal/edit';
 import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { page, remove, removeBatch } from "@/api/module/announce";
+import { page, remove, removeBatch } from "@/api/module/inbox";
 import { reactive, createVNode } from 'vue';
 
 const removeKey = "remove";
@@ -57,10 +57,11 @@ export default {
 
     /// 列配置
     const columns = [
-      { dataIndex: "title", key: "title", title: "公告标题" },
-      { dataIndex: "content", key: "content", title: "公告内容" },
-      { dataIndex: "createName", key: "createName", title: "发布人" },
-      { dataIndex: "createTime", key: "createTime", title: "发布时间" }
+      { dataIndex: "title", key: "title", title: "消息内容" },
+      { dataIndex: "content", key: "content", title: "发送者" },
+      { dataIndex: "createName", key: "createName", title: "接收者" },
+      { dataIndex: "createTime", key: "createTime", title: "发送时间" },
+      { dataIndex: "dialogueId", key: "dialogueId", title: "所属对话" },
     ];
 
     /// 数据来源 [模拟]
