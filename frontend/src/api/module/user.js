@@ -4,6 +4,7 @@ import http from '../http'
 const Api = {
   save: '/api/sys/user/save',
   page: '/api/sys/user/page',
+  list: '/api/sys/user/list',
   give: '/api/sys/user/give',
   edit: '/api/sys/user/edit',
   menu: '/api/sys/user/menu',
@@ -64,6 +65,15 @@ export const power = data => {
 export const page = data => {
   return http.request({
     url: Api.page,
+    params: data,
+    method: 'GET'
+  })
+}
+
+/** 用户列表 */
+export const list = data => {
+  return http.request({
+    url: Api.list,
     params: data,
     method: 'GET'
   })

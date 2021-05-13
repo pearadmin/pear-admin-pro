@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 
 /**
  * 私人消息
- *
- * @author: 就眠仪式
- * @date: 2021-05-12
+ * <p>
+ * author: 就眠仪式
+ * date: 2021-05-12
  * */
 @Data
 @Alias("SysInbox")
@@ -60,5 +60,17 @@ public class SysInbox extends BaseDomain {
      * */
     @TableField("read_time")
     private LocalDateTime readTime;
+
+    /**
+     * 创建人
+     * */
+    @TableField(exist = false)
+    private String createName;
+
+    /**
+     * 接收人
+     * */
+    @TableField(exist = false)
+    private String recipientName;
 
 }

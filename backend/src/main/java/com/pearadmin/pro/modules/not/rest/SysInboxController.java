@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.not.rest;
 
+import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.modules.not.domain.SysInbox;
@@ -44,6 +45,7 @@ public class SysInboxController extends BaseController {
     @Log(title = "新增私信")
     @ApiOperation(value = "新增私信")
     public Result save(@RequestBody SysInbox sysInbox) {
+        sysInbox.setDialogueId(IdWorker.getIdStr());
         return auto(sysInboxService.save(sysInbox));
     }
 

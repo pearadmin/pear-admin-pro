@@ -52,14 +52,11 @@ export default {
   },
   setup() {
 
-    /// 开关
-    const switchFormat = { yes: true, no: false };
-
     /// 列配置
     const columns = [
-      { dataIndex: "title", key: "title", title: "消息内容" },
-      { dataIndex: "content", key: "content", title: "发送者" },
-      { dataIndex: "createName", key: "createName", title: "接收者" },
+      { dataIndex: "content", key: "content", title: "消息内容" },
+      { dataIndex: "createName", key: "createName", title: "发送者" },
+      { dataIndex: "recipientName", key: "recipientName", title: "接收者" },
       { dataIndex: "createTime", key: "createTime", title: "发送时间" },
       { dataIndex: "dialogueId", key: "dialogueId", title: "所属对话" },
     ];
@@ -76,7 +73,7 @@ export default {
     /// 删除配置
     const removeMethod = (record) => {
       modal.confirm({
-        title: '您是否确定要删除此公告?',
+        title: '您是否确定要删除此私信?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',
@@ -95,7 +92,7 @@ export default {
 
     const removeBatchMethod = (ids) => {
        modal.confirm({
-        title: '您是否确定要删除选择公告?',
+        title: '您是否确定要删除选择私信?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',
@@ -121,7 +118,6 @@ export default {
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
-      { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
     ];
 

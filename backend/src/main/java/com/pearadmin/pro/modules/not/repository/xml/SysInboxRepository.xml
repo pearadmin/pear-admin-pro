@@ -3,6 +3,13 @@
 <mapper namespace="com.pearadmin.pro.modules.not.repository.SysInboxRepository">
 
     <select id="selectInbox" resultType="SysInbox">
-        select * from sys_inbox
+        select
+        si.*,
+        su1.nickname as recipientName,
+        su2.nickname as createName
+        from sys_inbox si
+        left join sys_user su1 on su1.id = si.recipient_id
+        left join sys_user su2 on su2.id = si.create_by
     </select>
+
 </mapper>

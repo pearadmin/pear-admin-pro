@@ -68,7 +68,7 @@
             </a-menu>
           </template>
         </a-dropdown>
-        <a-button>
+        <a-button @click="print">
           <template #icon><ExportOutlined /></template>
         </a-button>
       </div>
@@ -122,6 +122,7 @@
         </span>
 
         <!-- 下拉组件 暂未涉及 [待实现]-->
+        
     
         <!-- 输入框 暂未涉及 [待实现]-->
 
@@ -279,6 +280,17 @@ export default defineComponent({
       state.size = target;
     }
 
+    const print = function() {
+      let subOutputRankPrint = document.getElementById("pro-table");
+      let newContent = subOutputRankPrint.innerHTML;
+      let oldContent = document.body.innerHTML;
+      document.body.innerHTML = newContent;
+      window.print();
+      window.location.reload();
+      document.body.innerHTML = oldContent;
+    }
+
+
     return {
       /// 数据信息
       ...toRefs(state),
@@ -292,7 +304,9 @@ export default defineComponent({
       /// 选中字段
       onSelectChange,
       /// 改变大小
-      changeSize
+      changeSize,
+      /// 打印
+      print
     };
   },
 });

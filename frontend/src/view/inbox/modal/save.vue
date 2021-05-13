@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="发送消息"
+    title="发送私信"
     cancelText="取消"
     okText="提交"
     @ok="submit"
@@ -14,8 +14,10 @@
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
     >
-      <a-form-item ref="recipientId" label="目标" name="recipientId">
-        <a-input v-model:value="formState.recipientId" />
+      <a-form-item label="目标" name="recipientId">
+          <a-select v-model:value="formState.recipientId">
+            <a-select-option :value="user.id" v-bind:key="index" v-for="(user,index) in state.users">{{user.nickname}}</a-select-option>
+          </a-select>
       </a-form-item>
       <a-form-item ref="content" label="内容" name="content">
         <a-textarea v-model:value="formState.content" />
@@ -26,6 +28,7 @@
 <script>
 import { message } from 'ant-design-vue';
 import { save } from "@/api/module/inbox";
+import { list } from "@/api/module/user";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 export default defineComponent({
   props: {
@@ -38,6 +41,8 @@ export default defineComponent({
 
     const formRef = ref();
     
+    const state = reactive({});
+
     const formState = reactive({});
 
     const formRules = {
@@ -46,6 +51,12 @@ export default defineComponent({
     };
 
     const saveKey = "save";
+
+    const loadUser = () => {
+      list({}).then((response)=>{
+        state.users = response.data;
+      }) 
+    }
 
     const submit = (e) => {
       message.loading({ content: '提交中...', key: saveKey });
@@ -74,7 +85,10 @@ export default defineComponent({
       context.emit("close", false);
     };
 
+    loadUser();
+
     return {
+      state,
       submit,
       cancel,
       formRef,

@@ -9,9 +9,9 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 
 /**
  * 系统公告
- *
- * @author: 就眠仪式
- * @date: 2021-05-12
+ * <p>
+ * author: 就眠仪式
+ * date: 2021-05-12
  * */
 @Data
 @Alias("SysAnnounce")
