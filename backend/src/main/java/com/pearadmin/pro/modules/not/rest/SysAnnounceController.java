@@ -27,6 +27,12 @@ public class SysAnnounceController extends BaseController {
     @Resource
     private SysAnnounceService sysAnnounceService;
 
+    /**
+     * 查询公告
+     *
+     * @param request 查询参数
+     * @return {@link Result}
+     */
     @GetMapping("page")
     @Log(title = "公告列表")
     @ApiOperation(value = "公告列表")
@@ -34,6 +40,12 @@ public class SysAnnounceController extends BaseController {
         return success(sysAnnounceService.page(request));
     }
 
+    /**
+     * 新增公告
+     *
+     * @param sysAnnounce 查询参数
+     * @return {@link Result}
+     */
     @PostMapping("save")
     @Log(title = "新增公告")
     @ApiOperation(value = "新增公告")
@@ -41,11 +53,23 @@ public class SysAnnounceController extends BaseController {
         return auto(sysAnnounceService.save(sysAnnounce));
     }
 
+    /**
+     * 修改公告
+     *
+     * @param sysAnnounce 查询参数
+     * @return {@link Result}
+     */
     @PutMapping("edit")
     @Log(title = "修改公告")
     @ApiOperation(value = "修改公告")
     public Result edit(@RequestBody SysAnnounce sysAnnounce){ return auto(sysAnnounceService.updateById(sysAnnounce)); }
 
+    /**
+     * 删除公告
+     *
+     * @param id 公告编号
+     * @return {@link Result}
+     */
     @DeleteMapping("remove")
     @Log(title = "删除公告")
     @ApiOperation(value = "删除公告")
@@ -53,6 +77,12 @@ public class SysAnnounceController extends BaseController {
         return auto(sysAnnounceService.removeById(id));
     }
 
+    /**
+     * 批量删除
+     *
+     * @param ids 批量删除
+     * @return {@link Result}
+     */
     @DeleteMapping("removeBatch")
     @Log(title = "批量删除")
     @ApiOperation(value = "批量删除")

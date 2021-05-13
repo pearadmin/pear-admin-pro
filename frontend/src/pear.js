@@ -119,6 +119,8 @@
 
   /**
    * 参数：默认的tab栏
+   * 
+   * 内容：组件名称
    */
   defaultTab: "dashboard-console",
 

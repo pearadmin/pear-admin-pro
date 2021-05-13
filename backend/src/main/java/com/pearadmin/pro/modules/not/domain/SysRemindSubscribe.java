@@ -14,4 +14,5 @@ import org.apache.ibatis.type.Alias;
 @Alias("SysRemindSubcribe")
 @TableName("sys_remind_subcribe")
 public class SysRemindSubscribe {
+
 }

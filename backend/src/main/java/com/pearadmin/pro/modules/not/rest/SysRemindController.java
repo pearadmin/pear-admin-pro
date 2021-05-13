@@ -10,4 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "remind")
 public class SysRemindController extends BaseController {
+
 }

@@ -21,6 +21,12 @@ public class SysInboxController extends BaseController {
     @Resource
     private SysInboxService sysInboxService;
 
+    /**
+     * 查询私信
+     *
+     * @param request 查询参数
+     * @return {@link Result}
+     */
     @GetMapping("page")
     @Log(title = "查询私信")
     @ApiOperation(value = "查询私信")
@@ -28,6 +34,12 @@ public class SysInboxController extends BaseController {
         return success(sysInboxService.page(request));
     }
 
+    /**
+     * 新增私信
+     *
+     * @param sysInbox 私信实体
+     * @return {@link Result}
+     */
     @PostMapping("save")
     @Log(title = "新增私信")
     @ApiOperation(value = "新增私信")
@@ -35,6 +47,12 @@ public class SysInboxController extends BaseController {
         return auto(sysInboxService.save(sysInbox));
     }
 
+    /**
+     * 修改私信
+     *
+     * @param sysInbox 私信实体
+     * @return {@link Result}
+     */
     @PutMapping("edit")
     @Log(title = "修改私信")
     @ApiOperation(value = "修改私信")
@@ -42,6 +60,12 @@ public class SysInboxController extends BaseController {
         return auto(sysInboxService.updateById(sysInbox));
     }
 
+    /**
+     * 删除私信
+     *
+     * @param id 私信编号
+     * @return {@link Result}
+     */
     @DeleteMapping("remove")
     @Log(title = "删除私信")
     @ApiOperation(value = "删除私信")
@@ -49,6 +73,12 @@ public class SysInboxController extends BaseController {
         return auto(sysInboxService.removeById(id));
     }
 
+    /**
+     * 批量删除
+     *
+     * @param ids 私信编号
+     * @return {@link Result}
+     */
     @DeleteMapping("removeBatch")
     @Log(title = "批量删除")
     @ApiOperation(value = "批量删除")

@@ -1,8 +1,8 @@
 package com.pearadmin.pro.modules.not.domain;
 
+import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
-import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 import org.apache.ibatis.type.Alias;
 import java.time.LocalDateTime;

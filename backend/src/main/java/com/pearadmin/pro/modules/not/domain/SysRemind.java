@@ -14,4 +14,5 @@ import org.apache.ibatis.type.Alias;
 @Alias("SysRemind")
 @TableName("sys_remind")
 public class SysRemind {
+
 }

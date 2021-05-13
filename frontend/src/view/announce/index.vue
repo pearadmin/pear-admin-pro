@@ -53,14 +53,15 @@ export default {
   setup() {
 
     /// 开关
-    const switchFormat = { yes: true, no: false };
+    const converFormat = [{label:"已发布",value:true},{label:"未发布",value:false}];
 
     /// 列配置
     const columns = [
       { dataIndex: "title", key: "title", title: "公告标题" },
       { dataIndex: "content", key: "content", title: "公告内容" },
       { dataIndex: "createName", key: "createName", title: "发布人" },
-      { dataIndex: "createTime", key: "createTime", title: "发布时间" }
+      { dataIndex: "state", key: "state", title: "状态", conver: converFormat },
+      { dataIndex: "createTime", key: "createTime", title: "发布时间" },
     ];
 
     /// 数据来源 [模拟]
@@ -92,6 +93,7 @@ export default {
       });
     }
 
+    /// 批量删除
     const removeBatchMethod = (ids) => {
        modal.confirm({
         title: '您是否确定要删除选择公告?',

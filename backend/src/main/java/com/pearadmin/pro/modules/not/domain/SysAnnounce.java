@@ -37,6 +37,16 @@ public class SysAnnounce extends BaseDomain {
     private String content;
 
     /**
+     * 状态
+     *
+     * 0.未发布
+     * 1.已发布
+     *
+     * */
+    @TableField("state")
+    private Boolean state = true;
+
+    /**
      * 创建人
      * */
     @TableField(exist = false)
