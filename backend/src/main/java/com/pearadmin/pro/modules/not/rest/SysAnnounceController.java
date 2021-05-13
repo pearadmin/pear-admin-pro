@@ -36,9 +36,7 @@ public class SysAnnounceController extends BaseController {
     }
 
     @PutMapping("edit")
-    public Result edit(@RequestBody SysAnnounce sysAnnounce){
-        return auto(sysAnnounceService.updateById(sysAnnounce));
-    }
+    public Result edit(@RequestBody SysAnnounce sysAnnounce){ return auto(sysAnnounceService.updateById(sysAnnounce)); }
 
     @DeleteMapping("remove")
     public Result remove(@RequestParam String id){
