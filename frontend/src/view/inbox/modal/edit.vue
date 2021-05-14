@@ -14,9 +14,6 @@
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
     >
-      <a-form-item ref="title" label="标题" name="title">
-        <a-input v-model:value="formState.title" />
-      </a-form-item>
       <a-form-item name="content" label="内容" >
         <a-textarea v-model:value="formState.content" />
       </a-form-item>
@@ -45,13 +42,11 @@ export default defineComponent({
 
     watch(props, (props) => {
         formState.id = props.record.id
-        formState.title = props.record.title
         formState.content = props.record.content
     })
 
     const formRules = {
-      name: [ { required: true, message: '请输入公告标题', trigger: 'blur'} ],
-      code: [ { required: true, message: '请输入公告内容', trigger: 'blur'} ]
+      content: [ { required: true, message: '请输入公告内容', trigger: 'blur'} ]
     };
 
     const editKey = "add";

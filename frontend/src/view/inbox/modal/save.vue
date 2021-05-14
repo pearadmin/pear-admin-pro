@@ -46,7 +46,7 @@ export default defineComponent({
     const formState = reactive({});
 
     const formRules = {
-      recipientId: [ { required: true, message: '请输入公告标题', trigger: 'blur'} ],
+      recipientId: [ { required: true, message: '请输入目标用户', trigger: 'blur'} ],
       content: [ { required: true, message: '请输入公告内容', trigger: 'blur'} ]
     };
 
