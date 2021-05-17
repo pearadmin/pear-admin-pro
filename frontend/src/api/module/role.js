@@ -10,6 +10,7 @@ const Api = {
     remove: '/api/sys/role/remove',
     removeBatch: '/api/sys/role/removeBatch',
     power: '/api/sys/role/power',
+    dept: '/api/sys/role/dept',
 }
 
 /** 角色列表 (分页) */
@@ -81,5 +82,14 @@ export const give = data => {
         url: Api.give,
         data: data,
         method: 'POST'
+    })
+}
+
+/** 角色部门 */
+export const dept = data => {
+    return http.request({
+        url: Api.dept,
+        params: data,
+        method: 'GET'
     })
 }

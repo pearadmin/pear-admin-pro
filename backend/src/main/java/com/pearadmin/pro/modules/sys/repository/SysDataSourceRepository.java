@@ -10,5 +10,10 @@ import java.util.List;
 @Mapper
 public interface SysDataSourceRepository extends BaseMapper<SysDataSource> {
 
+    /**
+     * 获取多库列表
+     *
+     * @return {@link SysDataSource}
+     * */
     List<SysDataSource> selectDataSource(@Param("request") SysDataSourceRequest request);
 }

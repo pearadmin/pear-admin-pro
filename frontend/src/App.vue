@@ -23,12 +23,11 @@ export default defineComponent({
       })
     )
 
-    /// 开局检测
     setTimeout(function(){
       window.less.modifyVars({
         "primary-color": color.value,
       })
-    },200)
+    },10)
     
     return {
       antdLocal

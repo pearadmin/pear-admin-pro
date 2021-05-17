@@ -5,6 +5,7 @@ import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
+import com.pearadmin.pro.modules.sys.param.SysRoleGiveRequest;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 
 import java.util.List;
@@ -41,12 +42,11 @@ public interface SysRoleService extends IService<SysRole> {
     /**
      * 分配权限
      *
-     * @param roleId 角色编号
-     * @param powerIds 权限编号
+     * @param request 请求参数
      *
      * @return {@link Boolean}
      * */
-    Boolean give(String roleId, List<String> powerIds);
+    Boolean give(SysRoleGiveRequest request);
 
     /**
      * 角色权限

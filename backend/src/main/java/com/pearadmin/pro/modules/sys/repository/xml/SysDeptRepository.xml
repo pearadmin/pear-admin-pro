@@ -8,7 +8,7 @@
 
     <select id="selectDeptByRoleId" resultType="SysDept">
         select * from sys_dept sd
-        left join sys_role_dept srd on srd = sd
+        left join sys_role_dept srd on srd.dept_id = sd.id
         where srd.role_id = #{roleId}
     </select>
 

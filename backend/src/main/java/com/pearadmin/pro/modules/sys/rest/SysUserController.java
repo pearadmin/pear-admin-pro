@@ -166,4 +166,13 @@ public class SysUserController extends BaseController {
     public Result power(String userId){
         return success(sysUserService.power(userId));
     }
+
+    /**
+     * 获取用户部门
+     * */
+    @GetMapping("dept")
+    @ApiOperation(value = "用户部门")
+    public Result dept(String userId) {
+        return success();
+    }
 }

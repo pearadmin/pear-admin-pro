@@ -3,12 +3,15 @@ package com.pearadmin.pro.modules.sys.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.common.web.base.page.Pageable;
+import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.modules.sys.domain.*;
+import com.pearadmin.pro.modules.sys.param.SysRoleGiveRequest;
 import com.pearadmin.pro.modules.sys.repository.SysDeptRepository;
 import com.pearadmin.pro.modules.sys.repository.SysPowerRepository;
 import com.pearadmin.pro.modules.sys.repository.SysRolePowerRepository;
 import com.pearadmin.pro.modules.sys.repository.SysRoleRepository;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
+import com.pearadmin.pro.modules.sys.service.SysRoleDeptService;
 import com.pearadmin.pro.modules.sys.service.SysRolePowerService;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
 import com.pearadmin.pro.modules.sys.service.SysUserRoleService;
@@ -34,6 +37,9 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
     private SysRolePowerService sysRolePowerService;
 
     @Resource
+    private SysRoleDeptService sysRoleDeptService;
+
+    @Resource
     private SysPowerRepository sysPowerRepository;
 
     @Resource
@@ -56,8 +62,17 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
 
     @Override
     @Transactional
-    public Boolean give(String roleId, List<String> powerIds) {
+    public Boolean give(SysRoleGiveRequest request) {
+
+        String roleId = request.getRoleId();
+        List<String> powerIds = request.getPowerIds();
+        List<String> deptIds = request.getDeptIds();
+        Scope scope = request.getScope();
+
         sysRolePowerService.lambdaUpdate().eq(SysRolePower::getRoleId, roleId).remove();
+        sysRoleDeptService.lambdaUpdate().eq(SysRoleDept::getRoleId, roleId).remove();
+        this.lambdaUpdate().eq(SysRole::getId, roleId).set(SysRole::getScope, scope).update();
+
         List<SysRolePower> rolePowers = new ArrayList<>();
         powerIds.forEach(powerId -> {
             SysRolePower rolePower = new SysRolePower();
@@ -65,7 +80,19 @@ public class SysRoleServiceImpl extends ServiceImpl<SysRoleRepository, SysRole> 
             rolePower.setPowerId(powerId);
             rolePowers.add(rolePower);
         });
-        return sysRolePowerService.saveBatch(rolePowers);
+
+        List<SysRoleDept> roleDepts = new ArrayList<>();
+        deptIds.forEach(deptId -> {
+            SysRoleDept roleDept = new SysRoleDept();
+            roleDept.setRoleId(roleId);
+            roleDept.setDeptId(deptId);
+            roleDepts.add(roleDept);
+        });
+
+        sysRolePowerService.saveBatch(rolePowers);
+        sysRoleDeptService.saveBatch(roleDepts);
+
+        return true;
     }
 
     @Override

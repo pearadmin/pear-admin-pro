@@ -1,7 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
-import com.pearadmin.pro.common.web.interceptor.enums.Scope;
-import com.pearadmin.pro.modules.sys.param.SysRolePowerRequest;
+import com.pearadmin.pro.modules.sys.param.SysRoleGiveRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.Log;
@@ -113,8 +112,8 @@ public class SysRoleController extends BaseController {
     @PostMapping("give")
     @Log(title = "分配权限")
     @ApiOperation(value = "分配权限")
-    public Result give(@RequestBody SysRolePowerRequest request){
-        return success(sysRoleService.give(request.getRoleId(), request.getPowerIds()));
+    public Result give(@RequestBody SysRoleGiveRequest request){
+        return success(sysRoleService.give(request));
     }
 
     /**
@@ -129,4 +128,14 @@ public class SysRoleController extends BaseController {
         return success(sysRoleService.power(roleId));
     }
 
+
+    /**
+     * 角色部门
+     *
+     * @param roleId 角色编号
+     * */
+    @GetMapping("dept")
+    @Log(title = "角色部门")
+    @ApiOperation(value = "角色部门")
+    public Result dept(@RequestParam String roleId) { return success(sysRoleService.dept(roleId)); }
 }
