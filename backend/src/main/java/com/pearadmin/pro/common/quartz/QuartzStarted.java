@@ -8,6 +8,9 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 启动检测
+ * */
 @Component
 public class QuartzStarted {
 

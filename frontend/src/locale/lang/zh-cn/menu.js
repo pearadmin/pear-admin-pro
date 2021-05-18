@@ -59,4 +59,5 @@ export default {
   "notice": "站内消息",
   "notice-announce": "通知公告",
   "notice-inbox": "私人消息",
+  "notice-remind": "提醒消息",
 }

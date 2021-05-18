@@ -11,5 +11,10 @@ import java.util.List;
 @Mapper
 public interface SysAnnounceRepository extends BaseMapper<SysAnnounce> {
 
+    /**
+     * 获取公告列表
+     *
+     * @return {@link SysAnnounce}
+     * */
     List<SysAnnounce> selectAnnounce(@Param("request")SysAnnounceRequest request);
 }

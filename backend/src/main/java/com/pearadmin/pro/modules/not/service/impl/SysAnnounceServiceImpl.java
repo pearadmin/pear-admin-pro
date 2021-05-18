@@ -23,7 +23,5 @@ public class SysAnnounceServiceImpl extends ServiceImpl<SysAnnounceRepository, S
     }
 
     @Override
-    public PageResponse<SysAnnounce> page(SysAnnounceRequest request) {
-        return Pageable.of(request, (()-> sysAnnounceRepository.selectAnnounce(request)));
-    }
+    public PageResponse<SysAnnounce> page(SysAnnounceRequest request) { return Pageable.of(request, (()-> sysAnnounceRepository.selectAnnounce(request))); }
 }

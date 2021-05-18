@@ -11,6 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import javax.annotation.Resource;
 
+/**
+ * 用户公告控制器
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/03/28
+ * */
 @Api(tags = {"公告"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "announce/user")

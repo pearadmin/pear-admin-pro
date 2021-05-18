@@ -14,6 +14,12 @@ import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
 import java.util.List;
 
+/**
+ * 私信控制器
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/03/28
+ * */
 @Api(tags = {"私信"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "inbox")

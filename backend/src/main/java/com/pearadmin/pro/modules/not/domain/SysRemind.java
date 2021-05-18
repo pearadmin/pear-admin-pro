@@ -1,5 +1,7 @@
 package com.pearadmin.pro.modules.not.domain;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
@@ -18,36 +20,35 @@ import java.time.LocalDateTime;
 public class SysRemind extends BaseDomain {
 
     /** 编号 */
+    @TableId
     private String id;
 
     /** 发送者 编号 */
+    @TableField("sender_id")
     private String senderId;
 
     /** 发送者 名称 */
+    @TableField(exist = false)
     private String senderName;
 
-    /** 目标 编号 */
-    private String objectId;
-
-    /** 目标 信息 */
-    private Object object;
-
-    /** 动作 - template 模板 --> content */
-    private String action;
-
     /** 接收者 编号 */
+    @TableField("recipient_id")
     private String recipientId;
 
     /** 接收者 名称 */
+    @TableField(exist = false)
     private String recipientName;
 
     /** 内容 */
+    @TableField("content")
     private String content;
 
     /** 是否阅读 */
+    @TableField("is_read")
     private Boolean isRead;
 
     /** 阅读时间 */
+    @TableField("read_time")
     private LocalDateTime readTime;
 
 }

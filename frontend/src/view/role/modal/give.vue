@@ -83,18 +83,15 @@ export default defineComponent({
       state.depts = response.data;
     };
 
+    /// 监听数据
     watch(scope, (scope) => {
-
-      alert(scope);
-      
       if(scope === "CUSTOM") {
         state.showDept = true;
-
       } else {
         state.checkedDeptIds = [];
         state.showDept = false;
       }
-    },{ deep: true })
+    })
 
     /// 监听数据
     watch(props, (props) => {
@@ -105,7 +102,6 @@ export default defineComponent({
         });
         state.checkedPowerIds = powerIds;
       });
-
       let deptIds = [];
       dept({ roleId: props.record.id}).then((response) => {
         response.data.forEach((element) => {

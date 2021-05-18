@@ -2,6 +2,8 @@ package com.pearadmin.pro.modules.not.domain;
 
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
+import com.pearadmin.pro.modules.not.enums.Relational;
+import com.pearadmin.pro.modules.not.enums.Subscribe;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -12,7 +14,7 @@ import org.apache.ibatis.type.Alias;
  * date: 2021-05-12
  * */
 @Data
-@Alias("SysRemindSubcribe")
+@Alias("SysRemindSubscribe")
 @TableName("sys_remind_subcribe")
 public class SysRemindSubscribe extends BaseDomain {
 
@@ -22,15 +24,13 @@ public class SysRemindSubscribe extends BaseDomain {
     /** 订阅者 */
     private String userId;
 
-    /** 被訂閲者 */
+    /** 被订阅者 */
     private String beanId;
 
-    /** 訂閲類型 */
-    private String action;
+    /** 订阅类型 */
+    private Subscribe subscribe;
 
-    /**
-     * 訂閲关系 0.publish 1.follow
-     * */
-    private String relation;
+    /** 订阅关系 */
+    private Relational relational;
 
 }
