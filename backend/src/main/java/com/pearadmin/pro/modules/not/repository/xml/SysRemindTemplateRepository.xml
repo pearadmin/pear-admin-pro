@@ -3,7 +3,11 @@
 <mapper namespace="com.pearadmin.pro.modules.not.repository.SysRemindTemplateRepository">
 
     <select id="selectRemindTemplate" resultType="SysRemindTemplate">
-        select * from sys_remind_template
+        select
+        srt.*,
+        su.nickname as createName
+        from sys_remind_template srt
+        left join sys_user su on su.id = srt.create_by
     </select>
 
 </mapper>

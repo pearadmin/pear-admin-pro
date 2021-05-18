@@ -7,9 +7,7 @@ import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.not.param.SysRemindSubscribeRequest;
 import com.pearadmin.pro.modules.not.service.SysRemindSubscribeService;
 import io.swagger.annotations.Api;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 
@@ -27,8 +25,15 @@ public class SysRemindSubscribeController extends BaseController {
     @Resource
     private SysRemindSubscribeService sysRemindSubscribeService;
 
+    /**
+     * 查询订阅关系
+     *
+     * @param request 查询参数
+     * @return {@link Result}
+     */
     @GetMapping("page")
     public Result page(SysRemindSubscribeRequest request) {
         return success(sysRemindSubscribeService.page(request));
     }
+
 }
