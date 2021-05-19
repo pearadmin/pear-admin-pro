@@ -44,7 +44,7 @@
     "less": "^2.7.2",
     "less-loader": "^7.1.0",
     "mockjs2": "^1.0.8",
-    "node-sass": "^4.14.1",
+    "node-sass": "^6.0.0",
     "sass-loader": "^10.0.2",
     "webpackbar": "^5.0.0-3"
   },
