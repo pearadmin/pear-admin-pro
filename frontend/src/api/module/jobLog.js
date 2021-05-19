@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 const Api = {
     page: '/api/sys/job/log/page',
@@ -6,7 +6,7 @@ const Api = {
 
 /** 日志列表 */
 export const page = data => {
-    return http.request({
+    return request.request({
         url: Api.page,
         params: data,
         method: 'GET'

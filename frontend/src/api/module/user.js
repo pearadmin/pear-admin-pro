@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 /** 接口 */
 const Api = {
@@ -18,7 +18,7 @@ const Api = {
 
 /** 登录 */
 export const login = data => {
-  return http.request({
+  return request.request({
     url: Api.login,
     params: data,
     method: 'POST'
@@ -27,7 +27,7 @@ export const login = data => {
 
 /** 注销 */
 export const logout = data => {
-  return http.request({
+  return request.request({
     url: Api.logout,
     data: data,
     method: 'GET'
@@ -36,7 +36,7 @@ export const logout = data => {
 
 /** 用户菜单 */
 export const menu = data => {
-  return http.request({
+  return request.request({
     url: Api.menu,
     params: data,
     method: 'GET'
@@ -45,7 +45,7 @@ export const menu = data => {
 
 /** 用户角色 */
 export const role = data => {
-  return http.request({
+  return request.request({
     url: Api.role,
     params: data,
     method: 'GET'
@@ -54,7 +54,7 @@ export const role = data => {
 
 /** 用户权限 */
 export const power = data => {
-  return http.request({
+  return request.request({
     url: Api.power,
     params: data,
     method: 'GET'
@@ -63,7 +63,7 @@ export const power = data => {
 
 /** 用户列表 */
 export const page = data => {
-  return http.request({
+  return request.request({
     url: Api.page,
     params: data,
     method: 'GET'
@@ -72,7 +72,7 @@ export const page = data => {
 
 /** 用户列表 */
 export const list = data => {
-  return http.request({
+  return request.request({
     url: Api.list,
     params: data,
     method: 'GET'
@@ -81,7 +81,7 @@ export const list = data => {
 
 /** 用户新增 */
 export const save = data => {
-  return http.request({
+  return request.request({
     url: Api.save,
     data: data,
     method: 'POST'
@@ -90,7 +90,7 @@ export const save = data => {
 
 /** 新增用户 */
 export const give = data => {
-  return http.request({
+  return request.request({
     url: Api.give,
     data: data,
     method: 'POST'
@@ -99,7 +99,7 @@ export const give = data => {
 
 /** 修改用户 */
 export const edit = data => {
-  return http.request({
+  return request.request({
     url: Api.edit,
     data: data,
     method: 'PUT'
@@ -108,7 +108,7 @@ export const edit = data => {
 
 /** 用户删除 */
 export const remove = data => {
-  return http.request({
+  return request.request({
     url: Api.remove,
     params: data,
     method: 'DELETE'
@@ -117,7 +117,7 @@ export const remove = data => {
 
 /** 批量删除 */
 export const removeBatch = data => {
-  return http.request({
+  return request.request({
     url: Api.removeBatch,
     params: data,
     method: 'DELETE'

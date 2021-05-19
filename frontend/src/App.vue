@@ -11,6 +11,7 @@ import {useI18n} from 'vue-i18n';
 export default defineComponent({
   name: 'App',
   setup() {
+    
     const store = useStore()
     const defaultLang = computed(() => store.getters['app/language'])
     const color = computed(() => store.getters.color);

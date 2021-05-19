@@ -12,5 +12,4 @@ public interface StorageService {
      * @return {@link String} 存储路径
      * */
     String upload(MultipartFile file);
-
 }

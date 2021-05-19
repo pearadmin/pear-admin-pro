@@ -52,7 +52,6 @@ public class CloudStorageService implements StorageService {
             return "http://" + bucketName + "." + endpoint + "/" + newName;
 
         } catch (IOException e) {
-
             throw new RuntimeException();
         }
     }

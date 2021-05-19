@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 const Api = {
     page: '/api/sys/job/page',
@@ -12,7 +12,7 @@ const Api = {
 
 /** 岗位列表 */
 export const page = data => {
-    return http.request({
+    return request.request({
         url: Api.page,
         params: data,
         method: 'GET'
@@ -21,7 +21,7 @@ export const page = data => {
 
 /** 新增岗位 */
 export const save = data => {
-    return http.request({
+    return request.request({
         url: Api.save,
         data: data,
         method: 'POST'
@@ -30,7 +30,7 @@ export const save = data => {
 
 /** 修改岗位 */
 export const edit = data => {
-    return http.request({
+    return request.request({
         url: Api.edit,
         data: data,
         method: 'PUT'
@@ -39,7 +39,7 @@ export const edit = data => {
 
 /** 恢复 */
 export const resume = data => {
-    return http.request({
+    return request.request({
         url: Api.resume,
         params: data,
         method: 'PUT'
@@ -48,7 +48,7 @@ export const resume = data => {
 
 /** 暂停 */
 export const pause = data => {
-    return http.request({
+    return request.request({
         url: Api.pause,
         params: data,
         method: 'PUT'
@@ -57,7 +57,7 @@ export const pause = data => {
 
 /** 删除岗位 */
 export const remove = data => {
-    return http.request({
+    return request.request({
         url: Api.remove,
         params: data,
         method: 'DELETE'
@@ -66,7 +66,7 @@ export const remove = data => {
 
 /** 批量删除 */
 export const removeBatch = data => {
-    return http.request({
+    return request.request({
         url: Api.removeBatch,
         params: data,
         method: 'DELETE'

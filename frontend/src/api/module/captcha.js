@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 // 接口
 const Api = {
@@ -8,7 +8,7 @@ const Api = {
 
 // 创建
 export const create = () =>{
-  return http.request({
+  return request.request({
     url: Api.create,
     method: 'get'
   })
@@ -16,7 +16,7 @@ export const create = () =>{
 
 // 验证
 export const verify = () =>{
-  return http.request({
+  return request.request({
     url: Api.verify,
     method: 'post'
   })

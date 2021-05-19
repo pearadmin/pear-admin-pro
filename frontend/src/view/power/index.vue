@@ -29,14 +29,25 @@
           </a-card>
         </a-col>
       </a-row>
+      <save :visible="state.visibleSave" @close="closeSave"></save>
+      <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
+      <info :visible="state.visibleInfo" @close="closeInfo" :record="state.recordInfo"></info>
     </page-layout>
 </template>
 
 <script>
+import save from "./modal/save";
+import edit from "./modal/edit";
+import info from "./modal/info";
 import { tree } from "@/api/module/power";
 import { reactive } from 'vue';
 
 export default {
+  components: {
+    save,
+    edit,
+    info,
+  },
   setup() {
 
     const switchFormat = { yes: true, no: false, event: function(value,record){
@@ -71,14 +82,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function (keys) { alert("新增操作:" + JSON.stringify(keys))}},
+      { label: "新增", event: function () { state.visibleSave = true }},
       { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
     ];
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
-      { label: "修改", event: function (record) { alert("修改事件:" + JSON.stringify(record))}},
+      { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
+      { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
     ];
 
@@ -88,10 +99,13 @@ export default {
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       selectedRowKeys: [],
-      param: {
-        name: "", // 名称
-        code: ""  // 标识
-      }
+      param: {},
+      visibleSave: false,
+      visibleEdit: false,
+      visibleInfo: false,
+      recordEdit: {},
+      recordInfo: {},
+      
     })
 
     /// 查询参数

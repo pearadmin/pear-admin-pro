@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 const Api = {
     page: '/api/sys/config/page',
@@ -10,7 +10,7 @@ const Api = {
 
 /** 配置列表 */
 export const page = data => {
-    return http.request({
+    return request.request({
         url: Api.page,
         params: data,
         method: 'GET'
@@ -19,7 +19,7 @@ export const page = data => {
 
 /** 新增配置 */
 export const save = data => {
-    return http.request({
+    return request.request({
         url: Api.save,
         data: data,
         method: 'POST'
@@ -28,7 +28,7 @@ export const save = data => {
 
 /** 修改配置 */
 export const edit = data => {
-    return http.request({
+    return request.request({
         url: Api.edit,
         data: data,
         method: 'PUT'
@@ -37,7 +37,7 @@ export const edit = data => {
 
 /** 删除配置 */
 export const remove = data => {
-    return http.request({
+    return request.request({
         url: Api.remove,
         params: data,
         method: 'DELETE'
@@ -46,7 +46,7 @@ export const remove = data => {
 
 /** 批量删除 */
 export const removeBatch = data => {
-    return http.request({
+    return request.request({
         url: Api.removeBatch,
         params: data,
         method: 'DELETE'

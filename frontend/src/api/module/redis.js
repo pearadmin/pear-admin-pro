@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 const Api = {
     info: '/api/sys/redis/info',
@@ -8,7 +8,7 @@ const Api = {
 
 /** 缓存详情 */
 export const info = data => {
-    return http.request({
+    return request.request({
         url: Api.info,
         params: data,
         method: 'GET'
@@ -17,7 +17,7 @@ export const info = data => {
 
 /** 缓存数量 */
 export const size = data => {
-    return http.request({
+    return request.request({
         url: Api.size,
         params: data,
         method: 'GET'
@@ -26,7 +26,7 @@ export const size = data => {
 
 /** 内存信息 */
 export const comd = data => {
-    return http.request({
+    return request.request({
         url: Api.comd,
         params: data,
         method: 'GET'

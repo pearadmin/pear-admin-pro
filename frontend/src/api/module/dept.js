@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 const Api = {
     tree: '/api/sys/dept/tree',
@@ -10,7 +10,7 @@ const Api = {
 
 /** 部门树 */
 export const tree = data => {
-    return http.request({
+    return request.request({
         url: Api.tree,
         params: data,
         method: 'get'
@@ -19,7 +19,7 @@ export const tree = data => {
 
 /** 新增部门 */
 export const save = data => { 
-    return http.request({
+    return request.request({
         url: Api.save,
         data: data,
         method: 'POST'
@@ -28,7 +28,7 @@ export const save = data => {
 
 /** 修改部门 */
 export const edit = data => {
-    return http.request({
+    return request.request({
         url: Api.edit,
         data: data,
         method: 'PUT'
@@ -37,7 +37,7 @@ export const edit = data => {
 
 /** 删除部门 */
 export const remove = data => {
-    return http.request({
+    return request.request({
         url: Api.remove,
         params: data,
         method: 'DELETE'
@@ -46,7 +46,7 @@ export const remove = data => {
 
 /** 批量删除 */
 export const removeBatch = data => {
-    return http.request({
+    return request.request({
         url: Api.removeBatch,
         params: data,
         method: 'DELETE'

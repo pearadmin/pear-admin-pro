@@ -1,4 +1,4 @@
-import http from '../http'
+import request from '../request'
 
 const Api = {
     page: '/api/sys/dict/data/page',
@@ -9,7 +9,7 @@ const Api = {
 }
 
 export const page = data => {
-    return http.request({
+    return request.request({
         url: Api.page,
         params: data,
         method: 'get'
@@ -17,7 +17,7 @@ export const page = data => {
 }
 
 export const save = data => {
-    return http.request({
+    return request.request({
         url: Api.save,
         data: data,
         method: 'POST'
@@ -25,7 +25,7 @@ export const save = data => {
 }
 
 export const edit = data => {
-    return http.request({
+    return request.request({
         url: Api.edit,
         data: data,
         method: 'PUT'
@@ -33,7 +33,7 @@ export const edit = data => {
 }
 
 export const remove = data => {
-    return http.request({
+    return request.request({
         url: Api.remove,
         params: data,
         method: 'DELETE'
@@ -41,7 +41,7 @@ export const remove = data => {
 }
 
 export const removeBatch = data => {
-    return http.request({
+    return request.request({
         url: Api.removeBatch,
         params: data,
         method: 'DELETE'
