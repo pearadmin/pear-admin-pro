@@ -1,6 +1,7 @@
 <template>
   <div>
     <pro-table v-if="visible"
+        ref="tableChilrenRef"
         rowKey="id"
         :fetch="fetch"
         :columns="columns"
@@ -22,7 +23,7 @@ import edit from "./data/edit";
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/dictData";
-import { reactive, createVNode, watch} from 'vue';
+import { reactive, createVNode, watch, ref} from 'vue';
 
 const removeKey = "remove";
 const removeBatchKey = "removeBatch";
@@ -43,7 +44,7 @@ export default {
   },
   setup(props) {
 
-    /// 监听
+    const tableChilrenRef = ref()
 
     watch(props,(props) => {
         state.param.code = props.record.code;
@@ -80,7 +81,9 @@ export default {
           message.loading({ content: "提交中...", key: removeKey });
           remove({"id":record.id}).then((response) => {
             if(response.success){
-              message.success({content: "删除成功", key: removeKey, duration: 1})
+              message.success({content: "删除成功", key: removeKey, duration: 1}).then(()=> {
+                tableChilrenRef.value.reload()
+              })
             }else{
               message.error({content: "删除失败", key: removeKey, duration: 1})
             }
@@ -100,7 +103,9 @@ export default {
           message.loading({ content: "提交中...", key: removeBatchKey });
           removeBatch({"ids":ids}).then((response) => {
             if(response.success){
-              message.success({content: "删除成功", key: removeBatchKey, duration: 1})
+              message.success({content: "删除成功", key: removeBatchKey, duration: 1}).then(()=> {
+                tableChilrenRef.value.reload()
+              })
             }else{
               message.error({content: "删除失败", key: removeBatchKey, duration: 1})
             }
@@ -138,25 +143,27 @@ export default {
 
     const closeSave = function(){
       state.visibleSave = false
+      tableChilrenRef.value.reload()
     }
 
     const closeEdit = function(){
       state.visibleEdit = false
+      tableChilrenRef.value.reload()
     }
 
-    /// 声明抛出
     return {
-      state, // 状态共享
-      fetch, // 数据回调
-      toolbar, // 工具栏
-      columns, // 列配置
-      operate, // 行操作
-      pagination, // 分页配置
-
+      state,
+      fetch, 
+      toolbar,
+      columns,
+      operate,
+      pagination,
       onSelectChange,
 
       closeSave,
       closeEdit,
+
+      tableChilrenRef
     };
   },
 };

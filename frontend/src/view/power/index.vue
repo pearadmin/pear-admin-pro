@@ -16,6 +16,8 @@
           <a-card>
             <!-- 列表 -->
             <pro-table
+              ref="tableRef"
+              rowKey="id"
               :fetch="fetch"
               :columns="columns"
               :toolbar="toolbar"
@@ -42,7 +44,7 @@ import info from "./modal/info";
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { tree, remove } from "@/api/module/power";
-import { reactive, createVNode } from 'vue';
+import { reactive, createVNode, ref } from 'vue';
 
 const removeKey = "remove";
 const removeBatchKey = "removeBatch";
@@ -54,6 +56,8 @@ export default {
     info,
   },
   setup() {
+
+    const tableRef = ref();
 
     const switchFormat = { yes: true, no: false, event: function(value,record){
       record.enable = !record.enable;
@@ -71,7 +75,9 @@ export default {
           message.loading({ content: "提交中...", key: removeKey });
           remove({"id":record.id}).then((response) => {
             if(response.success){
-              message.success({content: "删除成功", key: removeKey, duration: 1})
+              message.success({content: "删除成功", key: removeKey, duration: 1}).then(()=> {
+                tableRef.value.reload()
+              })
             }else{
               message.error({content: "删除失败", key: removeKey, duration: 1})
             }
@@ -148,45 +154,44 @@ export default {
 
     /// 查询操作
     const search = function(value) {
-      
-      /// 通过动态修改入参, 触发表格刷新
       state.param = value
+      tableRef.value.reload()
     }
 
     const onSelectChange = selectedRowKeys => {
       state.selectedRowKeys = selectedRowKeys;
     };
 
-    /// 关闭新增
     const closeSave = function(){
       state.visibleSave = false;
+      tableRef.value.reload();
     }
 
     const closeEdit = function(){
       state.visibleEdit = false;
+      tableRef.value.reload();
     }
 
     const closeInfo = function(){
       state.visibleInfo = false;
     }
 
-
-    /// 声明抛出
     return {
-      state: state, // 状态共享
-      fetch: fetch, // 数据回调
-      toolbar: toolbar, // 工具栏
-      columns: columns, // 列配置
-      operate: operate, // 行操作
-      pagination: pagination, // 分页配置
- 
-      search: search,
-      searchParam: searchParam, // 查询参数
-
+      state, 
+      fetch, 
+      search,
+      toolbar, 
+      columns, 
+      operate, 
+      pagination,
+      searchParam,
       onSelectChange,
+
       closeSave,
       closeEdit,
       closeInfo,
+
+      tableRef
     };
   },
 };

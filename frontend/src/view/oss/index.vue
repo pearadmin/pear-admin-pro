@@ -16,6 +16,7 @@
           <a-card>
             <!-- 列表 -->
             <pro-table
+              ref="tableRef"
               :fetch="fetch"
               :columns="columns"
               :toolbar="toolbar"
@@ -35,13 +36,15 @@
 <script>
 import upload from "./modal/upload";
 import { page } from "@/api/module/oss";
-import { reactive } from 'vue';
+import { reactive, ref } from 'vue';
 
 export default {
   components: {
     upload
   },
   setup() {
+
+    const tableRef = ref()
 
     /// 文本
     const converFormat = [{label:"本地", value:"local"},{label:"阿里云", value:"aliyun"}];
@@ -109,11 +112,9 @@ export default {
         }
     ]
 
-    /// 查询操作
     const search = function(value) {
-      
-      /// 通过动态修改入参, 触发表格刷新
       state.param = value
+      tableRef.value.reload()
     }
 
     const onSelectChange = selectedRowKeys => {
@@ -121,23 +122,22 @@ export default {
     };
 
     const closeUpload = function(){
-        state.visibleUpload = false;
+        state.visibleUpload = false
+        tableRef.value.reload()
     }
 
-    /// 声明抛出
     return {
-      state: state, // 状态共享
-      fetch: fetch, // 数据回调
-      toolbar: toolbar, // 工具栏
-      columns: columns, // 列配置
-      operate: operate, // 行操作
-      pagination: pagination, // 分页配置
-
-      search: search,
-      searchParam: searchParam, // 查询参数
-
+      state, 
+      fetch, 
+      search,
+      toolbar, 
+      columns, 
+      operate, 
+      tableRef,
+      pagination, 
+      searchParam,
+      closeUpload,
       onSelectChange,
-      closeUpload
     };
   },
 };

@@ -15,6 +15,7 @@
         <a-col :span="24">
           <a-card>
             <pro-table
+               ref="tableRef"
               :fetch="fetch"
               :columns="columns"
               :toolbar="toolbar"
@@ -45,7 +46,7 @@ import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/user";
-import { reactive, createVNode } from 'vue';
+import { reactive, createVNode, ref } from 'vue';
 
 const removeKey = "remove";
 const removeBatchKey = "removeBatch";
@@ -59,6 +60,8 @@ export default {
   },
   setup() {
 
+    const tableRef = ref();
+
     /// 查询用户
     const fetch = async (param) => {
       var response = await page(param);
@@ -68,10 +71,10 @@ export default {
       };
     };
 
-    /// 删除配置
+    /// 删除用户
     const removeMethod = (record) => {
       modal.confirm({
-        title: '您是否确定要删除此配置?',
+        title: '您是否确定要删除此用户?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',
@@ -79,7 +82,9 @@ export default {
           message.loading({ content: "提交中...", key: removeKey });
           remove({"id":record.id}).then((response) => {
             if(response.success){
-              message.success({content: "删除成功", key: removeKey, duration: 1})
+              message.success({content: "删除成功", key: removeKey, duration: 1}).then(() => 
+                tableRef.value.reload()
+              )
             }else{
               message.error({content: "删除失败", key: removeKey, duration: 1})
             }
@@ -88,9 +93,10 @@ export default {
       });
     }
 
+    /// 批量删除
     const removeBatchMethod = (ids) => {
        modal.confirm({
-        title: '您是否确定要删除选择配置?',
+        title: '您是否确定要删除选择用户?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',
@@ -98,7 +104,9 @@ export default {
           message.loading({ content: "提交中...", key: removeBatchKey });
           removeBatch({"ids":ids}).then((response) => {
             if(response.success){
-              message.success({content: "删除成功", key: removeBatchKey, duration: 1})
+              message.success({content: "删除成功", key: removeBatchKey, duration: 1}).then(() => 
+                tableRef.value.reload()
+              )
             }else{
               message.error({content: "删除失败", key: removeBatchKey, duration: 1})
             }
@@ -106,8 +114,6 @@ export default {
         }
       });
     }
-
-    /// 批量删除
 
     /// 工具栏
     const toolbar = [
@@ -175,22 +181,26 @@ export default {
 
     /// 查询操作
     const search = function(value) {
-      state.param = value
+      state.param = value;
+      tableRef.value.reload();
     }
 
     /// 关闭新增
     const closeSave = function(){
       state.visibleSave = false;
+      tableRef.value.reload();
     }
 
     /// 关闭修改
     const closeEdit = function(){
       state.visibleEdit = false;
+      tableRef.value.reload();
     }
 
     /// 关闭分配
     const closeGive = function(){
       state.visibleGive = false;
+      tableRef.value.reload();
     }
 
     /// 关闭详情
@@ -199,21 +209,22 @@ export default {
     }
 
     return {
-      state, // 共享数据
-      fetch, // 用户列表
-      toolbar, // 工具栏
-      columns, // 列配置
-      operate, // 行操作
-      pagination, // 分页配置
-      onSelectChange, // 行选择
+      state,
+      fetch,
+      search,
+      toolbar,
+      columns,
+      operate,
+      pagination,
+      searchParam,
+      onSelectChange,
 
-      search, // 查询回调
-      searchParam, // 查询参数
+      closeSave,
+      closeEdit,
+      closeGive,
+      closeInfo,
 
-      closeSave,  // 新增关闭
-      closeEdit, // 修改关闭
-      closeGive, // 分配关闭
-      closeInfo, // 详情关闭
+      tableRef
     };
   },
 };

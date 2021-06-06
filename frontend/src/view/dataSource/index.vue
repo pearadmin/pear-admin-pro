@@ -14,6 +14,7 @@
         <a-col :span="24">
           <a-card>
             <pro-table
+              ref="tableRef"
               :fetch="fetch"
               :columns="columns"
               :toolbar="toolbar"
@@ -39,7 +40,7 @@ import edit from './modal/edit';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/dataSource";
-import { reactive, createVNode } from 'vue';
+import { reactive, createVNode, ref } from 'vue';
 
 const removeKey = "remove";
 const removeBatchKey = "removeBatch";
@@ -50,6 +51,8 @@ export default {
     edit,
   },
   setup() {
+
+    const tableRef = ref()
 
     /// 列配置
     const columns = [
@@ -82,7 +85,9 @@ export default {
           message.loading({ content: "提交中...", key: removeKey });
           remove({"id":record.id}).then((response) => {
             if(response.success){
-              message.success({content: "删除成功", key: removeKey, duration: 1})
+              message.success({content: "删除成功", key: removeKey, duration: 1}).then(()=>{
+                tableRef.value.reload()
+              })
             }else{
               message.error({content: "删除失败", key: removeKey, duration: 1})
             }
@@ -101,7 +106,9 @@ export default {
           message.loading({ content: "提交中...", key: removeBatchKey });
           removeBatch({"ids":ids}).then((response) => {
             if(response.success){
-              message.success({content: "删除成功", key: removeBatchKey, duration: 1})
+              message.success({content: "删除成功", key: removeBatchKey, duration: 1}).then(()=>{
+                tableRef.value.reload()
+              })
             }else{
               message.error({content: "删除失败", key: removeBatchKey, duration: 1})
             }
@@ -146,9 +153,8 @@ export default {
 
     /// 查询操作
     const search = function(value) {
-      
-      /// 通过动态修改入参, 触发表格刷新
       state.param = value
+      tableRef.value.reload
     }
 
     const onSelectChange = selectedRowKeys => {
@@ -158,27 +164,29 @@ export default {
 
     const closeSave = function(){
       state.visibleSave = false
+      tableRef.value.reload
     }
 
     const closeEdit = function(){
       state.visibleEdit = false
+      tableRef.value.reload
     }
 
     return {
       state,
       fetch,
+      search,
       toolbar,
       columns,
       operate,
       pagination,
-
-      search,
       searchParam,
-
       onSelectChange,
 
       closeSave,
       closeEdit,
+    
+      tableRef
     };
   },
 };
