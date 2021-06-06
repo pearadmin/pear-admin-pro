@@ -19,6 +19,11 @@ target/
 *.iml
 *.ipr
 
+### Spring Boot ###
+/**/resources/application.yml
+/**/resources/application-dev.yml
+/**/resources/application-pro.yml
+
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/

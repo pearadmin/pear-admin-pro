@@ -43,10 +43,10 @@ public class SysPowerController extends BaseController {
      *
      * @return {@link Boolean}
      */
-    @PostMapping("add")
+    @PostMapping("save")
     @Log(title = "新增权限")
     @ApiOperation(value = "新增权限")
-    public Result add(@RequestBody SysPower sysPower){
+    public Result save(@RequestBody SysPower sysPower){
         return auto(sysPowerService.save(sysPower));
     }
 
@@ -67,15 +67,15 @@ public class SysPowerController extends BaseController {
     /**
      * 删除权限
      *
-     * @param powerId 权限编号
+     * @param id 权限编号
      *
      * @return {@link Boolean}
      */
     @DeleteMapping("remove")
     @Log(title = "删除权限")
     @ApiOperation(value = "删除权限")
-    public Result remove(List<String> powerId){
-        return auto(sysPowerService.removeByIds(powerId));
+    public Result remove(String id){
+        return auto(sysPowerService.removeById(id));
     }
 
 }

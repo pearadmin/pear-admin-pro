@@ -29,10 +29,10 @@ public class SysPower extends TreeDomain<SysPower> {
     private String id;
 
     /**
-     * 权限名称
+     * 相关组件
      * */
-    @TableField("name")
-    private String name;
+    @TableField("component")
+    private String component;
 
     /**
      * 权限标识
@@ -90,7 +90,7 @@ public class SysPower extends TreeDomain<SysPower> {
     /**
      * 状态
      * */
-    @TableField("status")
+    @TableField("enable")
     private Boolean enable;
 
 }

@@ -6,8 +6,8 @@ import router from "@/route/index";
 /** 路由信息 */
 export const generateRoute = (menus) => {
   const userRoutes = menus.map(menu => {
-    const { parent, icon, name, children = [], path, hidden = false, title, i18n, id } = menu
-    const currentMenu = { path, name, hidden, parent, meta: { key: id, title, i18n, icon }, children: children.length === 0 ? [] : generateRoute(children) }
+    const { parent, icon, component, children = [], path, hidden = false, title, i18n, id } = menu
+    const currentMenu = { path, component, hidden, parent, meta: { key: id, title, i18n, icon }, children: children.length === 0 ? [] : generateRoute(children) }
     if (children.length <= 0) {
       delete currentMenu.children
     }
@@ -27,7 +27,7 @@ export const generatePower = (powers) => {
 export const setUserRouteComponent = routes => {
   /// 路由组件匹配
   routes.forEach(r => {
-    r.component = r.parent == '0' ? permissionRoutes.Layout : permissionRoutes[r.name]
+    r.component = r.parent == '0' ? permissionRoutes.Layout : permissionRoutes[r.component]
     if (r.children && r.children.length > 0) {
       setUserRouteComponent(r.children)
     }

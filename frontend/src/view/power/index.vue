@@ -39,8 +39,13 @@
 import save from "./modal/save";
 import edit from "./modal/edit";
 import info from "./modal/info";
-import { tree } from "@/api/module/power";
-import { reactive } from 'vue';
+import { message , modal} from 'ant-design-vue';
+import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
+import { tree, remove } from "@/api/module/power";
+import { reactive, createVNode } from 'vue';
+
+const removeKey = "remove";
+const removeBatchKey = "removeBatch";
 
 export default {
   components: {
@@ -55,6 +60,26 @@ export default {
       return value;
     }}
 
+    /// 删除配置
+    const removeMethod = (record) => {
+      modal.confirm({
+        title: '您是否确定要删除此权限?',
+        icon: createVNode(ExclamationCircleOutlined),
+        okText: '确定',
+        cancelText: '取消',
+        onOk() {
+          message.loading({ content: "提交中...", key: removeKey });
+          remove({"id":record.id}).then((response) => {
+            if(response.success){
+              message.success({content: "删除成功", key: removeKey, duration: 1})
+            }else{
+              message.error({content: "删除失败", key: removeKey, duration: 1})
+            }
+          })
+        }
+      });
+    }
+
     const converFormat = [
       {label:'目录',value:'0'},
       {label:'菜单',value:'1'},
@@ -64,7 +89,7 @@ export default {
     /// 列配置
     const columns = [
       { dataIndex: "title", key: "title", title: "权限名" },
-      { dataIndex: "name", key: "name", title: "组件" },
+      { dataIndex: "component", key: "component", title: "组件" },
       { dataIndex: "type", key: "type", title: "类型", conver: converFormat},
       { dataIndex: "path", key: "path", title: "路径" },
       { dataIndex: "i18n", key: "i18n", title: "国际化"},
@@ -82,15 +107,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function () { state.visibleSave = true }},
-      { label: "删除", event: function (keys) { alert("批量删除:" + JSON.stringify(keys))}},
+      { label: "新增", event: function () { state.visibleSave = true }}
     ];
 
     /// 行操作
     const operate = [
       { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
       { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
-      { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
+      { label: "删除", event: function (record) { removeMethod(record) }},
     ];
 
     /// 分页参数
@@ -133,6 +157,20 @@ export default {
       state.selectedRowKeys = selectedRowKeys;
     };
 
+    /// 关闭新增
+    const closeSave = function(){
+      state.visibleSave = false;
+    }
+
+    const closeEdit = function(){
+      state.visibleEdit = false;
+    }
+
+    const closeInfo = function(){
+      state.visibleInfo = false;
+    }
+
+
     /// 声明抛出
     return {
       state: state, // 状态共享
@@ -145,7 +183,10 @@ export default {
       search: search,
       searchParam: searchParam, // 查询参数
 
-      onSelectChange
+      onSelectChange,
+      closeSave,
+      closeEdit,
+      closeInfo,
     };
   },
 };

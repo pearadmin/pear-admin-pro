@@ -27,7 +27,7 @@
         </a-col>
       </a-row>
       <!-- 新增页面 -->
-      <save :visible="state.visibleSave" @close="closeAdd" :record="state.record"></save>
+      <save :visible="state.visibleSave" @close="closeSave" :record="state.record"></save>
       <!-- 修改页面 -->
       <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit" ></edit>
       <!-- 分配页面 -->
@@ -179,7 +179,7 @@ export default {
     }
 
     /// 关闭新增
-    const closeAdd = function(){
+    const closeSave = function(){
       state.visibleSave = false;
     }
 
@@ -210,7 +210,7 @@ export default {
       search, // 查询回调
       searchParam, // 查询参数
 
-      closeAdd,  // 新增关闭
+      closeSave,  // 新增关闭
       closeEdit, // 修改关闭
       closeGive, // 分配关闭
       closeInfo, // 详情关闭

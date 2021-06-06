@@ -3,7 +3,7 @@
     :visible="visible"
     title="查看详情"
     cancelText="取消"
-    okText="提交"
+    okText="确定"
     @ok="submit"
     @cancel="cancel"
   >
@@ -14,30 +14,42 @@
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
     >
-      <!-- 当前部门为根部门, 则不提供上级部门选择 -->
-      <a-form-item label="上级" name="parent" v-if="formState.parent != 0 ">
+      <a-form-item label="上级" name="parent">
           <a-tree-select
             v-model:value="formState.parent"
             style="width: 100%"
-            :tree-data="state.depts"
-            placeholder="所属部门"
+            :tree-data="state.powers"
+            placeholder="上级权限"
             replace
             tree-default-expand-all
             :replaceFields="replaceFields"
           >
           </a-tree-select>
       </a-form-item>
-      <a-form-item ref="name" label="名称" name="name">
-        <a-input v-model:value="formState.name" />
+      <a-form-item ref="title" label="名称" name="title">
+        <a-input v-model:value="formState.title" />
+      </a-form-item>
+      <a-form-item ref="component" label="组件" name="component">
+        <a-input v-model:value="formState.component" />
+      </a-form-item>
+      <a-form-item ref="path" label="路径" name="path">
+        <a-input v-model:value="formState.path" />
+      </a-form-item>
+      <a-form-item ref="i18n" label="i18n" name="i18n">
+        <a-input v-model:value="formState.i18n" />
+      </a-form-item>
+      <a-form-item ref="type" label="类型" name="type">
+        <a-select v-model:value="formState.type">
+          <a-select-option value="0"> 目录 </a-select-option>
+          <a-select-option value="1"> 菜单 </a-select-option>
+          <a-select-option value="2"> 按钮 </a-select-option>
+        </a-select>
       </a-form-item>
       <a-form-item ref="sort" label="排序" name="sort">
         <a-input-number v-model:value="formState.sort" />
       </a-form-item>
-      <a-form-item label="状态" name="state">
+      <a-form-item label="状态" name="enable">
         <a-switch v-model:checked="formState.enable" />
-      </a-form-item>
-      <a-form-item ref="address" label="地址" name="address">
-        <a-input v-model:value="formState.address" />
       </a-form-item>
       <a-form-item label="备注" name="remark">
         <a-textarea v-model:value="formState.remark" />
@@ -46,7 +58,8 @@
   </a-modal>
 </template>
 <script>
-import { tree } from "@/api/module/dept";
+import { message } from 'ant-design-vue';
+import { save, tree } from "@/api/module/power";
 import { defineComponent, reactive, ref, toRaw, watch } from "vue";
 export default defineComponent({
   props: {
@@ -54,7 +67,7 @@ export default defineComponent({
       type: Boolean,
     },
     record: {
-      type: Object,
+      type: Object
     }
   },
   emit: ["close"],
@@ -72,16 +85,25 @@ export default defineComponent({
     });
 
     watch(props,(props) => {
-        formState.id = props.record.id
-        formState.name = props.record.name
-        formState.sort = props.record.sort
-        formState.parent = props.record.parent
-        formState.remark = props.record.remark
-        formState.enable = props.record.enable
-        formState.address = props.record.address
+      formState.id = props.record.id;
+      formState.title = props.record.title;
+      formState.component = props.record.component;
+      formState.path = props.record.path;
+      formState.type = props.record.type;
+      formState.enable = props.record.enable;
+      formState.i18n = props.record.i18n;
+      formState.remark = props.record.remark;
+      formState.parent = props.record.parent;
     })
 
-    const formRules = {};
+    const formRules = {
+      title: [{ required: true, message: '请输入权限名称', trigger: 'blur'}],
+      component: [{ required: true, message: '请输入路由组件', trigger: 'blur'}],
+      path: [{ required: true, message: '请输入路由地址', trigger: 'blur'}],
+      i18n: [{ required: true, message: '请输入 i18n', trigger: 'blur'}],
+      type: [{ required: true, message: '请输入权限类型', trigger: 'blur'}],
+      parent: [{ required: true, message: '请选择上级权限', trigger: 'change'}]
+    };
 
     const submit = (e) => {
       formRef.value.resetFields();
@@ -93,13 +115,13 @@ export default defineComponent({
       context.emit("close", false);
     };
 
-    const loadTree = () => {
+    const loadPower = () => {
       tree({}).then((response)=>{
-        state.depts = response.data;
+        state.powers = response.data;
       })
     }
 
-    loadTree();
+    loadPower();
 
     return {
       state,
@@ -112,7 +134,7 @@ export default defineComponent({
       labelCol: { span: 6 },
       wrapperCol: { span: 18 },
 
-      replaceFields: {children:'children', title:'name', key:'id', value: 'id' }
+      replaceFields: {children:'children', title:'title', key:'id', value: 'id' }
     };
   },
 });
