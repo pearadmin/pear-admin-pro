@@ -22,7 +22,7 @@
     "moment": "^2.27.0",
     "nprogress": "^0.2.0",
     "reqwest": "^2.0.5",
-    "tinymce": "^5.6.2",
+    "tinymce": "^5.8.1",
     "vue": "^3.0.11",
     "vue-i18n": "^9.0.0-rc.7",
     "vue-router": "^4.0.0-rc.6",
@@ -46,6 +46,7 @@
     "mockjs2": "^1.0.8",
     "node-sass": "^6.0.0",
     "sass-loader": "^10.0.2",
+    "webpack": "^4.0.0",
     "webpackbar": "^5.0.0-3"
   },
   "eslintConfig": {

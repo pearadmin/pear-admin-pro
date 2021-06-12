@@ -25,7 +25,7 @@ spring:
     ## 字符集
     default-encoding: UTF-8
     ## 测试
-    test-connection: true
+    test-connection: false
     ## 来源
     from: 854085467@qq.com
 
@@ -56,6 +56,6 @@ upload:
 aliyun:
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
-    accessKeyId:
-    accessKeySecret:
+    accessKeyId: anything
+    accessKeySecret: anything
     bucketName: pear-admin
