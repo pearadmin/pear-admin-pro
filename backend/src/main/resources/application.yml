@@ -9,9 +9,9 @@ spring:
   profiles:
     ## 状态
     active: dev
-  ## 邮件配置
+
+  ## 邮件
   mail:
-    enable: false
     ## 协议
     protocol: smtp
     ## 地址

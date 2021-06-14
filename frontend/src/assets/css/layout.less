@@ -52,7 +52,8 @@ html {
     padding-left: 15px;
     padding-right: 15px;
   }
-  .ant-layout-sider {
+  > .ant-layout-sider {
+    background: #191a23 !important;
     box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
     z-index: 999;
   }
@@ -67,7 +68,7 @@ html {
     padding-left: 15px;
     padding-right: 15px;
   }
-  .ant-layout-sider {
+  > .ant-layout-sider {
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05) !important;
     background-color: white !important;
     z-index: 999;
@@ -104,7 +105,8 @@ html {
     }
     background-color: white !important;
   }
-  .ant-layout-sider {
+  > .ant-layout-sider {
+    background: #191a23 !important;
     box-shadow: 2px 0 6px rgba(0, 21, 41, 0.35);
     z-index: 999;
   }
@@ -139,7 +141,7 @@ html {
     }
     background-color: white !important;
   }
-  .ant-layout-sider {
+  > .ant-layout-sider {
     box-shadow: 2px 0 8px 0 rgba(29, 35, 41, 0.05) !important;
     z-index: 999;
     background-color: white !important;
@@ -153,7 +155,6 @@ html {
 }
 
 .ant-layout-sider {
-  background: #191a23 !important;
   &.fixed-side {
     height: 100vh;
     position: relative;
@@ -162,7 +163,7 @@ html {
       position: absolute;
       left: 0;
       top: 0;
-      right: -17px;
+      right: 0;
       bottom: 0;
       overflow-x: hidden;
       overflow-y: scroll;
@@ -396,7 +397,8 @@ html {
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.15);
   line-height: 30px;
 }
-.ant-layout-header{
-  height: 60px !important;
-  line-height: 60px !important;
+
+.ant-layout>.ant-layout>.ant-layout-header{
+  height: 60px!important;
+  line-height: 60px!important;
 }

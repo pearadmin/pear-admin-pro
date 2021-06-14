@@ -6,7 +6,7 @@ spring:
       primary: master
       strict: false
       datasource:
-        ## 主库配置
+        ## 主库配置gi
         master:
           url: jdbc:mysql://127.0.0.1:3306/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
           username: root
@@ -17,6 +17,8 @@ spring:
         min-idle: 3
         max-pool-size: 10
         connection-test-query: SELECT 1
+
+
 
   ## Redis 缓存
   redis:

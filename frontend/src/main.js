@@ -6,6 +6,7 @@ import Store from "./store";
 import Pear from "./component";
 import i18n from './locale';
 import * as antIcons from '@ant-design/icons-vue';
+import Design from 'vue-form-create';
 
 import "./assets/css/index.less";
 import "ant-design-vue/dist/antd.less";
@@ -15,6 +16,7 @@ app.use(Antd);
 app.use(Pear);
 app.use(Store);
 app.use(Router);
+app.use(Design);
 app.use(i18n);
 app.mount("#app");
 
