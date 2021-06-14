@@ -161,7 +161,6 @@ export default {
       state.selectedRowKeys = selectedRowKeys;
     };
 
-
     const closeSave = function(){
       state.visibleSave = false
       tableRef.value.reload
