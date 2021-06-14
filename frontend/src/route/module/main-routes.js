@@ -31,4 +31,5 @@ export default {
   'jobLog': () => import('@/view/jobLog/index.vue'),
   'announce': () => import('@/view/announce/index.vue'),
   'inbox': () => import('@/view/inbox/index.vue'),
+  'form': () => import('@/view/form/index.vue')
 }
