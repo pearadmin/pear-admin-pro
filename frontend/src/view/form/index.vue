@@ -1,7 +1,10 @@
 <template>
     <antd-design-form ref="form" />  
 </template>
-<script>
-
-</script>
-<style scoped></style>
+<style>
+.btn-bar {
+    height: 45px!important;
+    line-height: 45px!important;
+    background-color: white!important;;
+}
+</style>
