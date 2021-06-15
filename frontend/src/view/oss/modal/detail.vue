@@ -1,8 +1,8 @@
 <template>
   <a-modal
     :visible="visible"
-    title="文件详情"
-    cancelText="关闭"
+    title="确认"
+    cancelText="取消"
     @ok="submit"
     @cancel="cancel"
   >

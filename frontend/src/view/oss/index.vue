@@ -78,13 +78,11 @@
       /// 工具栏
       const toolbar = [
         { label: "上传" , event: function () { state.visibleUpload = true }},
-        { label: "删除" , event: function () { }},
       ];
 
       /// 行操作
       const operate = [
         { label: "查看", event: function (record) { state.visibleDetail = true, state.recordData = record}},
-        { label: "删除", event: function (record) { alert("删除事件:" + JSON.stringify(record))}},
       ];
 
       /// 分页参数
