@@ -1,7 +1,7 @@
 <template>
   <a-modal
     :visible="visible"
-    title="确认"
+    title="查看"
     cancelText="取消"
     @ok="submit"
     @cancel="cancel"
