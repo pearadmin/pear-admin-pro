@@ -126,6 +126,50 @@ Pear Admin Pro
 ```
 ### ⚡ 快速启动
 
+前端启动 [frontend]
+
+```
+
+切换环境
+
+nvm install 16.0.0
+
+nvm use 16.0.0
+
+安装依赖
+
+npm install -g yarn
+
+yarn install
+
+启动项目
+
+yarn install
+
+```
+
+后端启动 [backend]
+
+```
+修改配置
+
+application.yml
+
+application-dev.yml
+
+redis.*
+
+datasource.*
+
+oss.*
+
+mail.*
+
+启动项目
+
+```
+
+
 ### 📖 帮助文档
 
 👉前端文档：编写中
