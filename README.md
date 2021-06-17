@@ -126,7 +126,7 @@ Pear Admin Pro
 ```
 ### ⚡ 快速启动
 
-前端启动 [frontend]
+前端启动 -- frontend
 
 ```
 
@@ -148,7 +148,7 @@ yarn install
 
 ```
 
-后端启动 [backend]
+后端启动 -- backend
 
 ```
 修改配置
