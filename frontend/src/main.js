@@ -12,12 +12,12 @@ import "./assets/css/index.less";
 import "ant-design-vue/dist/antd.less";
 
 const app = createApp(App);
+app.use(i18n);
 app.use(Antd);
 app.use(Pear);
 app.use(Store);
 app.use(Router);
 app.use(Design);
-app.use(i18n);
 app.mount("#app");
 
 // 注册组件
