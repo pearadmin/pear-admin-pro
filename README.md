@@ -144,7 +144,7 @@ yarn install
 
 启动项目
 
-yarn install
+yarn run serve-dev
 
 ```
 
