@@ -14,7 +14,7 @@
     "@ant-design/icons-vue": "^6.0.1",
     "@antv/g2": "^4.1.15",
     "@tinymce/tinymce-vue": "^4.0.0",
-    "ant-design-vue": "^2.1.6",
+    "ant-design-vue": "^2.2.0-beta.3",
     "antd-theme-generator": "^1.2.8",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
