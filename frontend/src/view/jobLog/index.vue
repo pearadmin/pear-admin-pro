@@ -29,14 +29,19 @@
           </a-card>
         </a-col>
       </a-row>
+      <info :visible="state.visibleInfo" @close="closeInfo" :record="state.recordInfo"></info>
     </page-layout>
 </template>
 
 <script>
+import info from './modal/info';
 import { page } from "@/api/module/jobLog";
 import { reactive } from 'vue';
 
 export default {
+  components:  {
+    info
+  },
   setup() {
 
     /// 文本
@@ -44,15 +49,15 @@ export default {
 
     /// 列配置
     const columns = [
-      { dataIndex: "jobName", key: "jobName", title: "任务名称" },
-      { dataIndex: "beanName", key: "beanName", title: "运行类" },     
+      { dataIndex: "jobName", key: "jobName", title: "任务" },
+      { dataIndex: "beanName", key: "beanName", title: "目标" },     
       { dataIndex: "time", key: "time", title: "耗时"},
       { dataIndex: "createTime", key: "createTime", title: "运行时间" },
       { dataIndex: "state", key: "state", title: "状态", conver: converFormat },
     ];
 
     const operate = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
     ];
 
     /// 数据来源 [模拟]
@@ -78,7 +83,9 @@ export default {
     /// 外置参数 - 当参数改变时, 重新触发 fetch 函数
     const state = reactive({
       selectedRowKeys: [],
-      param: { name: "", code: "", isAuth: true }
+      param: { name: "", code: "", isAuth: true },
+      visibleInfo: false,
+      recordInfo: {},
     })
 
     /// 查询参数
@@ -102,6 +109,10 @@ export default {
       state.selectedRowKeys = selectedRowKeys;
     };
 
+    const closeInfo = function(){
+      state.visibleInfo = false
+    }
+
     return {
       state,
       fetch,
@@ -112,7 +123,8 @@ export default {
 
       search,
       searchParam,
-
+      
+      closeInfo,
       onSelectChange,
     };
   },
