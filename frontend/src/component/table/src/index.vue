@@ -103,7 +103,7 @@
             </a-dropdown>
             <!-- 单个操作 -->
             <a v-else @click="item.event(record)"> {{ item.label }} </a>
-            <a-divider type="vertical" />
+            <a-divider type="vertical" v-if="i != operate.length-1" />
           </template>
         </span>
 
