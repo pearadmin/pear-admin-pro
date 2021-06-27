@@ -17,6 +17,7 @@
     "ant-design-vue": "^2.2.0-beta.3",
     "antd-theme-generator": "^1.2.8",
     "axios": "^0.21.1",
+    "c-scrollbar": "^0.1.6",
     "core-js": "^3.6.5",
     "lodash.get": "^4.4.2",
     "moment": "^2.27.0",

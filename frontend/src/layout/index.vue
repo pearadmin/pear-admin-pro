@@ -33,9 +33,7 @@
         <Header></Header>
       </a-layout-header>
       <!-- 中心区域 -->
-      <a-layout-content
-        :class="[fixedHeader ? 'fixedHeader' : '', tab ? 'muiltTab' : '']"
-      >
+      <a-layout-content :class="[fixedHeader ? 'fixedHeader' : '', tab ? 'muiltTab' : '']">
         <!-- 选项卡页面 -->
         <Tab v-if="tab"></Tab>
         <!-- 内容区域 -->
@@ -62,7 +60,7 @@ export default {
     Header,
     Logo,
     Tab,
-    Setup
+    Setup,
   },
   setup() {
     const { getters, commit } = useStore();
@@ -170,15 +168,6 @@ export default {
 .layout_mobile {
   position: fixed !important;
   z-index: 999;
-  .pear-layout-left-sider {
-    right: 0 !important;
-    -ms-overflow-style: none;
-    overflow: -moz-scrollbars-none;
-  }
-  .pear-layout-left-sider::-webkit-scrollbar {
-    width: 0 !important;
-  }
-
   &.layout_collapse {
     width: 0 !important;
     min-width: 0 !important;
