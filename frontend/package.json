@@ -25,7 +25,6 @@
     "reqwest": "^2.0.5",
     "tinymce": "^5.8.1",
     "vue": "^3.0.11",
-    "vue-form-create": "^1.2.2",
     "vue-i18n": "^9.0.0-rc.7",
     "vue-router": "^4.0.0-rc.6",
     "vuex": "^4.0.0-rc.2"

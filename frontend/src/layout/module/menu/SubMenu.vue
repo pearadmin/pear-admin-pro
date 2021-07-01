@@ -56,7 +56,6 @@
 import { computed } from "vue";
 import path from "path";
 import { useStore } from "vuex";
-import * as Icons from "@ant-design/icons-vue";
 import {useI18n} from "vue-i18n";
 export default {
   emits: ["click"],
@@ -94,15 +93,12 @@ export default {
       }
     };
 
-    const MenuIcon = Icons[(props.item.meta || {}).icon] || {};
-
     // i18n
     const { t } = useI18n()
 
     return {
       handleFoldSideBar,
       resolvePath,
-      MenuIcon,
       t
     };
   }

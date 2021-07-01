@@ -36,6 +36,7 @@ class Request {
             return qs.stringify(params, {arrayFormat: 'repeat'})
           }
         }
+
         return config;
       },
       error => {
