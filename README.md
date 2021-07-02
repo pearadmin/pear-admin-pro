@@ -154,6 +154,8 @@ yarn run serve-dev
 
 后端启动 - backend
 
+MySQL ：8.0.22
+
 ```
 修改配置
 
