@@ -27,6 +27,7 @@
     <a href="#">
         <img src="https://img.shields.io/badge/Spring Boot-2.4.5-green.svg" alt="Spring Boot Version">
     </a>
+    <br/>
     <a href="#">
         <img src="https://img.shields.io/badge/Node-16.0.0-red.svg" alt="Node Version">
     </a>
