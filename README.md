@@ -128,6 +128,10 @@ Pear Admin Pro
 
 前端启动 - frontend
 
+NVM ：Node 版本管理
+
+NVM use 16.0.0 
+
 ```
 
 切换环境
