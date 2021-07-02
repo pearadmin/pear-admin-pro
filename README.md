@@ -27,6 +27,12 @@
     <a href="#">
         <img src="https://img.shields.io/badge/Spring Boot-2.4.5-green.svg" alt="Spring Boot Version">
     </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/Node-16.0.0-red.svg" alt="Node Version">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/MySql-8.0.22-red.svg" alt="Node Version">
+    </a>
 </p>
 
 <div align="center">
@@ -153,8 +159,6 @@ yarn run serve-dev
 ```
 
 后端启动 - backend
-
-MySQL ：8.0.22
 
 ```
 修改配置
