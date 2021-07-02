@@ -27,6 +27,13 @@
     <a href="#">
         <img src="https://img.shields.io/badge/Spring Boot-2.4.5-green.svg" alt="Spring Boot Version">
     </a>
+    <br/>
+    <a href="#">
+        <img src="https://img.shields.io/badge/Node-16.0.0-red.svg" alt="Node Version">
+    </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/MySql-8.0.22-red.svg" alt="Node Version">
+    </a>
 </p>
 
 <div align="center">
@@ -125,6 +132,54 @@ Pear Admin Pro
 
 ```
 ### ⚡ 快速启动
+
+前端启动 - frontend
+
+NVM ：Node 版本管理
+
+NVM use 16.0.0 
+
+```
+
+切换环境
+
+nvm install 16.0.0
+
+nvm use 16.0.0
+
+安装依赖
+
+npm install -g yarn
+
+yarn install
+
+启动项目
+
+yarn run serve-dev
+
+```
+
+后端启动 - backend
+
+```
+修改配置
+
+application.yml
+
+application-dev.yml
+
+redis.*
+
+datasource.*
+
+oss.*
+
+mail.*
+
+启动项目
+
+```
+
 
 ### 📖 帮助文档
 
