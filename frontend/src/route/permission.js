@@ -89,8 +89,8 @@ export const permissionController = async (to, from, next) => {
     // 如果基本路由中不包含页面前往的路径
     if (!router.getRoutes().map(it => it.path).includes(to.fullPath)) {
     
-      // 注册路由
       await store.dispatch('user/addRoute')
+      await store.dispatch('user/addPower')
 
       // 路由判定
       const userRoutes = JSON.parse(JSON.stringify(store.getters.menu))

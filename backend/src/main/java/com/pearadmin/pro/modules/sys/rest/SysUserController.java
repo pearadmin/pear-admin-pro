@@ -159,12 +159,11 @@ public class SysUserController extends BaseController {
     /**
      * 获取用户权限
      *
-     * @param userId 用户编号
      * */
     @GetMapping("power")
     @ApiOperation(value = "用户权限")
-    public Result power(String userId){
-        return success(sysUserService.power(userId));
+    public Result power(){
+        return success(sysUserService.power(userContext.getUserId()));
     }
 
     /**

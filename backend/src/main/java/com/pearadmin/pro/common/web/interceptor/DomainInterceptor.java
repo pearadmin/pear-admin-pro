@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
  * 字 段 填 充 拦 截 器
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2020/10/23
  * */
 @Component
 public class DomainInterceptor implements MetaObjectHandler {
@@ -31,7 +31,8 @@ public class DomainInterceptor implements MetaObjectHandler {
     }
 
     /**
-     * 创建人 / 创建时间
+     * @Field 创建人
+     * @Field 创建时间
      * */
     public void createField(MetaObject metaObject){
         this.strictInsertFill(metaObject,"createBy", String.class, userContext.getUserId());
@@ -39,7 +40,8 @@ public class DomainInterceptor implements MetaObjectHandler {
     }
 
     /**
-     * 修改人 / 修改时间
+     * @Field 修改人
+     * @Field 修改时间
      * */
     public void updateField(MetaObject metaObject){
         this.strictInsertFill(metaObject,"updateBy", String.class, userContext.getUserId());

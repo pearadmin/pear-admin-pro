@@ -18,13 +18,10 @@ app.use(Store);
 app.use(Router);
 app.mount("#app");
 
-// 注册组件
 Object.keys(antIcons).forEach(key => {
     app.component(key, antIcons[key])
 })
 
-// 添加到全局
 app.config.globalProperties.$antIcons = antIcons
   
-
 export default app

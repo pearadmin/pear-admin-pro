@@ -32,12 +32,14 @@
       </a-row>
       <save :visible="state.visibleSave" @close="closeSave"></save>
       <edit :visible="state.visibleEdit" @close="closeEdit" :record="state.recordEdit"></edit>
+      <info :visible="state.visibleInfo" @close="closeInfo" :record="state.recordInfo"></info>
     </page-layout>
 </template>
 
 <script>
 import save from './modal/save';
 import edit from './modal/edit';
+import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
 import { page, remove, removeBatch } from "@/api/module/config";
@@ -50,6 +52,7 @@ export default {
   components: {
     save,
     edit,
+    info,
   },
   setup() {
 
@@ -127,7 +130,7 @@ export default {
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { alert("查看详情:" + JSON.stringify(record))}},
+      { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
       { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
     ];
@@ -144,6 +147,8 @@ export default {
       param: {},
       visibleSave: false,
       visibleEdit: false,
+      visibleInfo: false,
+      recordInfo: {},
       recordEdit: {},
     })
 
@@ -173,6 +178,10 @@ export default {
       tableRef.value.reload()
     }
 
+    const closeInfo = function(){
+      state.visibleInfo = false;
+    }
+
     return {
       state, 
       fetch, 
@@ -186,6 +195,7 @@ export default {
 
       closeSave,
       closeEdit,
+      closeInfo,
     
       tableRef
     };

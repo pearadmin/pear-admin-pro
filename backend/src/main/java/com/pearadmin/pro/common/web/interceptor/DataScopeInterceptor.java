@@ -33,7 +33,7 @@ import java.util.Set;
  * 数 据 权 限 拦 截 器
  *
  * Author: 就 眠 仪 式
- * CreateTime: 2019/10/23
+ * CreateTime: 2020/10/23
  * */
 @Component
 @Intercepts({
@@ -44,28 +44,19 @@ public class DataScopeInterceptor implements Interceptor {
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
-
         UserContext userContext = BeanContext.getBean(UserContext.class);
         SysRoleService roleService = BeanContext.getBean(SysRoleService.class);
-
         MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
         DataScope annotation = getAnnotation(mappedStatement);
-
         if(annotation!=null){
-
             String sql = getSql(invocation);
-
-            // 根 据 注 解 模 式, 处 理 预 定 义 SQL 语 句
             Scope scope = annotation.scope();
-
             if(scope.equals(Scope.AUTO)){
 
             }
-
             // 回填 SQL 语句
             setSql(invocation, sql);
         }
-
         return invocation.proceed();
     }
 
