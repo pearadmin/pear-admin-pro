@@ -85,15 +85,7 @@
         <template #overlay>
           <a-menu class="avatar-dropdown">
             <a-menu-item key="0">
-              <router-link to="/profile">个人中心</router-link>
-            </a-menu-item>
-            <a-menu-item key="1">
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="http://www.taobao.com/"
-                >系统设置</a
-              >
+              <a-menu-item> 个人中心 </a-menu-item>
             </a-menu-item>
             <a-menu-divider />
             <a-menu-item key="3">
