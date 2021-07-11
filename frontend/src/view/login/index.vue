@@ -1,36 +1,42 @@
 <template>
   <div id="login">
     <div class="login-form">
-      <a-form :label-col="labelCol" :wrapper-col="wrapperCol">
+      <a-form
+        ref="formRef"
+        :rules="formRules"
+        :model="formState"
+        :label-col="labelCol"
+        :wrapper-col="wrapperCol"
+      >
         <a-form-item>
           <img class="logo" src="@/assets/image/logo.png" />
           <div class="head">Pear Admin</div>
           <div class="desc">明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一</div>
         </a-form-item>
-        <a-form-item v-bind="validateInfos.username">
-          <a-input placeholder="账 户 : admin" v-model:value="param.username" />
+        <a-form-item>
+          <a-input placeholder="账 户 : admin" v-model:value="formState.username" />
         </a-form-item>
-        <a-form-item v-bind="validateInfos.password">
+        <a-form-item>
           <a-input
             placeholder="密 码 : admin"
             type="password"
-            v-model:value="param.password"
+            v-model:value="formState.password"
           />
         </a-form-item>
         <a-form-item class="captchaKey">
-          <a-input v-model:value="param.captchaKey" />
+          <a-input v-model:value="formState.captchaKey" />
         </a-form-item>
         <a-form-item>
           <a-row :gutter="10">
             <a-col :span="13">
-              <a-input v-model:value="param.captchaCode" />
+              <a-input v-model:value="formState.captchaCode" />
             </a-col>
             <a-col :span="11">
               <img
                 class="captchaImage"
                 @click="refreshCaptcha"
-                style="margin-top: -3px;"
-                :src="captcha"
+                style="margin-top: -3px"
+                :src="formState.captchaImage"
                 alt="连接失败"
               />
             </a-col>
@@ -51,7 +57,6 @@
 </template>
 <script>
 import { reactive, ref } from "vue";
-import { useForm } from "@ant-design-vue/use";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { create } from "@/api/module/captcha";
@@ -61,58 +66,54 @@ export default {
     const store = useStore();
     const load = ref(false);
 
+    const formRef = ref();
+
     // 登录参数
-    const param = reactive({
+    const formState = reactive({
       username: "admin",
       password: "admin",
       captchaKey: "key",
       captchaCode: "code",
+      captchaImage: "image",
     });
 
-    const captcha = ref();
-
-    // 参数验证
-    const { validate, validateInfos } = useForm(
-      param,
-      reactive({
-        username: [{ required: true, message: "请输入账户" }],
-        password: [{ required: true, message: "请输入密码" }],
-        captchaKey: [{ required: true, message: "验证码缺失" }],
-        captchaCode: [{ required: true, message: "请输入验证码" }],
-      })
-    );
+    const formRules = {
+      username: [{ required: true, message: "请输入账户", trigger: "blur" }],
+      password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+    };
 
     // 验证码 初始化
     const refreshCaptcha = async function () {
       const result = await create();
-      param.captchaKey = result.data.key;
-      param.captchaCode = result.data.code;
-      captcha.value = result.data.image;
+      formState.captchaKey = result.data.key;
+      formState.captchaCode = result.data.code;
+      formState.captchaImage = result.data.image;
     };
+
     refreshCaptcha();
 
     // 登录验证
-    const onSubmit = async () => {
-      try {
-        const result = await validate();
-        if (result) {
+    const onSubmit = () => {
+      formRef.value.validate()
+        .then(async () => {
           load.value = true;
-          await store.dispatch("user/login", param);
+          await store.dispatch("user/login", formState);
           await router.push("/");
-        }
-      } catch (e) {
-        load.value = false;
-        refreshCaptcha();
-      }
+        })
+        .catch((error) => {
+          load.value = false;
+          refreshCaptcha();
+        });
     };
+
     return {
       labelCol: { span: 6 },
       wrapperCol: { span: 24 },
       refreshCaptcha,
-      validateInfos,
+      formRules,
+      formState,
       onSubmit,
-      captcha,
-      param,
+      formRef,
       load,
     };
   },

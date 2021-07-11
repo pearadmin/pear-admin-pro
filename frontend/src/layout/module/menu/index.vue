@@ -1,6 +1,5 @@
 <template>
   <div id="menu">
-    <c-scrollbar height="100%">
       <a-menu
         v-model:openKeys="openKey"
         v-model:selectedKeys="selectKey"
@@ -17,20 +16,17 @@
           @click="handleFoldSideBar"
         />
       </a-menu>
-    </c-scrollbar>
   </div>
 </template>
 <script>
-import { CScrollbar } from "c-scrollbar";
-import { useStore } from "vuex";
 import SubMenu from "./SubMenu.vue";
+import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { computed, watch, ref, reactive } from "vue";
 
 export default {
   components: {
-    SubMenu,
-    CScrollbar,
+    SubMenu
   },
   setup() {
     const { getters, commit } = useStore();
@@ -40,9 +36,7 @@ export default {
       getters.layout == "layout-head" ? "horizontal" : "inline"
     );
     const menuTheme = computed(() =>
-      getters.theme === "theme-dark" || getters.theme === "theme-night"
-        ? "dark"
-        : "light"
+      getters.theme === "theme-dark" || getters.theme === "theme-night" ? "dark" : "light"
     );
     const storeOpenKey = computed(() => getters.openKey);
     const activeKey = computed(() => {
@@ -60,7 +54,7 @@ export default {
     const state = reactive({
       menu: computed(() => getters.menu),
     });
-    // store中不允许修改，这里转一次
+
     const menu = ref(state.menu);
 
     const dynamicRoute = () => {
@@ -99,6 +93,7 @@ export default {
     const openChange = function (openKeys) {
       commit("layout/updateOpenKey", { openKeys });
     };
+    
     const handleFoldSideBar = () => {
       const isComputedMobile = computed(() => getters.isMobile);
       if (isComputedMobile.value) {
@@ -130,6 +125,36 @@ export default {
 </script>
 <style>
 #menu {
+  overflow: scroll;
   height: calc(100% - 60px);
+}
+
+#menu::-webkit-scrollbar-track
+{
+background: transparent;
+border-radius: 0;
+}
+
+#menu::-webkit-scrollbar
+{
+-webkit-appearance: none;
+width: 3px;
+height: 3px;
+}
+
+#menu::-webkit-scrollbar-thumb
+{
+cursor: pointer;
+border-radius: 5px;
+background: transparent;
+transition: color .2s ease;
+}
+
+#menu::-webkit-scrollbar-thumb:hover
+{
+cursor: pointer;
+border-radius: 5px;
+background: transparent;
+transition: color .2s ease;
 }
 </style>

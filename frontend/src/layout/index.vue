@@ -117,13 +117,13 @@ export default {
 };
 </script>
 <style lang="less">
+
 #layout {
   height: 100%;
   .ant-menu-inline-collapsed {
     width: auto;
   }
   .ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title {
-    padding: 0 !important;
     text-align: center;
   }
   @ant-menu-hieht: 48px;

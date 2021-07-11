@@ -1,8 +1,4 @@
-/**
- * webpack 配置（vue-cli提示的vue.config.js）
- * @type {{devServer: {port: number, open: boolean}}}
- */
- const path = require("path");
+const path = require("path");
  const resolve = dir => {
    return path.join(__dirname, dir);
  };

@@ -3,14 +3,14 @@
     <a-menu-item
       v-if="
         item.children &&
-          item.children.length == 1 &&
-          item.meta.alwaysShow != true
+        item.children.length == 1 &&
+        item.meta.alwaysShow != true
       "
       :key="resolvePath(item.path, true)"
       @click="handleFoldSideBar"
     >
       <router-link :to="item.path + '/' + item.children[0].path">
-          <component :is="$antIcons[item.meta.icon]" />
+        <component :is="$antIcons[item.meta.icon]" />
         <span>{{ t(item.meta.i18n) }}</span>
       </router-link>
     </a-menu-item>
@@ -45,7 +45,7 @@
       v-else
     >
       <router-link :to="resolvePath(item.path, true)">
-          <component v-if="level === 0" :is="$antIcons[item.meta.icon]" />
+        <component v-if="level === 0" :is="$antIcons[item.meta.icon]" />
         <span v-else><div class="indent"></div></span>
         <span>{{ t(item.meta.i18n) }}</span>
       </router-link>
@@ -53,8 +53,8 @@
   </template>
 </template>
 <script>
-import { computed } from "vue";
 import path from "path";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import {useI18n} from "vue-i18n";
 export default {
