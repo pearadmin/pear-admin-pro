@@ -10,7 +10,7 @@
      开 箱 即 用 的 Spring Boot 企 业 级 开 发 平 台
   </h4> 
 
-  [预览](http://ant.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [交流](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)  
+  [预览](http://pro.pearadmin.com)   |   [官 网](http://www.pearadmin.com/)   |   [交流](https://jq.qq.com/?_wv=1027&k=5OdSmve)   |   [社区](http://forum.pearadmin.com/)  
 
 </div>
 
@@ -231,3 +231,4 @@ mail.*
 [![Giteye chart](https://chart.giteye.net/gitee/pear-admin/pear-admin-pro/3E4EEFDN.png)](https://giteye.net/chart/3E4EEFDN)
 
 如果对您有帮助，您可以点右上角 💘Star💘支持
+
