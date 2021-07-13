@@ -31,6 +31,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -94,12 +95,10 @@ public class CoreConfig implements WebMvcConfigurer {
      * */
     private CorsConfiguration corsConfig() {
         CorsConfiguration corsConfiguration = new CorsConfiguration();
+        corsConfiguration.setAllowedOriginPatterns(Collections.singletonList("*"));
+        corsConfiguration.addAllowedHeader(CorsConfiguration.ALL);
+        corsConfiguration.addAllowedMethod(CorsConfiguration.ALL);
         corsConfiguration.setAllowCredentials(true);
-        List<String> allowedOriginPatterns = new ArrayList<>();
-        allowedOriginPatterns.add("*");
-        corsConfiguration.setAllowedOriginPatterns(allowedOriginPatterns);
-        corsConfiguration.addAllowedHeader("*");
-        corsConfiguration.addAllowedMethod("*");
         return corsConfiguration;
     }
 
@@ -124,5 +123,4 @@ public class CoreConfig implements WebMvcConfigurer {
         factory.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "|{}[]"));
         return factory;
     }
-
 }
