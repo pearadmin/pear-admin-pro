@@ -123,4 +123,5 @@ public class CoreConfig implements WebMvcConfigurer {
         factory.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "|{}[]"));
         return factory;
     }
+
 }
