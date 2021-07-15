@@ -1,7 +1,7 @@
 package com.pearadmin.pro.common.secure.uutoken;
 
-import com.pearadmin.pro.common.secure.services.SecureUser;
 import lombok.Data;
+import com.pearadmin.pro.common.secure.services.SecureUser;
 import java.time.LocalDateTime;
 
 /**

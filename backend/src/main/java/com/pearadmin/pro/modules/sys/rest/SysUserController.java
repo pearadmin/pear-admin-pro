@@ -11,8 +11,10 @@ import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import com.pearadmin.pro.common.web.base.BaseController;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
+import java.lang.reflect.GenericDeclaration;
 import java.util.List;
 
 /**
@@ -32,6 +34,9 @@ public class SysUserController extends BaseController {
     @Resource
     private UserContext userContext;
 
+    @Resource
+    private PasswordEncoder passwordEncoder;
+
     /**
      * 新增用户
      *
@@ -41,6 +46,9 @@ public class SysUserController extends BaseController {
     @Log(title = "用户新增")
     @ApiOperation(value = "用户新增")
     public Result save(@RequestBody SysUser sysUser){
+        String password = sysUser.getPassword();
+        String encodePassword = passwordEncoder.encode(password);
+        sysUser.setPassword(encodePassword);
         return auto(sysUserService.save(sysUser));
     }
 
