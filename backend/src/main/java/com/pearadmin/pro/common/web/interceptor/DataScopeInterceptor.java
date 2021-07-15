@@ -4,9 +4,9 @@ import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
 import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.common.context.BeanContext;
 import com.pearadmin.pro.common.context.UserContext;
-import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.service.SysRoleService;
+import com.pearadmin.pro.modules.sys.service.SysUserService;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
@@ -25,9 +25,7 @@ import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
 import java.lang.reflect.Method;
 import java.sql.SQLException;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * 数 据 权 限 拦 截 器
@@ -46,22 +44,64 @@ public class DataScopeInterceptor implements Interceptor {
     public Object intercept(Invocation invocation) throws Throwable {
         UserContext userContext = BeanContext.getBean(UserContext.class);
         SysRoleService roleService = BeanContext.getBean(SysRoleService.class);
-        MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
-        DataScope annotation = getAnnotation(mappedStatement);
-        if(annotation!=null){
-            String sql = getSql(invocation);
-            Scope scope = annotation.scope();
-            if(scope.equals(Scope.AUTO)){
+        SysUserService userService = BeanContext.getBean(SysUserService.class);
 
+        try
+        {
+            String userId = userContext.getUserId();
+            MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
+            DataScope annotation = getAnnotation(mappedStatement);
+            if(annotation!=null){
+                String sql = getSql(invocation);
+                Scope scope = annotation.scope();
+                if(Scope.AUTO.equals(scope)){
+
+                    // 根据角色 数据权限 构建 SQL
+                    List<SysRole> roles = userService.role(userId);
+
+                    for (SysRole role: roles) {
+
+                        sql = sqlHandler(sql, role.getScope());
+                    }
+                } else {
+
+                    // 根据注解 数据权限 构建 SQL
+                    sql = sqlHandler(sql, scope);
+                }
+                // 回填 SQL 语句
+                setSql(invocation, sql);
             }
-            // 回填 SQL 语句
-            setSql(invocation, sql);
+        }
+        catch (NullPointerException e) {
+
+
         }
         return invocation.proceed();
     }
 
+    private String sqlHandler(String sql, Scope scope) {
+
+        if(Scope.SELF.equals(scope))
+        {
+
+        }
+        if(Scope.DEPT.equals(scope))
+        {
+
+        }
+        if(Scope.DEPT_CHILD.equals(scope))
+        {
+
+        }
+        if(Scope.CUSTOM.equals(scope))
+        {
+
+        }
+        return sql;
+    }
+
     /**
-     * 获 取 SQL
+     * 获取 Sql 语句
      */
     private String getSql(Invocation invocation) {
         final Object[] args = invocation.getArgs();
@@ -110,7 +150,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 权 限 注 解 信 息 获 取
+     * 获取权限注解
      */
     private DataScope getAnnotation(MappedStatement mappedStatement) {
         DataScope dataAuth = null;
@@ -132,7 +172,7 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 内 部 类 作 用 于 SQL 包 装
+     * SQL 包装内部类
      * */
     class BoundSqlSqlSource implements SqlSource {
         private BoundSql boundSql;
