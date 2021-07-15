@@ -182,4 +182,5 @@ public class SysUserController extends BaseController {
     public Result dept(String userId) {
         return success();
     }
+
 }
