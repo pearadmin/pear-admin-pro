@@ -4,16 +4,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pearadmin.pro.common.web.base.page.Pageable;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.modules.sys.domain.*;
-import com.pearadmin.pro.modules.sys.repository.SysPowerRepository;
-import com.pearadmin.pro.modules.sys.repository.SysRoleRepository;
-import com.pearadmin.pro.modules.sys.repository.SysUserRepository;
+import com.pearadmin.pro.modules.sys.repository.*;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
-import com.pearadmin.pro.modules.sys.repository.SysUserRoleRepository;
 import com.pearadmin.pro.modules.sys.service.SysUserRoleService;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import javax.annotation.Resource;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -28,6 +24,9 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
 
     @Resource
     private SysUserRepository sysUserRepository;
+
+    @Resource
+    private SysDeptRepository sysDeptRepository;
 
     @Resource
     private SysPowerRepository sysPowerRepository;
@@ -97,5 +96,10 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
     public boolean removeByIds(Collection<? extends Serializable> idList) {
         idList.forEach(this::removeById);
         return true;
+    }
+
+    @Override
+    public List<SysDept> dept(String userId) {
+        return sysDeptRepository.selectDeptByUserId(userId);
     }
 }

@@ -44,7 +44,7 @@ public abstract class BaseCache<T> {
     /**
      * 刷新
      * */
-    @Scheduled(fixedDelay = 30000)
+/*    @Scheduled(fixedDelay = 30000)*/
     public void time()
     {
         cache = load();

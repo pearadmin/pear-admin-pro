@@ -2,12 +2,17 @@ package com.pearadmin.pro.common.web.interceptor.annotation;
 
 import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 
+import java.lang.annotation.*;
+
 /**
  * 数据权限注解
  *
  * Author: 就眠仪式
  * CreateTime: 2021/04/01
  * */
+@Documented
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.TYPE, ElementType.METHOD})
 public @interface DataScope {
 
     /**

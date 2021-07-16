@@ -17,4 +17,11 @@
         where parent = #{parentId}
     </select>
 
+    <select id="selectDeptByUserId" resultType="SysDept">
+        select * from sys_dept sd
+        left join sys_role_dept srd on srd.dept_id = sd.id
+        left join sys_user_role sur on sur.role_id = srd.role_id
+        where sur.user_id = #{userId}
+    </select>
+
 </mapper>

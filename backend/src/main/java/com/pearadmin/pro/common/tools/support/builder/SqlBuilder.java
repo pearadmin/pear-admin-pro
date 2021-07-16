@@ -1,0 +1,14 @@
+package com.pearadmin.pro.common.tools.support.builder;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class SqlBuilder {
+
+    private String sql;
+
+}

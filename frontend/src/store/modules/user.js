@@ -61,7 +61,6 @@ const actions = {
     const { code, msg, token, tokenKey } = await login(data);
     if (code === 200) {
       commit('SET_USER_TOKEN', { key:tokenKey , value:token });
-      message.success(msg);
       return Promise.resolve();
     } else {
       return Promise.reject(msg);
@@ -71,7 +70,7 @@ const actions = {
   // 注销
   async logout( {commit} ) {
     const { msg } = await logout();
-    message.success(msg).then(function(){
+    message.success(msg, 0.5).then(function(){
       commit('SET_USER_TOKEN');
       commit('SET_USER_ROUTE');
       window.location.reload();

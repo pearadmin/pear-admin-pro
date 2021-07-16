@@ -138,8 +138,8 @@ border-radius: 0;
 #menu::-webkit-scrollbar
 {
 -webkit-appearance: none;
-width: 3px;
-height: 3px;
+width: 0px;
+height: 0px;
 }
 
 #menu::-webkit-scrollbar-thumb

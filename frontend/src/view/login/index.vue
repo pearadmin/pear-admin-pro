@@ -14,7 +14,10 @@
           <div class="desc">明 湖 区 最 具 影 响 力 的 设 计 规 范 之 一</div>
         </a-form-item>
         <a-form-item>
-          <a-input placeholder="账 户 : admin" v-model:value="formState.username" />
+          <a-input
+            placeholder="账 户 : admin"
+            v-model:value="formState.username"
+          />
         </a-form-item>
         <a-form-item>
           <a-input
@@ -60,6 +63,7 @@ import { reactive, ref } from "vue";
 import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 import { create } from "@/api/module/captcha";
+import { notification } from "ant-design-vue";
 export default {
   setup() {
     const router = useRouter();
@@ -94,13 +98,23 @@ export default {
 
     // 登录验证
     const onSubmit = () => {
-      formRef.value.validate()
+      formRef.value
+        .validate()
         .then(async () => {
           load.value = true;
           await store.dispatch("user/login", formState);
+          load.value = false;
+          notification['success']({
+            message: "登录成功",
+            description: "就 眠 仪 式, 欢 迎 回 来.",
+          });
           await router.push("/");
         })
         .catch((error) => {
+          notification['error']({
+            message: "登录失败",
+            description: error,
+          });
           load.value = false;
           refreshCaptcha();
         });

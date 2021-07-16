@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.service;
 
+import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
@@ -70,5 +71,14 @@ public interface SysUserService extends IService<SysUser> {
      * @return {@link Boolean}
      * */
     Boolean give(String userId, List<String> roleIds);
+
+    /**
+     * 获取用户部门 (数据权限)
+     *
+     * @param userId 用户编号
+     *
+     * @return {@link SysDept}
+     * */
+    List<SysDept> dept(String userId);
 
 }

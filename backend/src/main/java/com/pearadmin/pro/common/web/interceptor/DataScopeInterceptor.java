@@ -1,30 +1,32 @@
 package com.pearadmin.pro.common.web.interceptor;
 
+import com.pearadmin.pro.common.constant.SystemConstant;
 import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
 import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.common.context.BeanContext;
 import com.pearadmin.pro.common.context.UserContext;
+import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
-import com.pearadmin.pro.modules.sys.service.SysRoleService;
+import com.pearadmin.pro.modules.sys.service.SysDeptService;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
+import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
-import org.apache.ibatis.plugin.Interceptor;
-import org.apache.ibatis.plugin.Intercepts;
-import org.apache.ibatis.plugin.Invocation;
-import org.apache.ibatis.plugin.Signature;
+import org.apache.ibatis.plugin.*;
 import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
+import org.apache.logging.log4j.util.Strings;
 import org.springframework.stereotype.Component;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.ibatis.session.RowBounds;
+import java.util.stream.Collectors;
 import java.lang.reflect.Method;
-import java.sql.SQLException;
 import java.util.List;
 
 /**
@@ -43,61 +45,74 @@ public class DataScopeInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         UserContext userContext = BeanContext.getBean(UserContext.class);
-        SysRoleService roleService = BeanContext.getBean(SysRoleService.class);
         SysUserService userService = BeanContext.getBean(SysUserService.class);
-
         try
         {
             String userId = userContext.getUserId();
             MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
             DataScope annotation = getAnnotation(mappedStatement);
-            if(annotation!=null){
+            if(annotation != null){
                 String sql = getSql(invocation);
                 Scope scope = annotation.scope();
+                sql = "select * from ("+ sql +") data a left join sys_user b on b.id = a.create_by";
+                String where = SystemConstant.EMPTY;
                 if(Scope.AUTO.equals(scope)){
-
-                    // 根据角色 数据权限 构建 SQL
                     List<SysRole> roles = userService.role(userId);
-
                     for (SysRole role: roles) {
-
-                        sql = sqlHandler(sql, role.getScope());
+                        where += sqlHandler(role.getScope());
                     }
                 } else {
-
-                    // 根据注解 数据权限 构建 SQL
-                    sql = sqlHandler(sql, scope);
+                    where += sqlHandler(scope);
                 }
-                // 回填 SQL 语句
+
+                if(Strings.isNotBlank(where)) {
+                   where = where.replaceFirst("or","");
+                   sql += " where " + where;
+                }
                 setSql(invocation, sql);
             }
         }
         catch (NullPointerException e) {
-
-
+            // TODO 当 userId 表示非 request 执行 SQL
         }
         return invocation.proceed();
     }
 
-    private String sqlHandler(String sql, Scope scope) {
+    /**
+     * 处理 Sql 权限
+     * */
+    private String sqlHandler(Scope scope) {
+        SysDeptService deptService = BeanContext.getBean(SysDeptService.class);
+        SysUserService userService = BeanContext.getBean(SysUserService.class);
+        UserContext userContext = BeanContext.getBean(UserContext.class);
+        String userId = userContext.getUserId();
+        String deptId = userContext.getDeptId();
 
         if(Scope.SELF.equals(scope))
         {
-
+            return "or a.create_by = " + userId;
         }
-        if(Scope.DEPT.equals(scope))
+        else if(Scope.DEPT.equals(scope))
         {
-
+            return "or b.dept_id = " + deptId;
         }
-        if(Scope.DEPT_CHILD.equals(scope))
+        else if(Scope.DEPT_CHILD.equals(scope))
         {
-
+            return "or b.dept_id in (" + convertDept(deptService.treeAndChildren(deptId)) + ")";
         }
-        if(Scope.CUSTOM.equals(scope))
+        else if(Scope.CUSTOM.equals(scope))
         {
-
+            return "or b.dept_id in (" + convertDept(userService.dept(userId)) + ")";
         }
-        return sql;
+        else
+        {
+            return SystemConstant.EMPTY;
+        }
+    }
+
+    private String convertDept(List<SysDept> deptList) {
+        List<String> deptIds = deptList.stream().map(d -> d.getId()).collect(Collectors.toList());
+        return StringUtils.join(deptIds,",");
     }
 
     /**
@@ -112,9 +127,9 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 包装 sql 后，回填到 invocation 中
-     */
-    private void setSql(Invocation invocation, String sql) throws SQLException {
+     * 回填 Sql 语句
+     * */
+    private void setSql(Invocation invocation, String sql) {
         final Object[] args = invocation.getArgs();
         MappedStatement statement = (MappedStatement) args[0];
         Object parameterObject = args[1];
@@ -161,7 +176,7 @@ public class DataScopeInterceptor implements Interceptor {
             final Class<?> cls = Class.forName(className);
             final Method[] method = cls.getMethods();
             for (Method me : method) {
-                if (me.getName().equals(methodName) && me.isAnnotationPresent(DataScope.class)) {
+                if (me.getName().equals(methodName)) {
                     dataAuth = me.getAnnotation(DataScope.class);
                 }
             }

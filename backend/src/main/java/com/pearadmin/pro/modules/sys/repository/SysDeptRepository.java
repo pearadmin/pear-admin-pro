@@ -10,6 +10,14 @@ import java.util.List;
 public interface SysDeptRepository extends BaseMapper<SysDept> {
 
     /**
+     * 根据 userId 获取部门列表
+     *
+     * @param userId 用户编号
+     * @return {@link SysDept}
+     * */
+    List<SysDept> selectDeptByUserId(String userId);
+
+    /**
      * 根据 roleId 获取部门列表
      *
      * @param roleId 角色编号

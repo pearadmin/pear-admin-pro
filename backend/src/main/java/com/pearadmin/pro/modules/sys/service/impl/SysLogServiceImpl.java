@@ -3,6 +3,8 @@ package com.pearadmin.pro.modules.sys.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.common.web.base.page.Pageable;
+import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.modules.sys.repository.SysLogRepository;
 import com.pearadmin.pro.modules.sys.param.SysLogRequest;
@@ -24,6 +26,7 @@ public class SysLogServiceImpl extends ServiceImpl<SysLogRepository, SysLog> imp
     }
 
     @Override
+    @DataScope(scope = Scope.SELF)
     public PageResponse<SysLog> page(SysLogRequest request) {
         return Pageable.of(request,(()-> sysLogRepository.selectLog(request)));
     }

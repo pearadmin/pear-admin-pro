@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pearadmin.pro.common.tools.support.server.server.Sys;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.repository.SysDeptRepository;
@@ -31,5 +32,26 @@ public class SysDeptServiceImpl extends ServiceImpl<SysDeptRepository, SysDept> 
             }
         }
         return list;
+    }
+
+    @Override
+    public List<SysDept> treeAndChildren(String parent) {
+        List<SysDept> ds = sysDeptRepository.selectDeptByParentId(parent);
+        for (SysDept sd: ds) {
+            treeAndChildren(sd,ds);
+        }
+        return ds;
+    }
+
+    private void treeAndChildren(SysDept sd, List<SysDept> ds) {
+        List<SysDept> dss = sysDeptRepository.selectDeptByParentId(sd.getId());
+        if(dss.size() > 0) {
+            for (SysDept sdd: dss) {
+                ds.add(sdd);
+                treeAndChildren(sdd,ds);
+            }
+        } else {
+            return;
+        }
     }
 }

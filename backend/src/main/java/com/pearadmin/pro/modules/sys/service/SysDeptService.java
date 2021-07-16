@@ -10,4 +10,6 @@ public interface SysDeptService extends IService<SysDept> {
 
     List<SysDept> tree();
 
+    List<SysDept> treeAndChildren(String parent);
+
 }

@@ -1,8 +1,11 @@
 package com.pearadmin.pro.modules.sys.repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.modules.sys.param.SysLogRequest;
+import lombok.Data;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -18,6 +21,7 @@ public interface SysLogRepository extends BaseMapper<SysLog> {
      *
      * @return {@link SysLog}
      * */
+    @DataScope(scope = Scope.SELF)
     List<SysLog> selectLog(@Param("request") SysLogRequest request);
 
 }
