@@ -103,16 +103,6 @@ public class CoreConfig implements WebMvcConfigurer {
     }
 
     /**
-     * 分页拦截器
-     * */
-    @Bean
-    public MybatisPlusInterceptor mybatisPlusInterceptor() {
-        MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
-        interceptor.addInnerInterceptor(new PaginationInnerInterceptor(DbType.H2));
-        return interceptor;
-    }
-
-    /**
      * Tomcat 默认拦截特殊字符 []
      *
      * 宽 松 配 置

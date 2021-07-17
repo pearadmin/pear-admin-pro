@@ -12,7 +12,6 @@ import com.pearadmin.pro.modules.sys.service.SysUserService;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
-import org.apache.ibatis.executor.statement.StatementHandler;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
 import org.apache.ibatis.mapping.SqlSource;
@@ -21,9 +20,8 @@ import org.apache.ibatis.reflection.DefaultReflectorFactory;
 import org.apache.ibatis.reflection.MetaObject;
 import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
 import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
-import org.apache.logging.log4j.util.Strings;
-import org.springframework.stereotype.Component;
 import org.apache.ibatis.session.ResultHandler;
+import org.apache.logging.log4j.util.Strings;
 import org.apache.ibatis.session.RowBounds;
 import java.util.stream.Collectors;
 import java.lang.reflect.Method;
@@ -35,12 +33,14 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2020/10/23
  * */
-@Component
 @Intercepts({
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class}),
         @Signature(type = Executor.class, method = "query", args = {MappedStatement.class, Object.class, RowBounds.class, ResultHandler.class, CacheKey.class, BoundSql.class})
 })
 public class DataScopeInterceptor implements Interceptor {
+
+    private static final int MAPPED_STATEMENT_INDEX = 0;
+    private static final int PARAM_OBJ_INDEX = 1;
 
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
@@ -49,12 +49,12 @@ public class DataScopeInterceptor implements Interceptor {
         try
         {
             String userId = userContext.getUserId();
-            MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
+            MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[MAPPED_STATEMENT_INDEX];
             DataScope annotation = getAnnotation(mappedStatement);
             if(annotation != null){
                 String sql = getSql(invocation);
                 Scope scope = annotation.scope();
-                sql = "select * from ("+ sql +") data a left join sys_user b on b.id = a.create_by";
+                sql = "select * from ("+ sql +") data left join sys_user b on b.id = data.create_by";
                 String where = SystemConstant.EMPTY;
                 if(Scope.AUTO.equals(scope)){
                     List<SysRole> roles = userService.role(userId);
@@ -64,11 +64,11 @@ public class DataScopeInterceptor implements Interceptor {
                 } else {
                     where += sqlHandler(scope);
                 }
-
                 if(Strings.isNotBlank(where)) {
                    where = where.replaceFirst("or","");
                    sql += " where " + where;
                 }
+                System.err.println("New Sql:" + sql);
                 setSql(invocation, sql);
             }
         }
@@ -87,10 +87,9 @@ public class DataScopeInterceptor implements Interceptor {
         UserContext userContext = BeanContext.getBean(UserContext.class);
         String userId = userContext.getUserId();
         String deptId = userContext.getDeptId();
-
         if(Scope.SELF.equals(scope))
         {
-            return "or a.create_by = " + userId;
+            return "or data.create_by = " + userId;
         }
         else if(Scope.DEPT.equals(scope))
         {
@@ -120,8 +119,8 @@ public class DataScopeInterceptor implements Interceptor {
      */
     private String getSql(Invocation invocation) {
         final Object[] args = invocation.getArgs();
-        MappedStatement ms = (MappedStatement) args[0];
-        Object parameterObject = args[1];
+        MappedStatement ms = (MappedStatement) args[MAPPED_STATEMENT_INDEX];
+        Object parameterObject = args[PARAM_OBJ_INDEX];
         BoundSql boundSql = ms.getBoundSql(parameterObject);
         return boundSql.getSql();
     }
@@ -131,8 +130,8 @@ public class DataScopeInterceptor implements Interceptor {
      * */
     private void setSql(Invocation invocation, String sql) {
         final Object[] args = invocation.getArgs();
-        MappedStatement statement = (MappedStatement) args[0];
-        Object parameterObject = args[1];
+        MappedStatement statement = (MappedStatement) args[MAPPED_STATEMENT_INDEX];
+        Object parameterObject = args[PARAM_OBJ_INDEX];
         BoundSql boundSql = statement.getBoundSql(parameterObject);
         MappedStatement newStatement = newMappedStatement(statement, new BoundSqlSqlSource(boundSql));
         MetaObject msObject =  MetaObject.forObject(newStatement, new DefaultObjectFactory(), new DefaultObjectWrapperFactory(),new DefaultReflectorFactory());

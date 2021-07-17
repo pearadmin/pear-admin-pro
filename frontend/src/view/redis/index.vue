@@ -15,9 +15,6 @@
                     <span>版本 : {{infoData.redis_version}}</span>
                   </a-col>
                   <a-col :span="4">
-                    <span>系统 : {{infoData.os}}</span>
-                  </a-col>
-                  <a-col :span="4">
                     <span>模式 : {{infoData.redis_mode}}</span>
                   </a-col>
                   <a-col :span="4">
