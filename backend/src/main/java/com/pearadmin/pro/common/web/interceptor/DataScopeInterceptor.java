@@ -54,7 +54,7 @@ public class DataScopeInterceptor implements Interceptor {
             if(annotation != null){
                 String sql = getSql(invocation);
                 Scope scope = annotation.scope();
-                sql = "select * from ("+ sql +") data left join sys_user b on b.id = data.create_by";
+                sql = preHandler(sql);
                 String where = SystemConstant.EMPTY;
                 if(Scope.AUTO.equals(scope)){
                     List<SysRole> roles = userService.role(userId);
@@ -64,11 +64,7 @@ public class DataScopeInterceptor implements Interceptor {
                 } else {
                     where += sqlHandler(scope);
                 }
-                if(Strings.isNotBlank(where)) {
-                   where = where.replaceFirst("or","");
-                   sql += " where " + where;
-                }
-                System.err.println("New Sql:" + sql);
+                sql = aftHandler(sql, where);
                 setSql(invocation, sql);
             }
         }
@@ -76,6 +72,26 @@ public class DataScopeInterceptor implements Interceptor {
             // TODO 当 userId 表示非 request 执行 SQL
         }
         return invocation.proceed();
+    }
+
+    /**
+     * 前置处理 Sql 规范
+     * */
+    private String preHandler(String sql) {
+        if(sql.indexOf("order") != -1) sql += " limit 9999";
+        sql = "select * from ("+ sql +") data left join sys_user b on b.id = data.create_by";
+        return sql;
+    }
+
+    /**
+     * 后置处理 Sql 规范
+     * */
+    private String aftHandler(String sql, String where) {
+        if(Strings.isNotBlank(where)) {
+            where = where.replaceFirst("or","");
+            sql += " where " + where;
+        }
+        return sql;
     }
 
     /**
@@ -109,6 +125,9 @@ public class DataScopeInterceptor implements Interceptor {
         }
     }
 
+    /**
+     * 格式 Convert
+     * */
     private String convertDept(List<SysDept> deptList) {
         List<String> deptIds = deptList.stream().map(d -> d.getId()).collect(Collectors.toList());
         return StringUtils.join(deptIds,",");
