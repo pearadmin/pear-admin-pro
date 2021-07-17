@@ -27,7 +27,7 @@
 
     <!-- 根据 userId 查询菜单 enable 权限可用 type !=2 菜单结构 -->
     <select id="selectMenu" resultType="SysPower">
-        select * from sys_power sp
+        select distinct sp.id, sp.* from sys_power sp
         left join sys_role_power srp on srp.power_id = sp.id
         left join sys_role sr on sr.id = srp.role_id
         left join sys_user_role sur on sur.role_id = sr.id
