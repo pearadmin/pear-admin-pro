@@ -9,7 +9,6 @@ const Api = {
   edit: '/api/sys/user/edit',
   menu: '/api/sys/user/menu',
   power: '/api/sys/user/power',
-  export: '/api/sys/user/export',
   remove: '/api/sys/user/remove',
   removeBatch: '/api/sys/user/removeBatch',
   role: '/api/sys/user/role',

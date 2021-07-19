@@ -18,7 +18,6 @@
     "antd-theme-generator": "^1.2.8",
     "axios": "^0.21.1",
     "core-js": "^3.6.5",
-    "js-file-download": "^0.4.12",
     "lodash.get": "^4.4.2",
     "moment": "^2.27.0",
     "nprogress": "^0.2.0",
