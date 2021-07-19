@@ -221,7 +221,6 @@ export default {
       pagination,
       searchParam,
       onSelectChange,
-
       closeSave,
       closeEdit,
       closeGive,
