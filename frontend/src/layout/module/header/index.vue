@@ -73,8 +73,8 @@
         <GlobalOutlined />
         <template #overlay>
           <a-menu @click="toggleLang" :selectedKeys="selectedKeys">
-            <a-menu-item key="zh-CN"> 简体中文 </a-menu-item>
-            <a-menu-item key="en-US"> English </a-menu-item>
+            <a-menu-item key="zh-cn"> 简体中文 </a-menu-item>
+            <a-menu-item key="en-us"> English </a-menu-item>
           </a-menu>
         </template>
       </a-dropdown>

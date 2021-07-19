@@ -1,10 +1,9 @@
 export default {
   "account": "account",
-  "CaseSensitivePathsPlugin": "CaseSensitivePathsPlugin",
-  "account-center": "个人中心",
-  "dashboard": "工作空间",
-  "dashboard-console": "分析页",
-  "dashboard-workspace": "工作台",
+  "account-center": "profile",
+  "dashboard": "workspace",
+  "dashboard-console": "analysis",
+  "dashboard-workspace": "console",
   "form": "表单页面",
   "base-form": "基础表单",
   "advanced-form": "高级表单",
@@ -46,13 +45,20 @@ export default {
   /// 开发工具
   "develop": "开发工具",
   "develop-mail": "邮箱发送",
-  "develop-file": "文件管理",
+  "develop-oss": "对象存储",
   "develop-source": "多数据源",
+  "develop-form": "表单设计",
   /// 其他页面
   "other": "其他页面",
   "other-profile": "个人资料",
   /// 定时任务
   "task": "定时任务",
   "task-job": "任务列表",
-  "task-job-log": "任务日志"
+  "task-job-log": "任务日志",
+  /// 站内消息
+  "notice": "站内消息",
+  "notice-announce": "通知公告",
+  "notice-inbox": "私人消息",
+  "notice-remind": "订阅消息",
+  "notice-remind-template": "订阅模板",
 }

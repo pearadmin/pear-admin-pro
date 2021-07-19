@@ -11,7 +11,7 @@
       <a-tab-pane
         v-for="pane in panes"
         :key="pane.path"
-        :tab="pane.title"
+        :tab="t(pane.i18n)"
         :closable="pane.closable"
       >
       </a-tab-pane>
@@ -38,6 +38,7 @@ import { computed, reactive, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { DownOutlined } from "@ant-design/icons-vue";
 import { useRouter, useRoute } from "vue-router";
+import { useI18n } from "vue-i18n";
 import config from '@/pear';
 export default {
   components: {
@@ -91,6 +92,7 @@ export default {
             list.push({
               title: meta.title,
               path: _path.resolve(prefix, path),
+              i18n: meta.i18n,
               closable: false
             });
           }
@@ -104,7 +106,8 @@ export default {
     const dynamicMenu = () => {
       const title = route.meta.title;
       const path = route.path;
-      commit("layout/addTab", { title, path });
+      const i18n = route.meta.i18n;
+      commit("layout/addTab", { title,path,i18n });
       const { fullPath } = route;
       const startIndex = fullPath.indexOf("/");
       const endIndex = fullPath.lastIndexOf("/");
@@ -118,8 +121,7 @@ export default {
     );
 
     // 选 项 卡 变 化 监 听
-    watch(
-      computed(() => getters.panes),
+    watch(computed(() => getters.panes),
       n => (panes.value = n),
       { deep: true, immediate: true }
     );
@@ -140,9 +142,13 @@ export default {
         return result;
       }
     }, []);
+
     commit("layout/initPanes", tabs);
 
+    const { t } = useI18n()
+
     return {
+      t,
       placement: ref("bottomRight"),
       panes,
       activeKey,

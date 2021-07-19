@@ -1,6 +1,5 @@
 export default {
   "account": "account",
-  "CaseSensitivePathsPlugin": "CaseSensitivePathsPlugin",
   "account-center": "个人中心",
   "dashboard": "工作空间",
   "dashboard-console": "分析页",
