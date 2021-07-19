@@ -118,7 +118,7 @@ export default {
     /// 工具栏
     const toolbar = [
       { label: "新增", event: function () { state.visibleSave = true }},
-      { label: "删除", event: function () { removeBatchMethod(state.selectedRowKeys) }},
+      { label: "删除", event: function () { removeBatchMethod(state.selectedRowKeys) }}
     ];
 
     /// 行操作

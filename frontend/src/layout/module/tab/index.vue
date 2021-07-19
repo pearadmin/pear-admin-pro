@@ -24,15 +24,9 @@
       </a-button>
       <template v-slot:overlay>
         <a-menu>
-          <a-menu-item>
-            <a @click="closeAll()">关 闭 所 有</a>
-          </a-menu-item>
-          <a-menu-item>
-            <a @click="closeOther()">关 闭 其 他</a>
-          </a-menu-item>
-          <a-menu-item>
-            <a @click="closeCurrent()">关 闭 当 前</a>
-          </a-menu-item>
+          <a-menu-item @click="closeAll()">关 闭 所 有</a-menu-item>
+          <a-menu-item @click="closeOther()">关 闭 其 他</a-menu-item>
+          <a-menu-item @click="closeCurrent()">关 闭 当 前</a-menu-item>
         </a-menu>
       </template>
     </a-dropdown>
@@ -40,7 +34,7 @@
 </template>
 <script>
 import _path from "path";
-import { computed, getCurrentInstance, reactive, ref, watch } from "vue";
+import { computed, reactive, ref, watch } from "vue";
 import { useStore } from "vuex";
 import { DownOutlined } from "@ant-design/icons-vue";
 import { useRouter, useRoute } from "vue-router";
@@ -73,7 +67,6 @@ export default {
     const { getters, commit } = useStore();
     const defaultPanes = computed(() => getters.panes);
     const panes = ref(initPanes);
-    // const panes = ref([...defaultPanes.value]);
     const initPanes = [];
     const route = useRoute();
     const router = useRouter();
@@ -94,19 +87,17 @@ export default {
         if (children && children.length > 0) {
           findFixedPane(list, _path.resolve(prefix, path), children);
         } else {
-          // if (!hidden && meta && meta.fixed) {
-          const currentName = route.name;
-          if (!hidden && meta && config.defaultTab === pane.name) {
+          if (!hidden && meta && config.defaultTab === pane.component) {
             list.push({
               title: meta.title,
               path: _path.resolve(prefix, path),
-              closable: !currentName === pane.name
+              closable: false
             });
           }
         }
       });
     };
-    // findFixedPane(initPanes, "", useRouter().options.routes);
+
     findFixedPane(initPanes, "", menu.value);
 
     // 新 增 或 添 加 选 项 卡 操 作
@@ -122,8 +113,7 @@ export default {
     };
 
     // 路 由 变 更 监 听
-    watch(
-      computed(() => route.fullPath),
+    watch(computed(() => route.fullPath),
       dynamicMenu
     );
 
@@ -141,7 +131,6 @@ export default {
 
     // 初 始 化 操 作
     dynamicMenu(route);
-    // 合并并去重vuex中的初始值
     const allTabs = [...initPanes, ...defaultPanes.value];
     const tabs = allTabs.reduce((result, current) => {
       const resultTitles = result.map(it => it.title);

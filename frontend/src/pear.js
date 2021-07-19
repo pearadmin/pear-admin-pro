@@ -123,7 +123,7 @@
    * 
    * 内容：组件名称
    */
-  defaultTab: "dashboard-console",
+  defaultTab: "dashboard-workspace",
 
   /**
    * 参数：国际化
