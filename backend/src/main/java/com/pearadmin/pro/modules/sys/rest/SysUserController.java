@@ -14,7 +14,6 @@ import com.pearadmin.pro.common.web.base.BaseController;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
-import java.lang.reflect.GenericDeclaration;
 import java.util.List;
 
 /**
@@ -166,7 +165,6 @@ public class SysUserController extends BaseController {
 
     /**
      * 获取用户权限
-     *
      * */
     @GetMapping("power")
     @ApiOperation(value = "用户权限")
@@ -179,8 +177,7 @@ public class SysUserController extends BaseController {
      * */
     @GetMapping("dept")
     @ApiOperation(value = "用户部门")
-    public Result dept(String userId) {
+    public Result dept() {
         return success();
     }
-
 }

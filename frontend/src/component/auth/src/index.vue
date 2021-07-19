@@ -12,19 +12,18 @@ export default defineComponent({
 	name: 'pro-authority',
 	props: {
 		value: {
-			type: String,
-			default: () => '',
+			type: [String, Boolean],
+			default: false
 		},
 	},
 	setup(props) {
 		const store = useStore();
-
 		const hasAuthority = computed(() => {
-			return store.getters.power.indexOf(props.value)
+			if(props.value == false) return true;
+			return store.getters.power.indexOf(props.value) != -1;
 		});
-
 		return {
-			hasAuthority,
+			hasAuthority
 		};
 	},
 });

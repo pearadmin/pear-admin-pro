@@ -30,18 +30,6 @@
     <page-layout>
       <a-card>
         <a-list :loading="loading" item-layout="horizontal" :data-source="data">
-          <template v-slot:loadMore>
-            <div
-              v-if="showLoadingMore"
-              :style="{
-                textAlign: 'center',
-                marginTop: '12px',
-                height: '32px',
-                lineHeight: '32px',
-              }"
-            >
-            </div>
-          </template>
           <template v-slot:renderItem="{ item }">
             <a-list-item>
               <template v-slot:actions>

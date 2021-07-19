@@ -21,7 +21,6 @@ public interface SysLogRepository extends BaseMapper<SysLog> {
      *
      * @return {@link SysLog}
      * */
-    @DataScope(scope = Scope.SELF)
     List<SysLog> selectLog(@Param("request") SysLogRequest request);
 
 }

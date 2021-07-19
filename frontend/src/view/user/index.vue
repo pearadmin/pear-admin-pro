@@ -133,7 +133,10 @@ export default {
     const converFormat = [{label:"男", value:0},{label:"女", value:1}];
 
     /// 开关
-    const switchFormat = { yes: true, no: false };
+    const switchFormat = { yes: true, no: false, event: function(value,record){
+      record.enable = !record.enable;
+      return value;
+    } };
 
     /// 头像
     const avatarFormat = { size: 36, shape: "square" };

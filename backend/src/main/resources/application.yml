@@ -2,6 +2,10 @@
 server:
   ## 监听端口
   port: 9292
+  ## 服务配置
+  tomcat:
+    ## 超时时间
+    connection-timeout: 10000
 
 ## Spring 配置
 spring:

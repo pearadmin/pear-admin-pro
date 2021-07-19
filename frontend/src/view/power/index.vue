@@ -113,14 +113,14 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "新增", event: function () { state.visibleSave = true }}
+      { label: "新增", code:"sys:power:save", event: function () { state.visibleSave = true }}
     ];
 
     /// 行操作
     const operate = [
-      { label: "查看", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
-      { label: "修改", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
-      { label: "删除", event: function (record) { removeMethod(record) }},
+      { label: "查看", code:"sys:power:info", event: function (record) { state.visibleInfo = true, state.recordInfo = record }},
+      { label: "修改", code:"sys:power:edit", event: function (record) { state.visibleEdit = true, state.recordEdit = record }},
+      { label: "删除", code:"sys:power:remove", event: function (record) { removeMethod(record) }},
     ];
 
     /// 分页参数

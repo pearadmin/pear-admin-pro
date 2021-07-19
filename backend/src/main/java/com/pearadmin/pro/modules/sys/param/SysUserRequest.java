@@ -1,7 +1,7 @@
 package com.pearadmin.pro.modules.sys.param;
 
-import com.pearadmin.pro.common.web.base.page.PageRequest;
 import lombok.Data;
+import com.pearadmin.pro.common.web.base.page.PageRequest;
 import org.apache.ibatis.type.Alias;
 
 /**
