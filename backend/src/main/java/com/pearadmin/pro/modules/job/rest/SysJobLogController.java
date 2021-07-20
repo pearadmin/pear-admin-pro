@@ -33,8 +33,8 @@ public class SysJobLogController extends BaseController {
      * @param request 查询参数
      */
     @GetMapping("page")
+    @Log(title = "查询日志")
     @ApiOperation(value = "任务日志")
-    @Log(title = "查询日志", describe = "获取任务日志")
     public Result page(SysJobLogRequest request){
         return success(sysJobLogService.page(request));
     }

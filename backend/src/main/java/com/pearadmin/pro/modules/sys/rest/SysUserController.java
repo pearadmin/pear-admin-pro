@@ -48,6 +48,7 @@ public class SysUserController extends BaseController {
         String password = sysUser.getPassword();
         String encodePassword = passwordEncoder.encode(password);
         sysUser.setPassword(encodePassword);
+        sysUser.setLocked(false);
         return auto(sysUserService.save(sysUser));
     }
 
