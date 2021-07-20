@@ -125,6 +125,7 @@ export default {
       n => (panes.value = n),
       { deep: true, immediate: true }
     );
+
     // 选 项 卡 选 中 监 听
     watch(storeKey, targetKey => {
       activeKey.value = targetKey;

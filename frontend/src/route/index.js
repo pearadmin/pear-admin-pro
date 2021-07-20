@@ -4,16 +4,17 @@ import routes from './module/base-routes';
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 
+// 构建路由
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes: routes
 })
 
-// 前置拦截器
+// 前置拦截
 router.beforeEach(permissionController)
 
-// 后置拦截器
-router.afterEach((to, from) => {
+// 后置拦截
+router.afterEach(() => {
   NProgress.done();
 })
 

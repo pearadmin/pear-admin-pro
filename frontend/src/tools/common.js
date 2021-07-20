@@ -4,7 +4,7 @@ export const isNotProduction = () => {
 }
 
 /** 聚合导入 */
-export const getModule = context => {
+export const module = context => {
   return context.keys().reduce((modules, key) => {
     return {
       ...modules,

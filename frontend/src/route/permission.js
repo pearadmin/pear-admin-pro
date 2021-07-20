@@ -60,7 +60,7 @@ export const inCloudRoute = (routes, path) => {
 
 const setDocumentTitle = title => {
   // 如有i18n在这里修改
-  document.title = `pear-admin-ant-${title}`
+  document.title = `PRO - ${title}`
 }
 
 /**
@@ -86,6 +86,7 @@ export const permissionController = async (to, from, next) => {
     // 重定向 登录
     next({path: '/login'})
   } else {
+
     // 如果基本路由中不包含页面前往的路径
     if (!router.getRoutes().map(it => it.path).includes(to.fullPath)) {
     
