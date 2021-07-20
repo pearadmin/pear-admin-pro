@@ -85,7 +85,7 @@
         <template #overlay>
           <a-menu class="avatar-dropdown">
             <a-menu-item key="0">
-              <a-menu-item> 个人中心 </a-menu-item>
+              <a-menu-item @click = "go"> 个人中心 </a-menu-item>
             </a-menu-item>
             <a-menu-divider />
             <a-menu-item key="3">
@@ -176,6 +176,7 @@ export default {
     const menuModel = computed(() => getters.menuModel);
     const theme = computed(() => getters.theme);
     const $route = useRoute();
+    const router = useRouter();
     const active = ref($route.matched[0].path);
     const isMobile = computed(() => getters.isMobile);
     const routerActive = computed(() => getters.routerActive);
@@ -221,7 +222,12 @@ export default {
       await store.dispatch("app/setLanguage", key);
     };
 
+    const go = function() {
+      router.push("/")
+    }
+
     return {
+      go,
       isMobile,
       layout,
       collapsed,

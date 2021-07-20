@@ -23,6 +23,5 @@ export async function loadLocaleMessages(i18n, locale) {
   i18n.global.setLocaleMessage(locale, messages.default)
   // set local
   setI18nLanguage(i18n, locale)
-
   return nextTick()
 }

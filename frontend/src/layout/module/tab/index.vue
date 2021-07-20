@@ -11,7 +11,7 @@
       <a-tab-pane
         v-for="pane in panes"
         :key="pane.path"
-        :tab="t(pane.i18n)"
+        :tab="i18nTitle(pane.i18n)"
         :closable="pane.closable"
       >
       </a-tab-pane>
@@ -64,6 +64,7 @@ export default {
       this.removeTab(targetKey);
     }
   },
+
   setup() {
     const { getters, commit } = useStore();
     const defaultPanes = computed(() => getters.panes);
@@ -148,8 +149,16 @@ export default {
 
     const { t } = useI18n()
 
+    const i18nTitle = function(key) {
+      if(undefined != key) {
+        return t(key);
+      }
+      return "404";
+    }
+
     return {
       t,
+      i18nTitle,
       placement: ref("bottomRight"),
       panes,
       activeKey,
