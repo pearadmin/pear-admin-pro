@@ -120,7 +120,7 @@ import {
   BellOutlined,
   LoadingOutlined,
 } from "@ant-design/icons-vue";
-import { loadLocaleMessages } from "@/locale/i18n";
+import { loadLocaleMessages } from "@/locale";
 export default {
   components: {
     AlignLeftOutlined,
