@@ -81,10 +81,10 @@
             <template #icon><ColumnHeightOutlined /></template>
           </a-button>
           <template #overlay>
-            <a-menu>
-              <a-menu-item @click="changeSize()">默认尺寸</a-menu-item>
-              <a-menu-item @click="changeSize('middle')">中等尺寸</a-menu-item>
-              <a-menu-item @click="changeSize('small')">最小尺寸</a-menu-item>
+            <a-menu :selectedKeys="[size]">
+              <a-menu-item @click="changeSize('default')" key="default">默认尺寸</a-menu-item>
+              <a-menu-item @click="changeSize('middle')" key="middle">中等尺寸</a-menu-item>
+              <a-menu-item @click="changeSize('small')" key="small">最小尺寸</a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>
