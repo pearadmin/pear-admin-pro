@@ -1,4 +1,6 @@
 import config from "@/pear";
+import { nextTick } from 'vue'
+import { createI18n } from 'vue-i18n'
 
 const DEFAULT_LANG = localStorage.getItem("pear_lang")
   ? localStorage.getItem("pear_lang")
@@ -15,9 +17,6 @@ const i18n = setupI18n({
 loadLocaleMessages(i18n, DEFAULT_LANG).then(() => {
   console.log("init i18n");
 });
-
-import { nextTick } from 'vue'
-import { createI18n } from 'vue-i18n'
 
 export function setupI18n(options = { locale: 'en' }) {
   const i18n = createI18n(options)

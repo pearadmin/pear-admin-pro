@@ -85,6 +85,7 @@ export default defineComponent({
     const formState = reactive({
       type: "0",
       sort: 0,
+      parent: "0",
       enable: true,
     });
 
@@ -123,6 +124,11 @@ export default defineComponent({
 
     const loadPower = () => {
       tree({}).then((response) => {
+        response.data = [{
+          id:"0",
+          title: "顶级菜单",
+          children: response.data
+        }]
         state.powers = response.data;
       });
     };

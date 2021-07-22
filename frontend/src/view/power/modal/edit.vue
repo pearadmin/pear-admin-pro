@@ -159,6 +159,11 @@ export default defineComponent({
 
     const loadPower = () => {
       tree({}).then((response)=>{
+        response.data = [{
+          id:"0",
+          title: "顶级菜单",
+          children: response.data
+        }]
         state.powers = response.data;
       })
     }
