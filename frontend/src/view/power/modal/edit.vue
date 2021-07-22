@@ -17,7 +17,8 @@
       <a-form-item label="上级" name="parent">
           <a-tree-select
             v-model:value="formState.parent"
-            style="width: 100%"
+            style="width: 100%;"
+            :dropdown-style="{ maxHeight: '360px', overflow: 'auto' }"
             :tree-data="state.powers"
             placeholder="上级权限"
             replace
