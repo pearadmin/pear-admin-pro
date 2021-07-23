@@ -11,6 +11,7 @@
       <a-tab-pane key="1" tab="菜单权限">
         <a-tree
           checkable
+          checkStrictly
           show-line="true"
           :tree-data="state.powers"
           :replace-fields="state.powerReplaceFields"

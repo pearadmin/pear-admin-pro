@@ -6,7 +6,7 @@ import qs from 'qs';
 class Request {
   constructor(config) {
     this.config = config || {
-      timeout: 6000,
+      timeout: 8000,
       withCredentials: true,
       baseURL: process.env.VUE_APP_API_BASE_URL,
       headers: {
