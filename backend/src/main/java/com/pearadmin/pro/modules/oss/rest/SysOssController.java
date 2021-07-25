@@ -66,5 +66,4 @@ public class SysOssController extends BaseController {
     public Result multipartUpload(HttpServletRequest request){
         return success(sysOssService.upload(((MultipartHttpServletRequest) request).getFiles("file")));
     }
-
 }

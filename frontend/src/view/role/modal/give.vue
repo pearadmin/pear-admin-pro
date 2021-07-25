@@ -29,9 +29,9 @@
         <br/>
         <br/>
         <a-tree
-          v-if="state.showDept"
           checkable
           show-line="true"
+          v-if="state.showDept"
           :tree-data="state.depts"
           :replace-fields="state.deptReplaceFields"
           v-model:checkedKeys="state.checkedDeptIds"
@@ -66,8 +66,8 @@ export default defineComponent({
       powers: [],
       active: "1",
       showDept: false,
-      checkedPowerIds: [],
-      checkedDeptIds: [],
+      checkedPowerIds: {checked:[]},
+      checkedDeptIds: {checked:[]},
       powerReplaceFields: { key: "id" },
       deptReplaceFields: { key: "id", title: "name" },
     });
@@ -118,10 +118,10 @@ export default defineComponent({
 
     const submit = (e) => {
       give({ 
-        roleId: props.record.id,
-        powerIds: state.checkedPowerIds,
         scope: scope.value,
-        deptIds: state.checkedDeptIds }).then(
+        roleId: props.record.id,
+        powerIds: state.checkedPowerIds.checked?state.checkedPowerIds.checked:state.checkedPowerIds,
+        deptIds: state.checkedDeptIds.checked?state.checkedDeptIds.checked:state.checkedDeptIds }).then(
         (response) => {
           if (response.success) {
             message.success({ content: "保存成功", duration: 1 }).then(() => {
