@@ -9,7 +9,7 @@
       :key="resolvePath(item.path, true)"
       @click="handleFoldSideBar"
     >
-      <router-link :to="item.path + '/' + item.children[0].path">
+      <router-link :to="item.path + item.children[0].path.startsWith('/')?item.children[0].path: '/' + item.children[0].path">
         <component :is="$antIcons[item.meta.icon]" />
         <span>{{ t(item.meta.i18n) }}</span>
       </router-link>
