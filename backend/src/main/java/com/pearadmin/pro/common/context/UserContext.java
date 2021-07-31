@@ -1,14 +1,9 @@
 package com.pearadmin.pro.common.context;
 
-import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
-import com.pearadmin.pro.modules.sys.service.SysUserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
-import javax.annotation.Resource;
-import java.time.LocalDateTime;
-import java.util.List;
 
 /**
  * User Context

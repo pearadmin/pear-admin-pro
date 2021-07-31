@@ -12,8 +12,11 @@ import javax.annotation.Resource;
 import java.util.List;
 
 /**
- * @author 就眠仪式
- */
+ * 任务日志服务实现
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/04/15
+ * */
 @Service
 public class SysJobLogServiceImpl extends ServiceImpl<SysJobLogRepository, SysJobLog> implements SysJobLogService {
 

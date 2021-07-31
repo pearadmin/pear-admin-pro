@@ -130,7 +130,6 @@ public class QuartzService {
      * 执行定时任务
      *
      * @param sysJob 任务编号
-     * Return: null
      * */
     public void run (SysJob sysJob){
         try {

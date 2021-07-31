@@ -31,7 +31,8 @@ public class BaseContext {
     private UserContext userContext;
 
     /**
-     * 记录日志
+     * 新增日志
+     *
      * @param title 标题
      * @param describe 描述
      * @param action 动作

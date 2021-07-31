@@ -29,4 +29,5 @@ public @interface Log {
      * Action 操作类型
      * */
     Action action() default Action.QUERY;
+
 }

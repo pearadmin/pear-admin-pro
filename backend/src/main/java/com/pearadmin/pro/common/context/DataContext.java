@@ -12,6 +12,7 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.sql.DataSource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Data Context 数 据 源 上 下 文
@@ -33,6 +34,12 @@ public class DataContext {
 
     /**
      * 新增数据源
+     *
+     * @param name 名称
+     * @param username 账户
+     * @param password 密码
+     * @param url 连接
+     * @param driver 驱动
      * */
     public void createDataSource(String name, String username, String password, String url, String driver){
         DynamicRoutingDataSource dynamicRoutingDataSource = (DynamicRoutingDataSource) dataSource;
@@ -50,6 +57,8 @@ public class DataContext {
 
     /**
      * 切换数据源
+     *
+     * @param name 名称
      * */
     public void changeDataSource(String name){
         DynamicDataSourceContextHolder.push(name);
@@ -57,6 +66,8 @@ public class DataContext {
 
     /**
      * 清空数据源
+     *
+     * @param name 名称
      * */
     public void cleanDataSource(String name) {
         DynamicDataSourceContextHolder.poll();
@@ -64,6 +75,12 @@ public class DataContext {
 
     /**
      * 修改数据源
+     *
+     * @param name 名称
+     * @param username 账户
+     * @param password 密码
+     * @param url 连接
+     * @param driver 驱动
      * */
     public void updateDataSource(String name, String username, String password, String url, String driver) {
         removeDataSource(name);
@@ -72,10 +89,20 @@ public class DataContext {
 
     /**
      * 删除数据源
+     *
+     * @param name 名称
      * */
-    public void removeDataSource(String name){
+    public void removeDataSource(String name) {
         DynamicRoutingDataSource dynamicRoutingDataSource = (DynamicRoutingDataSource) dataSource;
         dynamicRoutingDataSource.removeDataSource(name);
+    }
+
+    /**
+     * 数据源列表
+     * */
+    public Map<String, DataSource> selectDataSource() {
+        DynamicRoutingDataSource dynamicRoutingDataSource = (DynamicRoutingDataSource) dataSource;
+        return dynamicRoutingDataSource.getCurrentDataSources();
     }
 
     /// 初 始 化 ...

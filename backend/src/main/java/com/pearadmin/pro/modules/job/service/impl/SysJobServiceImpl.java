@@ -17,8 +17,11 @@ import java.util.Collection;
 import java.util.List;
 
 /**
- * @author 就眠仪式
- */
+ * 任务服务实现
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/04/15
+ * */
 @Service
 public class SysJobServiceImpl extends ServiceImpl<SysJobRepository, SysJob> implements SysJobService {
 

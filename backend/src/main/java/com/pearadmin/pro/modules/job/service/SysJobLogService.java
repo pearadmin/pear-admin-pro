@@ -7,8 +7,11 @@ import com.pearadmin.pro.modules.job.param.SysJobLogRequest;
 import java.util.List;
 
 /**
- * @author 就眠仪式
- */
+ * 任务日志服务接口
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/04/15
+ * */
 public interface SysJobLogService extends IService<SysJobLog> {
 
     /**
