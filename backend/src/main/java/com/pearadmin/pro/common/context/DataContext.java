@@ -100,14 +100,24 @@ public class DataContext {
     /**
      * 数据源列表
      * */
-    public Map<String, DataSource> selectDataSource() {
+    public Map<String, DataSource> getDataSources() {
         DynamicRoutingDataSource dynamicRoutingDataSource = (DynamicRoutingDataSource) dataSource;
         return dynamicRoutingDataSource.getCurrentDataSources();
     }
 
+    /**
+     * 获取数据源
+     *
+     * @param name 名称
+     * */
+    public DataSource getDataSource(String name) {
+        DynamicRoutingDataSource dynamicRoutingDataSource = (DynamicRoutingDataSource) dataSource;
+        return dynamicRoutingDataSource.getDataSource(name);
+    }
+
     /// 初 始 化 ...
     @PostConstruct
-    public void loadDataSource(){
+    public void loadDataSource() {
        List<SysDataSource> sysDataSources = sysDataSourceService.list(new SysDataSourceRequest());
        sysDataSources.forEach(sysDataSource -> {
            createDataSource(
