@@ -35,7 +35,7 @@
 <script>
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { page, clean } from "@/api/module/log";
+import { page, clean, exportExcel } from "@/api/module/log";
 import { reactive, createVNode } from 'vue';
 
 const cleanKey = "clean";
@@ -95,7 +95,7 @@ export default {
 
     /// 工具栏
     const toolbar = [
-      { label: "备份", event: function () { }},
+      { label: "备份", event: function () { exportExcel(); }},
       { label: "清空", event: function () { cleanMethod(); }},
     ];
 

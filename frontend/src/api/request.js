@@ -4,6 +4,7 @@ import store from "../store";
 import qs from 'qs';
 
 class Request {
+
   constructor(config) {
     this.config = config || {
       timeout: 8000,

@@ -23,8 +23,8 @@
       <a-form-item ref="password" label="密码" name="password">
         <a-input v-model:value="formState.password" />
       </a-form-item>
-      <a-form-item ref="url" label="链接" name="url">
-        <a-input v-model:value="formState.url" />
+      <a-form-item label="连接" name="url">
+        <a-textarea v-model:value="formState.url" />
       </a-form-item>
       <a-form-item ref="driver" label="驱动" name="driver">
         <a-input v-model:value="formState.driver" />
