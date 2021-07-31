@@ -14,7 +14,7 @@ import javax.annotation.Resource;
 import java.lang.reflect.Method;
 
 /**
- * 系统日志实现
+ * Log 实现 Aop
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
@@ -50,7 +50,6 @@ public class LogAspect {
         String describe = annotation.describe();
 
         try {
-
             // 执 行 方 法
             result = joinPoint.proceed();
             // 记 录 日 志

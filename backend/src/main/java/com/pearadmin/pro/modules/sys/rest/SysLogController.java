@@ -1,6 +1,8 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.common.aop.annotation.Excel;
 import com.pearadmin.pro.common.aop.enums.Action;
+import com.pearadmin.pro.modules.sys.domain.SysLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.pearadmin.pro.common.aop.annotation.Log;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * 日志控制器
@@ -59,5 +62,13 @@ public class SysLogController extends BaseController {
                     .ne(com.pearadmin.pro.modules.sys.domain.SysLog::getAction, Action.AUTH)
                     .remove());
         }
+    }
+
+    @GetMapping("/export")
+    @Log(title = "导出日志")
+    @ApiOperation(value = "导出日志")
+    @Excel(clazz = SysLog.class, filename = "系统日志")
+    public List<SysLog> export() {
+        return sysLogService.list(new SysLogRequest());
     }
 }

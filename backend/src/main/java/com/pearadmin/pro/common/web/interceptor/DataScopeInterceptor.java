@@ -39,9 +39,6 @@ import java.util.List;
 })
 public class DataScopeInterceptor implements Interceptor {
 
-    private static final int MAPPED_STATEMENT_INDEX = 0;
-    private static final int PARAM_OBJ_INDEX = 1;
-
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         UserContext userContext = BeanContext.getBean(UserContext.class);
@@ -49,10 +46,10 @@ public class DataScopeInterceptor implements Interceptor {
         try
         {
             String userId = userContext.getUserId();
-            MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[MAPPED_STATEMENT_INDEX];
+            MappedStatement mappedStatement = InvocationHandler.getMappedStatement(invocation);
             DataScope annotation = getAnnotation(mappedStatement);
             if(annotation != null){
-                String sql = getSql(invocation);
+                String sql = InvocationHandler.getSql(invocation);
                 Scope scope = annotation.scope();
                 sql = preHandler(sql);
                 String where = SystemConstant.EMPTY;
@@ -65,7 +62,7 @@ public class DataScopeInterceptor implements Interceptor {
                     where += sqlHandler(scope);
                 }
                 sql = aftHandler(sql, where);
-                setSql(invocation, sql);
+                InvocationHandler.setSql(invocation, sql);
             }
         }
         catch (NullPointerException e) {
@@ -126,63 +123,6 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * 格式 Convert
-     * */
-    private String convertDept(List<SysDept> deptList) {
-        List<String> deptIds = deptList.stream().map(d -> d.getId()).collect(Collectors.toList());
-        return StringUtils.join(deptIds,",");
-    }
-
-    /**
-     * 获取 Sql 语句
-     */
-    private String getSql(Invocation invocation) {
-        final Object[] args = invocation.getArgs();
-        MappedStatement ms = (MappedStatement) args[MAPPED_STATEMENT_INDEX];
-        Object parameterObject = args[PARAM_OBJ_INDEX];
-        BoundSql boundSql = ms.getBoundSql(parameterObject);
-        return boundSql.getSql();
-    }
-
-    /**
-     * 回填 Sql 语句
-     * */
-    private void setSql(Invocation invocation, String sql) {
-        final Object[] args = invocation.getArgs();
-        MappedStatement statement = (MappedStatement) args[MAPPED_STATEMENT_INDEX];
-        Object parameterObject = args[PARAM_OBJ_INDEX];
-        BoundSql boundSql = statement.getBoundSql(parameterObject);
-        MappedStatement newStatement = newMappedStatement(statement, new BoundSqlSqlSource(boundSql));
-        MetaObject msObject =  MetaObject.forObject(newStatement, new DefaultObjectFactory(), new DefaultObjectWrapperFactory(),new DefaultReflectorFactory());
-        msObject.setValue("sqlSource.boundSql.sql", sql);
-        args[0] = newStatement;
-    }
-
-    private MappedStatement newMappedStatement(MappedStatement ms, SqlSource newSqlSource) {
-        MappedStatement.Builder builder = new MappedStatement.Builder(ms.getConfiguration(), ms.getId(), newSqlSource, ms.getSqlCommandType());
-        builder.resource(ms.getResource());
-        builder.fetchSize(ms.getFetchSize());
-        builder.statementType(ms.getStatementType());
-        builder.keyGenerator(ms.getKeyGenerator());
-        if (ms.getKeyProperties() != null && ms.getKeyProperties().length != 0) {
-            StringBuilder keyProperties = new StringBuilder();
-            for (String keyProperty : ms.getKeyProperties()) {
-                keyProperties.append(keyProperty).append(",");
-            }
-            keyProperties.delete(keyProperties.length() - 1, keyProperties.length());
-            builder.keyProperty(keyProperties.toString());
-        }
-        builder.timeout(ms.getTimeout());
-        builder.parameterMap(ms.getParameterMap());
-        builder.resultMaps(ms.getResultMaps());
-        builder.resultSetType(ms.getResultSetType());
-        builder.cache(ms.getCache());
-        builder.flushCacheRequired(ms.isFlushCacheRequired());
-        builder.useCache(ms.isUseCache());
-        return builder.build();
-    }
-
-    /**
      * 获取权限注解
      */
     private DataScope getAnnotation(MappedStatement mappedStatement) {
@@ -205,16 +145,10 @@ public class DataScopeInterceptor implements Interceptor {
     }
 
     /**
-     * SQL 包装内部类
+     * 格式 Convert
      * */
-    class BoundSqlSqlSource implements SqlSource {
-        private BoundSql boundSql;
-        public BoundSqlSqlSource(BoundSql boundSql) {
-            this.boundSql = boundSql;
-        }
-        @Override
-        public BoundSql getBoundSql(Object parameterObject) {
-            return boundSql;
-        }
+    private String convertDept(List<SysDept> deptList) {
+        List<String> deptIds = deptList.stream().map(d -> d.getId()).collect(Collectors.toList());
+        return StringUtils.join(deptIds,",");
     }
 }

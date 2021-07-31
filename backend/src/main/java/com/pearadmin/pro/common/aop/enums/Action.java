@@ -46,5 +46,6 @@ public enum Action {
     /**
      * 上传
      * */
-    UPLOAD,
+    UPLOAD
+
 }

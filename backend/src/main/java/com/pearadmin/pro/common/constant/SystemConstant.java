@@ -18,4 +18,8 @@ public class SystemConstant {
      * */
     public static final String EMPTY = "";
 
+    /**
+     * Excel 格式
+     * */
+    public static final String XLSX = ".xlsx";
 }

@@ -5,9 +5,9 @@ import com.pearadmin.pro.common.aop.enums.Action;
 import java.lang.annotation.*;
 
 /**
- * 行为日志注解
+ * 日志 注解
  *
- * @author 就 眠 仪 式
+ * Author 就 眠 仪 式
  * CreateTime: 2021/04/20
  * */
 @Documented
