@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.rest;
 
 import com.pearadmin.pro.common.aop.annotation.Excel;
 import com.pearadmin.pro.common.aop.enums.Action;
+import com.pearadmin.pro.common.aop.enums.Model;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -67,7 +68,7 @@ public class SysLogController extends BaseController {
     @GetMapping("/export")
     @Log(title = "导出日志")
     @ApiOperation(value = "导出日志")
-    @Excel(clazz = SysLog.class, filename = "系统日志")
+    @Excel(clazz = SysLog.class, model = Model.WRITE)
     public List<SysLog> export() {
         return sysLogService.list(new SysLogRequest());
     }

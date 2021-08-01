@@ -3,13 +3,13 @@ package com.pearadmin.pro.common.aop.enums;
 public enum Model {
 
     /**
-     * 导入
+     * 读
      * */
-    IMPORT,
+    READ,
 
     /**
-     * 导出
+     * 写
      * */
-    EXPORT,
+    WRITE,
 
 }

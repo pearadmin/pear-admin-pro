@@ -14,10 +14,8 @@ import java.lang.annotation.*;
 @Target({ElementType.TYPE, ElementType.METHOD})
 public @interface Excel {
 
-    String filename() default "";
-
     Class clazz();
 
-    Model model() default Model.EXPORT;
+    Model model() default Model.WRITE;
 
 }

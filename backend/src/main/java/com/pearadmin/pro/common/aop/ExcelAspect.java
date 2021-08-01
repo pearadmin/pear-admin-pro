@@ -4,7 +4,9 @@ import com.alibaba.excel.EasyExcel;
 import com.pearadmin.pro.common.aop.annotation.Excel;
 import com.pearadmin.pro.common.aop.enums.Model;
 import com.pearadmin.pro.common.constant.SystemConstant;
+import com.pearadmin.pro.common.tools.core.ExcelUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
+import org.apache.poi.ss.formula.functions.T;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -45,13 +47,12 @@ public class ExcelAspect {
         Excel annotation = getAnnotation(joinPoint);
         Class clazz = annotation.clazz();
         Model model = annotation.model();
-        String filename = annotation.filename();
         HttpServletResponse response = ServletUtil.getResponse();
         HttpServletRequest request = ServletUtil.getRequest();
 
         try {
 
-            if(model.equals(Model.IMPORT)) {
+            if(model.equals(Model.READ)) {
 
                 // TODO Excel 导入
 
@@ -59,13 +60,7 @@ public class ExcelAspect {
 
             data = joinPoint.proceed();
 
-            if(model.equals(Model.EXPORT)) {
-                response.setContentType("application/vnd.ms-excel");
-                response.setCharacterEncoding(SystemConstant.UTF8);
-                String fileName = URLEncoder.encode(filename, SystemConstant.UTF8);
-                response.setHeader("Content-disposition", "attachment;filename=" + fileName + SystemConstant.XLSX);
-                EasyExcel.write(response.getOutputStream(), clazz).sheet(fileName).doWrite(toList(data, clazz));
-            }
+            if(model.equals(Model.WRITE)) ExcelUtil.write(response, clazz, toList(data, clazz));
 
         }catch (Exception e){
             // 堆 栈 信 息
