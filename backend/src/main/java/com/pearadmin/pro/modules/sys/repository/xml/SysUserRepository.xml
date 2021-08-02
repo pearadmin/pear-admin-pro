@@ -7,8 +7,8 @@
         sp.name as postName,
         sd.name as deptName
         from sys_user su
-        left join sp on sp.id = su.post_id
-        left join sd on sd.id = su.dept_id
+        left join sys_post sp on sp.id = su.post_id
+        left join sys_dept sd on sd.id = su.dept_id
         <where>
             <if test="request.username!=null and request.username!=''">
                 and su.username like concat('%', #{request.username}, '%')
