@@ -30,11 +30,6 @@ public class TenantConstant {
             "sys_job",
             "sys_job_log",
             "sys_data_source",
-
-            "sys_user",
-            "sys_user_role",
-            "sys_role_power",
-            "sys_role_dept",
     };
 
 }

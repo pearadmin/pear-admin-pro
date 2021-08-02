@@ -113,8 +113,6 @@ public class TenantInterceptor implements Interceptor {
                 }
             }
 
-            System.out.println("Table 列表:" + tables.toString());
-
             for (TableAlias table : tables) {
                 // TODO 涉及租户的表, 才修改
                 if(Arrays.asList(TenantConstant.IGNORE_TABLE).indexOf(table.getTable()) < 0) {
@@ -133,7 +131,6 @@ public class TenantInterceptor implements Interceptor {
                     }
                 }
             }
-            System.err.println("查询 SQL:" + select.toString());
             return select.toString();
         }
         return sql;
