@@ -17,24 +17,15 @@
       <a-form-item ref="name" label="名称" name="name">
         <a-input v-model:value="formState.name" />
       </a-form-item>
-      <a-form-item ref="key" label="键" name="key">
-        <a-input v-model:value="formState.key" />
-      </a-form-item>
-      <a-form-item ref="value" label="值" name="value">
-        <a-input v-model:value="formState.value" />
-      </a-form-item>
-      <a-form-item label="状态" name="enable">
-        <a-switch v-model:checked="formState.enable" />
-      </a-form-item>
-      <a-form-item label="备注" name="remark">
-        <a-textarea v-model:value="formState.remark" />
+      <a-form-item label="备注" name="describe">
+        <a-textarea v-model:value="formState.describe" />
       </a-form-item>
     </a-form>
   </a-modal>
 </template>
 <script>
 import { message } from "ant-design-vue";
-import { save } from "@/api/module/config";
+import { save } from "@/api/module/tenant";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 
 const key = "save";
@@ -48,14 +39,11 @@ export default defineComponent({
   setup(props, context) {
     const formRef = ref();
 
-    const formState = reactive({
-      enable: true,
-    });
+    const formState = reactive({});
 
     const formRules = {
-      name: [{ required: true, message: "请输入配置名", trigger: "blur" }],
-      key: [{ required: true, message: "请输入配置键", trigger: "blur" }],
-      value: [{ required: true, message: "请输入配置值", trigger: "blur" }],
+      name: [{ required: true, message: "请输入租户名称", trigger: "blur" }],
+      describe: [{ required: true, message: "请输入租户描述", trigger: "blur" }],
     };
 
     const submit = (e) => {

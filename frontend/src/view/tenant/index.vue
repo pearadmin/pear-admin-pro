@@ -59,7 +59,6 @@ export default {
     const tableRef = ref()
 
     const columns = [
-      { dataIndex: "id", key: "id", title: "编号" },
       { dataIndex: "name", key: "name", title: "名称" },
       { dataIndex: "describe", key: "describe", title: "描述"},
       { dataIndex: "createTime", key: "createTime", title: "创建时间" },
@@ -77,7 +76,7 @@ export default {
     /// 删除配置
     const removeMethod = (record) => {
       modal.confirm({
-        title: '您是否确定要删除此配置?',
+        title: '您是否确定要删除此租户?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',
@@ -98,7 +97,7 @@ export default {
 
     const removeBatchMethod = (ids) => {
        modal.confirm({
-        title: '您是否确定要删除选择配置?',
+        title: '您是否确定要删除选择租户?',
         icon: createVNode(ExclamationCircleOutlined),
         okText: '确定',
         cancelText: '取消',

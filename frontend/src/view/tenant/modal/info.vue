@@ -16,17 +16,8 @@
       <a-form-item ref="name" label="名称" name="name">
         <a-input v-model:value="formState.name" />
       </a-form-item>
-      <a-form-item ref="key" label="键" name="key">
-        <a-input v-model:value="formState.key" />
-      </a-form-item>
-      <a-form-item ref="value" label="值" name="value">
-        <a-input v-model:value="formState.value" />
-      </a-form-item>
-      <a-form-item label="状态" name="enable">
-        <a-switch v-model:checked="formState.enable" />
-      </a-form-item>
-      <a-form-item label="备注" name="remark">
-        <a-textarea v-model:value="formState.remark" />
+      <a-form-item label="备注" name="describe">
+        <a-textarea v-model:value="formState.describe" />
       </a-form-item>
     </a-form>
   </a-modal>
@@ -52,18 +43,14 @@ export default defineComponent({
     let formState = reactive({});
 
     const formRules = {
-      name: [{ required: true, message: '请输入配置名', trigger: 'blur'}],
-      key: [{ required: true, message: '请输入配置键', trigger: 'blur'}],
-      value: [{ required: true, message: '请输入配置值', trigger: 'blur'}]
+      name: [{ required: true, message: "请输入租户名称", trigger: "blur" }],
+      describe: [{ required: true, message: "请输入租户描述", trigger: "blur" }],
     };
 
     watch(props,(props) => {
         formState.id = props.record.id
         formState.name = props.record.name
-        formState.key = props.record.key
-        formState.value = props.record.value
-        formState.remark = props.record.remark
-        formState.enable = props.record.enable
+        formState.describe = props.record.describe
     })
 
     const submit = (e) => {

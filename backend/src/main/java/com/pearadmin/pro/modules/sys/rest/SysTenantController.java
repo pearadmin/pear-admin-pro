@@ -73,4 +73,5 @@ public class SysTenantController extends BaseController {
     public Result removeBatch(@RequestParam List<String> ids) {
         return success(sysTenantService.removeByIds(ids));
     }
+
 }

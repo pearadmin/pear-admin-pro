@@ -33,4 +33,5 @@ public class SysTenant extends BaseDomain {
      * */
     @TableField("`describe`")
     private String describe;
+
 }
