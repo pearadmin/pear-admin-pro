@@ -34,4 +34,15 @@ public class SysTenant extends BaseDomain {
     @TableField("`describe`")
     private String describe;
 
+    /**
+     * 租户的默认账户
+     *
+     * @param username 账户
+     * @param password 密码
+     * */
+    @TableField(exist = false)
+    private String username;
+
+    @TableField(exist = false)
+    private String password;
 }

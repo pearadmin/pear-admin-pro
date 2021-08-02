@@ -95,6 +95,7 @@ export default defineComponent({
       phone: [ { required: true, message: '请输入电话', trigger: 'blur'} ],
       postId: [ { required: true, message: '请选择岗位', trigger: 'blur'} ],
       deptId: [ { required: true, message: '请选择部门', trigger: 'blur'} ],
+      tenantId: [ { required: true, message: '请选择租户', trigger: 'blur'} ]
     };
 
     const loadPost = () => {
@@ -108,7 +109,7 @@ export default defineComponent({
         state.depts = response.data;
       })
     }
-
+  
     const submit = (e) => {
         formRef.value.validate().then(() => {
           save(toRaw(formState)).then((response)=>{

@@ -66,7 +66,18 @@ public class TenantInterceptor implements Interceptor {
             Insert insert = (Insert) stmt;
             // TODO 涉及租户的表, 才修改
             Table table = insert.getTable();
-            if(Arrays.asList(TenantConstant.IGNORE_TABLE).indexOf(table.getName()) < 0) {
+
+            List<Column> columns = insert.getColumns();
+
+            boolean flag = true;
+
+            for (Column column : columns) {
+                if(column.getName(false).equals(TenantConstant.TENANT_COLUMN)) {
+                    flag = false;
+                }
+            }
+
+            if(Arrays.asList(TenantConstant.IGNORE_TABLE).indexOf(table.getName()) < 0 && flag) {
                 insert.getColumns().add(new Column(TenantConstant.TENANT_COLUMN));
                 ((ExpressionList) insert.getItemsList()).getExpressions().add(new StringValue(userContext.getPrincipal().getTenantId()));
             }

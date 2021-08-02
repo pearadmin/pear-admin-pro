@@ -20,6 +20,13 @@
       <a-form-item label="备注" name="describe">
         <a-textarea v-model:value="formState.describe" />
       </a-form-item>
+      <a-divider></a-divider>
+      <a-form-item ref="username" label="账户" name="username">
+        <a-input v-model:value="formState.username" />
+      </a-form-item>
+      <a-form-item ref="password" label="密码" name="password">
+        <a-input v-model:value="formState.password" />
+      </a-form-item>
     </a-form>
   </a-modal>
 </template>
@@ -37,6 +44,7 @@ export default defineComponent({
   },
   emit: ["close"],
   setup(props, context) {
+    
     const formRef = ref();
 
     const formState = reactive({});
@@ -44,6 +52,8 @@ export default defineComponent({
     const formRules = {
       name: [{ required: true, message: "请输入租户名称", trigger: "blur" }],
       describe: [{ required: true, message: "请输入租户描述", trigger: "blur" }],
+      username: [{ required: true, message: "请输入租户账户", trigger: "blur" }],
+      password: [{ required: true, message: "请输入租户密码", trigger: "blur" }],
     };
 
     const submit = (e) => {

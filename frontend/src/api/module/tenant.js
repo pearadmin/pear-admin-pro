@@ -2,6 +2,7 @@ import request from '../request'
 
 const Api = {
     page: '/api/sys/tenant/page',
+    list: '/api/sys/tenant/list',
     save: '/api/sys/tenant/save',
     edit: '/api/sys/tenant/edit',
     remove: '/api/sys/tenant/remove',
@@ -12,6 +13,15 @@ const Api = {
 export const page = data => {
     return request.request({
         url: Api.page,
+        params: data,
+        method: 'GET'
+    })
+}
+
+/** 租户列表 */
+export const list = data => {
+    return request.request({
+        url: Api.list,
         params: data,
         method: 'GET'
     })
