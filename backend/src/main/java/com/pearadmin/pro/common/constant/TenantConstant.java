@@ -11,7 +11,7 @@ public class TenantConstant {
     /**
      * 开启多租户
      * */
-    public static boolean enable = false;
+    public static boolean enable = true;
 
     /**
      * 租户字段
@@ -32,11 +32,8 @@ public class TenantConstant {
             "sys_data_source",
 
             "sys_user",
-            "sys_post",
-            "sys_role",
             "sys_user_role",
             "sys_role_power",
-            "sys_dept",
             "sys_role_dept",
     };
 

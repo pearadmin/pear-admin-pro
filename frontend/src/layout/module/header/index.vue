@@ -79,9 +79,7 @@
         </template>
       </a-dropdown>
       <a-dropdown class="avatar-item">
-        <a-avatar
-          src="https://portrait.gitee.com/uploads/avatars/user/1611/4835367_Jmysy_1578975358.png"
-        ></a-avatar>
+        <a-avatar src="https://portrait.gitee.com/uploads/avatars/user/1611/4835367_Jmysy_1578975358.png"></a-avatar>
         <template #overlay>
           <a-menu class="avatar-dropdown">
             <a-menu-item key="0">

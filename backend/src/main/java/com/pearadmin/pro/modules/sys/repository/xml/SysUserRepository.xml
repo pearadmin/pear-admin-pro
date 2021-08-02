@@ -19,4 +19,8 @@
         </where>
     </select>
 
+    <select id="selectByUsername" parameterType="string" resultType="SysUser">
+        select * from sys_user
+        where username = #{username} limit 1
+    </select>
 </mapper>

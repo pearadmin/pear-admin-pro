@@ -1,8 +1,8 @@
-import { module } from '@/tools/common'
-import antLocal from "ant-design-vue/es/locale/zh_CN"
+import { getModule } from '@/tools/common'
+import antLocal from 'ant-design-vue/es/locale/zh_CN'
+const requireENContext = require.context('./zh-cn/', false, /[\w+].(js)$/)
 
-const requireZHContext = require.context('./zh-cn/', false, /[\w+].(js)$/)
-const zhCN = module(requireZHContext)
+const zhCN = getModule(requireENContext)
 
 export default {
   ...zhCN,
