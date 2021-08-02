@@ -9,11 +9,11 @@
         where su.id = #{userId} and sr.enable = 1
     </select>
 
-    <select id="selectRole" resultType="SysRole">
-        select * from sys_role sr
+    <select id="selectRole" parameterType="SysRoleRequest" resultType="SysRole">
+        select * from sys_role
         <where>
             <if test="request.name!=null and request.name!=''">
-                sr.name like concat('%', #{request.name}, '%')
+                name like concat('%', #{request.name}, '%')
             </if>
         </where>
     </select>

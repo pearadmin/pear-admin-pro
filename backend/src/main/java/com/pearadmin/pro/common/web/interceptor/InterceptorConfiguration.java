@@ -8,7 +8,7 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Configuration
-public class DataScopeConfiguration implements ApplicationListener<ContextRefreshedEvent> {
+public class InterceptorConfiguration implements ApplicationListener<ContextRefreshedEvent> {
 
     @Resource
     private List<SqlSessionFactory> sqlSessionFactoryList;
@@ -20,6 +20,7 @@ public class DataScopeConfiguration implements ApplicationListener<ContextRefres
 
     private void addMyInterceptor() {
         for (SqlSessionFactory sqlSessionFactory : sqlSessionFactoryList) {
+            sqlSessionFactory.getConfiguration().addInterceptor(new TenantInterceptor());
             sqlSessionFactory.getConfiguration().addInterceptor(new DataScopeInterceptor());
         }
     }

@@ -29,6 +29,7 @@ export default {
   "system-dict": "数据字典",
   "system-post": "岗位管理",
   "system-dept": "部门管理",
+  "system-tenant": "租户管理",
   /// 监控
   "monitor": "系统监控",
   "monitor-server": "运行环境",
