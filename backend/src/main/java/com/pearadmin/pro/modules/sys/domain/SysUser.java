@@ -71,4 +71,10 @@ public class SysUser extends SecureUser {
     @TableField(exist = false)
     private String postName;
 
+    /**
+     * 租户编号
+     * */
+    @TableField("tenant_id")
+    private String tenantId;
+
 }

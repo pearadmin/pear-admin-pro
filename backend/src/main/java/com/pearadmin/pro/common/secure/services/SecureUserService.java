@@ -2,6 +2,7 @@ package com.pearadmin.pro.common.secure.services;
 
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
+import com.pearadmin.pro.modules.sys.repository.SysUserRepository;
 import com.pearadmin.pro.modules.sys.service.SysPowerService;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import com.pearadmin.pro.modules.sys.service.impl.SysUserServiceImpl;
@@ -27,6 +28,9 @@ import java.util.stream.Collectors;
 public class SecureUserService implements UserDetailsService {
 
     @Resource
+    private SysUserRepository sysUserRepository;
+
+    @Resource
     private SysUserService sysUserService;
 
     /**
@@ -34,12 +38,12 @@ public class SecureUserService implements UserDetailsService {
      * */
     @Override
     public SecureUser loadUserByUsername(String username) throws UsernameNotFoundException {
-        SecureUser userDetails = sysUserService.lambdaQuery().eq(SysUser::getUsername,username).one();
-        if(userDetails==null) {
+        SysUser sysUser = sysUserRepository.selectByUsername(username);
+        if(sysUser==null) {
             throw new UsernameNotFoundException("USERNAME NOT SUPPORT");
         }
-        userDetails.setAuthorities(loadAuthorities(userDetails.getId()));
-        return userDetails;
+        sysUser.setAuthorities(loadAuthorities(sysUser.getId()));
+        return sysUser;
     }
 
     /**
