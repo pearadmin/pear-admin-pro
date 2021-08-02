@@ -8,9 +8,9 @@ spring:
       datasource:
         ## 主库配置
         master:
-          url: jdbc:mysql://127.0.0.1:3306/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
+          url: jdbc:mysql://mysql.pearadmin.com/pear-admin-pro?useUnicode=true&characterEncoding=utf8&useSSL=true&serverTimezone=GMT
           username: root
-          password: root
+          password: pear-mysql
       ## 连接池配置
       hikari:
         max-lifetime: 30000
@@ -23,9 +23,9 @@ spring:
     ## 默认数据库
     database: 2
     ## 配置信息
-    host: 127.0.0.1
+    host: redis.pearadmin.com
     port: 6379
-    password:
+    password: pear-
     ## 超时时间
     timeout: 3000
     ## 连接池配置

@@ -4,17 +4,17 @@
 
     <select id="selectUser" parameterType="SysUserRequest" resultType="SysUser">
         select * ,
-        sys_post.name as postName,
-        sys_dept.name as deptName
-        from sys_user
-        left join sys_post on sys_post.id = sys_user.post_id
-        left join sys_dept on sys_dept.id = sys_user.dept_id
+        sp.name as postName,
+        sd.name as deptName
+        from sys_user su
+        left join sp on sp.id = su.post_id
+        left join sd on sd.id = su.dept_id
         <where>
             <if test="request.username!=null and request.username!=''">
-                and sys_user.username like concat('%', #{request.username}, '%')
+                and su.username like concat('%', #{request.username}, '%')
             </if>
             <if test="request.nickname!=null and request.nickname!=''">
-                and sys_user.nickname like concat('%', #{request.nickname}, '%')
+                and su.nickname like concat('%', #{request.nickname}, '%')
             </if>
         </where>
     </select>
