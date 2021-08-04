@@ -39,4 +39,20 @@ public class TenantConstant {
 
     public static String DEFAULT_ROLE_CODE = "default";
 
+    /**
+     * 创建租户时, 默认岗位 name 与 code
+     * */
+    public static String DEFAULT_POST_NAME = "默认岗位";
+
+    public static String DEFAULT_POST_CODE = "default";
+
+    /**
+     * 创建租户时, 默认部门 name 与 address
+     * */
+    public static String DEFAULT_DEPT_NAME = "顶级部门";
+
+    public static String DEFAULT_DEPT_ADDRESS = "详细地址";
+
+    public static String DEFAULT_DEPT_PARENT = "0";
+
 }

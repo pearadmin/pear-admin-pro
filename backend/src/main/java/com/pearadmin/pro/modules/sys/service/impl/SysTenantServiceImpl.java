@@ -2,7 +2,6 @@ package com.pearadmin.pro.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.core.toolkit.IdWorker;
 import com.pearadmin.pro.common.constant.TenantConstant;
-import com.pearadmin.pro.common.tools.support.server.server.Sys;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.common.web.base.page.Pageable;
 import com.pearadmin.pro.modules.sys.domain.*;
@@ -16,6 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.List;
 
 @Service
@@ -71,11 +71,11 @@ public class SysTenantServiceImpl extends ServiceImpl<SysTenantRepository, SysTe
         sysTenantRepository.insert(tenant);
 
         SysPost sysPost = new SysPost();
-        sysPost.setId(postId);
-        sysPost.setName("默认岗位");
         sysPost.setSort(0);
+        sysPost.setId(postId);
         sysPost.setEnable(true);
-        sysPost.setCode("default");
+        sysPost.setName(TenantConstant.DEFAULT_POST_NAME);
+        sysPost.setCode(TenantConstant.DEFAULT_POST_CODE);
         sysPost.setTenantId(tenantId);
         sysPostService.save(sysPost);
 
@@ -83,9 +83,9 @@ public class SysTenantServiceImpl extends ServiceImpl<SysTenantRepository, SysTe
         dept.setSort(0);
         dept.setEnable(true);
         dept.setId(deptId);
-        dept.setParent("0");
-        dept.setName("顶级部门");
-        dept.setAddress("详细地址");
+        dept.setName(TenantConstant.DEFAULT_DEPT_NAME);
+        dept.setParent(TenantConstant.DEFAULT_DEPT_PARENT);
+        dept.setAddress(TenantConstant.DEFAULT_DEPT_ADDRESS);
         dept.setTenantId(tenantId);
         sysDeptService.save(dept);
 
@@ -141,6 +141,12 @@ public class SysTenantServiceImpl extends ServiceImpl<SysTenantRepository, SysTe
         sysRolePowerService.lambdaUpdate().eq(SysRolePower::getTenantId, id).remove();
         sysDeptService.lambdaUpdate().eq(SysDept::getTenantId, id).remove();
         sysPostService.lambdaUpdate().eq(SysPost::getTenantId, id).remove();
+        return true;
+    }
+
+    @Override
+    public boolean removeByIds(Collection<? extends Serializable> idList) {
+        idList.forEach(this::removeById);
         return true;
     }
 }
