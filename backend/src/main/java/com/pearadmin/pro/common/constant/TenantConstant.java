@@ -11,7 +11,7 @@ public class TenantConstant {
     /**
      * 开启多租户
      * */
-    public static boolean enable = true;
+    public static boolean enable = false;
 
     /**
      * 租户字段
