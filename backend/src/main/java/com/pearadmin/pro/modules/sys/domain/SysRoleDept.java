@@ -38,4 +38,10 @@ public class SysRoleDept{
     @TableField("dept_id")
     private String deptId;
 
+    /**
+     * 租户编号
+     * */
+    @TableField("tenant_id")
+    private String tenantId;
+
 }

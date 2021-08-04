@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.modules.sys.domain.SysTenant;
 import com.pearadmin.pro.modules.sys.param.SysTenantRequest;
+import com.pearadmin.pro.modules.sys.param.SysTenantSaveRequest;
 import java.util.List;
 
 public interface SysTenantService extends IService<SysTenant> {
@@ -25,4 +26,12 @@ public interface SysTenantService extends IService<SysTenant> {
      * @return {@link SysTenant}
      * */
     PageResponse<SysTenant> page(SysTenantRequest request);
+
+    /**
+     * 租户创建
+     *
+     * @param request 参数实体
+     * */
+    Boolean save(SysTenantSaveRequest request);
+
 }

@@ -14,25 +14,41 @@
       :label-col="labelCol"
       :wrapper-col="wrapperCol"
     >
-      <a-form-item ref="name" label="名称" name="name">
-        <a-input v-model:value="formState.name" />
-      </a-form-item>
-      <a-form-item label="备注" name="describe">
-        <a-textarea v-model:value="formState.describe" />
-      </a-form-item>
-      <a-divider></a-divider>
-      <a-form-item ref="username" label="账户" name="username">
-        <a-input v-model:value="formState.username" />
-      </a-form-item>
-      <a-form-item ref="password" label="密码" name="password">
-        <a-input v-model:value="formState.password" />
-      </a-form-item>
+      <a-tabs v-model:activeKey="state.active">
+        <a-tab-pane key="0" tab="租户信息">
+          <a-form-item ref="name" label="名称" name="name">
+            <a-input v-model:value="formState.tenant.name" />
+          </a-form-item>
+          <a-form-item label="备注" name="describe">
+            <a-textarea v-model:value="formState.tenant.describe" />
+          </a-form-item>
+        </a-tab-pane>
+        <a-tab-pane key="1" tab="账户信息">
+          <a-form-item ref="username" label="账户" name="username">
+            <a-input v-model:value="formState.user.username" />
+          </a-form-item>
+          <a-form-item ref="password" label="密码" name="password">
+            <a-input v-model:value="formState.user.password" />
+          </a-form-item>
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="默认权限">
+          <a-tree
+            checkable
+            checkStrictly
+            show-line="true"
+            :tree-data="state.powers"
+            :replace-fields="state.powerReplaceFields"
+            v-model:checkedKeys="state.powerIds"
+          />
+        </a-tab-pane>
+      </a-tabs>
     </a-form>
   </a-modal>
 </template>
 <script>
 import { message } from "ant-design-vue";
 import { save } from "@/api/module/tenant";
+import { tree } from "@/api/module/power";
 import { defineComponent, reactive, ref, toRaw } from "vue";
 
 const key = "save";
@@ -44,17 +60,21 @@ export default defineComponent({
   },
   emit: ["close"],
   setup(props, context) {
-    
     const formRef = ref();
 
-    const formState = reactive({});
+    const formState = reactive({
+      tenant: {},
+      user: {},
+    });
 
-    const formRules = {
-      name: [{ required: true, message: "请输入租户名称", trigger: "blur" }],
-      describe: [{ required: true, message: "请输入租户描述", trigger: "blur" }],
-      username: [{ required: true, message: "请输入租户账户", trigger: "blur" }],
-      password: [{ required: true, message: "请输入租户密码", trigger: "blur" }],
-    };
+    const state = reactive({
+      powers: [],
+      powerIds: { checked: [] },
+      powerReplaceFields: { key: "id" },
+      deptReplaceFields: { key: "id", title: "name" },
+    });
+
+    const formRules = {};
 
     const submit = (e) => {
       message.loading({
@@ -64,23 +84,27 @@ export default defineComponent({
       formRef.value
         .validate()
         .then(() => {
-          save(toRaw(formState)).then((response) => {
+          save({user:formState.user,tenant:formState.tenant,powerIds:state.powerIds.checked}).then((response) => {
             if (response.success) {
-              message.success({
-                content: "保存成功",
-                key,
-                duration: 1,
-              }).then(()=>{
-                cancel();
-              });
+              message
+                .success({
+                  content: "保存成功",
+                  key,
+                  duration: 1,
+                })
+                .then(() => {
+                  cancel();
+                });
             } else {
-              message.error({
-                content: "保存失败",
-                key,
-                duration: 1,
-              }).then(()=>{
-                cancel();
-              });
+              message
+                .error({
+                  content: "保存失败",
+                  key,
+                  duration: 1,
+                })
+                .then(() => {
+                  cancel();
+                });
             }
           });
         })
@@ -94,13 +118,20 @@ export default defineComponent({
       context.emit("close", false);
     };
 
+    const loadPower = async () => {
+      var response = await tree();
+      state.powers = response.data;
+    };
+
+    loadPower();
+
     return {
+      state,
       submit,
       cancel,
       formRef,
       formState,
       formRules,
-
       labelCol: { span: 6 },
       wrapperCol: { span: 18 },
     };

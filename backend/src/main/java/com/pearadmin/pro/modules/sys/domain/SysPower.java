@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.base.domain.TreeDomain;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -19,6 +20,7 @@ import java.util.List;
 
 @Data
 @Alias("SysPower")
+@TableName("sys_power")
 @EqualsAndHashCode(callSuper = true)
 public class SysPower extends TreeDomain<SysPower> {
 

@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import org.apache.ibatis.type.Alias;
 
@@ -13,6 +14,7 @@ import org.apache.ibatis.type.Alias;
  * */
 @Data
 @Alias("SysRolePower")
+@TableName("sys_role_power")
 public class SysRolePower {
 
     /**
@@ -32,4 +34,10 @@ public class SysRolePower {
      * */
     @TableField("power_id")
     private String powerId;
+
+    /**
+     * 租户编号
+     * */
+    @TableField("tenant_id")
+    private String tenantId;
 }

@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
@@ -16,6 +17,7 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 
 @Data
 @Alias("SysPost")
+@TableName("sys_post")
 @EqualsAndHashCode(callSuper = true)
 public class SysPost extends BaseDomain {
 
@@ -49,4 +51,9 @@ public class SysPost extends BaseDomain {
     @TableField("enable")
     private Boolean enable;
 
+    /**
+     * 所属租户
+     * */
+    @TableField("tenant_id")
+    private String tenantId;
 }

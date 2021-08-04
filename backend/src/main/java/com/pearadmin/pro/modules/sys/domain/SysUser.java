@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
@@ -14,6 +15,7 @@ import com.pearadmin.pro.common.secure.services.SecureUser;
  * */
 @Data
 @Alias("SysUser")
+@TableName("sys_user")
 @EqualsAndHashCode(callSuper = true)
 public class SysUser extends SecureUser {
 

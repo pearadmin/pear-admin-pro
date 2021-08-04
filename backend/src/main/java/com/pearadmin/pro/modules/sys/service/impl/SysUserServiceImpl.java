@@ -102,4 +102,5 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
     public List<SysDept> dept(String userId) {
         return sysDeptRepository.selectDeptByUserId(userId);
     }
+
 }

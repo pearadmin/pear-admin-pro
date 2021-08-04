@@ -18,4 +18,5 @@ public interface SysTenantRepository extends BaseMapper<SysTenant> {
      * @return {@link SysTenant}
      * */
     List<SysTenant> selectTenant(@Param("request") SysTenantRequest request);
+
 }

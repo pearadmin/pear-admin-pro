@@ -32,4 +32,11 @@ public class TenantConstant {
             "sys_data_source",
     };
 
+    /**
+     * 创建租户时, 默认角色 name 与 code
+     * */
+    public static String DEFAULT_ROLE_NAME = "默认角色";
+
+    public static String DEFAULT_ROLE_CODE = "default";
+
 }

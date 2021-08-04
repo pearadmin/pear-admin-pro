@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.domain;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -15,6 +16,7 @@ import org.apache.ibatis.type.Alias;
  * */
 @Data
 @Alias("SysConfig")
+@TableName("sys_config")
 @EqualsAndHashCode(callSuper = true)
 public class SysConfig extends BaseDomain {
 

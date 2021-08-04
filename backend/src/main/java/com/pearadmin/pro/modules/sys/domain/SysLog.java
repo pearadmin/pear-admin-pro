@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.domain;
 
 import com.alibaba.excel.annotation.ExcelIgnore;
 import com.alibaba.excel.annotation.ExcelProperty;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.aop.enums.Action;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -19,6 +20,7 @@ import org.apache.ibatis.type.Alias;
 
 @Data
 @Alias("SysLog")
+@TableName("sys_log")
 @EqualsAndHashCode(callSuper = true)
 public class SysLog extends BaseDomain {
 

@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import io.swagger.annotations.ApiModel;
@@ -13,6 +14,7 @@ import lombok.Data;
 @Data
 @Alias("SysRole")
 @ApiModel("角色实体")
+@TableName("sys_role")
 @EqualsAndHashCode(callSuper = true)
 public class SysRole extends BaseDomain {
 
@@ -58,4 +60,10 @@ public class SysRole extends BaseDomain {
     @ApiModelProperty("数据权限")
     private Scope scope;
 
+    /**
+     * 租户编号
+     * */
+    @TableField("tenant_id")
+    @ApiModelProperty("所属租户")
+    private String tenantId;
 }

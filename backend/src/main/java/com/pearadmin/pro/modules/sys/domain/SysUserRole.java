@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.domain;
 
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import org.apache.ibatis.type.Alias;
@@ -14,6 +15,7 @@ import org.apache.ibatis.type.Alias;
  * */
 @Data
 @Alias("SysUserRole")
+@TableName("sys_user_role")
 public class SysUserRole {
 
     /**
@@ -33,5 +35,11 @@ public class SysUserRole {
      * */
     @TableField("role_id")
     private String roleId;
+
+    /**
+     * 租户编号
+     * */
+    @TableField("tenant_id")
+    private String tenantId;
 
 }

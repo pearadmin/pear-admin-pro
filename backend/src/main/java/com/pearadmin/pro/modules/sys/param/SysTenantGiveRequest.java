@@ -5,22 +5,22 @@ import lombok.Data;
 import java.util.List;
 
 /**
- * 用户角色 -- 参数实体
+ * 租户授权列表 -- 参数实体
  *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/04/01
  */
 @Data
-public class SysUserRoleRequest {
+public class SysTenantGiveRequest {
 
     /**
-     * 用户编号
+     * 租户编号
      * */
-    private String userId;
+    private String tenantId;
 
     /**
-     * 角色集合
+     * 权限列表
      * */
-    private List<String> roleIds;
+    private List<String> powerIds;
 
 }

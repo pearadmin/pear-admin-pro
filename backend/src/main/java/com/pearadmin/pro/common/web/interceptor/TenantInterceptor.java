@@ -107,39 +107,25 @@ public class TenantInterceptor implements Interceptor {
             Select select = (Select) stmt;
             PlainSelect ps = (PlainSelect) select.getSelectBody();
 
-            List<TableAlias> tables = new ArrayList<>();
             Table mainTable = (Table) ps.getFromItem();
             TableAlias mainTableAlias = new TableAlias();
             mainTableAlias.setAlias(mainTable.getAlias()==null?null:mainTable.getAlias().getName());
             mainTableAlias.setTable(mainTable.getName());
-            tables.add(mainTableAlias);
 
-            if(ps.getJoins()!=null) {
-                for (Join join : ps.getJoins()) {
-                    Table joinTable = (Table) join.getRightItem();
-                    TableAlias joinTableAlias = new TableAlias();
-                    joinTableAlias.setAlias(joinTable.getAlias()==null?null:joinTable.getAlias().getName());
-                    joinTableAlias.setTable(joinTable.getName());
-                    tables.add(joinTableAlias);
-                }
-            }
-
-            for (TableAlias table : tables) {
-                // TODO 涉及租户的表, 才修改
-                if(Arrays.asList(TenantConstant.IGNORE_TABLE).indexOf(table.getTable()) < 0) {
-                    EqualsTo equalsTo = new EqualsTo();
-                    equalsTo.setLeftExpression(new Column((table.getAlias()==null?table.getTable():table.getAlias()) + '.' + TenantConstant.TENANT_COLUMN));
-                    equalsTo.setRightExpression(new StringValue(userContext.getPrincipal().getTenantId()));
-                    if(ps.getWhere() == null) {
-                        EqualsTo replaceWhere = new EqualsTo();
-                        replaceWhere.setLeftExpression(new Column("1"));
-                        replaceWhere.setRightExpression(new LongValue(1));
-                        AndExpression andExpression = new AndExpression(equalsTo, replaceWhere);
-                        ps.setWhere(andExpression);
-                    } else {
-                        AndExpression andExpression = new AndExpression(equalsTo, ps.getWhere());
-                        ps.setWhere(andExpression);
-                    }
+            // TODO 涉及租户的表, 才修改
+            if(Arrays.asList(TenantConstant.IGNORE_TABLE).indexOf(mainTableAlias.getTable()) < 0) {
+                EqualsTo equalsTo = new EqualsTo();
+                equalsTo.setLeftExpression(new Column((mainTableAlias.getAlias()==null?mainTableAlias.getTable():mainTableAlias.getAlias()) + '.' + TenantConstant.TENANT_COLUMN));
+                equalsTo.setRightExpression(new StringValue(userContext.getPrincipal().getTenantId()));
+                if(ps.getWhere() == null) {
+                    EqualsTo replaceWhere = new EqualsTo();
+                    replaceWhere.setLeftExpression(new Column("1"));
+                    replaceWhere.setRightExpression(new LongValue(1));
+                    AndExpression andExpression = new AndExpression(equalsTo, replaceWhere);
+                    ps.setWhere(andExpression);
+                } else {
+                    AndExpression andExpression = new AndExpression(equalsTo, ps.getWhere());
+                    ps.setWhere(andExpression);
                 }
             }
             return select.toString();
