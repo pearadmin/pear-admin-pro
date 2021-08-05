@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.rest;
 
 import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
+import com.pearadmin.pro.common.constant.TenantConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
@@ -34,6 +35,22 @@ public class SysPowerController extends BaseController {
     @ApiOperation(value = "查询权限")
     public Result tree(){
         return success(sysPowerService.tree());
+    }
+
+    /**
+     * 可分配的权限列表
+     *
+     * @return sysPower 权限实体
+     * */
+    @GetMapping("tree/assign")
+    @ApiOperation(value = "可分配的权限")
+    public Result treeAssign(){
+        // Tenant 模式下 tenant_power 关联查询
+        if(TenantConstant.enable) {
+            return success(sysPowerService.treeByTenantId());
+        } else {
+            return success(sysPowerService.tree());
+        }
     }
 
     /**

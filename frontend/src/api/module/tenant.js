@@ -5,6 +5,8 @@ const Api = {
     list: '/api/sys/tenant/list',
     save: '/api/sys/tenant/save',
     edit: '/api/sys/tenant/edit',
+    give: '/api/sys/tenant/give',
+    power: '/api/sys/tenant/power',
     remove: '/api/sys/tenant/remove',
     removeBatch: '/api/sys/tenant/removeBatch'
 }
@@ -24,6 +26,24 @@ export const list = data => {
         url: Api.list,
         params: data,
         method: 'GET'
+    })
+}
+
+/** 租户权限 */
+export const power = data => {
+    return request.request({
+        url: Api.power,
+        params: data,
+        method: 'GET'
+    })
+}
+
+/** 权限分配 */
+export const give = data => {
+    return request.request({
+        url: Api.give,
+        data: data,
+        method: 'POST'
     })
 }
 

@@ -42,8 +42,13 @@ public class UserContext {
     public String getUserId(){ return getPrincipal().getId(); }
 
     /**
-     * deptId 当前用户所属部门
+     * deptId 当前部门
      * */
     public String getDeptId(){ return getPrincipal().getDeptId(); }
+
+    /**
+     * tenantId 当前租户
+     * */
+    public String getTenantId() { return getPrincipal().getTenantId(); }
 
 }

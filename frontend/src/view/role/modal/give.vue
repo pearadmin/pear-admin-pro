@@ -43,7 +43,7 @@
 <script>
 import { message } from "ant-design-vue";
 import { tree as deptTree } from "@/api/module/dept";
-import { tree as powerTree } from "@/api/module/power";
+import { assign as powerTree } from "@/api/module/power";
 import { power, give, dept } from "@/api/module/role";
 import { defineComponent, reactive, ref, watch } from "vue";
 import TreeSelect from "ant-design-vue/lib/vc-tree-select";

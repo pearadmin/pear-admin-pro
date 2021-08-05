@@ -4,6 +4,7 @@ import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.modules.sys.domain.SysTenant;
+import com.pearadmin.pro.modules.sys.param.SysTenantGiveRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantSaveRequest;
 import com.pearadmin.pro.modules.sys.service.SysTenantService;
@@ -48,10 +49,19 @@ public class SysTenantController extends BaseController {
      *
      * @param request 租户实体 / 用户实体 / 归属权限
      */
-    @Transactional
     @PostMapping("save")
     public Result save(@RequestBody SysTenantSaveRequest request) {
         return success(sysTenantService.save(request));
+    }
+
+    /**
+     * 权限分配
+     *
+     * @param request 分配关系
+     * */
+    @PostMapping("give")
+    public Result give(@RequestBody SysTenantGiveRequest request) {
+        return success(sysTenantService.give(request));
     }
 
     /**
@@ -84,4 +94,13 @@ public class SysTenantController extends BaseController {
         return success(sysTenantService.removeByIds(ids));
     }
 
+    /**
+     * 租户权限
+     *
+     * @param
+     * */
+    @GetMapping("power")
+    public Result power(String tenantId) {
+        return success(sysTenantService.power(tenantId));
+    }
 }

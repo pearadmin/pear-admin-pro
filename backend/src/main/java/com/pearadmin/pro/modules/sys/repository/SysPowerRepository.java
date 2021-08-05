@@ -18,12 +18,18 @@ public interface SysPowerRepository extends BaseMapper<SysPower> {
     List<SysPower> selectPower();
 
     /**
+     * 获取权限列表
+     *
+     * @return {@link SysPower}
+     * */
+    List<SysPower> selectPowerByTenantId(@Param("tenantId") String tenantId);
+
+    /**
      * 根据 userId 获取权限列表
      *
      * @param userId 用户编号
      * @return {@link SysPower}
      * */
-    @TenantIgnore
     List<SysPower> selectPowerByUserId(@Param("userId") String userId);
 
     /**
@@ -40,6 +46,5 @@ public interface SysPowerRepository extends BaseMapper<SysPower> {
      * @param userId 用户编号
      * @return {@link SysPower}
      * */
-    @TenantIgnore
     List<SysPower> selectMenu(String userId);
 }

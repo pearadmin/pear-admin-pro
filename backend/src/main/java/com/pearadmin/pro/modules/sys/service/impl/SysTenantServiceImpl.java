@@ -6,6 +6,7 @@ import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.common.web.base.page.Pageable;
 import com.pearadmin.pro.modules.sys.domain.*;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pearadmin.pro.modules.sys.param.SysTenantGiveRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantSaveRequest;
 import com.pearadmin.pro.modules.sys.repository.*;
@@ -23,6 +24,9 @@ public class SysTenantServiceImpl extends ServiceImpl<SysTenantRepository, SysTe
 
     @Resource
     private SysTenantRepository sysTenantRepository;
+
+    @Resource
+    private SysPowerRepository sysPowerRepository;
 
     @Resource
     private SysUserService sysUserService;
@@ -56,6 +60,23 @@ public class SysTenantServiceImpl extends ServiceImpl<SysTenantRepository, SysTe
     @Override
     public PageResponse<SysTenant> page(SysTenantRequest request) {
         return Pageable.of(request, (()-> sysTenantRepository.selectTenant(request)));
+    }
+
+    @Override
+    public Boolean give(SysTenantGiveRequest request) {
+
+        String tenantId = request.getTenantId();
+        List<String> powerIds = request.getPowerIds();
+
+        sysTenantPowerService.lambdaUpdate().eq(SysTenantPower::getTenantId, tenantId).remove();
+
+        for (String powerId :powerIds) {
+            SysTenantPower tenantPower = new SysTenantPower();
+            tenantPower.setPowerId(powerId);
+            tenantPower.setTenantId(tenantId);
+            sysTenantPowerService.save(tenantPower);
+        }
+        return true;
     }
 
     @Override
@@ -148,5 +169,10 @@ public class SysTenantServiceImpl extends ServiceImpl<SysTenantRepository, SysTe
     public boolean removeByIds(Collection<? extends Serializable> idList) {
         idList.forEach(this::removeById);
         return true;
+    }
+
+    @Override
+    public List<SysPower> power(String tenantId) {
+        return sysPowerRepository.selectPowerByTenantId(tenantId);
     }
 }

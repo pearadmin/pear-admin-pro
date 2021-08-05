@@ -2,7 +2,9 @@ package com.pearadmin.pro.modules.sys.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
+import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysTenant;
+import com.pearadmin.pro.modules.sys.param.SysTenantGiveRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantSaveRequest;
 import java.util.List;
@@ -33,5 +35,21 @@ public interface SysTenantService extends IService<SysTenant> {
      * @param request 参数实体
      * */
     Boolean save(SysTenantSaveRequest request);
+
+
+    /**
+     * 租户分配
+     *
+     * @param request 参数实体
+     * */
+    Boolean give(SysTenantGiveRequest request);
+
+
+    /**
+     * 拥有权限
+     *
+     * @param tenantId 租户编号
+     * */
+    List<SysPower> power(String tenantId);
 
 }
