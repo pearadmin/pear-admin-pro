@@ -2,6 +2,7 @@ package com.pearadmin.pro.common.web.interceptor;
 
 import com.pearadmin.pro.common.constant.SystemConstant;
 import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.web.interceptor.annotation.DataScopeRule;
 import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.common.context.BeanContext;
 import com.pearadmin.pro.common.context.UserContext;
@@ -14,15 +15,11 @@ import org.apache.ibatis.cache.CacheKey;
 import org.apache.ibatis.executor.Executor;
 import org.apache.ibatis.mapping.BoundSql;
 import org.apache.ibatis.mapping.MappedStatement;
-import org.apache.ibatis.mapping.SqlSource;
 import org.apache.ibatis.plugin.*;
-import org.apache.ibatis.reflection.DefaultReflectorFactory;
-import org.apache.ibatis.reflection.MetaObject;
-import org.apache.ibatis.reflection.factory.DefaultObjectFactory;
-import org.apache.ibatis.reflection.wrapper.DefaultObjectWrapperFactory;
 import org.apache.ibatis.session.ResultHandler;
 import org.apache.logging.log4j.util.Strings;
 import org.apache.ibatis.session.RowBounds;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 import java.lang.reflect.Method;
 import java.util.List;
@@ -49,17 +46,39 @@ public class DataScopeInterceptor implements Interceptor {
             MappedStatement mappedStatement = InvocationHandler.getMappedStatement(invocation);
             DataScope annotation = getAnnotation(mappedStatement);
             if(annotation != null){
+
                 String sql = InvocationHandler.getSql(invocation);
-                Scope scope = annotation.scope();
+                DataScopeRule[] rules = annotation.rules();
+
                 sql = preHandler(sql);
                 String where = SystemConstant.EMPTY;
-                if(Scope.AUTO.equals(scope)){
+
+                if(rules.length > 0) {
+                    /**
+                     * 规 则 模 式
+                     * */
                     List<SysRole> roles = userService.role(userId);
-                    for (SysRole role: roles) {
-                        where += sqlHandler(role.getScope());
+                    List<Scope> scopes = getScope(roles, rules);
+                    for (Scope scopeItem: scopes) {
+                        where += sqlHandler(scopeItem);
                     }
                 } else {
-                    where += sqlHandler(scope);
+                    Scope scope = annotation.scope();
+                    if(Scope.AUTO.equals(scope)){
+                        /**
+                         * 自 动 模 式
+                         * */
+                        List<SysRole> roles = userService.role(userId);
+                        List<Scope> scopes = getScope(roles);
+                        for (Scope scopeItem: scopes) {
+                            where += sqlHandler(scopeItem);
+                        }
+                    } else {
+                        /**
+                         * 指 定 模 式
+                         * */
+                        where += sqlHandler(scope);
+                    }
                 }
                 sql = aftHandler(sql, where);
                 InvocationHandler.setSql(invocation, sql);
@@ -69,6 +88,33 @@ public class DataScopeInterceptor implements Interceptor {
             // TODO 当 userId 表示非 request 执行 SQL
         }
         return invocation.proceed();
+    }
+
+    /**
+     * 获 取 权 限
+     *
+     * @param roles 角色列表
+     * */
+    private List<Scope> getScope(List<SysRole> roles) {
+        return roles.stream().map(SysRole::getScope).collect(Collectors.toList());
+    }
+
+    /**
+     * 获 取 权 限
+     *
+     * @param roles 角色列表
+     * @param rules 规则列表
+     * */
+    private List<Scope> getScope(List<SysRole> roles, DataScopeRule[] rules) {
+        List<Scope> scopes = new ArrayList<>();
+        for (SysRole role : roles) {
+            for (DataScopeRule rule:rules) {
+                if(role.getCode().equals(rule.role())) {
+                    scopes.add(rule.scope());
+                }
+            }
+        }
+        return scopes;
     }
 
     /**

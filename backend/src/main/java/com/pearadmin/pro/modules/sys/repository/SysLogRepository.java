@@ -2,6 +2,7 @@ package com.pearadmin.pro.modules.sys.repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.pearadmin.pro.common.web.interceptor.annotation.DataScope;
+import com.pearadmin.pro.common.web.interceptor.annotation.DataScopeRule;
 import com.pearadmin.pro.common.web.interceptor.enums.Scope;
 import com.pearadmin.pro.modules.sys.domain.SysLog;
 import com.pearadmin.pro.modules.sys.param.SysLogRequest;
@@ -21,6 +22,7 @@ public interface SysLogRepository extends BaseMapper<SysLog> {
      *
      * @return {@link SysLog}
      * */
+    @DataScope(scope = Scope.ALL)
     List<SysLog> selectLog(@Param("request") SysLogRequest request);
 
 }
