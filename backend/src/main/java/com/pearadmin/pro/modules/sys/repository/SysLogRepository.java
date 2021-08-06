@@ -22,7 +22,12 @@ public interface SysLogRepository extends BaseMapper<SysLog> {
      *
      * @return {@link SysLog}
      * */
-    @DataScope(scope = Scope.ALL)
+    @DataScope(
+            rules = {
+                    @DataScopeRule(role="admin", scope=Scope.SELF),
+                    @DataScopeRule(role="user", scope=Scope.SELF),
+            }
+    )
     List<SysLog> selectLog(@Param("request") SysLogRequest request);
 
 }

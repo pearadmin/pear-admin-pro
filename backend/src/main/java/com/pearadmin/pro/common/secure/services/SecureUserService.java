@@ -1,9 +1,11 @@
 package com.pearadmin.pro.common.secure.services;
 
 import com.pearadmin.pro.modules.sys.domain.SysPower;
+import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import com.pearadmin.pro.modules.sys.repository.SysUserRepository;
 import com.pearadmin.pro.modules.sys.service.SysPowerService;
+import com.pearadmin.pro.modules.sys.service.SysRoleService;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
 import com.pearadmin.pro.modules.sys.service.impl.SysUserServiceImpl;
 import org.springframework.security.core.GrantedAuthority;
@@ -43,12 +45,10 @@ public class SecureUserService implements UserDetailsService {
             throw new UsernameNotFoundException("USERNAME NOT SUPPORT");
         }
         sysUser.setAuthorities(loadAuthorities(sysUser.getId()));
+        sysUser.setRoles(loadRoles(sysUser.getId()));
         return sysUser;
     }
 
-    /**
-     * 加载用户权限
-     * */
     public Set<? extends GrantedAuthority> loadAuthorities(String userId){
         Set<SimpleGrantedAuthority> authoritySet = new HashSet<>();
         List<SysPower> powers = sysUserService.power(userId);
@@ -58,5 +58,10 @@ public class SecureUserService implements UserDetailsService {
         }
         return authoritySet;
     }
+
+    public List<SysRole> loadRoles(String userId) {
+        return sysUserService.role(userId);
+    }
+
 
 }

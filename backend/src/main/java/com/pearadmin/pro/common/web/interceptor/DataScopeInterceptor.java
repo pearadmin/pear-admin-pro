@@ -39,10 +39,8 @@ public class DataScopeInterceptor implements Interceptor {
     @Override
     public Object intercept(Invocation invocation) throws Throwable {
         UserContext userContext = BeanContext.getBean(UserContext.class);
-        SysUserService userService = BeanContext.getBean(SysUserService.class);
         try
         {
-            String userId = userContext.getUserId();
             MappedStatement mappedStatement = InvocationHandler.getMappedStatement(invocation);
             DataScope annotation = getAnnotation(mappedStatement);
             if(annotation != null){
@@ -57,8 +55,13 @@ public class DataScopeInterceptor implements Interceptor {
                     /**
                      * 规 则 模 式
                      * */
-                    List<SysRole> roles = userService.role(userId);
+                    List<SysRole> roles = userContext.getRoles();
+
+                    System.err.println("角色列表:" + roles.toString());
+                    System.err.println("规则列表:" + rules.toString());
+
                     List<Scope> scopes = getScope(roles, rules);
+
                     for (Scope scopeItem: scopes) {
                         where += sqlHandler(scopeItem);
                     }
@@ -68,7 +71,7 @@ public class DataScopeInterceptor implements Interceptor {
                         /**
                          * 自 动 模 式
                          * */
-                        List<SysRole> roles = userService.role(userId);
+                        List<SysRole> roles = userContext.getRoles();
                         List<Scope> scopes = getScope(roles);
                         for (Scope scopeItem: scopes) {
                             where += sqlHandler(scopeItem);
@@ -86,6 +89,7 @@ public class DataScopeInterceptor implements Interceptor {
         }
         catch (NullPointerException e) {
             // TODO 当 userId 表示非 request 执行 SQL
+            e.printStackTrace();
         }
         return invocation.proceed();
     }

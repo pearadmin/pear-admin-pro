@@ -1,5 +1,6 @@
 package com.pearadmin.pro.common.secure.services;
 
+import com.pearadmin.pro.modules.sys.domain.SysRole;
 import lombok.Data;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.pearadmin.pro.common.web.base.domain.BaseDomain;
@@ -10,6 +11,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -51,6 +53,12 @@ public class SecureUser extends BaseDomain implements UserDetails, CredentialsCo
      */
     @TableField(value = "locked")
     private boolean locked;
+
+    /**
+     * 角色
+     * */
+    @TableField(exist = false)
+    private List<SysRole> roles;
 
     /**
      * 权限
