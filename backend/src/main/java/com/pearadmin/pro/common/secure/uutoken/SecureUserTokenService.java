@@ -49,7 +49,7 @@ public class SecureUserTokenService {
     public SecureUserToken verifyToken(String key, String token) throws TokenException{
         SecureUserToken secureUserToken = taskToken(key);
         if(secureUserToken == null) throw new TokenExpiredException("token expired");
-        if(secureUserToken != null) TokenUtil.parse(secureUserToken.getToken());
+        TokenUtil.parse(secureUserToken.getToken());
         return secureUserToken;
     }
 
