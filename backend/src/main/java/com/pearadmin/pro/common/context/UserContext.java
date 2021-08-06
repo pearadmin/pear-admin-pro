@@ -1,9 +1,12 @@
 package com.pearadmin.pro.common.context;
 
+import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 /**
  * User Context
@@ -50,5 +53,10 @@ public class UserContext {
      * tenantId 当前租户
      * */
     public String getTenantId() { return getPrincipal().getTenantId(); }
+
+    /**
+     * roles 角色列表
+     * */
+    public List<SysRole> getRoles() { return getPrincipal().getRoles(); }
 
 }
