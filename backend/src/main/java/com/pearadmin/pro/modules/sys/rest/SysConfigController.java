@@ -5,6 +5,7 @@ import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import io.swagger.annotations.Api;
 import com.pearadmin.pro.common.web.domain.Result;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import com.pearadmin.pro.modules.sys.param.SysConfigRequest;
 import com.pearadmin.pro.modules.sys.service.SysConfigService;
@@ -48,7 +49,7 @@ public class SysConfigController extends BaseController {
     @PostMapping("save")
     @Log(title = "新增配置")
     @ApiOperation(value = "新增配置")
-    public Result save(@RequestBody SysConfig sysConfig) {
+    public Result save(@RequestBody @Validated SysConfig sysConfig) {
         return auto(sysConfigService.save(sysConfig));
     }
 

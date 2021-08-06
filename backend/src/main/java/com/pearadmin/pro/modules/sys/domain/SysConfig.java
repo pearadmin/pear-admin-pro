@@ -8,6 +8,8 @@ import com.pearadmin.pro.common.web.base.domain.BaseDomain;
 import lombok.EqualsAndHashCode;
 import org.apache.ibatis.type.Alias;
 
+import javax.validation.constraints.NotNull;
+
 /**
  * 配置模型
  *
@@ -29,6 +31,7 @@ public class SysConfig extends BaseDomain {
     /**
      * 名称
      * */
+    @NotNull
     @TableField("name")
     private String name;
 

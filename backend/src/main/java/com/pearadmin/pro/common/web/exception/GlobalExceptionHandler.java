@@ -4,6 +4,7 @@ import com.pearadmin.pro.common.web.domain.Result;
 import com.pearadmin.pro.common.web.exception.base.BusinessException;
 import io.lettuce.core.RedisConnectionException;
 import org.aspectj.apache.bcel.classfile.annotation.RuntimeAnnos;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindException;
 import org.springframework.validation.FieldError;
@@ -25,6 +26,7 @@ import java.util.stream.Collectors;
  * Author: 就 眠 仪 式
  * CreateTime: 2019/10/23
  * */
+@Order(2)
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
@@ -70,35 +72,5 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BusinessException.class)
     public Result businessException(HttpServletRequest request, BusinessException e){
         return Result.failure(e.getMessage());
-    }
-
-    /**
-     * 处 理 form data 方 式 调 用 接 口 校 验 失 败 抛 出 的 异 常
-     */
-    @ExceptionHandler(BindException.class)
-    public Result bindExceptionHandler(BindException e) {
-        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-        List<String> collect = fieldErrors.stream().map(o -> o.getDefaultMessage()).collect(Collectors.toList());
-        return Result.success(400, "Bad Request", collect);
-    }
-
-    /**
-     * 处 理 json 请 求 体 调 用 接 口 校 验 失 败 抛 出 的 异 常
-     */
-    @ExceptionHandler(MethodArgumentNotValidException.class)
-    public Result methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException e) {
-        List<FieldError> fieldErrors = e.getBindingResult().getFieldErrors();
-        List<String> collect = fieldErrors.stream().map(o -> o.getDefaultMessage()).collect(Collectors.toList());
-        return Result.success(400, "Bad Request", collect);
-    }
-
-    /**
-     * 处 理 单 个 参 数 校 验 失 败 抛 出 的 异 常
-     */
-    @ExceptionHandler(ConstraintViolationException.class)
-    public Result constraintViolationExceptionHandler(ConstraintViolationException e) {
-        Set<ConstraintViolation<?>> constraintViolations = e.getConstraintViolations();
-        List<String> collect = constraintViolations.stream().map(o -> o.getMessage()).collect(Collectors.toList());
-        return Result.success(400, "Bad Request", collect);
     }
 }
