@@ -83,7 +83,7 @@ public class SecureUser extends BaseDomain implements UserDetails, CredentialsCo
 
     @Override
     public boolean isAccountNonLocked() {
-        return this.locked == false;
+        return !this.locked;
     }
 
     @Override
