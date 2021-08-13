@@ -34,6 +34,9 @@
     <a href="#">
         <img src="https://img.shields.io/badge/MySql-8.0.22-red.svg" alt="Node Version">
     </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/JDK-11-red.svg" alt="Jdk Version">
+    </a>
 </p>
 
 <div align="center">
