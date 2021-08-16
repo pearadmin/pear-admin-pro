@@ -8,6 +8,7 @@ import com.pearadmin.pro.modules.sys.param.SysTenantGiveRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantRequest;
 import com.pearadmin.pro.modules.sys.param.SysTenantSaveRequest;
 import com.pearadmin.pro.modules.sys.service.SysTenantService;
+import io.swagger.annotations.Api;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import javax.annotation.Resource;
@@ -19,6 +20,7 @@ import java.util.List;
  * Author: 就 眠 仪 式
  * CreateTime: 2021/03/28
  * */
+@Api(tags = {"租户"})
 @RestController
 @RequestMapping(ControllerConstant.PREFIX_SYS + "tenant")
 public class SysTenantController extends BaseController {
