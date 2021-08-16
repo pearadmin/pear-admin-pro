@@ -34,6 +34,9 @@
     <a href="#">
         <img src="https://img.shields.io/badge/MySql-8.0.22-red.svg" alt="Node Version">
     </a>
+    <a href="#">
+        <img src="https://img.shields.io/badge/JDK-11-red.svg" alt="Jdk Version">
+    </a>
 </p>
 
 <div align="center">
@@ -72,12 +75,13 @@
 - [x] 对象存储:  提供 本地 / 阿里云 Oss 对象存储。
 - [x] 多数据源: 适用于多种场景 纯粹多库 读写分离 一主多从 混合模式。
 - [x] 主题切换: 系统正常操作日志记录和查询；系统异常信息日志记录和查询。
+- [x] 租户模式:  多租户模式，分库的方式 物理隔离数据。
+- [x] 导入导出： 提供注解方式 Excel 导入与 Excel 导出。
+
 
 ### 🎯 近期计划
 
 - [ ] 短信发送:  使用阿里云sms，腾讯云sms，支持拓展。
-- [ ] 租户模式:  多租户模式，分库的方式 物理隔离数据。
-- [ ] 导入导出： 提供注解方式 Excel 导入与 Excel 导出。
 
 
 ### 🔨 项目结构
