@@ -103,4 +103,13 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
         return sysDeptRepository.selectDeptByUserId(userId);
     }
 
+    @Override
+    public Boolean exist(String username) {
+        int count = this.lambdaQuery().eq(SysUser::getUsername, username).count();
+        if(count > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

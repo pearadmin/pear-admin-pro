@@ -83,4 +83,13 @@ public interface SysUserService extends IService<SysUser> {
      * */
     List<SysDept> dept(String userId);
 
+
+    /**
+     * 检测用户存在
+     *
+     * @param username 用户名
+     *
+     * @return {@link Boolean}
+     * */
+    Boolean exist(String username);
 }

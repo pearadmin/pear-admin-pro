@@ -45,6 +45,9 @@ public class SysUserController extends BaseController {
     @Log(title = "用户新增")
     @ApiOperation(value = "用户新增")
     public Result save(@RequestBody SysUser sysUser){
+        if(sysUserService.exist(sysUser.getUsername())) {
+            return Result.success("已存在");
+        }
         String password = sysUser.getPassword();
         String encodePassword = passwordEncoder.encode(password);
         sysUser.setPassword(encodePassword);
