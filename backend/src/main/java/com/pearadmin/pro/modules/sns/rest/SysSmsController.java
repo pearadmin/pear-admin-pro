@@ -1,4 +1,4 @@
-package com.pearadmin.pro.modules.sns.controller;
+package com.pearadmin.pro.modules.sns.rest;
 
 import com.pearadmin.pro.common.constant.ControllerConstant;
 import com.pearadmin.pro.common.web.base.BaseController;
