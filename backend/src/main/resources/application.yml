@@ -51,15 +51,19 @@ pagehelper:
   supportMethodsArguments: true
   params: count=countSql
 
-## 资源存储
-upload:
-  ## 存储位置
-  location: aliyun
-
 ## 阿里云 Oss 存储
 aliyun:
+  ## 对象存储
   oss:
     endpoint: oss-cn-beijing.aliyuncs.com
     accessKeyId: anything
     accessKeySecret: anything
     bucketName: pear-admin
+  ## 短信发送
+  sms:
+    accessKeyId: anything
+    accessKeySecret: anything
+    domain: dysmsapi.aliyuncs.com
+    regionId: cn-hangzhou
+    templateCode: template-name
+    signName: sign-name

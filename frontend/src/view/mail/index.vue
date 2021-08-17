@@ -22,7 +22,7 @@
                 <a-input v-model:value="form.subject" />
               </a-form-item>
               <a-form-item name="content" label="邮箱内容">
-                <a-textarea v-model:value="form.content" :rows="8" />
+                <a-textarea v-model:value="form.content" :rows="10" />
               </a-form-item>
               <a-form-item :wrapper-col="{ span: 14, offset: 4 }">
                 <a-button type="primary" @click="onSubmit"> 发送 </a-button>
@@ -80,7 +80,7 @@ export default {
                   this.resetForm();
                 });
               }else{
-                message.success({ content: '发送失败',key: sendKey, duration: 1 }).then(()=>{
+                message.error({ content: '发送失败',key: sendKey, duration: 1 }).then(()=>{
                   this.resetForm();
                 });
               }

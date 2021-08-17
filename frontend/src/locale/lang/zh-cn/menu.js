@@ -49,6 +49,7 @@ export default {
   "develop-oss": "对象存储",
   "develop-source": "多数据源",
   "develop-form": "表单设计",
+  "develop-sms": "短信发送",
   /// 其他页面
   "other": "其他页面",
   "other-profile": "个人资料",

@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.oss.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.pearadmin.pro.common.constant.SystemConstant;
 import com.pearadmin.pro.modules.oss.cloud.StorageConfig;
 import com.pearadmin.pro.modules.oss.cloud.impl.CloudStorageConfig;
 import com.pearadmin.pro.modules.oss.cloud.impl.CloudStorageService;
@@ -13,7 +14,6 @@ import com.pearadmin.pro.modules.oss.service.SysOssService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
-
 import javax.annotation.Resource;
 import java.util.*;
 
@@ -60,7 +60,7 @@ public class SysOssServiceImpl extends ServiceImpl<SysOssRepository, SysOss> imp
         SysOss sysOss = parseInfo(file);
 
         /// 本地存储
-        if(storageConfig.getLocation().equals("aliyun")) {
+        if(storageConfig.getLocation().equals(SystemConstant.ALIYUN)) {
 
             /// 阿里存储
             String filePath = cloudStorageService.upload(file);

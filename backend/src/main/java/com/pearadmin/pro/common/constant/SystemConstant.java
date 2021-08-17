@@ -22,4 +22,20 @@ public class SystemConstant {
      * Excel 格式
      * */
     public static final String XLSX = ".xlsx";
+
+    /**
+     * 阿里云
+     * */
+    public static final String ALIYUN = "aliyun";
+
+    /**
+     * 七牛
+     * */
+    public static final String QINIU = "qiniu";
+
+    /**
+     * 腾讯云
+     * */
+    public static final String TENCENT = "tencent";
+
 }
