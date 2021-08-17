@@ -2,7 +2,7 @@
   <div>
     <page-header
       title="短信发送"
-      describe="集成 Aliyun 短信服务, 给用户给予移动消息提醒."
+      describe="通过 Aliyun 向用户或其他终端直接发送文字或数字信息."
     ></page-header>
     <page-layout>
       <a-card>
