@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.repository;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.pearadmin.pro.common.web.interceptor.annotation.TenantIgnore;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.param.SysRoleRequest;
 import org.apache.ibatis.annotations.Mapper;
@@ -18,6 +19,7 @@ public interface SysRoleRepository extends BaseMapper<SysRole> {
      *
      * @return {@link SysRole}
      * */
+    @TenantIgnore
     List<SysRole> selectRoleByUserId(String userId);
 
     /**

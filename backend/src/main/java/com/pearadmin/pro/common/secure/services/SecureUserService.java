@@ -62,6 +62,4 @@ public class SecureUserService implements UserDetailsService {
     public List<SysRole> loadRoles(String userId) {
         return sysUserService.role(userId);
     }
-
-
 }
