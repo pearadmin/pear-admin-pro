@@ -39,6 +39,9 @@
       <a-form-item v-if="state.showCode" ref="code" label="标识" name="code">
         <a-input v-model:value="formState.code" />
       </a-form-item>
+      <a-form-item  label="图标" name="icon">
+        <p-icon-picker v-model:value="formState.icon"></p-icon-picker>
+      </a-form-item>
       <a-form-item ref="i18n" label="i18n" name="i18n">
         <a-input v-model:value="formState.i18n" />
       </a-form-item>
@@ -100,6 +103,7 @@ export default defineComponent({
       formState.enable = props.record.enable;
       formState.i18n = props.record.i18n;
       formState.type = props.record.type;
+      formState.icon = props.record.icon;
       formState.remark = props.record.remark;
       formState.parent = props.record.parent;
       if(formState.type === '2') {

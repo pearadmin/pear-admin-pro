@@ -5,10 +5,12 @@ import CardBase from "./cardBase";
 import Count from "./count";
 import Table from './table';
 import Query from './query';
-import Authority from './auth';
+import Authority from './authority';
+import iconPicker from './iconPicker';
+import icon from './icon';
 
 const components = [
-    Footer,Header,Layout, CardBase, Count,Table,Query,Authority
+    Footer,Header,Layout,CardBase,Count,Table,Query,Authority,iconPicker,icon
 ];
 
 const install = function (Vue) {
@@ -18,5 +20,5 @@ const install = function (Vue) {
 
 export default {
     install,
-    Footer,Header,Layout, CardBase, Count,Table,Query,Authority
+    Footer,Header,Layout, CardBase, Count,Table,Query,Authority,iconPicker,icon
 }
