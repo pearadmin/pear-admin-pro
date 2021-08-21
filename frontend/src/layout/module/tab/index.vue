@@ -108,7 +108,7 @@ export default {
       const title = route.meta.title;
       const path = route.path;
       const i18n = route.meta.i18n;
-      commit("layout/addTab", { title,path,i18n });
+      commit("app/addTab", { title,path,i18n });
       const { fullPath } = route;
       const startIndex = fullPath.indexOf("/");
       const endIndex = fullPath.lastIndexOf("/");
@@ -145,7 +145,7 @@ export default {
       }
     }, []);
 
-    commit("layout/initPanes", tabs);
+    commit("app/initPanes", tabs);
 
     const { t } = useI18n()
 
@@ -163,11 +163,11 @@ export default {
       panes,
       activeKey,
       tabType,
-      selectTab: key => commit("layout/selectTab", key),
-      removeTab: key => commit("layout/removeTab", key),
-      closeAllTab: () => commit("layout/closeAllTab"),
-      closeOtherTab: () => commit("layout/closeOtherTab"),
-      closeCurrentTab: () => commit("layout/closeCurrentTab")
+      selectTab: key => commit("app/selectTab", key),
+      removeTab: key => commit("app/removeTab", key),
+      closeAllTab: () => commit("app/closeAllTab"),
+      closeOtherTab: () => commit("app/closeOtherTab"),
+      closeCurrentTab: () => commit("app/closeCurrentTab")
     };
   }
 };

@@ -29,7 +29,6 @@ export default {
   "system-dict": "数据字典",
   "system-post": "岗位管理",
   "system-dept": "部门管理",
-  /// 监控
   "monitor": "系统监控",
   "monitor-server": "运行环境",
   "monitor-online": "在线用户",
@@ -37,25 +36,20 @@ export default {
   "monitor-redis": "缓存监控",
   "monitor-log-oper": "操作日志",
   "monitor-log-auth": "登录日志",
-  /// 错误
   "error": "错误页面",
   "error-403": "403",
   "error-404": "404",
   "error-500": "500",
-  /// 开发工具
   "develop": "开发工具",
   "develop-mail": "邮箱发送",
   "develop-oss": "对象存储",
   "develop-source": "多数据源",
   "develop-form": "表单设计",
-  /// 其他页面
   "other": "其他页面",
   "other-profile": "个人资料",
-  /// 定时任务
   "task": "定时任务",
   "task-job": "任务列表",
   "task-job-log": "任务日志",
-  /// 站内消息
   "notice": "站内消息",
   "notice-announce": "通知公告",
   "notice-inbox": "私人消息",

@@ -201,9 +201,9 @@ export default {
     const routes = computed(() => getters.menu).value.filter((r) => !r.hidden);
 
     const refresh = async () => {
-      commit("layout/UPDATE_ROUTER_ACTIVE");
+      commit("app/UPDATE_ROUTER_ACTIVE");
       setTimeout(() => {
-        commit("layout/UPDATE_ROUTER_ACTIVE");
+        commit("app/UPDATE_ROUTER_ACTIVE");
       }, 500);
     };
 
@@ -230,9 +230,9 @@ export default {
       layout,
       collapsed,
       fullscreen,
-      trigger: () => commit("layout/TOGGLE_SIDEBAR"),
-      setting: () => commit("layout/TOGGLE_SETTING"),
-      updateFullscreen: () => commit("layout/updateFullscreen"),
+      trigger: () => commit("app/TOGGLE_SIDEBAR"),
+      setting: () => commit("app/TOGGLE_SETTING"),
+      updateFullscreen: () => commit("app/updateFullscreen"),
       menuModel,
       routerActive,
       theme,

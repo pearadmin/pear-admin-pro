@@ -89,7 +89,7 @@ export default {
     const handleFoldSideBar = () => {
       const isComputedMobile = computed(() => getters.isMobile);
       if (isComputedMobile.value) {
-        commit("layout/UPDATE_COLLAPSED", true);
+        commit("app/UPDATE_COLLAPSED", true);
       }
     };
 

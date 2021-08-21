@@ -72,9 +72,9 @@ export default {
         (layout.value !== "layout-head" && !collapsed.value) ||
         isComputedMobile.value
       ) {
-        commit("layout/updateOpenKey", { openKeys });
+        commit("app/updateOpenKey", { openKeys });
       } else {
-        commit("layout/clearOpenKey");
+        commit("app/clearOpenKey");
       }
     };
 
@@ -91,13 +91,13 @@ export default {
     };
 
     const openChange = function (openKeys) {
-      commit("layout/updateOpenKey", { openKeys });
+      commit("app/updateOpenKey", { openKeys });
     };
     
     const handleFoldSideBar = () => {
       const isComputedMobile = computed(() => getters.isMobile);
       if (isComputedMobile.value) {
-        commit("layout/UPDATE_COLLAPSED", true);
+        commit("app/UPDATE_COLLAPSED", true);
       }
     };
 
