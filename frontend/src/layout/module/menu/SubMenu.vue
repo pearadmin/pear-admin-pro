@@ -7,7 +7,7 @@
         item.meta.alwaysShow != true
       "
       :key="resolvePath(item.path, true)"
-      @click="handleFoldSideBar"
+      @click="foldSide"
     >
       <router-link :to="item.path + (item.children[0].path.startsWith('/')?item.children[0].path: '/' + item.children[0].path)">
         <component :is="$antIcons[item.meta.icon]" />
@@ -76,6 +76,7 @@ export default {
   },
   setup(props) {
     const { commit, getters } = useStore();
+    
     const resolvePath = (routePath, single) => {
       if (/^(https?:|mailto:|tel:)/.test(routePath)) {
         return routePath;
@@ -83,10 +84,10 @@ export default {
       if (single) {
         return props.basePath;
       }
-      // 当处于 comp 模式下拼接相关路由
       return path.resolve(props.basePath, routePath);
     };
-    const handleFoldSideBar = () => {
+
+    const foldSide = () => {
       const isComputedMobile = computed(() => getters.isMobile);
       if (isComputedMobile.value) {
         commit("app/UPDATE_COLLAPSED", true);
@@ -97,7 +98,7 @@ export default {
     const { t } = useI18n()
 
     return {
-      handleFoldSideBar,
+      foldSide,
       resolvePath,
       t
     };
