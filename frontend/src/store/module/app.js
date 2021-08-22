@@ -1,4 +1,4 @@
-import config from '@/pear';
+import config from '@/configure/pear.config.js';
 import { message } from "ant-design-vue";
 
 const state = {

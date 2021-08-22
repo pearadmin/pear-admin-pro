@@ -42,10 +42,8 @@ const setDocumentTitle = title => {
 /**
  * 前置拦截器
  * 
- * @param to
  * @param from
  * @param next
- * @returns {Promise<void>}
  */
 export const permissionController = async (to, from, next) => {
   

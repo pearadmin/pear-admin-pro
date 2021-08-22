@@ -39,7 +39,7 @@ import { useStore } from "vuex";
 import { DownOutlined } from "@ant-design/icons-vue";
 import { useRouter, useRoute } from "vue-router";
 import { useI18n } from "vue-i18n";
-import config from '@/pear';
+import config from '@/configure/pear.config.js';
 export default {
   components: {
     DownOutlined

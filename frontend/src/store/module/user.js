@@ -11,7 +11,6 @@ const state = {
 }
 
 const mutations = {
-  /// 存储 Token
   SET_USER_TOKEN(state, token) {
     if (token) {
       state.tokenKey = token.key;
@@ -25,12 +24,10 @@ const mutations = {
       localStorage.removeItem('token')
     }
   },
-  /// 存储用户详情
   SET_USER_INFO(state, userInfo) {
     state.userInfo = userInfo
     localStorage.setItem('user_info', JSON.stringify(userInfo))
   },
-  /// 存储用户菜单
   SET_USER_ROUTE(state, menuList) {
     if (menuList && menuList.length === 0) {
       state.userRoutes = []
@@ -41,7 +38,6 @@ const mutations = {
       localStorage.setItem('user_routes', JSON.stringify(finalMenu))
     }
   },
-  /// 存储用户权限
   SET_USER_POWER(state, powerList){
     if(powerList && powerList.length === 0) {
       state.userPowers = []
@@ -56,7 +52,6 @@ const mutations = {
 
 const actions = {
 
-  // 登录
   async login( {commit} ,data) {
     const { code, msg, token, tokenKey } = await login(data);
     if (code === 200) {
@@ -67,7 +62,6 @@ const actions = {
     }
   },
 
-  // 注销
   async logout( {commit} ) {
     const { msg } = await logout();
     message.success(msg, 0.5).then(function(){
@@ -78,7 +72,6 @@ const actions = {
     return Promise.resolve()
   },
 
-  // 路由
   async addRoute( {commit} ) {
     const { data } = await menu()
     commit('SET_USER_ROUTE', generateRoute(data))
