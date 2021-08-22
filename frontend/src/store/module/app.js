@@ -2,12 +2,13 @@ import config from '@/configure/pear.config.js';
 import { message } from "ant-design-vue";
 
 const state = {
+
     /**
-   * 布局方式（整体界面的排版方式）
-   * layout-side -- 侧边布局
-   * layout-head -- 顶部菜单
-   * layout-comp -- 联动布局
-   * */
+     * 布局方式（整体界面的排版方式）
+     * layout-side -- 侧边布局
+     * layout-head -- 顶部菜单
+     * layout-comp -- 联动布局
+     * */
      layout: config.layout == null ? "layout-side" : localStorage.getItem("layout") == null ? config.layout : localStorage.getItem("layout"),
 
      /**
@@ -121,8 +122,10 @@ const state = {
    
      // 是否是移动端
      isMobile: false,
-  language: config.defaultLanguage == null ? "zh-CN" : localStorage.getItem("pear_lang") == null ? config.defaultLanguage : localStorage.getItem("pear_lang"),
-  cancelToken: []
+     
+     language: config.defaultLanguage == null ? "zh-CN" : localStorage.getItem("pear_lang") == null ? config.defaultLanguage : localStorage.getItem("pear_lang"),
+     
+     cancelToken: []
 }
 
 const mutations = {

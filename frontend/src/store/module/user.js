@@ -3,11 +3,11 @@ import { generateRoute, generatePower } from "@/route/permission";
 import { message } from "ant-design-vue";
 
 const state = {
-  token: '',
-  tokenKey: '',
-  userInfo: localStorage.getItem('user_info') ? JSON.parse(localStorage.getItem('user_info')) : null,
-  userRoutes: [],
-  userPowers: []
+  token: localStorage.getItem("token") ? localStorage.getItem("token") : "",
+  tokenKey: localStorage.getItem("token_key") ? localStorage.getItem("token_key") : "",
+  userInfo: localStorage.getItem('user_info') ? localStorage.getItem('user_info') : null,
+  userRoutes: localStorage.getItem("user_routes") ? localStorage.getItem("user_routes") : [],
+  userPowers: localStorage.getItem("user_powers") ? localStorage.getItem("user_powers") : []
 }
 
 const mutations = {

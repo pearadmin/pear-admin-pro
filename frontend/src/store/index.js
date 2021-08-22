@@ -36,23 +36,9 @@ const getters = {
   language: state => state.app.language,
   isMobile: state => state.app.isMobile,
   keepAlive: state=> state.app.keepAlive,
-  token: state =>
-    state.user.token
-      ? state.user.token
-      : localStorage.getItem("token")
-      ? localStorage.getItem("token")
-      : "",
-  menu: state =>
-    state.user.userRoutes.length !== 0
-      ? state.user.userRoutes
-      : localStorage.getItem("user_routes")
-      ? JSON.parse(localStorage.getItem("user_routes"))
-      : "",
-  power: state => state.user.userPowers.length !== 0
-      ? state.user.userPowers
-      : localStorage.getItem("user_powers")
-      ? JSON.parse(localStorage.getItem("user_powers"))
-      : ""
+  token: state => state.user.token,
+  menu: state => state.user.userRoutes,
+  power: state => state.user.userPowers,
 };
 
 export default createStore({
