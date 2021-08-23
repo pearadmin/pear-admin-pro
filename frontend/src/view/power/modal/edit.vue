@@ -104,6 +104,7 @@ export default defineComponent({
       formState.i18n = props.record.i18n;
       formState.type = props.record.type;
       formState.icon = props.record.icon;
+      formState.sort = props.record.sort;
       formState.remark = props.record.remark;
       formState.parent = props.record.parent;
       if(formState.type === '2') {

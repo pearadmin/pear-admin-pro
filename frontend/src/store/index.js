@@ -39,6 +39,7 @@ const getters = {
   token: state => state.user.token,
   menu: state => state.user.userRoutes,
   power: state => state.user.userPowers,
+  userInfo: state => state.user.userInfo,
 };
 
 export default createStore({

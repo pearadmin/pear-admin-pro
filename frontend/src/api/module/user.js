@@ -14,6 +14,7 @@ const Api = {
   role: '/api/sys/user/role',
   login: '/api/login',
   logout: '/api/logout',
+  profile: '/api/sys/user/profile',
 }
 
 /** 登录 */
@@ -29,6 +30,15 @@ export const login = data => {
 export const logout = data => {
   return request.request({
     url: Api.logout,
+    data: data,
+    method: 'GET'
+  })
+}
+
+/** 个人信息 */
+export const profile = data => {
+  return request.request({
+    url: Api.profile,
     data: data,
     method: 'GET'
   })

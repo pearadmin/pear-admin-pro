@@ -1,3 +1,5 @@
+import Layout from "@/layout";
+
 export default [
   {
     path: '/',
@@ -32,6 +34,21 @@ export default [
     meta: {
       title: '500'
     },
+    hidden: true,
+  },
+  {
+    path: '/profile',
+    component: () => Layout,
+    children: [
+      {
+        path: '/profile/index',
+        component: () => import('@/view/profile/index.vue'),
+        meta: {
+          title: '个人详情',
+          i18n: 'profile'
+        }
+      }
+    ],
     hidden: true,
   }
 ]

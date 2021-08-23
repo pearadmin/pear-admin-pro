@@ -2,7 +2,6 @@ import Layout from "@/layout";
 
 export default {
    Layout,
-  'profile': () => import('@/view/profile/index.vue'),
   'dashboard-console': () => import('@/view/console/index.vue'),
   'dashboard-workspace': () => import('@/view/space/index.vue'),
   'result-success': () => import('@/view/result/success.vue'),

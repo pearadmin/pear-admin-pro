@@ -1,4 +1,5 @@
 export default {
+  "profile": "profile",
   "account": "account",
   "account-center": "profile",
   "dashboard": "workspace",

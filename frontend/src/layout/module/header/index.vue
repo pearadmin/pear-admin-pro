@@ -221,7 +221,7 @@ export default {
     };
 
     const go = function() {
-      router.push("/")
+      router.push("/profile/index")
     }
 
     return {

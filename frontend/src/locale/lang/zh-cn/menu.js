@@ -1,5 +1,6 @@
 export default {
-  "account": "account",
+  "profile": "个人中心",
+  "account": "账户菜单",
   "account-center": "个人中心",
   "dashboard": "工作空间",
   "dashboard-console": "分析页",
