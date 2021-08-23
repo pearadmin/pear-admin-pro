@@ -1,6 +1,5 @@
 <template>
   <a-layout id="layout" :class="[theme, layout]">
-    <!-- 侧边菜单 -->
     <div
       v-if="isMobile && !collapsed"
       class="layout_mobile_mask"

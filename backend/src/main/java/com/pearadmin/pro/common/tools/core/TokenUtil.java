@@ -6,10 +6,16 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import java.util.Date;
 
+/**
+ * Token 工具类
+ * */
 public class TokenUtil {
 
     /**
      * 创建 Token
+     *
+     * @param userId 用户编号
+     * @param username 用户账号
      * */
     public static String create(String userId,String username){
         return  Jwts.builder()
@@ -23,6 +29,8 @@ public class TokenUtil {
 
     /**
      * 解析 Token
+     *
+     * @param token Token
      * */
     public static void parse(String token) {
         try {
@@ -31,5 +39,4 @@ public class TokenUtil {
             throw new TokenValidationException("token validation failure");
         }
     }
-
 }

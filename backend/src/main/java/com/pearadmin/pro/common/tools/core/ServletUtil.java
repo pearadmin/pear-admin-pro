@@ -13,16 +13,17 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 /**
- * Describe: Servlet 工具类
+ * Servlet 工具类
+ *
  * Author: 就 眠 仪 式
  * CreateTime: 2021/2/3
  * */
 public class ServletUtil {
 
     /**
-     * Describe: 获取 HttpServletRequest 对象
-     * Param null
-     * Return HttpServletRequest
+     * 获取 HttpServletRequest 对象
+     *
+     * @return {@link HttpServletRequest}
      * */
     public static HttpServletRequest getRequest(){
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -30,9 +31,9 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: 获取 HttpServletResponse 对象
-     * Param null
-     * Return HttpServletResponse
+     * 获取 HttpServletResponse 对象
+     *
+     * @return {@link HttpServletResponse}
      * */
     public static HttpServletResponse getResponse(){
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -40,9 +41,9 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: 获取 HttpServletSession 对象
-     * Param null
-     * Return HttpServletSession
+     * 获取 HttpSession 对象
+     *
+     * @return {@link HttpSession}
      * */
     public static HttpSession getSession(){
         ServletRequestAttributes servletRequestAttributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
@@ -50,18 +51,18 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: 获取 Request 请求参数
-     * Param paramName
-     * Return String
+     * 获取 Request 请求参数
+     * @param  paramName
+     * @return {@link String}
      * */
     public static String getParameter(String paramName){
         return ServletUtil.getRequest().getParameter(paramName);
     }
 
     /**
-     * Describe: 获取 Request Body 请求参数
-     * Param: paramName
-     * Return: String
+     * 获取 Request Body 请求参数
+     *
+     * @return: {@link String}
      * */
     public static JSONObject getBodyParameters(){
         try {
@@ -80,9 +81,9 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: Response 对象写出数据
-     * Param: msg 消息数据
-     * Return null
+     * Response 对象写出数据
+     *
+     * @param msg 消息数据
      * */
     public static void write(String msg) throws IOException {
         HttpServletResponse response = getResponse();
@@ -92,27 +93,27 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: Response 对象写出 JSON 数据
-     * Param: object 消息数据
-     * Return null
+     * Response 对象写出 JSON 数据
+     *
+     * @param: object 消息数据
      * */
     public static void writeJson(Object data) throws IOException{
         write(JSON.toJSONString(data));
     }
 
     /**
-     * Describe: Request 请求参数
-     * Param: null
-     * Return string
+     * Request 请求参数
+     *
+     * @return {@link String}
      * */
     public static String getQueryParam(){
         return getRequest().getQueryString();
     }
 
     /**
-     * Describe: Request 请求地址
-     * Param: null
-     * Return string
+     * Request 请求地址
+     *
+     * @return {@link String}
      * */
     public static String getRequestURI() {
         return getRequest().getRequestURI();
@@ -120,8 +121,8 @@ public class ServletUtil {
 
     /**
      * Describe: Request 客户端地址
-     * Param: null
-     * Return string
+     *
+     * @return {@link String}
      * */
     public static String getRemoteHost(){
         String remoteHost = getRequest().getRemoteHost();
@@ -132,36 +133,37 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: Request 请求方法
-     * Param: null
-     * Return string
+     * Request 请求方法
+     *
+     * @return {@link String}
      * */
     public static String getMethod(){
         return getRequest().getMethod();
     }
 
     /**
-     * Describe: Request 请求头
-     * Param: name
-     * Return string
+     * Request 请求头
+     *
+     * @param name 名称
+     * @return {@link String}
      * */
     public static String getHeader(String name){
         return getRequest().getHeader(name);
     }
 
     /**
-     * Describe: Request Agent
-     * Param: name
-     * Return string
+     * Request Agent
+     *
+     * @return {@link String}
      * */
     public static String getAgent(){
         return getHeader("User-Agent");
     }
 
     /**
-     * Describe: Request 浏览器类型
-     * Param: name
-     * Return string
+     * Request 浏览器类型
+     *
+     * @return {@link String}
      * */
     public static String getBrowser(){
         String userAgent = getAgent();
@@ -172,9 +174,9 @@ public class ServletUtil {
     }
 
     /**
-     * Describe: Request 访问来源 ( 客户端类型 )
-     * Param: name
-     * Return string
+     * Request 访问来源 ( 客户端类型 )
+     *
+     * @return {@link String}
      * */
     public static String getSystem(){
         String userAgent = getAgent();

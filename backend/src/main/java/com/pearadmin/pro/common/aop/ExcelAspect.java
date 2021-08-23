@@ -1,12 +1,9 @@
 package com.pearadmin.pro.common.aop;
 
-import com.alibaba.excel.EasyExcel;
 import com.pearadmin.pro.common.aop.annotation.Excel;
 import com.pearadmin.pro.common.aop.enums.Model;
-import com.pearadmin.pro.common.constant.SystemConstant;
 import com.pearadmin.pro.common.tools.core.ExcelUtil;
 import com.pearadmin.pro.common.tools.core.ServletUtil;
-import org.apache.poi.ss.formula.functions.T;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,7 +13,6 @@ import org.springframework.stereotype.Component;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -48,14 +44,12 @@ public class ExcelAspect {
         Class clazz = annotation.clazz();
         Model model = annotation.model();
         HttpServletResponse response = ServletUtil.getResponse();
-        HttpServletRequest request = ServletUtil.getRequest();
 
         try {
 
             if(model.equals(Model.READ)) {
 
                 // TODO Excel 导入
-
             }
 
             data = joinPoint.proceed();

@@ -38,4 +38,5 @@ public class StringUtil {
     public static boolean isNotEmpty(String text){
         return !isNotEmpty(text);
     }
+
 }
