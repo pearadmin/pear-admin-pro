@@ -83,16 +83,16 @@ export default {
     const menu = ref(state.menu);
 
     // 初 始 化 选 项 卡 选 中 项
-    const findFixedPane = (list, prefix, panes) => {
+    const findFixedPane = (list, panes) => {
       panes.forEach(pane => {
-        const { path, meta, hidden, children = [] } = pane;
+        const { path ,meta, hidden, children = [] } = pane;
         if (children && children.length > 0) {
-          findFixedPane(list, _path.resolve(prefix, path), children);
+          findFixedPane(list, children);
         } else {
           if (!hidden && meta && config.defaultTab === pane.component) {
             list.push({
               title: meta.title,
-              path: _path.resolve(prefix, path),
+              path: path,
               i18n: meta.i18n,
               closable: false
             });
@@ -101,7 +101,7 @@ export default {
       });
     };
 
-    findFixedPane(initPanes, "", menu.value);
+    findFixedPane(initPanes, menu.value);
 
     // 新 增 或 添 加 选 项 卡 操 作
     const dynamicMenu = () => {
@@ -116,18 +116,15 @@ export default {
       localStorage.setItem("openKey", JSON.stringify(openKey));
     };
 
-    // 路 由 变 更 监 听
     watch(computed(() => route.fullPath),
       dynamicMenu
     );
 
-    // 选 项 卡 变 化 监 听
     watch(computed(() => getters.panes),
       n => (panes.value = n),
       { deep: true, immediate: true }
     );
 
-    // 选 项 卡 选 中 监 听
     watch(storeKey, targetKey => {
       activeKey.value = targetKey;
       router.push(targetKey);

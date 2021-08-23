@@ -52,17 +52,18 @@ export const permissionController = async (to, from, next) => {
   setDocumentTitle(title)
   await store.dispatch('app/execCancelToken')
 
-  if (!to.fullPath.includes('login') && !localStorage.getItem('token') && !localStorage.getItem('token_key')) {
+  if (!to.path.includes('login') && !localStorage.getItem('token') && !localStorage.getItem('token_key')) {
     next({path: '/login'})
+  
   } else {
 
-    if (!router.getRoutes().map(it => it.path).includes(to.fullPath)) {
-    
+    if (!router.getRoutes().map(it => it.path).includes(to.path)) {
+
       await store.dispatch('user/addRoute')
       await store.dispatch('user/addPower')
 
       const userRoutes = JSON.parse(JSON.stringify(store.getters.menu))
-      const hasRoute = inCloudRoute(userRoutes, to.fullPath)
+      const hasRoute = inCloudRoute(userRoutes, to.path)
 
       if (hasRoute) {
         setUserRouteComponent(userRoutes)

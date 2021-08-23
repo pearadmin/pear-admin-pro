@@ -1,7 +1,6 @@
 <template>
   <a-layout id="layout" :class="[theme, layout]">
-    <div
-      v-if="isMobile && !collapsed"
+    <div v-if="isMobile && !collapsed"
       class="layout_mobile_mask"
       @click="closeSideBar"
     />
@@ -19,25 +18,17 @@
       ]"
     >
       <div class="pear-layout-left-sider">
-        <!-- 菜单图标 -->
         <Logo v-if="logo"></Logo>
-        <!-- 垂直菜单 -->
         <Menu></Menu>
       </div>
     </a-layout-sider>
-    <!-- 右边区域 -->
     <a-layout>
-      <!-- 顶部区域 -->
       <a-layout-header>
         <Header></Header>
       </a-layout-header>
-      <!-- 中心区域 -->
       <a-layout-content :class="[fixedHeader ? 'fixedHeader' : '', tab ? 'muiltTab' : '']">
-        <!-- 选项卡页面 -->
         <Tab v-if="tab"></Tab>
-        <!-- 内容区域 -->
         <Content :style="{ overflow: fixedHeader ? 'auto' : '' }"></Content>
-        <!-- 设置页面 -->
         <Setup></Setup>
       </a-layout-content>
     </a-layout>
