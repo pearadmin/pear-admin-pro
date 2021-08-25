@@ -94,8 +94,8 @@ public class SysUserController extends BaseController {
     @PutMapping("password/reset")
     @Log(title = "重置密码")
     @ApiOperation(value = "重置密码")
-    public Result resetPassword(String userId) {
-        return auto(sysUserService.resetPassword(userId));
+    public Result resetPassword(String id) {
+        return auto(sysUserService.resetPassword(id));
     }
 
     /**

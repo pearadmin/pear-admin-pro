@@ -48,6 +48,7 @@
           <a-card>
             <a-tabs @change="callback">
               <a-tab-pane key="1" tab="基本信息">
+                <br/>
                 <a-form
                   :model="userInfo"
                   :label-col="labelCol"
@@ -77,7 +78,7 @@
               </a-tab-pane>
               <a-tab-pane key="2" tab="账号绑定" force-render> 空 </a-tab-pane>
             </a-tabs>
-            <a-modal v-model:visible="passwordState" title="修改密码" @ok="onSubmit">
+            <a-modal v-model:visible="passwordState" title="修改密码" @ok="onSubmit" okText="确认" cancelText="取消">
               <a-form-item label="旧密码">
                 <a-input
                   v-model:value="password.oldPassword"

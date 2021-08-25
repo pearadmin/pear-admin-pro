@@ -45,7 +45,7 @@ import give from './modal/give';
 import info from './modal/info';
 import { message , modal} from 'ant-design-vue';
 import { ExclamationCircleOutlined } from '@ant-design/icons-vue';
-import { page, remove, removeBatch } from "@/api/module/user";
+import { page, remove, removeBatch, resetPassword } from "@/api/module/user";
 import { reactive, createVNode, ref } from 'vue';
 
 const removeKey = "remove";
@@ -70,6 +70,16 @@ export default {
         data: response.data.record,
       };
     };
+
+    const resetPasswordMethod = (record) => {
+      resetPassword({"id":record.id}).then((response) => {
+        if(response.success){
+          message.success({content: "重置成功", key: removeKey, duration: 1})
+        }else{
+          message.error({content: "重置失败", key: removeKey, duration: 1})
+        }
+      })
+    }
 
     /// 删除用户
     const removeMethod = (record) => {
@@ -127,6 +137,7 @@ export default {
       { label: "修改", event: function (record) { state.visibleEdit = true , state.recordEdit = record }},
       { label: "分配", event: function (record) { state.visibleGive = true , state.recordGive = record }},
       { label: "删除", event: function (record) { removeMethod(record) }},
+      { label: '重置', event: function (record) { resetPasswordMethod(record) }}
     ];
 
     /// 文本
