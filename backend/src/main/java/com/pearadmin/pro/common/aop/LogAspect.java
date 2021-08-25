@@ -60,6 +60,8 @@ public class LogAspect {
             e.printStackTrace();
             // 异 常 记 录
             context.record(title, describe, action, false, null, null);
+            // 向上抛出
+            throw e;
         }
         return result;
     }
