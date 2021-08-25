@@ -3,7 +3,7 @@
 <mapper namespace="com.pearadmin.pro.modules.sys.repository.SysUserRepository">
 
     <select id="selectUser" parameterType="SysUserRequest" resultType="SysUser">
-        select * ,
+        select *,
         sp.name as postName,
         sd.name as deptName
         from sys_user su

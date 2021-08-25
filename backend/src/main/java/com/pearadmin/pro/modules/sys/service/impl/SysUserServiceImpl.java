@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.pearadmin.pro.common.web.base.page.Pageable;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
 import com.pearadmin.pro.modules.sys.domain.*;
+import com.pearadmin.pro.modules.sys.param.SysUserPasswordRequest;
 import com.pearadmin.pro.modules.sys.repository.*;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
 import com.pearadmin.pro.modules.sys.service.SysUserRoleService;
 import com.pearadmin.pro.modules.sys.service.SysUserService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
@@ -18,6 +20,9 @@ import java.util.List;
 
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> implements SysUserService {
+
+    @Resource
+    private PasswordEncoder passwordEncoder;
 
     @Resource
     private SysRoleRepository sysRoleRepository;
@@ -107,6 +112,34 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserRepository, SysUser> 
     public Boolean exist(String username) {
         int count = this.lambdaQuery().eq(SysUser::getUsername, username).count();
         if(count > 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public Boolean editPassword(String userId, String password) {
+        SysUser sysUser = new SysUser();
+        sysUser.setId(userId);
+        sysUser.setPassword(passwordEncoder.encode(password));
+        sysUserRepository.updateById(sysUser);
+        return true;
+    }
+
+    @Override
+    public Boolean resetPassword(String userId) {
+        SysUser sysUser = new SysUser();
+        sysUser.setId(userId);
+        sysUser.setPassword(passwordEncoder.encode("123456"));
+        sysUserRepository.updateById(sysUser);
+        return true;
+    }
+
+    @Override
+    public Boolean contrastPassword(String userId, String password) {
+        SysUser sysUser = this.getById(userId);
+        if(passwordEncoder.matches(password, sysUser.getPassword())) {
             return true;
         } else {
             return false;

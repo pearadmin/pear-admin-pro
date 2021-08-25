@@ -27,7 +27,7 @@ spring:
     port: 6379
     password:
     ## 超时时间
-    timeout: 8000
+    timeout: 3000
     ## 连接池配置
     lettuce:
       pool:

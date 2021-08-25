@@ -46,13 +46,13 @@ public class SecureUser extends BaseDomain implements UserDetails, CredentialsCo
      * 启用
      */
     @TableField(value = "enable")
-    private boolean enable;
+    private Boolean enable;
 
     /**
      * 锁定
      */
     @TableField(value = "locked")
-    private boolean locked;
+    private Boolean locked;
 
     /**
      * 角色

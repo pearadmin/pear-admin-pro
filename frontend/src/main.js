@@ -10,13 +10,13 @@ import * as antIcons from '@ant-design/icons-vue';
 import "./assets/css/index.less";
 import "ant-design-vue/dist/antd.less";
 
-const app = createApp(App);
-app.use(i18n);
-app.use(Antd);
-app.use(Pear);
-app.use(Store);
-app.use(Router);
-app.mount("#app");
+const app = createApp(App)
+app.use(i18n)
+app.use(Antd)
+app.use(Pear)
+app.use(Store)
+app.use(Router)
+app.mount("#app")
 
 Object.keys(antIcons).forEach(key => {
     app.component(key, antIcons[key])

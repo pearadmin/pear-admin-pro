@@ -7,6 +7,8 @@ const Api = {
   list: '/api/sys/user/list',
   give: '/api/sys/user/give',
   edit: '/api/sys/user/edit',
+  editPassword: '/api/sys/user/password/edit',
+  resetPassword: '/api/sys/user/password/reset',
   menu: '/api/sys/user/menu',
   power: '/api/sys/user/power',
   remove: '/api/sys/user/remove',
@@ -32,6 +34,24 @@ export const logout = data => {
     url: Api.logout,
     data: data,
     method: 'GET'
+  })
+}
+
+/** 修改密码 */
+export const editPassword = data => {
+  return request.request({
+    url: Api.editPassword,
+    data: data,
+    method: 'PUT'
+  })
+}
+
+/** 重置密码 */
+export const resetPassword = data => {
+  return request.request({
+    url: Api.resetPassword,
+    params: data,
+    method: 'PUT'
   })
 }
 

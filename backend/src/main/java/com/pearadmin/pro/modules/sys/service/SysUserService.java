@@ -4,6 +4,7 @@ import com.pearadmin.pro.modules.sys.domain.SysDept;
 import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.domain.SysRole;
 import com.pearadmin.pro.modules.sys.domain.SysUser;
+import com.pearadmin.pro.modules.sys.param.SysUserPasswordRequest;
 import com.pearadmin.pro.modules.sys.param.SysUserRequest;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.pearadmin.pro.common.web.base.page.PageResponse;
@@ -83,7 +84,6 @@ public interface SysUserService extends IService<SysUser> {
      * */
     List<SysDept> dept(String userId);
 
-
     /**
      * 检测用户存在
      *
@@ -92,4 +92,33 @@ public interface SysUserService extends IService<SysUser> {
      * @return {@link Boolean}
      * */
     Boolean exist(String username);
+
+    /**
+     * 修改密码
+     *
+     * @param userId 用户编号
+     * @param password 密码实体
+     *
+     * @return {@link Boolean}
+     * */
+    Boolean editPassword(String userId, String password);
+
+    /**
+     * 重置密码
+     *
+     * @param userId 用户编号
+     *
+     * @return {@link Boolean}
+     * */
+    Boolean resetPassword(String userId);
+
+    /**
+     * 密码比较
+     *
+     * @param userId 用户编号
+     * @param password 密码
+     *
+     * @return {@link Boolean}
+     * */
+    Boolean contrastPassword(String userId, String password);
 }

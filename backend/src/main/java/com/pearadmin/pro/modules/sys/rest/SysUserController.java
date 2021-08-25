@@ -1,5 +1,6 @@
 package com.pearadmin.pro.modules.sys.rest;
 
+import com.pearadmin.pro.modules.sys.param.SysUserPasswordRequest;
 import com.pearadmin.pro.modules.sys.param.SysUserRoleRequest;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -68,6 +69,36 @@ public class SysUserController extends BaseController {
     }
 
     /**
+     * 修改密码
+     *
+     * @param request 参数实体
+     * */
+    @PutMapping("password/edit")
+    @Log(title = "修改密码")
+    @ApiOperation(value = "修改密码")
+    public Result editPassword(@RequestBody SysUserPasswordRequest request) {
+        String userId = request.getUserId();
+        String newPassword = request.getNewPassword();
+        String oldPassword = request.getOldPassword();
+        if(!sysUserService.contrastPassword(userId,oldPassword)) {
+            return failure("密码不正确");
+        }
+        return auto(sysUserService.editPassword(userId,newPassword));
+    }
+
+    /**
+     * 重置密码
+     *
+     * @param
+     * */
+    @PutMapping("password/reset")
+    @Log(title = "重置密码")
+    @ApiOperation(value = "重置密码")
+    public Result resetPassword(String userId) {
+        return auto(sysUserService.resetPassword(userId));
+    }
+
+    /**
      * 查询用户
      *
      * @param request 查询参数
@@ -130,7 +161,7 @@ public class SysUserController extends BaseController {
     @Log(title = "个人资料")
     @ApiOperation(value = "个人资料")
     public Result profile(){
-        return success(userContext.getPrincipal());
+        return success(sysUserService.getById(userContext.getPrincipal().getId()));
     }
 
     /**

@@ -79,4 +79,10 @@ public class SysUser extends SecureUser {
     @TableField("tenant_id")
     private String tenantId;
 
+    /**
+     * 签名
+     * */
+    @TableField("`sign`")
+    private String sign;
+
 }
