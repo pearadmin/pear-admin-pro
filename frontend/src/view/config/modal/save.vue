@@ -77,7 +77,7 @@ export default defineComponent({
               });
             } else {
               message.error({
-                content: "保存失败",
+                content: response.msg,
                 key,
                 duration: 1,
               }).then(()=>{

@@ -1,6 +1,7 @@
 package com.pearadmin.pro.modules.sys.rest;
 
 import com.pearadmin.pro.common.aop.annotation.Log;
+import com.pearadmin.pro.common.aop.annotation.Repeat;
 import com.pearadmin.pro.modules.sys.domain.SysConfig;
 import io.swagger.annotations.Api;
 import com.pearadmin.pro.common.web.domain.Result;
@@ -46,6 +47,7 @@ public class SysConfigController extends BaseController {
      *
      * @param sysConfig 配置实体
      */
+    @Repeat
     @PostMapping("save")
     @Log(title = "新增配置")
     @ApiOperation(value = "新增配置")
