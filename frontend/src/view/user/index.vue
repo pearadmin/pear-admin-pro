@@ -141,7 +141,7 @@ export default {
     ];
 
     /// 文本
-    const converFormat = [{label:"男", value:0},{label:"女", value:1}];
+    const converFormat = [{label:"男", value:"0"},{label:"女", value:"1"}];
 
     /// 开关
     const switchFormat = { yes: true, no: false, event: function(value,record){

@@ -1,12 +1,12 @@
 <template>
-  <span class="p-count">{{printVal}}</span>
+  <span class="pro-count">{{printVal}}</span>
 </template>
 
 <script>
 import "./index.less";
 import { computed, ref, onMounted, nextTick } from "vue";
 export default{
-  name: "p-count",
+  name: "pro-count",
   props: {
     startVal: {
       type: [String, Number],

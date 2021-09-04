@@ -4,7 +4,7 @@
       <a-row :gutter="[10, 10]">
         <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <a-card>
-            <p-count
+            <pro-count
               startVal="5500"
               endVal="6334.32"
               decimals="2"
@@ -24,7 +24,7 @@
         </a-col>
         <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <a-card>
-            <p-count
+            <pro-count
               startVal="4500"
               endVal="5303.10"
               decimals="2"
@@ -45,7 +45,7 @@
         </a-col>
         <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <a-card>
-            <p-count
+            <pro-count
               startVal="6500"
               endVal="7600.00"
               decimals="2"
@@ -65,7 +65,7 @@
         </a-col>
         <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
           <a-card>
-            <p-count
+            <pro-count
               startVal="4000"
               endVal="4500.00"
               decimals="2"

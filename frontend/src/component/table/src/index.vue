@@ -178,6 +178,11 @@
           />
         </span>
 
+        <!-- 数据字典 -->
+        <span v-else-if="column.dictionary">
+          <pro-dictionary :code="column.dictionary.code" type="text" v-model="record[column.dataIndex]"></pro-dictionary>          
+        </span>
+
         <!-- 预览 -->
         <span v-else-if="column.image">
           <a-image

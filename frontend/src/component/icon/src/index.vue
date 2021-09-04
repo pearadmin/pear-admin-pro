@@ -14,6 +14,6 @@ export default {
             default: "16px"
         }
     },
-    name: "p-icon"
+    name: "pro-icon"
 }
 </script>

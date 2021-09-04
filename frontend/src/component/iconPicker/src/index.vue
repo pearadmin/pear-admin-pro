@@ -3,13 +3,13 @@
     <a-dropdown>
       <a-input v-model:value="selected" readonly>
         <template #addonAfter>
-          <p-icon :type="selected"></p-icon>
+          <pro-icon :type="selected"></pro-icon>
         </template>
       </a-input>
       <template #overlay>
         <a-menu style="height:300px;overflow-y:scroll">
           <a-menu-item :key="icon" v-for="icon in icons" @click="select(icon)">
-            <p-icon :type="icon"></p-icon>
+            <pro-icon :type="icon"></pro-icon>
           </a-menu-item>
         </a-menu>
       </template>
@@ -22,7 +22,7 @@ import icons from './index.js'
 import { watch } from '@vue/runtime-core';
 
 export default {
-    name: 'p-icon-picker',
+    name: 'pro-icon-picker',
     props: {
       value: {
         type: String,

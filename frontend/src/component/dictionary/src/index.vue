@@ -21,6 +21,11 @@
         }}</a-checkbox>
       </a-checkbox-group>
     </template>
+    <template v-if="type === 'text'">
+        <template v-for="d in data" :key="d">
+            <span v-if="d.value ===  modelValue">{{d.label}}</span>
+        </template>
+    </template>
   </div>
 </template>
 <script>
