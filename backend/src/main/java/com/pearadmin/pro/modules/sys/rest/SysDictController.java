@@ -28,7 +28,7 @@ public class SysDictController extends BaseController {
     private SysDictService sysDictService;
 
     /**
-     * 查询字典类型列表
+     * 查询字典类型
      *
      * @param request 查询参数
      */
@@ -39,6 +39,11 @@ public class SysDictController extends BaseController {
        return success(sysDictService.page(request));
     }
 
+    /**
+     * 新增字典类型
+     *
+     * @param sysDict 字典实体
+     */
     @PostMapping("save")
     @Log(title = "新增字典")
     @ApiOperation(value = "新增字典")
@@ -46,6 +51,11 @@ public class SysDictController extends BaseController {
         return auto(sysDictService.save(sysDict));
     }
 
+    /**
+     * 修改字典类型
+     *
+     * @param sysDict 字典实体
+     */
     @PutMapping("edit")
     @Log(title = "修改字典")
     @ApiOperation(value = "修改字典")
@@ -53,6 +63,11 @@ public class SysDictController extends BaseController {
         return auto(sysDictService.updateById(sysDict));
     }
 
+    /**
+     * 删除字典类型
+     *
+     * @param id 字典编号
+     */
     @DeleteMapping("remove")
     @Log(title = "删除字典")
     @ApiOperation(value = "删除字典")
@@ -60,6 +75,11 @@ public class SysDictController extends BaseController {
         return auto(sysDictService.removeById(id));
     }
 
+    /**
+     * 删除字典类型
+     *
+     * @param ids 字典实体
+     */
     @DeleteMapping("removeBatch")
     @Log(title = "批量删除")
     @ApiOperation(value = "批量删除")

@@ -8,9 +8,10 @@ import Query from './query';
 import Authority from './authority';
 import iconPicker from './iconPicker';
 import icon from './icon';
+import Dictionary from './dictionary';
 
 const components = [
-    Footer,Header,Layout,CardBase,Count,Table,Query,Authority,iconPicker,icon
+    Footer,Header,Layout,CardBase,Count,Table,Query,Authority,iconPicker,icon,Dictionary
 ];
 
 const install = function (Vue) {
@@ -20,5 +21,5 @@ const install = function (Vue) {
 
 export default {
     install,
-    Footer,Header,Layout, CardBase, Count,Table,Query,Authority,iconPicker,icon
+    Footer,Header,Layout, CardBase, Count,Table,Query,Authority,iconPicker,icon,Dictionary
 }
