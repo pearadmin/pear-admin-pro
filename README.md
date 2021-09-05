@@ -191,6 +191,14 @@ mail.*
 
 👉接口文档：[查看](http://pro.pearadmin.com/swagger-ui.html)
 
+### 💬 相关文章
+
+[Pear Admin Pro 1.1.8 发布，周末双更，升级 Crud 表格，提供 Dictionary 组件](https://mp.weixin.qq.com/s/ENM86uYGba3XsPIQF6ArLw)
+
+[Pear Admin Pro 1.1.1 发布，巧用 MyBatis 拦截器，零侵入式多租户支持](https://mp.weixin.qq.com/s/ri1RE2_Edjls9xCp12-AIg)
+
+[Pear Admin Pro 1.1.0 发布，数据权限 "规则模式"，提供灵活的数据拦截](https://mp.weixin.qq.com/s/BYI48CY6yvaDDnSggeJXMg)
+
 ### 🍎 预览界面
 
 | 预览                 |                界面 |
