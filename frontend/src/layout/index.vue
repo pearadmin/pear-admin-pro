@@ -53,6 +53,7 @@ export default {
     Setup,
   },
   setup() {
+    
     const { getters, commit } = useStore();
     const layout = computed(() => getters.layout);
     const collapsed = computed(() => getters.collapsed);
@@ -70,6 +71,7 @@ export default {
         commit("app/TOGGLE_SIDEBAR", true);
       }
     };
+
     const handleFoldSideBar = () => {
       const isComputedMobile = computed(() => getters.isMobile);
       const isCollapsed = computed(() => getters.collapsed);
@@ -77,6 +79,7 @@ export default {
         commit("app/TOGGLE_SIDEBAR");
       }
     };
+
     const handleLayouts = () => {
       const domWidth = document.body.getBoundingClientRect().width;
       const isLayoutMobile = domWidth !== 0 && domWidth - 1 < 992;
@@ -87,6 +90,7 @@ export default {
         }, 1000);
       }
     };
+
     handleLayouts();
     window.addEventListener("resize", handleLayouts);
 

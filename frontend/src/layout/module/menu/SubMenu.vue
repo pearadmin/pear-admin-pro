@@ -3,7 +3,6 @@
 
     <!-- if item.children is not null 渲染 a-sub-menu -->
     <a-sub-menu
-      @click="handleFoldSideBar"
       :key="item.path"
       v-if="item.children && item.children.length > 0"
     >
@@ -24,7 +23,6 @@
     </a-sub-menu>
     <!-- if item.chilren is null 渲染 a-menu-item -->
     <a-menu-item
-      @click="handleFoldSideBar"
       v-bind="$attrs"
       :key="item.path"
       v-else
