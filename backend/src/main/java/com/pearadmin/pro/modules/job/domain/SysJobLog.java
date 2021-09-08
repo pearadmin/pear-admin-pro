@@ -59,4 +59,5 @@ public class SysJobLog {
      * 执行时间
      * */
     private LocalDateTime createTime;
+
 }
