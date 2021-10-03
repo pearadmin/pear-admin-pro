@@ -30,8 +30,72 @@ legend {color: inherit;}
 mark {background-color: #feffe6;}
 ::selection {color: #fff;background: @primary-color;}
 .anticon {color: inherit;}
+.ant-fade-enter, .ant-fade-appear {animation-fill-mode: both;}
+.ant-fade-leave {animation-fill-mode: both;}
+.fade-enter, .fade-appear {animation-fill-mode: both;}
+.fade-leave {animation-fill-mode: both;}
+.ant-move-up-enter, .ant-move-up-appear {animation-fill-mode: both;}
+.ant-move-up-leave {animation-fill-mode: both;}
+.move-up-enter, .move-up-appear {animation-fill-mode: both;}
+.move-up-leave {animation-fill-mode: both;}
+.ant-move-down-enter, .ant-move-down-appear {animation-fill-mode: both;}
+.ant-move-down-leave {animation-fill-mode: both;}
+.move-down-enter, .move-down-appear {animation-fill-mode: both;}
+.move-down-leave {animation-fill-mode: both;}
+.ant-move-left-enter, .ant-move-left-appear {animation-fill-mode: both;}
+.ant-move-left-leave {animation-fill-mode: both;}
+.move-left-enter, .move-left-appear {animation-fill-mode: both;}
+.move-left-leave {animation-fill-mode: both;}
+.ant-move-right-enter, .ant-move-right-appear {animation-fill-mode: both;}
+.ant-move-right-leave {animation-fill-mode: both;}
+.move-right-enter, .move-right-appear {animation-fill-mode: both;}
+.move-right-leave {animation-fill-mode: both;}
 html {--antd-wave-shadow-color: @primary-color;}
-[ant-click-animating-without-extra-node='true']::after, .ant-click-animating-node {border-radius: inherit;box-shadow: 0 0 0 0 @primary-color;box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);}
+[ant-click-animating-without-extra-node='true']::after, .ant-click-animating-node {border-radius: inherit;box-shadow: 0 0 0 0 @primary-color;box-shadow: 0 0 0 0 var(--antd-wave-shadow-color);animation-fill-mode: forwards;}
+.slide-up-enter, .slide-up-appear {animation-fill-mode: both;}
+.slide-up-leave {animation-fill-mode: both;}
+.slide-down-enter, .slide-down-appear {animation-fill-mode: both;}
+.slide-down-leave {animation-fill-mode: both;}
+.slide-left-enter, .slide-left-appear {animation-fill-mode: both;}
+.slide-left-leave {animation-fill-mode: both;}
+.slide-right-enter, .slide-right-appear {animation-fill-mode: both;}
+.slide-right-leave {animation-fill-mode: both;}
+.ant-slide-up-enter, .ant-slide-up-appear {animation-fill-mode: both;}
+.ant-slide-up-leave {animation-fill-mode: both;}
+.ant-slide-down-enter, .ant-slide-down-appear {animation-fill-mode: both;}
+.ant-slide-down-leave {animation-fill-mode: both;}
+.ant-slide-left-enter, .ant-slide-left-appear {animation-fill-mode: both;}
+.ant-slide-left-leave {animation-fill-mode: both;}
+.ant-slide-right-enter, .ant-slide-right-appear {animation-fill-mode: both;}
+.ant-slide-right-leave {animation-fill-mode: both;}
+.ant-zoom-enter, .ant-zoom-appear {animation-fill-mode: both;}
+.ant-zoom-leave {animation-fill-mode: both;}
+.zoom-enter, .zoom-appear {animation-fill-mode: both;}
+.zoom-leave {animation-fill-mode: both;}
+.ant-zoom-big-enter, .ant-zoom-big-appear {animation-fill-mode: both;}
+.ant-zoom-big-leave {animation-fill-mode: both;}
+.zoom-big-enter, .zoom-big-appear {animation-fill-mode: both;}
+.zoom-big-leave {animation-fill-mode: both;}
+.ant-zoom-big-fast-enter, .ant-zoom-big-fast-appear {animation-fill-mode: both;}
+.ant-zoom-big-fast-leave {animation-fill-mode: both;}
+.zoom-big-fast-enter, .zoom-big-fast-appear {animation-fill-mode: both;}
+.zoom-big-fast-leave {animation-fill-mode: both;}
+.ant-zoom-up-enter, .ant-zoom-up-appear {animation-fill-mode: both;}
+.ant-zoom-up-leave {animation-fill-mode: both;}
+.zoom-up-enter, .zoom-up-appear {animation-fill-mode: both;}
+.zoom-up-leave {animation-fill-mode: both;}
+.ant-zoom-down-enter, .ant-zoom-down-appear {animation-fill-mode: both;}
+.ant-zoom-down-leave {animation-fill-mode: both;}
+.zoom-down-enter, .zoom-down-appear {animation-fill-mode: both;}
+.zoom-down-leave {animation-fill-mode: both;}
+.ant-zoom-left-enter, .ant-zoom-left-appear {animation-fill-mode: both;}
+.ant-zoom-left-leave {animation-fill-mode: both;}
+.zoom-left-enter, .zoom-left-appear {animation-fill-mode: both;}
+.zoom-left-leave {animation-fill-mode: both;}
+.ant-zoom-right-enter, .ant-zoom-right-appear {animation-fill-mode: both;}
+.ant-zoom-right-leave {animation-fill-mode: both;}
+.zoom-right-enter, .zoom-right-appear {animation-fill-mode: both;}
+.zoom-right-leave {animation-fill-mode: both;}
 .ant-alert {color: rgba(0, 0, 0, 0.85);border-radius: 2px;}
 .ant-alert-success {background-color: #f6ffed;border: 1px solid #b7eb8f;}
 .ant-alert-success .ant-alert-icon {color: #52c41a;}
@@ -48,6 +112,7 @@ html {--antd-wave-shadow-color: @primary-color;}
 .ant-alert-close-text:hover {color: rgba(0, 0, 0, 0.75);}
 .ant-alert-with-description .ant-alert-message {color: rgba(0, 0, 0, 0.85);}
 .ant-alert-message {color: rgba(0, 0, 0, 0.85);}
+.ant-alert-slide-up-leave {animation-fill-mode: both;}
 .ant-alert-banner {border: 0;border-radius: 0;}
 .ant-anchor {color: rgba(0, 0, 0, 0.85);}
 .ant-anchor-wrapper {background-color: transparent;}
@@ -91,6 +156,8 @@ html {--antd-wave-shadow-color: @primary-color;}
 .ant-badge-status-geekblue {background: #2f54eb;}
 .ant-badge-status-purple {background: #722ed1;}
 .ant-badge-status-text {color: rgba(0, 0, 0, 0.85);}
+.ant-badge-zoom-appear, .ant-badge-zoom-enter {animation-fill-mode: both;}
+.ant-badge-zoom-leave {animation-fill-mode: both;}
 .ant-ribbon {color: rgba(0, 0, 0, 0.85);color: #fff;background-color: @primary-color;border-radius: 2px;}
 .ant-ribbon-text {color: #fff;}
 .ant-ribbon-corner {color: currentColor;border: 4px solid;}
@@ -452,7 +519,7 @@ html {--antd-wave-shadow-color: @primary-color;}
 .ant-cascader-menu-item .ant-cascader-menu-item-keyword {color: #ff4d4f;}
 .ant-checkbox {color: rgba(0, 0, 0, 0.85);}
 .ant-checkbox-wrapper:hover .ant-checkbox-inner, .ant-checkbox:hover .ant-checkbox-inner, .ant-checkbox-input:focus + .ant-checkbox-inner {border-color: @primary-color;}
-.ant-checkbox-checked::after {border: 1px solid @primary-color;border-radius: 2px;}
+.ant-checkbox-checked::after {border: 1px solid @primary-color;border-radius: 2px;animation-fill-mode: backwards;}
 .ant-checkbox-inner {background-color: #fff;border: 1px solid #d9d9d9;border-radius: 2px;border-collapse: separate;}
 .ant-checkbox-inner::after {border: 2px solid #fff;border-top: 0;border-left: 0;}
 .ant-checkbox-checked .ant-checkbox-inner::after {border: 2px solid #fff;border-top: 0;border-left: 0;}
@@ -698,6 +765,8 @@ li.ant-calendar-time-picker-select-option-disabled:hover {background: transparen
 .ant-drawer-header-no-title {color: rgba(0, 0, 0, 0.85);background: #fff;}
 .ant-drawer-mask {background-color: rgba(0, 0, 0, 0.45);}
 .ant-drawer-open-content {box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);}
+.ant-dropdown-menu-item.ant-dropdown-menu-item-danger {color: #ff4d4f;}
+.ant-dropdown-menu-item.ant-dropdown-menu-item-danger:hover {color: #fff;background-color: #ff4d4f;}
 .ant-dropdown {color: rgba(0, 0, 0, 0.85);}
 .ant-dropdown-menu {background-color: #fff;background-clip: padding-box;border-radius: 2px;box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);}
 .ant-dropdown-menu-item-group-title {color: rgba(0, 0, 0, 0.45);}
@@ -720,6 +789,15 @@ li.ant-calendar-time-picker-select-option-disabled:hover {background: transparen
 .ant-dropdown-menu-dark .ant-dropdown-menu-item-selected, .ant-dropdown-menu-dark .ant-dropdown-menu-item-selected:hover, .ant-dropdown-menu-dark .ant-dropdown-menu-item-selected > a {color: #fff;background: @primary-color;}
 .ant-empty-normal {color: rgba(0, 0, 0, 0.25);}
 .ant-empty-small {color: rgba(0, 0, 0, 0.25);}
+.ant-empty-img-default-ellipse {fill: #f5f5f5;fill-opacity: 0.8;}
+.ant-empty-img-default-path-1 {fill: #aeb8c2;}
+.ant-empty-img-default-path-3 {fill: #f5f5f7;}
+.ant-empty-img-default-path-4 {fill: #dce0e6;}
+.ant-empty-img-default-path-5 {fill: #dce0e6;}
+.ant-empty-img-default-g {fill: #fff;}
+.ant-empty-img-simple-ellipse {fill: #f5f5f5;}
+.ant-empty-img-simple-g {stroke: #d9d9d9;}
+.ant-empty-img-simple-path {fill: #fafafa;}
 .ant-form-item .ant-upload {background: transparent;}
 .ant-form-item .ant-upload.ant-upload-drag {background: #fafafa;}
 .ant-form-item-explain.ant-form-item-explain-error {color: #ff4d4f;}
@@ -780,6 +858,8 @@ li.ant-calendar-time-picker-select-option-disabled:hover {background: transparen
 .ant-form-item-label > label .ant-form-item-optional {color: rgba(0, 0, 0, 0.45);}
 .ant-form-item-label > label .ant-form-item-tooltip {color: rgba(0, 0, 0, 0.45);}
 .ant-form-item-explain, .ant-form-item-extra {color: rgba(0, 0, 0, 0.45);}
+.ant-show-help-enter, .ant-show-help-appear {animation-fill-mode: both;}
+.ant-show-help-leave {animation-fill-mode: both;}
 .ant-image-img-placeholder {background-color: #f5f5f5;background-repeat: no-repeat;background-position: center center;background-size: 30%;}
 .ant-image-preview-mask {background-color: rgba(0, 0, 0, 0.45);}
 .ant-image-preview-operations {color: rgba(0, 0, 0, 0.85);color: rgba(255, 255, 255, 0.85);background: rgba(0, 0, 0, 0.1);}
@@ -1052,6 +1132,9 @@ li.ant-calendar-time-picker-select-option-disabled:hover {background: transparen
 .anticon.ant-notification-notice-icon-error {color: #ff4d4f;}
 .ant-notification-notice-close {color: rgba(0, 0, 0, 0.45);}
 .ant-notification-notice-close:hover {color: rgba(0, 0, 0, 0.67);}
+.ant-notification .notification-fade-effect {animation-fill-mode: both;}
+.ant-notification-fade-enter, .ant-notification-fade-appear {animation-fill-mode: both;}
+.ant-notification-fade-leave {animation-fill-mode: both;}
 .ant-page-header {color: rgba(0, 0, 0, 0.85);background-color: #fff;}
 .ant-page-header-ghost {background-color: inherit;}
 .ant-page-header-back-button {color: @primary-color;color: #000;}
@@ -1111,14 +1194,18 @@ li.ant-calendar-time-picker-select-option-disabled:hover {background: transparen
 .ant-popover-placement-left > .ant-popover-content > .ant-popover-arrow, .ant-popover-placement-leftTop > .ant-popover-content > .ant-popover-arrow, .ant-popover-placement-leftBottom > .ant-popover-content > .ant-popover-arrow {border-top-color: #fff;border-right-color: #fff;border-bottom-color: transparent;border-left-color: transparent;box-shadow: 3px -3px 7px rgba(0, 0, 0, 0.07);}
 .ant-progress {color: rgba(0, 0, 0, 0.85);}
 .ant-progress-inner {background-color: #f5f5f5;border-radius: 100px;}
+.ant-progress-circle-trail {stroke: #f5f5f5;}
+.ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {stroke: #1890ff;}
 .ant-progress-success-bg, .ant-progress-bg {background-color: #1890ff;border-radius: 100px;}
 .ant-progress-success-bg {background-color: #52c41a;}
 .ant-progress-text {color: rgba(0, 0, 0, 0.45);}
 .ant-progress-status-active .ant-progress-bg::before {background: #fff;border-radius: 10px;}
 .ant-progress-status-exception .ant-progress-bg {background-color: #ff4d4f;}
 .ant-progress-status-exception .ant-progress-text {color: #ff4d4f;}
+.ant-progress-status-exception .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {stroke: #ff4d4f;}
 .ant-progress-status-success .ant-progress-bg {background-color: #52c41a;}
 .ant-progress-status-success .ant-progress-text {color: #52c41a;}
+.ant-progress-status-success .ant-progress-inner:not(.ant-progress-circle-gradient) .ant-progress-circle-path {stroke: #52c41a;}
 .ant-progress-circle .ant-progress-inner {background-color: transparent;}
 .ant-progress-circle .ant-progress-text {color: rgba(0, 0, 0, 0.85);}
 .ant-progress-circle.ant-progress-status-exception .ant-progress-text {color: #ff4d4f;}
@@ -1128,7 +1215,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {background: transparen
 .ant-radio {color: rgba(0, 0, 0, 0.85);}
 .ant-radio-wrapper:hover .ant-radio, .ant-radio:hover .ant-radio-inner, .ant-radio-input:focus + .ant-radio-inner {border-color: @primary-color;}
 .ant-radio-input:focus + .ant-radio-inner {box-shadow: 0 0 0 3px rgba(18, 52, 86, 0.08);}
-.ant-radio-checked::after {border: 1px solid @primary-color;border-radius: 50%;}
+.ant-radio-checked::after {border: 1px solid @primary-color;border-radius: 50%;animation-fill-mode: both;}
 .ant-radio-inner {background-color: #fff;border-color: #d9d9d9;border-style: solid;border-width: 1px;border-radius: 100px;}
 .ant-radio-inner::after {background-color: @primary-color;border-top: 0;border-left: 0;border-radius: 8px;}
 .ant-radio-checked .ant-radio-inner {border-color: @primary-color;}
@@ -1223,6 +1310,7 @@ li.ant-calendar-time-picker-select-option-disabled:hover {background: transparen
 .ant-skeleton-element .ant-skeleton-input {background: rgba(190, 190, 190, 0.2);}
 .ant-skeleton-element .ant-skeleton-image {background: rgba(190, 190, 190, 0.2);}
 .ant-skeleton-element .ant-skeleton-image.ant-skeleton-image-circle {border-radius: 50%;}
+.ant-skeleton-element .ant-skeleton-image-path {fill: #bfbfbf;}
 .ant-skeleton-element .ant-skeleton-image-svg.ant-skeleton-image-circle {border-radius: 50%;}
 .ant-slider {color: rgba(0, 0, 0, 0.85);}
 .ant-slider-rail {background-color: #f5f5f5;border-radius: 2px;}
@@ -1581,7 +1669,7 @@ li.ant-time-picker-panel-select-option-disabled:focus {color: rgba(0, 0, 0, 0.25
 .ant-tree.ant-tree-directory > li.ant-tree-treenode-selected > span.ant-tree-node-content-wrapper::before, .ant-tree.ant-tree-directory .ant-tree-child-tree > li.ant-tree-treenode-selected > span.ant-tree-node-content-wrapper::before {background: @primary-color;}
 .ant-tree-checkbox {color: rgba(0, 0, 0, 0.85);}
 .ant-tree-checkbox-wrapper:hover .ant-tree-checkbox-inner, .ant-tree-checkbox:hover .ant-tree-checkbox-inner, .ant-tree-checkbox-input:focus + .ant-tree-checkbox-inner {border-color: @primary-color;}
-.ant-tree-checkbox-checked::after {border: 1px solid @primary-color;border-radius: 2px;}
+.ant-tree-checkbox-checked::after {border: 1px solid @primary-color;border-radius: 2px;animation-fill-mode: backwards;}
 .ant-tree-checkbox-inner {background-color: #fff;border: 1px solid #d9d9d9;border-radius: 2px;border-collapse: separate;}
 .ant-tree-checkbox-inner::after {border: 2px solid #fff;border-top: 0;border-left: 0;}
 .ant-tree-checkbox-checked .ant-tree-checkbox-inner::after {border: 2px solid #fff;border-top: 0;border-left: 0;}
@@ -1614,7 +1702,7 @@ li.ant-tree-treenode-disabled > .ant-tree-node-content-wrapper:hover {background
 .ant-tree.ant-tree-show-line li:not(:last-child)::before {border-left: 1px solid #d9d9d9;}
 .ant-select-tree-checkbox {color: rgba(0, 0, 0, 0.85);}
 .ant-select-tree-checkbox-wrapper:hover .ant-select-tree-checkbox-inner, .ant-select-tree-checkbox:hover .ant-select-tree-checkbox-inner, .ant-select-tree-checkbox-input:focus + .ant-select-tree-checkbox-inner {border-color: @primary-color;}
-.ant-select-tree-checkbox-checked::after {border: 1px solid @primary-color;border-radius: 2px;}
+.ant-select-tree-checkbox-checked::after {border: 1px solid @primary-color;border-radius: 2px;animation-fill-mode: backwards;}
 .ant-select-tree-checkbox-inner {background-color: #fff;border: 1px solid #d9d9d9;border-radius: 2px;border-collapse: separate;}
 .ant-select-tree-checkbox-inner::after {border: 2px solid #fff;border-top: 0;border-left: 0;}
 .ant-select-tree-checkbox-checked .ant-select-tree-checkbox-inner::after {border: 2px solid #fff;border-top: 0;border-left: 0;}
@@ -1709,6 +1797,7 @@ a.ant-typography.ant-typography-disabled:hover, .ant-typography a.ant-typography
 .ant-upload-list-picture-card .ant-upload-list-item-uploading.ant-upload-list-item {background-color: #fafafa;}
 .ant-upload-list-picture-card .ant-upload-list-item-uploading-text {color: rgba(0, 0, 0, 0.45);}
 .ant-upload-list .ant-upload-success-icon {color: #52c41a;}
+.ant-upload-list .ant-upload-animate-enter, .ant-upload-list .ant-upload-animate-leave, .ant-upload-list .ant-upload-animate-inline-enter, .ant-upload-list .ant-upload-animate-inline-leave {animation-fill-mode: cubic-bezier(0.78, 0.14, 0.15, 0.86);}
 .primary-color {color: #2d8cf0;}
 .primary-color {color: @primary-color;}
 .primary-color {color: #2d8cf0;}
