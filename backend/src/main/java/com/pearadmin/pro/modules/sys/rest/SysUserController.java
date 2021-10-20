@@ -215,4 +215,5 @@ public class SysUserController extends BaseController {
     public Result dept() {
         return success();
     }
+
 }

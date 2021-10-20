@@ -1,6 +1,7 @@
 package com.pearadmin.pro.common.secure.captcha;
 
 import com.pearadmin.pro.common.web.domain.Result;
+import com.pearadmin.pro.common.web.interceptor.annotation.RateLimit;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,6 +28,7 @@ public class SecureCaptchaRest extends ResultController {
     /**
      * Captcha 生成
      * */
+    @RateLimit
     @GetMapping("create")
     @ApiOperation(value = "创建验证码")
     public Result createCaptcha(){

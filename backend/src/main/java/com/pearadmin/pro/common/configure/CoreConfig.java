@@ -12,6 +12,8 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalTimeSerializer;
+import com.pearadmin.pro.common.web.interceptor.RateLimitInterceptor;
+import com.pearadmin.pro.common.web.interceptor.annotation.RateLimit;
 import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
 import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
@@ -23,8 +25,10 @@ import org.springframework.data.redis.serializer.StringRedisSerializer;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.annotation.Resource;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -42,6 +46,9 @@ import java.util.List;
  * */
 @Configuration
 public class CoreConfig implements WebMvcConfigurer {
+
+    @Resource
+    private RateLimitInterceptor rateLimitInterceptor;
 
     // TODO 时间格式
     private static final String DEFAULT_DATE_TIME_PATTERN = "yyyy-MM-dd HH:mm:ss";
@@ -114,4 +121,13 @@ public class CoreConfig implements WebMvcConfigurer {
         return factory;
     }
 
+    /**
+     * Interceptor 注册
+     *
+     * 手 动 注 册
+     * */
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(rateLimitInterceptor).addPathPatterns("/**");
+    }
 }
