@@ -1,24 +1,30 @@
 <template>
   <div class="pro-query">
     <!-- 表单内容 -->
-    <a-form layout="inline" :model="formState">
+    <a-form 
+     layout="inline" 
+    :model="formState"  
+    :label-col="labelCol"
+    :wrapper-col="wrapperCol">
       <a-form-item v-show="!param.hidden || !hidden" :label="param.label" :key="index" v-for="(param, index) in searchParam">
         <!-- 输入框 -->
         <a-input v-model:value="formState[param.key]" v-show="!param.hidden || !hidden" v-if="param.type == 'input'" type="text">
         </a-input>
         <!-- 选择框 -->
-        <a-select v-if="param.type == 'select'" v-model:value="formState[param.key]" class="pro-query-select">
+        <a-select v-if="param.type == 'select'" v-model:value="formState[param.key]" style="width: 160px" class="pro-query-select">
             <a-select-option :key="index" v-for="(option,index) in param.options" :value="option.value">{{option.text}}</a-select-option>
         </a-select>
+        <!-- 日期选择 -->
+        <a-time-picker v-if="param.type == 'timePicker'" v-model:value="formState[param.key]" />
+        <a-date-picker v-if="param.type == 'datePicker'" v-model:value="formState[param.key]" />
+        <a-week-picker v-if="param.type == 'weekPicker'" v-model:value="formState[param.key]" />
       </a-form-item>
       <!-- 按钮组 -->
-      <a-form-item>
-        <a-button type="primary" class="pro-query-button" @click="search"> 查询 </a-button>
-        <a-button html-type="submit" class="pro-query-button" @click="reset"> 重置 </a-button>
-        <!-- 收起 隐藏 -->
-        <a class="pro-query-hidden" @click="hiddenHandle" v-show="hidden && more">展开 &nbsp;<DownOutlined/></a>
-        <a class="pro-query-hidden" @click="hiddenHandle" v-show="!hidden && more">收起 &nbsp;<UpOutlined/></a>
-      </a-form-item>
+      <a-button type="primary" class="pro-query-button" @click="search"> 查询 </a-button>
+      <a-button html-type="submit" class="pro-query-button" @click="reset"> 重置 </a-button>
+      <!-- 收起 隐藏 -->
+      <a class="pro-query-hidden" @click="hiddenHandle" v-show="hidden && more">展开 &nbsp;<DownOutlined/></a>
+      <a class="pro-query-hidden" @click="hiddenHandle" v-show="!hidden && more">收起 &nbsp;<UpOutlined/></a>
     </a-form>
   </div>
 </template>
@@ -33,6 +39,14 @@ export default defineComponent({
   props: {
     searchParam: {
       type: Array,
+    },
+    labelCol: {
+      type: Object,
+      default: function() { return { span: 8 }} 
+    },
+    wrapperCol: {
+      type: Object,
+      default: function() { return { span: 16 }} 
     }
   },
   components: {
@@ -60,8 +74,7 @@ export default defineComponent({
     }
 
     generateFormState(props.searchParam);
-
-    const {validate, resetFields} = useForm(formState, formRules)
+    const { validate, resetFields } = useForm(formState, formRules)
     
     /// 是否存在隐藏表单
     props.searchParam.forEach(element => {
@@ -103,3 +116,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style>
+.pro-query-hidden {
+  line-height: 30px;
+}
+</style>
