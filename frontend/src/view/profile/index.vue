@@ -101,7 +101,7 @@
 <script>
 import { message } from 'ant-design-vue';
 import { profile, editPassword, edit } from "@/api/module/user";
-import { reactive, ref } from "@vue/reactivity";
+import { reactive, ref } from "vue";
 export default {
   setup() {
     const userInfo = reactive({});
