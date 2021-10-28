@@ -119,60 +119,6 @@
                   ></span></div
               ></a>
             </li>
-            <li
-              @click="updateTheme('theme-night')"
-              :class="[theme === 'theme-night' ? 'layui-this' : '']"
-            >
-              <a
-                href="javascript:;"
-                data-skin="skin-blue"
-                style="border-radius: 4px"
-                class="clearfix full-opacity-hover"
-                ><div>
-                  <span
-                    style="
-                      display: block;
-                      width: 20%;
-                      float: left;
-                      height: 12px;
-                      background: #2e3549;
-                      border-top-left-radius: 4px;
-                    "
-                  ></span
-                  ><span
-                    style="
-                      display: block;
-                      width: 80%;
-                      float: left;
-                      height: 12px;
-                      background: #2e3549;
-                      border-top-right-radius: 4px;
-                    "
-                  ></span>
-                </div>
-                <div>
-                  <span
-                    style="
-                      display: block;
-                      width: 20%;
-                      float: left;
-                      height: 34px;
-                      background: #2e3549;
-                      border-bottom-left-radius: 4px;
-                    "
-                  ></span
-                  ><span
-                    style="
-                      display: block;
-                      width: 80%;
-                      float: left;
-                      height: 34px;
-                      background: #2e3549;
-                      border-bottom-right-radius: 4px;
-                    "
-                  ></span></div
-              ></a>
-            </li>
           </ul>
         </div>
       </div>

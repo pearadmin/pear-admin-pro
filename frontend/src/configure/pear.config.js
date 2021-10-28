@@ -27,7 +27,6 @@
    * 参数 : 默认的主题
    * theme-dark
    * theme-light
-   * theme-night
    * */
   theme: "theme-dark",
 
