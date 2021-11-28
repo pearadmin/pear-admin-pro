@@ -198,7 +198,8 @@
 
       </template>
 
-            <template v-for="name in slotsData" #[name]="{ record }">
+      <!-- 内容插槽 -->
+      <template v-for="name in slotsData" #[name]="{ record }">
         <slot :name="name" :record="record"></slot>
       </template>
 

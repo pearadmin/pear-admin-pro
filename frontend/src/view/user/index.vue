@@ -8,7 +8,11 @@
             <pro-query
               :searchParam="searchParam"
               @on-search ="search"
-            ></pro-query>
+            >
+              <template #test="{ data }">
+                <a-input v-model:value="data.test" type="text" />
+              </template>
+            </pro-query>
           </a-card>
         </a-col>
         <!-- 用户列表 -->
@@ -186,6 +190,7 @@ export default {
     const searchParam = [
         { key: "name", type: "input", label: "名称"},
         { key: "code", type: "input", label: "描述"},
+        { key: "test", type: "custom", label: "插槽", customRender: "test" } 
     ]
 
     /// 选择操作
