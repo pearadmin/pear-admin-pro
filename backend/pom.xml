@@ -26,7 +26,7 @@
         <fastjson.version>1.2.45</fastjson.version>
         <token.version>0.9.1</token.version>
         <datasource.version>3.3.1</datasource.version>
-        <mybatis.plus.version>3.4.3</mybatis.plus.version>
+        <mybatis.plus.version>3.4.3.4</mybatis.plus.version>
         <common.lang.version>3.5</common.lang.version>
         <mysql.version>8.0.22</mysql.version>
         <swagger.version>2.9.2</swagger.version>
