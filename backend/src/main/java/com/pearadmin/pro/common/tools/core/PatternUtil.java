@@ -3,6 +3,12 @@ package com.pearadmin.pro.common.tools.core;
 import java.util.List;
 import java.util.regex.Pattern;
 
+/**
+ * 规则工具类
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/04/01
+ * */
 public class PatternUtil {
 
     public static boolean matches(String pattern,String content){

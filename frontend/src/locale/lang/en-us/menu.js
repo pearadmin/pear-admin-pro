@@ -48,6 +48,7 @@ export default {
   "develop-source": "datasource",
   "develop-form": "form",
   "develop-sms": "sms",
+  "develop-generate": "generate",
   "other": "other",
   "other-profile": "profile",
   "task": "task",

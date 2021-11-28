@@ -1,4 +1,4 @@
-package com.pearadmin.pro.common.tools.support.server.server;
+package com.pearadmin.pro.common.tools.server.server;
 
 import com.pearadmin.pro.common.tools.core.MathUtil;
 

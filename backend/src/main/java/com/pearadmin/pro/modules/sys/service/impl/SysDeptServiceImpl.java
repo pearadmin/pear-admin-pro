@@ -1,9 +1,7 @@
 package com.pearadmin.pro.modules.sys.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import com.pearadmin.pro.common.tools.support.server.server.Sys;
 import com.pearadmin.pro.modules.sys.domain.SysDept;
-import com.pearadmin.pro.modules.sys.domain.SysPower;
 import com.pearadmin.pro.modules.sys.repository.SysDeptRepository;
 import com.pearadmin.pro.modules.sys.service.SysDeptService;
 import org.springframework.stereotype.Service;

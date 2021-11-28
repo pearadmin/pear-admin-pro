@@ -1,7 +1,7 @@
-package com.pearadmin.pro.common.tools.support.server;
+package com.pearadmin.pro.common.tools.server;
 
 import com.pearadmin.pro.common.tools.core.MathUtil;
-import com.pearadmin.pro.common.tools.support.server.server.*;
+import com.pearadmin.pro.common.tools.server.server.*;
 import oshi.SystemInfo;
 import oshi.hardware.CentralProcessor;
 import oshi.hardware.CentralProcessor.TickType;
@@ -11,7 +11,6 @@ import oshi.software.os.FileSystem;
 import oshi.software.os.OSFileStore;
 import oshi.software.os.OperatingSystem;
 import oshi.util.Util;
-
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.util.Arrays;

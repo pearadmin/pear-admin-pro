@@ -36,7 +36,7 @@ public class SysDictData extends BaseDomain {
     /**
      * 启用
      * */
-    private boolean enable;
+    private Boolean enable;
 
     /**
      * 标识

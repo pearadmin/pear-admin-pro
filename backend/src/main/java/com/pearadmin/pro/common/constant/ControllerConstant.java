@@ -18,4 +18,9 @@ public class ControllerConstant {
      * */
     public static final String PREFIX_SYS = PREFIX + "/sys/";
 
+    /**
+     * 代码 API 根路径
+     * */
+    public static final String PREFIX_GEN = PREFIX + "/gen/";
+
 }

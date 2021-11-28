@@ -32,4 +32,5 @@ export default {
   'inbox': () => import('@/view/inbox/index.vue'),
   'tenant': () => import('@/view/tenant/index.vue'),
   'sms': () => import('@/view/sms/index.vue'),
+  'generate': () => import('@/view/generate/index.vue')
 }

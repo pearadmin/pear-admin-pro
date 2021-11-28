@@ -23,11 +23,11 @@ public class InterceptorConfiguration implements ApplicationListener<ContextRefr
 
     private void addMyInterceptor() {
         for (SqlSessionFactory sqlSessionFactory : sqlSessionFactoryList) {
+            sqlSessionFactory.getConfiguration().addInterceptor(new DataScopeInterceptor());
             if(TenantConstant.enable) {
                 log.info("Enable multi tenant");
                 sqlSessionFactory.getConfiguration().addInterceptor(new TenantInterceptor());
             }
-            sqlSessionFactory.getConfiguration().addInterceptor(new DataScopeInterceptor());
         }
     }
 }

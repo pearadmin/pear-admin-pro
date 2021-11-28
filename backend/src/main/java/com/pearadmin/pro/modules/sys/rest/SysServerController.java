@@ -2,7 +2,7 @@ package com.pearadmin.pro.modules.sys.rest;
 
 import com.pearadmin.pro.common.aop.annotation.Log;
 import com.pearadmin.pro.common.constant.ControllerConstant;
-import com.pearadmin.pro.common.tools.support.server.Server;
+import com.pearadmin.pro.common.tools.server.Server;
 import com.pearadmin.pro.common.web.base.BaseController;
 import com.pearadmin.pro.common.web.domain.Result;
 import io.swagger.annotations.Api;

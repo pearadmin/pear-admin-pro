@@ -44,7 +44,7 @@ public class SysDict extends BaseDomain {
     /**
      * 启用
      * */
-    private boolean enable;
+    private Boolean enable;
 
     /**
      * 对应

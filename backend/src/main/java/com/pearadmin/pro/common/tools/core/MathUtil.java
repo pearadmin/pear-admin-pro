@@ -4,8 +4,11 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 /**
- * 精确的浮点数运算
- */
+ * 运算 工具类
+ *
+ * Author: 就 眠 仪 式
+ * CreateTime: 2021/04/01
+ * */
 public class MathUtil
 {
 

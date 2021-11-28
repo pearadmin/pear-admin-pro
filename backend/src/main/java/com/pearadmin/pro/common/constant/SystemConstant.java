@@ -19,6 +19,36 @@ public class SystemConstant {
     public static final String EMPTY = "";
 
     /**
+     * 空 串
+     * */
+    public static final String SPACE = "";
+
+    /**
+     * 斜线
+     * */
+    public static final String SLASH = "/";
+
+    /**
+     * 下划线
+     * */
+    public static final String UNDERLINE = "_";
+
+    /**
+     * 左括号
+     * */
+    public static final String BRACKET_LEFT = "(";
+
+    /**
+     * 右括号
+     * */
+    public static final String BRACKET_RIGHT = ")";
+
+    /**
+     * 逗号
+     * */
+    public static final String COMMA = ",";
+
+    /**
      * Excel 格式
      * */
     public static final String XLSX = ".xlsx";

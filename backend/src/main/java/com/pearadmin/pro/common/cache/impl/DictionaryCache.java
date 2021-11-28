@@ -33,11 +33,11 @@ public class DictionaryCache extends BaseCache<List<SysDictData>> {
     {
         log.info("Refresh Cache - 数据字典");
         Map<String, List<SysDictData>> map = new HashMap<>();
-        List<SysDict> dictList = sysDictService.lambdaQuery().eq(SysDict::isEnable,true).list();
+        List<SysDict> dictList = sysDictService.lambdaQuery().eq(SysDict::getEnable,true).list();
         dictList.forEach(dict -> {
             List<SysDictData> dictData = sysDictDataService.lambdaQuery()
                     .eq(SysDictData::getCode, dict.getCode())
-                    .eq(SysDictData::isEnable,true).list();
+                    .eq(SysDictData::getEnable,true).list();
             map.put(dict.getCode(),dictData);
         });
         return new HashMap<>();
