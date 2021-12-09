@@ -33,7 +33,7 @@ export default {
     }
   },
   setup(props, context) {
-    const selected = ref(props.value ? props.value : icons[0]);
+    const selected = ref(props.modelValue ? props.modelValue : icons[0]);
 
     const select = function (icon) {
       selected.value = icon;
