@@ -95,7 +95,7 @@
     </div>
     <!-- 表格组件 -->
     <a-table
-      rowKey="id"
+      :rowKey="rowKey"
       @change="fetch"
       :columns="columns"
       :loading="loading"
@@ -265,6 +265,10 @@ export default defineComponent({
     rowSelection: {
       type: Object,
     },
+    rowKey: {
+      type: String,
+      default: "id"
+    }
   }),
   setup(props) {
 
