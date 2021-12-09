@@ -23,7 +23,7 @@ import { watch, ref } from "vue";
 export default {
   name: "pro-icon-picker",
   props: {
-    value: {
+    modelValue: {
       type: String,
       require: false,
     },
