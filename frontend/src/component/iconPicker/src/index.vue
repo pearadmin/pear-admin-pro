@@ -1,7 +1,7 @@
 <template>
   <div class="pro-icon-picker">
     <a-dropdown>
-      <a-input v-model:value="selected" readonly>
+      <a-input v-model:value="selected" :name="name" readonly>
         <template #addonAfter>
           <pro-icon :type="selected"></pro-icon>
         </template>
@@ -27,6 +27,10 @@ export default {
       type: String,
       require: false,
     },
+    name: {
+      type: String,
+      require: false
+    }
   },
   setup(props, context) {
     const selected = ref(props.value ? props.value : icons[0]);
